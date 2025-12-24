@@ -5,62 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ocean Graph - Marketing Digital Profesional</title>
     
+    <!-- Google Fonts - Roboto Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
     <!-- CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header Principal -->
-    <header class="main-header">
-        <nav class="navbar">
-            <div class="nav-container">
-                <!-- Logo -->
-                <div class="logo">
-                    <span class="logo-icon">◈</span>
-                    <span class="logo-text">Oceano <span class="logo-accent">Grafico</span></span>
-                </div>
-
-                <!-- Menú de navegación -->
-                <ul class="nav-menu">
-                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
-                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
-                </ul>
-
-                <!-- Botón hamburguesa (móvil) -->
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="logo">
+                <span class="logo-icon">◈</span>
+                <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
             </div>
-        </nav>
 
-        <!-- Hero Section -->
-        <div class="hero" id="inicio">
-            <div class="hero-content">
-                <div class="hero-badge">Marketing Digital Profesional</div>
-                <h1 class="hero-title">
-                    Transformamos tu marca<br>
-                    <span class="gradient-text">en experiencias visuales</span>
-                </h1>
-                <p class="hero-subtitle">
-                    Un equipo creativo dedicado a llevar tu proyecto al siguiente nivel.<br>
-                    Calidad, puntualidad y profesionalismo en cada detalle.
-                </p>
-            </div>
-            
-            <!-- Decoración -->
-            <div class="hero-decoration">
-                <div class="circle circle-1"></div>
-                <div class="circle circle-2"></div>
-                <div class="circle circle-3"></div>
+            <!-- Menú de navegación -->
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <!-- Botón hamburguesa (móvil) -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Sección: Quiénes Somos -->
+    <!-- ============================================
+         SECCIÓN: VIDEO HERO CON OVERLAY
+         ============================================ -->
+    <section class="video-hero" id="inicio">
+        <!-- Video de Fondo -->
+        <div class="video-container">
+            <!-- 
+                IMPORTANTE: Reemplaza "tu-video.mp4" con la ruta de tu video
+                Formatos recomendados: .mp4, .webm
+                Resolución recomendada: 1920x1080 o superior
+            -->
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="video\evento carros_1.mp4" type="video/mp4">
+                <!-- Fallback para navegadores que no soporten video -->
+                Tu navegador no soporta videos HTML5.
+            </video>
+
+            <!-- Overlay Opaco sobre el video -->
+            <div class="video-overlay"></div>
+        </div>
+
+        <!-- Contenido sobre el video -->
+        <div class="video-content">
+            <div class="video-content-inner">
+                <!-- Badge Superior -->
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Marketing Digital Profesional
+                </div>
+
+                <!-- Título Principal -->
+                <h1 class="video-title">
+                    <span class="title-line">Creamos</span>
+                    <span class="title-line">experiencias</span>
+                    <span class="title-line gradient">visuales únicas</span>
+                </h1>
+
+                <!-- Descripción -->
+                <p class="video-description">
+                    Transformamos ideas en contenido profesional que conecta,<br>
+                    inspira y genera resultados excepcionales.
+                </p>
+
+                <!-- Indicador de Scroll -->
+                <div class="scroll-down">
+                    <span class="scroll-text">Descubre más</span>
+                    <span class="scroll-arrow">↓</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECCIÓN: QUIÉNES SOMOS
+         ============================================ -->
     <section class="about-section" id="nosotros">
         <div class="container">
             <div class="section-header">
@@ -108,7 +143,9 @@
         </div>
     </section>
 
-    <!-- Sección: Servicios -->
+    <!-- ============================================
+         SECCIÓN: SERVICIOS
+         ============================================ -->
     <section class="services-section" id="servicios">
         <div class="container">
             <div class="section-header">
@@ -118,7 +155,7 @@
             </div>
 
             <div class="services-grid">
-                <!-- Servicio 1 -->
+                <!-- Servicio 1: Diseño Gráfico -->
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -134,7 +171,7 @@
                     </p>
                 </div>
 
-                <!-- Servicio 2 -->
+                <!-- Servicio 2: Fotografía -->
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -149,7 +186,7 @@
                     </p>
                 </div>
 
-                <!-- Servicio 3 -->
+                <!-- Servicio 3: Videos Profesionales -->
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -164,7 +201,7 @@
                     </p>
                 </div>
 
-                <!-- Servicio 4 -->
+                <!-- Servicio 4: Videografía -->
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -179,7 +216,7 @@
                     </p>
                 </div>
 
-                <!-- Servicio 5 -->
+                <!-- Servicio 5: Community Manager -->
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -198,7 +235,9 @@
         </div>
     </section>
 
-    <!-- Sección: Portfolio Preview -->
+    <!-- ============================================
+         SECCIÓN: PORTFOLIO
+         ============================================ -->
     <section class="portfolio-section" id="portfolio">
         <div class="container">
             <div class="section-header">
@@ -259,7 +298,9 @@
         </div>
     </section>
 
-    <!-- Sección: Contacto -->
+    <!-- ============================================
+         SECCIÓN: CONTACTO
+         ============================================ -->
     <section class="contact-section" id="contacto">
         <div class="container">
             <div class="section-header">
@@ -310,14 +351,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
                 <span class="logo-icon">◈</span>
                 <span>OCEAN <span class="logo-accent">GRAPH</span></span>
             </div>
-            <p>&copy; 2025 Ocean Graph — Profesionales de la Guaira</p>
+            <p>&copy; 2024 Ocean Graph — Marketing Digital Profesional</p>
             <div class="footer-social">
                 <a href="#" aria-label="Instagram">IG</a>
                 <a href="#" aria-label="Facebook">FB</a>
@@ -329,6 +372,4 @@
     <!-- JavaScript externo -->
     <script src="script.js"></script>
 </body>
-
 </html>
-
