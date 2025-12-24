@@ -232,7 +232,7 @@ textarea {
     display: flex;
     list-style: none;
     gap: 2.5rem;
-    align-items: entre;
+    align-items: center;
 }
 
 .nav-actions {
@@ -846,6 +846,49 @@ section {
     opacity: 0.8;
 }
 
+/* Bloque "Ver más contenido" */
+.portfolio-more {
+    margin-top: var(--spacing-lg);
+    text-align: center;
+}
+
+.portfolio-more-text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: 0.75;
+    margin-bottom: var(--spacing-sm);
+}
+
+.portfolio-more-link {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary);
+    background-color: transparent;
+    transition:
+        background-color var(--transition-normal),
+        color var(--transition-normal),
+        box-shadow var(--transition-normal),
+        transform var(--transition-fast);
+}
+
+.portfolio-more-link:hover {
+    background-color: var(--color-primary);
+    color: #141414;
+    box-shadow: 0 8px 20px rgba(0, 157, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.portfolio-more-link:active {
+    transform: scale(0.97);
+}
+
 /* ===================================
    CONTACTO
    =================================== */
@@ -1239,6 +1282,10 @@ body.low-performance .video-overlay {
     .loader-text {
         font-size: 1.3rem;
         letter-spacing: 2px;
+    }
+
+    .portfolio-more {
+        margin-top: var(--spacing-md);
     }
 }
 
