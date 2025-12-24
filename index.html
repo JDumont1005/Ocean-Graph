@@ -6,32 +6,42 @@
     <meta name="theme-color" content="#141414">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Ocean Graph - Agencia de Marketing Digital. Diseño, Fotografía, Videos Profesionales, Videografía y Community Manager.">
     
     <title>Ocean Graph - Marketing Digital Profesional</title>
     
-    <!-- Preconexiones para mejorar rendimiento -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Google Fonts - Roboto Family -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- CSS externo -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ============================================
-         NAVEGACIÓN FIJA
-         ============================================ -->
+
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph Logo" class="loader-logo-img">
+            </div>
+            <h2 class="loader-text">OCEAN <span>GRAPH</span></h2>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
-            <!-- Logo -->
             <a href="#inicio" class="logo" aria-label="Ocean Graph - Ir a inicio">
-                <span class="logo-icon" aria-hidden="true">◈</span>
+                <img 
+                    src="Logo/OceanGraph - Ola.svg" 
+                    alt="Ocean Graph" 
+                    class="logo-svg"
+                >
                 <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
             </a>
 
-            <!-- Menú de navegación -->
             <ul class="nav-menu" role="menubar">
                 <li role="none"><a href="#inicio" class="nav-link active" role="menuitem">Inicio</a></li>
                 <li role="none"><a href="#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
@@ -40,7 +50,6 @@
                 <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
             </ul>
 
-            <!-- Botón hamburguesa (móvil) -->
             <button 
                 class="hamburger" 
                 aria-label="Abrir menú de navegación"
@@ -54,13 +63,8 @@
         </div>
     </nav>
 
-    <!-- ============================================
-         SECCIÓN: VIDEO HERO RESPONSIVE
-         ============================================ -->
     <section class="video-hero" id="inicio">
-        <!-- Contenedor del Video -->
         <div class="video-background">
-            <!-- Video para Desktop -->
             <video 
                 class="hero-video hero-video-desktop" 
                 autoplay 
@@ -68,14 +72,11 @@
                 loop 
                 playsinline
                 preload="auto"
-                poster="images/video-poster.jpg"
             >
-                <source src="video\evento carros_1.mp4" type="video/mp4">
-                <source src="video\evento carros_1.mp4" type="video/webm">
+                <source src="video/evento carros_1.mp4" type="video/mp4">
                 Tu navegador no soporta videos HTML5.
             </video>
 
-            <!-- Video alternativo para Móvil (opcional, más liviano) -->
             <video 
                 class="hero-video hero-video-mobile" 
                 autoplay 
@@ -83,40 +84,27 @@
                 loop 
                 playsinline
                 preload="auto"
-                poster="images/video-poster-mobile.jpg"
             >
-                <source src="videos/hero-video-mobile.mp4" type="video/mp4">
-                <source src="videos/hero-video.mp4" type="video/mp4">
+                <source src="video/evento carros_1.mp4" type="video/mp4">
                 Tu navegador no soporta videos HTML5.
             </video>
 
-            <!-- Overlay oscuro sobre el video -->
             <div class="video-overlay"></div>
         </div>
 
-        <!-- Contenido centrado sobre el video -->
         <div class="video-content">
             <div class="video-content-wrapper">
-                <!-- Badge superior -->
-                <div class="hero-badge">
-                    <span class="badge-dot" aria-hidden="true"></span>
-                    <span class="badge-text">Marketing Digital Profesional</span>
-                </div>
-
-                <!-- Título principal -->
                 <h1 class="video-title">
                     <span class="title-line">Creamos</span>
                     <span class="title-line">experiencias</span>
                     <span class="title-line title-highlight">visuales únicas</span>
                 </h1>
 
-                <!-- Descripción -->
                 <p class="video-description">
                     Transformamos ideas en contenido profesional que conecta,
                     inspira y genera resultados excepcionales.
                 </p>
 
-                <!-- Indicador de scroll -->
                 <div class="scroll-indicator" aria-label="Desplazar hacia abajo">
                     <span class="scroll-text">Descubre más</span>
                     <span class="scroll-arrow" aria-hidden="true">↓</span>
@@ -125,12 +113,8 @@
         </div>
     </section>
 
-    <!-- ============================================
-         SECCIÓN: QUIÉNES SOMOS
-         ============================================ -->
     <section class="about-section" id="nosotros">
         <div class="container">
-            <!-- Header de sección -->
             <header class="section-header">
                 <div class="divider" aria-hidden="true"></div>
                 <h2>Quiénes Somos</h2>
@@ -138,7 +122,6 @@
             </header>
 
             <div class="about-content">
-                <!-- Texto descriptivo -->
                 <div class="about-text">
                     <p>
                         Somos un grupo de creativos y profesionales del marketing digital 
@@ -159,7 +142,6 @@
                     </p>
                 </div>
 
-                <!-- Estadísticas -->
                 <div class="about-stats">
                     <div class="stat-card">
                         <div class="stat-number" data-target="100">0+</div>
@@ -178,12 +160,8 @@
         </div>
     </section>
 
-    <!-- ============================================
-         SECCIÓN: SERVICIOS
-         ============================================ -->
     <section class="services-section" id="servicios">
         <div class="container">
-            <!-- Header de sección -->
             <header class="section-header">
                 <div class="divider" aria-hidden="true"></div>
                 <h2>Nuestros Servicios</h2>
@@ -191,7 +169,6 @@
             </header>
 
             <div class="services-grid">
-                <!-- Servicio 1: Diseño Gráfico -->
                 <article class="service-card">
                     <div class="service-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -207,7 +184,6 @@
                     </p>
                 </article>
 
-                <!-- Servicio 2: Fotografía -->
                 <article class="service-card">
                     <div class="service-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -222,7 +198,6 @@
                     </p>
                 </article>
 
-                <!-- Servicio 3: Videos Profesionales -->
                 <article class="service-card">
                     <div class="service-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -237,7 +212,6 @@
                     </p>
                 </article>
 
-                <!-- Servicio 4: Videografía -->
                 <article class="service-card">
                     <div class="service-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -252,7 +226,6 @@
                     </p>
                 </article>
 
-                <!-- Servicio 5: Community Manager -->
                 <article class="service-card">
                     <div class="service-icon" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -271,12 +244,8 @@
         </div>
     </section>
 
-    <!-- ============================================
-         SECCIÓN: PORTFOLIO
-         ============================================ -->
     <section class="portfolio-section" id="portfolio">
         <div class="container">
-            <!-- Header de sección -->
             <header class="section-header">
                 <div class="divider" aria-hidden="true"></div>
                 <h2>Portfolio</h2>
@@ -284,9 +253,14 @@
             </header>
 
             <div class="portfolio-grid">
-                <!-- Portfolio Item 1 -->
                 <article class="portfolio-item" data-category="design">
-                    <div class="portfolio-image" role="img" aria-label="Proyecto de Diseño Gráfico">
+                    <div class="portfolio-image-container">
+                        <img 
+                            src="images\DSC00769.jpg" 
+                            alt="Proyecto de Diseño Gráfico"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Diseño Gráfico</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -294,9 +268,14 @@
                     </div>
                 </article>
 
-                <!-- Portfolio Item 2 -->
                 <article class="portfolio-item" data-category="photography">
-                    <div class="portfolio-image" role="img" aria-label="Proyecto de Fotografía">
+                    <div class="portfolio-image-container">
+                        <img 
+                            src="images\PXL_20251121_182815734.jpg" 
+                            alt="Proyecto de Fotografía"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Fotografía</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -304,9 +283,14 @@
                     </div>
                 </article>
 
-                <!-- Portfolio Item 3 -->
                 <article class="portfolio-item" data-category="video">
-                    <div class="portfolio-image" role="img" aria-label="Proyecto de Video">
+                    <div class="portfolio-image-container">
+                        <img 
+                            src="images/portfolio/proyecto-3.jpg" 
+                            alt="Proyecto de Video"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Video</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -314,9 +298,14 @@
                     </div>
                 </article>
 
-                <!-- Portfolio Item 4 -->
                 <article class="portfolio-item" data-category="videography">
-                    <div class="portfolio-image" role="img" aria-label="Proyecto de Videografía">
+                    <div class="portfolio-image-container">
+                        <img 
+                            src="images/portfolio/proyecto-4.jpg" 
+                            alt="Proyecto de Videografía"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Videografía</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -324,9 +313,14 @@
                     </div>
                 </article>
 
-                <!-- Portfolio Item 5 -->
                 <article class="portfolio-item" data-category="social">
-                    <div class="portfolio-image" role="img" aria-label="Proyecto de Social Media">
+                    <div class="portfolio-image-container">
+                        <img 
+                            src="images\OG - Chat 4.png" 
+                            alt="Proyecto de Social Media"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Social Media</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -334,9 +328,14 @@
                     </div>
                 </article>
 
-                <!-- Portfolio Item 6 -->
                 <article class="portfolio-item" data-category="branding">
-                    <div class="portfolio-image" role="img" aria-label="Proyecto de Branding">
+                    <div class="portfolio-image-container">
+                        <img 
+                            src="images/portfolio/proyecto-6.jpg" 
+                            alt="Proyecto de Branding"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Branding</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -347,12 +346,8 @@
         </div>
     </section>
 
-    <!-- ============================================
-         SECCIÓN: CONTACTO
-         ============================================ -->
     <section class="contact-section" id="contacto">
         <div class="container">
-            <!-- Header de sección -->
             <header class="section-header">
                 <div class="divider" aria-hidden="true"></div>
                 <h2>Hablemos de tu Proyecto</h2>
@@ -360,7 +355,6 @@
             </header>
 
             <div class="contact-content">
-                <!-- Información de contacto -->
                 <div class="contact-info">
                     <div class="contact-item">
                         <div class="contact-icon" aria-hidden="true">📧</div>
@@ -387,7 +381,6 @@
                     </div>
                 </div>
 
-                <!-- Texto adicional -->
                 <div class="contact-text">
                     <p>
                         Nos encantaría conocer más sobre tu proyecto. Ya sea que necesites 
@@ -403,32 +396,51 @@
         </div>
     </section>
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
     <footer class="main-footer">
         <div class="footer-content">
-            <!-- Logo del footer -->
             <div class="footer-logo">
-                <span class="logo-icon" aria-hidden="true">◈</span>
-                <span>OCEAN <span class="logo-accent">GRAPH</span></span>
+                <img 
+                    src="Logo/OceanGraph - Ola.svg" 
+                    alt="Ocean Graph Logo" 
+                    class="footer-logo-svg"
+                >
             </div>
 
-            <!-- Copyright -->
             <p class="footer-copyright">
-                &copy; <span id="currentYear">2024</span> Ocean Graph — Marketing Digital Profesional
+                &copy; <span id="currentYear">2024</span> Ocean Graph
             </p>
 
-            <!-- Redes sociales -->
-            <nav class="footer-social" aria-label="Redes sociales">
-                <a href="https://instagram.com/oceangraph" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-                <a href="https://facebook.com/oceangraph" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
-                <a href="https://linkedin.com/company/oceangraph" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
-            </nav>
+            <div class="footer-social-section">
+                <p class="social-title">Visita nuestras redes sociales</p>
+                
+                <nav class="footer-social" aria-label="Redes sociales">
+                    <a href="https://www.instagram.com/oceangraficos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-social="instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="social-name">Instagram</span>
+                    </a>
+
+                    <a href="https://www.facebook.com/oceangraficos?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook" data-social="facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">Facebook</span>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@oceangraficos?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-social="tiktok">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">TikTok</span>
+                    </a>
+                </nav>
+            </div>
         </div>
     </footer>
 
-    <!-- JavaScript externo -->
     <script src="script.js"></script>
 </body>
 </html>
