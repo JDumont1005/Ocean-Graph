@@ -605,9 +605,11 @@ DOM.portfolioItems.forEach((item) => {
     const handlePortfolioClick = () => {
         const category = item.querySelector('.portfolio-category');
         const categoryText = category ? category.textContent : 'Proyecto';
-        
-        console.log('Proyecto seleccionado: ' + categoryText);
-        showNotification(categoryText + ' - Próximamente disponible');
+
+        if (CONFIG.isDebug) {
+            console.log('Proyecto seleccionado: ' + categoryText);
+        }
+        // Futuro: redirigir a página de portafolio completo o abrir modal.
     };
     
     item.addEventListener('click', handlePortfolioClick);
