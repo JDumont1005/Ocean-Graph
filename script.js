@@ -49,7 +49,7 @@ let isMenuOpen = false;
 let statsAnimated = false;
 
 /* ===================================
-   TEMA (OSCURE / CLARO)
+   TEMA (OSCURO / CLARO)
    =================================== */
 
 const THEME_KEY = 'og-theme';
@@ -405,6 +405,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* ===================================
+   NAVEGACION ENTRE PAGINAS CON HASH
+   =================================== */
+
+function handleCrossPageNavigation() {
+    const hash = window.location.hash;
+    
+    if (hash && document.querySelector(hash)) {
+        setTimeout(() => {
+            const targetSection = document.querySelector(hash);
+            if (targetSection) {
+                smoothScrollTo(targetSection);
+            }
+            if (CONFIG.isDebug) {
+                console.log('Navegacion con hash:', hash);
+            }
+        }, 500);
+    }
+}
+
+window.addEventListener('load', handleCrossPageNavigation);
+
+/* ===================================
    INDICADOR DE SCROLL
    =================================== */
 
@@ -609,7 +631,6 @@ DOM.portfolioItems.forEach((item) => {
         if (CONFIG.isDebug) {
             console.log('Proyecto seleccionado: ' + categoryText);
         }
-        // Futuro: redirigir a página de portafolio completo o abrir modal.
     };
     
     item.addEventListener('click', handlePortfolioClick);
