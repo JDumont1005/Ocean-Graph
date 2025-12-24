@@ -1,7 +1,7 @@
 /* ===================================
    OCEAN GRAPH - JAVASCRIPT OPTIMIZADO
    Marketing Digital Profesional
-   Optimizado para Móvil y Desktop
+   Tema oscuro / claro + Loader + Hero
    =================================== */
 
 'use strict';
@@ -29,8 +29,6 @@ const DEVICE = {
 
 const DOM = {
     loader: document.getElementById('loader'),
-    loaderProgress: document.getElementById('loaderProgress'),
-    loaderStatus: document.getElementById('loaderStatus'),
     navbar: document.querySelector('.navbar'),
     hamburger: document.querySelector('.hamburger'),
     navMenu: document.querySelector('.nav-menu'),
@@ -43,165 +41,167 @@ const DOM = {
     portfolioItems: document.querySelectorAll('.portfolio-item'),
     serviceCards: document.querySelectorAll('.service-card'),
     fadeElements: document.querySelectorAll('.service-card, .portfolio-item, .stat-card'),
-    yearElement: document.getElementById('currentYear')
+    yearElement: document.getElementById('currentYear'),
+    themeToggle: document.querySelector('.theme-toggle')
 };
 
 let isMenuOpen = false;
 let statsAnimated = false;
-let resourcesLoaded = {
-    dom: false,
-    video: false,
-    images: false,
-    fonts: false
-};
-let totalResources = 4;
-let loadedResources = 0;
 
 /* ===================================
-   PANTALLA DE CARGA - MEJORADA CON DOS FASES
+   TEMA (OSCURE / CLARO)
    =================================== */
 
-function updateLoaderProgress(percentage, status) {
-    if (!DOM.loaderProgress || !DOM.loaderStatus) return;
-    
-    DOM.loaderProgress.style.width = percentage + '%';
-    DOM.loaderStatus.textContent = status;
-    
-    if (CONFIG.isDebug) {
-        console.log('Carga: ' + percentage + '% - ' + status);
-    }
+const THEME_KEY = 'og-theme';
+
+const DARK_THEME_VARS = {
+    '--color-dark': '#141414',
+    '--color-dark-alt': '#1a1a1a',
+    '--color-white': '#ffffff'
+};
+
+const LIGHT_THEME_VARS = {
+    '--color-dark': '#f2f2f2',
+    '--color-dark-alt': '#e6e6e6',
+    '--color-white': '#141414'
+};
+
+let currentTheme = 'dark';
+
+function setThemeVariables(vars) {
+    const root = document.documentElement;
+    Object.keys(vars).forEach(key => {
+        root.style.setProperty(key, vars[key]);
+    });
 }
 
-function markResourceLoaded(resourceName) {
-    if (!resourcesLoaded[resourceName]) {
-        resourcesLoaded[resourceName] = true;
-        loadedResources++;
-        
-        const percentage = Math.round((loadedResources / totalResources) * 100);
-        const statusMessages = {
-            dom: 'Cargando estructura...',
-            fonts: 'Cargando fuentes...',
-            video: 'Cargando video...',
-            images: 'Preparando contenido...'
-        };
-        
-        updateLoaderProgress(percentage, statusMessages[resourceName] || 'Cargando...');
-        
-        if (loadedResources >= totalResources) {
-            completeLoading();
+function updateNavbarThemeStyles() {
+    if (!DOM.navbar) return;
+
+    const scrolled = window.pageYOffset > CONFIG.scrollThreshold;
+    const isLight = currentTheme === 'light';
+
+    if (isLight) {
+        if (scrolled) {
+            DOM.navbar.style.backgroundColor = 'rgba(242, 242, 242, 0.98)';
+            DOM.navbar.style.borderBottomColor = 'rgba(0, 0, 0, 0.10)';
+            DOM.navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.10)';
+        } else {
+            DOM.navbar.style.backgroundColor = 'rgba(242, 242, 242, 0.92)';
+            DOM.navbar.style.borderBottomColor = 'rgba(0, 0, 0, 0.06)';
+            DOM.navbar.style.boxShadow = 'none';
+        }
+
+        DOM.navLinks.forEach(link => {
+            link.style.color = 'rgba(0, 0, 0, 0.75)';
+        });
+
+        const activeLink = document.querySelector('.nav-link.active');
+        if (activeLink) {
+            activeLink.style.color = '#141414';
+        }
+
+        const logoText = document.querySelector('.logo-text');
+        if (logoText) {
+            logoText.style.color = '#141414';
+        }
+    } else {
+        DOM.navbar.style.backgroundColor = '';
+        DOM.navbar.style.borderBottomColor = '';
+        DOM.navbar.style.boxShadow = '';
+
+        DOM.navLinks.forEach(link => {
+            link.style.color = '';
+        });
+
+        const logoText = document.querySelector('.logo-text');
+        if (logoText) {
+            logoText.style.color = '';
         }
     }
 }
 
-function completeLoading() {
-    updateLoaderProgress(100, 'Completado');
-    
-    setTimeout(() => {
-        hideLoader();
-    }, CONFIG.loaderMinTime);
+function applyTheme(theme) {
+    const isLight = theme === 'light';
+    currentTheme = isLight ? 'light' : 'dark';
+
+    if (isLight) {
+        setThemeVariables(LIGHT_THEME_VARS);
+        document.body.classList.add('theme-light');
+    } else {
+        setThemeVariables(DARK_THEME_VARS);
+        document.body.classList.remove('theme-light');
+    }
+
+    if (DOM.themeToggle) {
+        DOM.themeToggle.setAttribute(
+            'aria-label',
+            isLight ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'
+        );
+        DOM.themeToggle.title = isLight ? 'Cambiar a modo oscuro' : 'Cambiar tema';
+    }
+
+    updateNavbarThemeStyles();
+    localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+
+    if (CONFIG.isDebug) {
+        console.log('Tema aplicado:', isLight ? 'light' : 'dark');
+    }
 }
+
+function initTheme() {
+    let savedTheme = localStorage.getItem(THEME_KEY);
+
+    if (savedTheme !== 'light' && savedTheme !== 'dark') {
+        savedTheme = 'dark';
+    }
+
+    applyTheme(savedTheme);
+
+    if (DOM.themeToggle) {
+        DOM.themeToggle.addEventListener('click', () => {
+            const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(nextTheme);
+        });
+    }
+}
+
+/* ===================================
+   PANTALLA DE CARGA (SPINNER SIMPLE)
+   =================================== */
 
 function hideLoader() {
     if (!DOM.loader) return;
-    
     DOM.loader.classList.add('hidden');
     document.body.style.overflow = '';
-    
     setTimeout(() => {
         if (DOM.loader) {
             DOM.loader.remove();
         }
     }, 600);
-    
     if (CONFIG.isDebug) {
-        console.log('Loader ocultado - Sitio listo');
+        console.log('Loader ocultado, sitio listo');
     }
 }
 
 function initLoader() {
     if (!DOM.loader) return;
-    
+
     document.body.style.overflow = 'hidden';
-    updateLoaderProgress(0, 'Iniciando...');
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            markResourceLoaded('dom');
-        });
-    } else {
-        markResourceLoaded('dom');
+
+    const startTime = Date.now();
+
+    function done() {
+        const elapsed = Date.now() - startTime;
+        const delay = Math.max(CONFIG.loaderMinTime - elapsed, 0);
+        setTimeout(hideLoader, delay);
     }
-    
-    if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => {
-            markResourceLoaded('fonts');
-        });
+
+    if (document.readyState === 'complete') {
+        done();
     } else {
-        setTimeout(() => {
-            markResourceLoaded('fonts');
-        }, 500);
+        window.addEventListener('load', done, { once: true });
     }
-    
-    const activeVideo = (DEVICE.isMobile && !DEVICE.isTablet) 
-        ? DOM.heroVideoMobile 
-        : DOM.heroVideoDesktop;
-    
-    if (activeVideo) {
-        if (activeVideo.readyState >= 3) {
-            markResourceLoaded('video');
-        } else {
-            activeVideo.addEventListener('canplaythrough', () => {
-                markResourceLoaded('video');
-            }, { once: true });
-            
-            activeVideo.addEventListener('error', () => {
-                markResourceLoaded('video');
-            }, { once: true });
-        }
-    } else {
-        markResourceLoaded('video');
-    }
-    
-    const images = document.querySelectorAll('img');
-    if (images.length > 0) {
-        let imagesLoaded = 0;
-        const totalImages = images.length;
-        
-        images.forEach(img => {
-            if (img.complete) {
-                imagesLoaded++;
-            } else {
-                img.addEventListener('load', () => {
-                    imagesLoaded++;
-                    if (imagesLoaded >= totalImages) {
-                        markResourceLoaded('images');
-                    }
-                });
-                img.addEventListener('error', () => {
-                    imagesLoaded++;
-                    if (imagesLoaded >= totalImages) {
-                        markResourceLoaded('images');
-                    }
-                });
-            }
-        });
-        
-        if (imagesLoaded >= totalImages) {
-            markResourceLoaded('images');
-        }
-    } else {
-        markResourceLoaded('images');
-    }
-    
-    setTimeout(() => {
-        if (loadedResources < totalResources) {
-            for (let key in resourcesLoaded) {
-                if (!resourcesLoaded[key]) {
-                    markResourceLoaded(key);
-                }
-            }
-        }
-    }, 10000);
 }
 
 /* ===================================
@@ -249,11 +249,11 @@ function debounce(func, wait) {
 
 function throttle(func, limit) {
     let inThrottle;
-    return function(...args) {
+    return function throttled(...args) {
         if (!inThrottle) {
             func.apply(this, args);
             inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
+            setTimeout(() => { inThrottle = false; }, limit);
         }
     };
 }
@@ -270,7 +270,7 @@ function isElementInViewport(el, offset = 0) {
 }
 
 /* ===================================
-   NAVEGACIÓN - SCROLL EFFECTS
+   NAVEGACIÓN - SCROLL EFFECTS + TEMA
    =================================== */
 
 function handleNavbarScroll() {
@@ -281,6 +281,8 @@ function handleNavbarScroll() {
     } else {
         DOM.navbar?.classList.remove('scrolled');
     }
+
+    updateNavbarThemeStyles();
 }
 
 window.addEventListener('scroll', throttle(handleNavbarScroll, 100));
@@ -298,7 +300,7 @@ function toggleMenu(forceClose = false) {
     
     DOM.hamburger?.classList.toggle('active', isMenuOpen);
     DOM.navMenu?.classList.toggle('active', isMenuOpen);
-    DOM.hamburger?.setAttribute('aria-expanded', isMenuOpen);
+    DOM.hamburger?.setAttribute('aria-expanded', String(isMenuOpen));
     
     if (DEVICE.isMobile || DEVICE.isTablet) {
         document.body.style.overflow = isMenuOpen ? 'hidden' : '';
@@ -356,12 +358,15 @@ function updateActiveNavLink() {
     
     DOM.navLinks.forEach(link => {
         link.classList.remove('active');
+        link.style.color = '';
         const href = link.getAttribute('href');
         
         if (href === '#' + current) {
             link.classList.add('active');
         }
     });
+
+    updateNavbarThemeStyles();
 }
 
 window.addEventListener('scroll', debounce(updateActiveNavLink, CONFIG.debounceDelay));
@@ -425,7 +430,7 @@ if (DOM.scrollIndicator) {
 }
 
 /* ===================================
-   CONTROL DE VIDEOS
+   CONTROL DE VIDEO HERO
    =================================== */
 
 function initVideoControl() {
@@ -480,9 +485,7 @@ function initVideoControl() {
                 activeVideo.pause();
             }
         });
-    }, {
-        threshold: 0.5
-    });
+    }, { threshold: 0.5 });
     
     videoObserver.observe(activeVideo);
     
@@ -549,9 +552,7 @@ if (DOM.statNumbers.length > 0) {
                 animateStats();
             }
         });
-    }, {
-        threshold: 0.5
-    });
+    }, { threshold: 0.5 });
     
     const aboutSection = document.querySelector('.about-section');
     if (aboutSection) {
@@ -792,7 +793,7 @@ document.addEventListener('mousedown', () => {
 });
 
 /* ===================================
-   ACTUALIZACIÓN DE AÑO AUTOMÁTICA
+   AÑO AUTOMÁTICO
    =================================== */
 
 if (DOM.yearElement) {
@@ -812,8 +813,8 @@ document.addEventListener('keydown', (e) => {
     konamiCode = konamiCode.slice(-10);
     
     if (konamiCode.join('') === konamiPattern.join('')) {
-        console.log('%c OCEAN GRAPH ACTIVADO! ', 'background: linear-gradient(90deg, #009dff, #00d4ff); color: white; font-size: 20px; padding: 10px; font-weight: bold;');
-        showNotification('Easter Egg Descubierto!');
+        console.log('%c OCEAN GRAPH ACTIVADO ', 'background: linear-gradient(90deg, #009dff, #00d4ff); color: white; font-size: 20px; padding: 10px; font-weight: bold;');
+        showNotification('Easter Egg Descubierto');
         document.body.style.animation = 'pulse 0.5s ease 3';
     }
 });
@@ -825,6 +826,7 @@ document.addEventListener('keydown', (e) => {
 function init() {
     initLoader();
     initConsoleMessages();
+    initTheme();
     optimizeForMobile();
     initVideoControl();
     initFadeAnimations();
@@ -853,10 +855,14 @@ if (CONFIG.isDebug) {
         enableLowPerformanceMode,
         disableLowPerformanceMode,
         animateStats,
-        resourcesLoaded
+        applyTheme
     };
     console.log('Accede a window.OceanGraph para debugging');
 }
+
+/* ===================================
+   INICIO
+   =================================== */
 
 init();
 
