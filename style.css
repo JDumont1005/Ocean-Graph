@@ -929,6 +929,15 @@ section {
     display: block;
 }
 
+.contact-icon svg {
+    color: #EA4335; /* Rojo de Gmail */
+}
+
+/* O mantener el color primario azul de Ocean Graph */
+.contact-icon svg {
+    color: var(--color-primary);
+}
+
 .contact-details h4 {
     font-size: 1.1rem;
     font-weight: 400;
