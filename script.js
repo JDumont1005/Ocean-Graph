@@ -15,8 +15,7 @@ const CONFIG = {
     statAnimationDuration: 1500,
     notificationDuration: 3000,
     debounceDelay: 100,
-    loaderMinTime: 1000,
-    loaderMaxTime: 5000,
+    loaderMinTime: 800,
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
@@ -30,6 +29,8 @@ const DEVICE = {
 
 const DOM = {
     loader: document.getElementById('loader'),
+    loaderProgress: document.getElementById('loaderProgress'),
+    loaderStatus: document.getElementById('loaderStatus'),
     navbar: document.querySelector('.navbar'),
     hamburger: document.querySelector('.hamburger'),
     navMenu: document.querySelector('.nav-menu'),
@@ -47,57 +48,160 @@ const DOM = {
 
 let isMenuOpen = false;
 let statsAnimated = false;
-let loadProgress = 0;
-let loadInterval = null;
-let scrollTimer = null;
+let resourcesLoaded = {
+    dom: false,
+    video: false,
+    images: false,
+    fonts: false
+};
+let totalResources = 4;
+let loadedResources = 0;
 
 /* ===================================
-   PANTALLA DE CARGA
+   PANTALLA DE CARGA - MEJORADA CON DOS FASES
    =================================== */
+
+function updateLoaderProgress(percentage, status) {
+    if (!DOM.loaderProgress || !DOM.loaderStatus) return;
+    
+    DOM.loaderProgress.style.width = percentage + '%';
+    DOM.loaderStatus.textContent = status;
+    
+    if (CONFIG.isDebug) {
+        console.log('Carga: ' + percentage + '% - ' + status);
+    }
+}
+
+function markResourceLoaded(resourceName) {
+    if (!resourcesLoaded[resourceName]) {
+        resourcesLoaded[resourceName] = true;
+        loadedResources++;
+        
+        const percentage = Math.round((loadedResources / totalResources) * 100);
+        const statusMessages = {
+            dom: 'Cargando estructura...',
+            fonts: 'Cargando fuentes...',
+            video: 'Cargando video...',
+            images: 'Preparando contenido...'
+        };
+        
+        updateLoaderProgress(percentage, statusMessages[resourceName] || 'Cargando...');
+        
+        if (loadedResources >= totalResources) {
+            completeLoading();
+        }
+    }
+}
+
+function completeLoading() {
+    updateLoaderProgress(100, 'Completado');
+    
+    setTimeout(() => {
+        hideLoader();
+    }, CONFIG.loaderMinTime);
+}
+
+function hideLoader() {
+    if (!DOM.loader) return;
+    
+    DOM.loader.classList.add('hidden');
+    document.body.style.overflow = '';
+    
+    setTimeout(() => {
+        if (DOM.loader) {
+            DOM.loader.remove();
+        }
+    }, 600);
+    
+    if (CONFIG.isDebug) {
+        console.log('Loader ocultado - Sitio listo');
+    }
+}
 
 function initLoader() {
     if (!DOM.loader) return;
-
+    
     document.body.style.overflow = 'hidden';
-
-    loadInterval = setInterval(() => {
-        loadProgress += Math.random() * 15;
-        
-        if (loadProgress >= 100) {
-            loadProgress = 100;
-            clearInterval(loadInterval);
-        }
-    }, 150);
-
-    const hideLoader = () => {
-        clearInterval(loadInterval);
-        loadProgress = 100;
-        
+    updateLoaderProgress(0, 'Iniciando...');
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            markResourceLoaded('dom');
+        });
+    } else {
+        markResourceLoaded('dom');
+    }
+    
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            markResourceLoaded('fonts');
+        });
+    } else {
         setTimeout(() => {
-            if (DOM.loader) {
-                DOM.loader.classList.add('hidden');
-                document.body.style.overflow = '';
-                
-                setTimeout(() => {
-                    DOM.loader.remove();
-                }, 500);
-                
-                if (CONFIG.isDebug) {
-                    console.log('Loader ocultado');
+            markResourceLoaded('fonts');
+        }, 500);
+    }
+    
+    const activeVideo = (DEVICE.isMobile && !DEVICE.isTablet) 
+        ? DOM.heroVideoMobile 
+        : DOM.heroVideoDesktop;
+    
+    if (activeVideo) {
+        if (activeVideo.readyState >= 3) {
+            markResourceLoaded('video');
+        } else {
+            activeVideo.addEventListener('canplaythrough', () => {
+                markResourceLoaded('video');
+            }, { once: true });
+            
+            activeVideo.addEventListener('error', () => {
+                markResourceLoaded('video');
+            }, { once: true });
+        }
+    } else {
+        markResourceLoaded('video');
+    }
+    
+    const images = document.querySelectorAll('img');
+    if (images.length > 0) {
+        let imagesLoaded = 0;
+        const totalImages = images.length;
+        
+        images.forEach(img => {
+            if (img.complete) {
+                imagesLoaded++;
+            } else {
+                img.addEventListener('load', () => {
+                    imagesLoaded++;
+                    if (imagesLoaded >= totalImages) {
+                        markResourceLoaded('images');
+                    }
+                });
+                img.addEventListener('error', () => {
+                    imagesLoaded++;
+                    if (imagesLoaded >= totalImages) {
+                        markResourceLoaded('images');
+                    }
+                });
+            }
+        });
+        
+        if (imagesLoaded >= totalImages) {
+            markResourceLoaded('images');
+        }
+    } else {
+        markResourceLoaded('images');
+    }
+    
+    setTimeout(() => {
+        if (loadedResources < totalResources) {
+            for (let key in resourcesLoaded) {
+                if (!resourcesLoaded[key]) {
+                    markResourceLoaded(key);
                 }
             }
-        }, CONFIG.loaderMinTime);
-    };
-
-    if (document.readyState === 'complete') {
-        hideLoader();
-    } else {
-        window.addEventListener('load', hideLoader);
-    }
-
-    setTimeout(() => {
-        hideLoader();
-    }, CONFIG.loaderMaxTime);
+        }
+    }, 10000);
 }
 
 /* ===================================
@@ -337,26 +441,36 @@ function initVideoControl() {
     }
     
     const playVideo = () => {
-        activeVideo.play().catch(err => {
-            if (CONFIG.isDebug) {
-                console.log('Autoplay bloqueado: ' + err.message);
-            }
-            
-            const tryPlayOnInteraction = () => {
-                activeVideo.play().catch(() => {});
-                document.removeEventListener('click', tryPlayOnInteraction);
-                document.removeEventListener('touchstart', tryPlayOnInteraction);
-            };
-            
-            document.addEventListener('click', tryPlayOnInteraction, { once: true });
-            document.addEventListener('touchstart', tryPlayOnInteraction, { once: true });
-        });
+        const playPromise = activeVideo.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                if (CONFIG.isDebug) {
+                    console.log('Video reproduciendo');
+                }
+            }).catch(err => {
+                if (CONFIG.isDebug) {
+                    console.log('Autoplay bloqueado: ' + err.message);
+                }
+                
+                const tryPlayOnInteraction = () => {
+                    activeVideo.play().catch(() => {});
+                };
+                
+                document.addEventListener('click', tryPlayOnInteraction, { once: true });
+                document.addEventListener('touchstart', tryPlayOnInteraction, { once: true });
+            });
+        }
     };
     
-    activeVideo.addEventListener('loadeddata', () => {
-        console.log('Video cargado correctamente');
+    if (activeVideo.readyState >= 3) {
         playVideo();
-    });
+    } else {
+        activeVideo.addEventListener('loadeddata', () => {
+            console.log('Video cargado correctamente');
+            playVideo();
+        }, { once: true });
+    }
     
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -453,7 +567,7 @@ function initFadeAnimations() {
     if (DOM.fadeElements.length === 0) return;
     
     const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 const delay = Array.from(DOM.fadeElements).indexOf(entry.target) * 50;
                 
@@ -486,7 +600,7 @@ function initFadeAnimations() {
    INTERACCIÓN CON PORTFOLIO
    =================================== */
 
-DOM.portfolioItems.forEach((item, index) => {
+DOM.portfolioItems.forEach((item) => {
     const handlePortfolioClick = () => {
         const category = item.querySelector('.portfolio-category');
         const categoryText = category ? category.textContent : 'Proyecto';
@@ -705,22 +819,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* ===================================
-   CARGA COMPLETA DE PÁGINA
-   =================================== */
-
-window.addEventListener('load', () => {
-    console.log('%c Página completamente cargada ', 'background: #00d4ff; color: #141414; padding: 5px 10px; font-weight: bold; border-radius: 5px;');
-    
-    if (window.performance && CONFIG.isDebug) {
-        const perfData = window.performance.timing;
-        const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-        console.log('Tiempo de carga: ' + (pageLoadTime / 1000).toFixed(2) + 's');
-    }
-    
-    console.log('%c Ocean Graph listo ', 'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;');
-});
-
-/* ===================================
    INICIALIZACIÓN
    =================================== */
 
@@ -754,9 +852,12 @@ if (CONFIG.isDebug) {
         smoothScrollTo,
         enableLowPerformanceMode,
         disableLowPerformanceMode,
-        animateStats
+        animateStats,
+        resourcesLoaded
     };
     console.log('Accede a window.OceanGraph para debugging');
 }
 
 init();
+
+console.log('%c Ocean Graph listo ', 'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;');
