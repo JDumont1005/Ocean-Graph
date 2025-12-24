@@ -1,5 +1,14 @@
 # Ocean Graph
 
+<p align="center">
+  <a href="https://jdumont1005.github.io/Ocean-Graph/" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Ver%20sitio%20web-Ocean%20Graph-009dff?style=for-the-badge&logo=google-chrome&logoColor=white"
+      alt="Ver sitio web Ocean Graph"
+    >
+  </a>
+</p>
+
 Ocean Graph es una landing page tipo portafolio para un grupo de trabajo especializado en servicios de marketing digital: diseño gráfico, fotografía, videos profesionales, videografía y community management.
 
 El objetivo de la web es presentar, de forma clara y atractiva, quiénes son, qué hacen y algunos ejemplos de su trabajo, manteniendo una estética minimalista y profesional.
