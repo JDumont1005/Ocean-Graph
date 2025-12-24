@@ -1,7 +1,7 @@
 # Ocean Graph
 
-<p align="center">
-  <a href="https://jdumont1005.github.io/Ocean-Graph/" target="_blank">
+<p align="left">
+  <a href="https://jdumont1005.github.io/Ocean-Graph/" target="_blank" rel="noopener noreferrer">
     <img
       src="https://img.shields.io/badge/Ver%20sitio%20web-Ocean%20Graph-009dff?style=for-the-badge&logo=google-chrome&logoColor=white"
       alt="Ver sitio web Ocean Graph"
