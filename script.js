@@ -15,10 +15,11 @@ const CONFIG = {
     statAnimationDuration: 1500,
     notificationDuration: 3000,
     debounceDelay: 100,
+    loaderMinTime: 1000,
+    loaderMaxTime: 5000,
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
-// Detección de dispositivo
 const DEVICE = {
     isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
     isTablet: /iPad|Android/i.test(navigator.userAgent) && window.innerWidth >= 768,
@@ -27,8 +28,8 @@ const DEVICE = {
     isTouchDevice: 'ontouchstart' in window || navigator.maxTouchPoints > 0
 };
 
-// Selectores DOM
 const DOM = {
+    loader: document.getElementById('loader'),
     navbar: document.querySelector('.navbar'),
     hamburger: document.querySelector('.hamburger'),
     navMenu: document.querySelector('.nav-menu'),
@@ -40,15 +41,64 @@ const DOM = {
     statNumbers: document.querySelectorAll('.stat-number'),
     portfolioItems: document.querySelectorAll('.portfolio-item'),
     serviceCards: document.querySelectorAll('.service-card'),
-    fadeElements: document.querySelectorAll('.service-card, .portfolio-item, .stat-card')
+    fadeElements: document.querySelectorAll('.service-card, .portfolio-item, .stat-card'),
+    yearElement: document.getElementById('currentYear')
 };
 
-// Variables de estado
 let isMenuOpen = false;
 let statsAnimated = false;
-let currentYear = new Date().getFullYear();
+let loadProgress = 0;
+let loadInterval = null;
 let scrollTimer = null;
-let resizeTimer = null;
+
+/* ===================================
+   PANTALLA DE CARGA
+   =================================== */
+
+function initLoader() {
+    if (!DOM.loader) return;
+
+    document.body.style.overflow = 'hidden';
+
+    loadInterval = setInterval(() => {
+        loadProgress += Math.random() * 15;
+        
+        if (loadProgress >= 100) {
+            loadProgress = 100;
+            clearInterval(loadInterval);
+        }
+    }, 150);
+
+    const hideLoader = () => {
+        clearInterval(loadInterval);
+        loadProgress = 100;
+        
+        setTimeout(() => {
+            if (DOM.loader) {
+                DOM.loader.classList.add('hidden');
+                document.body.style.overflow = '';
+                
+                setTimeout(() => {
+                    DOM.loader.remove();
+                }, 500);
+                
+                if (CONFIG.isDebug) {
+                    console.log('Loader ocultado');
+                }
+            }
+        }, CONFIG.loaderMinTime);
+    };
+
+    if (document.readyState === 'complete') {
+        hideLoader();
+    } else {
+        window.addEventListener('load', hideLoader);
+    }
+
+    setTimeout(() => {
+        hideLoader();
+    }, CONFIG.loaderMaxTime);
+}
 
 /* ===================================
    MENSAJES DE CONSOLA
@@ -59,21 +109,20 @@ function initConsoleMessages() {
         '%c Ocean Graph ',
         'background: linear-gradient(135deg, #009dff, #00d4ff); color: #141414; padding: 8px 16px; font-weight: bold; font-size: 14px; border-radius: 8px;'
     );
-    console.log('%c 🌊 Sistema iniciado correctamente', 'color: #009dff; font-size: 12px;');
+    console.log('%c Sistema iniciado correctamente', 'color: #009dff; font-size: 12px;');
     
     if (CONFIG.isDebug) {
         console.log('%c DEBUG MODE ACTIVADO ', 'background: red; color: white; padding: 5px 10px;');
     }
     
-    // Log de dispositivo
     if (DEVICE.isMobile && !DEVICE.isTablet) {
-        console.log('📱 Dispositivo móvil detectado');
+        console.log('Dispositivo móvil detectado');
         document.body.classList.add('is-mobile');
     } else if (DEVICE.isTablet) {
-        console.log('📱 Tablet detectado');
+        console.log('Tablet detectado');
         document.body.classList.add('is-tablet');
     } else {
-        console.log('💻 Desktop detectado');
+        console.log('Desktop detectado');
         document.body.classList.add('is-desktop');
     }
 }
@@ -82,7 +131,6 @@ function initConsoleMessages() {
    UTILIDADES
    =================================== */
 
-// Debounce function
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -95,7 +143,6 @@ function debounce(func, wait) {
     };
 }
 
-// Throttle function
 function throttle(func, limit) {
     let inThrottle;
     return function(...args) {
@@ -107,8 +154,8 @@ function throttle(func, limit) {
     };
 }
 
-// Detectar si un elemento está visible
 function isElementInViewport(el, offset = 0) {
+    if (!el) return false;
     const rect = el.getBoundingClientRect();
     return (
         rect.top >= 0 - offset &&
@@ -132,7 +179,6 @@ function handleNavbarScroll() {
     }
 }
 
-// Event listener con throttle para mejor performance
 window.addEventListener('scroll', throttle(handleNavbarScroll, 100));
 
 /* ===================================
@@ -150,16 +196,17 @@ function toggleMenu(forceClose = false) {
     DOM.navMenu?.classList.toggle('active', isMenuOpen);
     DOM.hamburger?.setAttribute('aria-expanded', isMenuOpen);
     
-    // Prevenir scroll en body cuando menu está abierto (móvil)
     if (DEVICE.isMobile || DEVICE.isTablet) {
         document.body.style.overflow = isMenuOpen ? 'hidden' : '';
     }
+    
+    if (CONFIG.isDebug) {
+        console.log('Menu ' + (isMenuOpen ? 'abierto' : 'cerrado'));
+    }
 }
 
-// Click en hamburguesa
 DOM.hamburger?.addEventListener('click', () => toggleMenu());
 
-// Click en enlaces del menú
 DOM.navLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (DEVICE.isMobile || DEVICE.isTablet) {
@@ -168,7 +215,6 @@ DOM.navLinks.forEach(link => {
     });
 });
 
-// Click fuera del menú para cerrar
 document.addEventListener('click', (event) => {
     if (!isMenuOpen) return;
     
@@ -180,7 +226,6 @@ document.addEventListener('click', (event) => {
     }
 });
 
-// Cerrar menú al presionar ESC
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && isMenuOpen) {
         toggleMenu(true);
@@ -209,13 +254,12 @@ function updateActiveNavLink() {
         link.classList.remove('active');
         const href = link.getAttribute('href');
         
-        if (href === `#${current}`) {
+        if (href === '#' + current) {
             link.classList.add('active');
         }
     });
 }
 
-// Actualizar al hacer scroll con debounce
 window.addEventListener('scroll', debounce(updateActiveNavLink, CONFIG.debounceDelay));
 
 /* ===================================
@@ -232,9 +276,12 @@ function smoothScrollTo(target) {
         top: targetPosition,
         behavior: 'smooth'
     });
+    
+    if (CONFIG.isDebug) {
+        console.log('Scroll a: ' + (target.id || 'elemento'));
+    }
 }
 
-// Aplicar a todos los enlaces internos
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -253,7 +300,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
    =================================== */
 
 if (DOM.scrollIndicator) {
-    // Click en el indicador
     DOM.scrollIndicator.addEventListener('click', () => {
         const aboutSection = document.querySelector('#nosotros');
         if (aboutSection) {
@@ -261,7 +307,6 @@ if (DOM.scrollIndicator) {
         }
     });
     
-    // Ocultar/mostrar según scroll
     window.addEventListener('scroll', throttle(() => {
         const scrollPosition = window.pageYOffset;
         
@@ -280,33 +325,39 @@ if (DOM.scrollIndicator) {
    =================================== */
 
 function initVideoControl() {
-    // Seleccionar video según dispositivo
     const activeVideo = (DEVICE.isMobile && !DEVICE.isTablet) 
         ? DOM.heroVideoMobile 
         : DOM.heroVideoDesktop;
     
-    if (!activeVideo) return;
+    if (!activeVideo) {
+        if (CONFIG.isDebug) {
+            console.warn('No se encontró video hero');
+        }
+        return;
+    }
     
-    // Intentar reproducir
     const playVideo = () => {
         activeVideo.play().catch(err => {
             if (CONFIG.isDebug) {
-                console.log('Autoplay bloqueado:', err);
+                console.log('Autoplay bloqueado: ' + err.message);
             }
-            // Intentar reproducir al hacer click/touch
-            document.addEventListener('click', () => {
+            
+            const tryPlayOnInteraction = () => {
                 activeVideo.play().catch(() => {});
-            }, { once: true });
+                document.removeEventListener('click', tryPlayOnInteraction);
+                document.removeEventListener('touchstart', tryPlayOnInteraction);
+            };
+            
+            document.addEventListener('click', tryPlayOnInteraction, { once: true });
+            document.addEventListener('touchstart', tryPlayOnInteraction, { once: true });
         });
     };
     
-    // Cuando el video esté listo
     activeVideo.addEventListener('loadeddata', () => {
-        console.log('✓ Video cargado correctamente');
+        console.log('Video cargado correctamente');
         playVideo();
     });
     
-    // Observador de intersección para pausar cuando no está visible
     const videoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -321,7 +372,6 @@ function initVideoControl() {
     
     videoObserver.observe(activeVideo);
     
-    // Manejo de errores
     activeVideo.addEventListener('error', (e) => {
         console.error('Error al cargar el video:', e);
         const videoContainer = document.querySelector('.video-background');
@@ -330,14 +380,11 @@ function initVideoControl() {
         }
     });
     
-    // Prevenir click derecho en video (protección básica)
     activeVideo.addEventListener('contextmenu', (e) => {
         e.preventDefault();
         return false;
     });
 }
-
-initVideoControl();
 
 /* ===================================
    ANIMACIÓN DE ESTADÍSTICAS
@@ -347,13 +394,18 @@ function animateStats() {
     if (statsAnimated) return;
     
     DOM.statNumbers.forEach(stat => {
-        const target = parseInt(stat.getAttribute('data-target')) || parseInt(stat.textContent);
+        const target = parseInt(stat.getAttribute('data-target'));
         const hasPlus = stat.textContent.includes('+');
         
-        if (!target || isNaN(target)) return;
+        if (!target || isNaN(target)) {
+            if (CONFIG.isDebug) {
+                console.warn('Estadística sin data-target válido');
+            }
+            return;
+        }
         
         let current = 0;
-        const increment = target / (CONFIG.statAnimationDuration / 16.67); // 60fps
+        const increment = target / (CONFIG.statAnimationDuration / 16.67);
         
         const updateCounter = () => {
             current += increment;
@@ -370,9 +422,12 @@ function animateStats() {
     });
     
     statsAnimated = true;
+    
+    if (CONFIG.isDebug) {
+        console.log('Estadísticas animadas');
+    }
 }
 
-// Observador para animar cuando sea visible
 if (DOM.statNumbers.length > 0) {
     const statsObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -400,11 +455,12 @@ function initFadeAnimations() {
     const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Delay progresivo para efecto cascada
+                const delay = Array.from(DOM.fadeElements).indexOf(entry.target) * 50;
+                
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                }, index * 50);
+                }, delay);
                 
                 fadeObserver.unobserve(entry.target);
             }
@@ -414,36 +470,33 @@ function initFadeAnimations() {
         rootMargin: '0px 0px -50px 0px'
     });
     
-    // Aplicar estilos iniciales y observar
     DOM.fadeElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(30px)';
         element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         fadeObserver.observe(element);
     });
+    
+    if (CONFIG.isDebug) {
+        console.log('Fade animations inicializadas (' + DOM.fadeElements.length + ' elementos)');
+    }
 }
-
-initFadeAnimations();
 
 /* ===================================
    INTERACCIÓN CON PORTFOLIO
    =================================== */
 
-DOM.portfolioItems.forEach(item => {
+DOM.portfolioItems.forEach((item, index) => {
     const handlePortfolioClick = () => {
         const category = item.querySelector('.portfolio-category');
         const categoryText = category ? category.textContent : 'Proyecto';
         
-        console.log(`📸 Proyecto seleccionado: ${categoryText}`);
-        showNotification(`Ver proyecto: ${categoryText}`);
-        
-        // Aquí puedes agregar lógica para abrir modal, galería, etc.
+        console.log('Proyecto seleccionado: ' + categoryText);
+        showNotification(categoryText + ' - Próximamente disponible');
     };
     
-    // Soporte para touch y click
     item.addEventListener('click', handlePortfolioClick);
     
-    // Mejor experiencia táctil en móvil
     if (DEVICE.isTouchDevice) {
         item.addEventListener('touchend', (e) => {
             e.preventDefault();
@@ -461,7 +514,6 @@ function showNotification(message, duration = CONFIG.notificationDuration) {
     notification.className = 'notification';
     notification.textContent = message;
     
-    // Estilos
     Object.assign(notification.style, {
         position: 'fixed',
         bottom: DEVICE.isMobile ? '1.5rem' : '2rem',
@@ -484,13 +536,11 @@ function showNotification(message, duration = CONFIG.notificationDuration) {
     
     document.body.appendChild(notification);
     
-    // Animar entrada
     requestAnimationFrame(() => {
         notification.style.opacity = '1';
         notification.style.transform = 'translateY(0)';
     });
     
-    // Remover después del tiempo especificado
     setTimeout(() => {
         notification.style.opacity = '0';
         notification.style.transform = 'translateY(20px)';
@@ -507,12 +557,9 @@ function showNotification(message, duration = CONFIG.notificationDuration) {
 
 if (DEVICE.isMobile || DEVICE.isTablet) {
     window.addEventListener('orientationchange', () => {
-        // Pequeño delay para que la orientación se complete
         setTimeout(() => {
-            // Scroll al top
             window.scrollTo(0, 0);
             
-            // Reiniciar video activo
             const activeVideo = (DEVICE.isMobile && !DEVICE.isTablet) 
                 ? DOM.heroVideoMobile 
                 : DOM.heroVideoDesktop;
@@ -522,10 +569,12 @@ if (DEVICE.isMobile || DEVICE.isTablet) {
                 activeVideo.play().catch(() => {});
             }
             
-            // Actualizar altura en iOS
             if (DEVICE.isIOS) {
-                const vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
+                setViewportHeight();
+            }
+            
+            if (CONFIG.isDebug) {
+                console.log('Orientación cambiada');
             }
         }, 100);
     });
@@ -537,7 +586,7 @@ if (DEVICE.isMobile || DEVICE.isTablet) {
 
 function setViewportHeight() {
     const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty('--vh', vh + 'px');
 }
 
 if (DEVICE.isMobile || DEVICE.isTablet) {
@@ -555,15 +604,13 @@ document.addEventListener('visibilitychange', () => {
         : DOM.heroVideoDesktop;
     
     if (document.hidden) {
-        // Pausar video cuando la pestaña no está visible
         if (activeVideo) {
             activeVideo.pause();
         }
         if (CONFIG.isDebug) {
-            console.log('⏸️ Página oculta - video pausado');
+            console.log('Página oculta - video pausado');
         }
     } else {
-        // Reanudar video si está visible en viewport
         if (activeVideo) {
             const videoSection = document.querySelector('.video-hero');
             if (videoSection && isElementInViewport(videoSection)) {
@@ -571,26 +618,56 @@ document.addEventListener('visibilitychange', () => {
             }
         }
         if (CONFIG.isDebug) {
-            console.log('▶️ Página visible - video reanudado');
+            console.log('Página visible - video reanudado');
         }
     }
 });
 
 /* ===================================
+   OPTIMIZACIÓN PARA MÓVIL
+   =================================== */
+
+function optimizeForMobile() {
+    if (DEVICE.isMobile && !DEVICE.isTablet) {
+        console.log('Aplicando optimizaciones móvil...');
+        document.documentElement.style.setProperty('--animation-duration', '0.3s');
+    }
+}
+
+/* ===================================
+   MODO BAJO RENDIMIENTO (OPCIONAL)
+   =================================== */
+
+function enableLowPerformanceMode() {
+    document.body.classList.add('low-performance');
+    localStorage.setItem('lowPerformance', 'true');
+    console.log('Modo bajo rendimiento activado');
+    showNotification('Modo de rendimiento optimizado activado');
+}
+
+function disableLowPerformanceMode() {
+    document.body.classList.remove('low-performance');
+    localStorage.removeItem('lowPerformance');
+    console.log('Modo bajo rendimiento desactivado');
+    showNotification('Modo normal restaurado');
+}
+
+if (localStorage.getItem('lowPerformance') === 'true') {
+    enableLowPerformanceMode();
+}
+
+/* ===================================
    ACCESIBILIDAD
    =================================== */
 
-// Detectar preferencia de movimiento reducido
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 if (prefersReducedMotion.matches) {
     document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-    console.log('♿ Modo de movimiento reducido activado');
+    console.log('Modo de movimiento reducido activado');
 }
 
-// Navegación por teclado mejorada
 document.addEventListener('keydown', (e) => {
-    // Tab para navegar entre secciones
     if (e.key === 'Tab') {
         document.body.classList.add('keyboard-nav');
     }
@@ -601,21 +678,12 @@ document.addEventListener('mousedown', () => {
 });
 
 /* ===================================
-   OPTIMIZACIÓN DE RENDIMIENTO
+   ACTUALIZACIÓN DE AÑO AUTOMÁTICA
    =================================== */
 
-// Lazy loading de imágenes si existen
-if ('loading' in HTMLImageElement.prototype) {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    if (CONFIG.isDebug) {
-        console.log(`✓ Lazy loading nativo para ${images.length} imágenes`);
-    }
-} else {
-    // Fallback para navegadores antiguos
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-    script.async = true;
-    document.body.appendChild(script);
+if (DOM.yearElement) {
+    const currentYear = new Date().getFullYear();
+    DOM.yearElement.textContent = currentYear;
 }
 
 /* ===================================
@@ -630,46 +698,26 @@ document.addEventListener('keydown', (e) => {
     konamiCode = konamiCode.slice(-10);
     
     if (konamiCode.join('') === konamiPattern.join('')) {
-        console.log('%c 🌊 ¡OCEAN GRAPH ACTIVADO! 🌊 ', 'background: linear-gradient(90deg, #009dff, #00d4ff); color: white; font-size: 20px; padding: 10px; font-weight: bold;');
-        showNotification('🎉 ¡Easter Egg Descubierto!');
-        
-        // Efecto visual especial
+        console.log('%c OCEAN GRAPH ACTIVADO! ', 'background: linear-gradient(90deg, #009dff, #00d4ff); color: white; font-size: 20px; padding: 10px; font-weight: bold;');
+        showNotification('Easter Egg Descubierto!');
         document.body.style.animation = 'pulse 0.5s ease 3';
     }
 });
-
-/* ===================================
-   ACTUALIZACIÓN DE AÑO AUTOMÁTICA
-   =================================== */
-
-const yearElement = document.getElementById('currentYear');
-if (yearElement) {
-    yearElement.textContent = currentYear;
-}
 
 /* ===================================
    CARGA COMPLETA DE PÁGINA
    =================================== */
 
 window.addEventListener('load', () => {
-    console.log('%c ✓ Página completamente cargada ', 'background: #00d4ff; color: #141414; padding: 5px 10px; font-weight: bold; border-radius: 5px;');
+    console.log('%c Página completamente cargada ', 'background: #00d4ff; color: #141414; padding: 5px 10px; font-weight: bold; border-radius: 5px;');
     
-    // Animación de entrada del body
-    document.body.style.opacity = '0';
-    requestAnimationFrame(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    });
-    
-    // Estadísticas de rendimiento
     if (window.performance && CONFIG.isDebug) {
         const perfData = window.performance.timing;
         const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-        console.log(`⚡ Tiempo de carga: ${(pageLoadTime / 1000).toFixed(2)}s`);
+        console.log('Tiempo de carga: ' + (pageLoadTime / 1000).toFixed(2) + 's');
     }
     
-    // Mensaje final
-    console.log('%c 🚀 Ocean Graph listo ', 'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;');
+    console.log('%c Ocean Graph listo ', 'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;');
 });
 
 /* ===================================
@@ -677,9 +725,12 @@ window.addEventListener('load', () => {
    =================================== */
 
 function init() {
+    initLoader();
     initConsoleMessages();
+    optimizeForMobile();
+    initVideoControl();
+    initFadeAnimations();
     
-    // Inicializar eventos que dependen del DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             updateActiveNavLink();
@@ -688,9 +739,6 @@ function init() {
         updateActiveNavLink();
     }
 }
-
-// Ejecutar inicialización
-init();
 
 /* ===================================
    EXPORTAR PARA DEBUG (OPCIONAL)
@@ -703,11 +751,12 @@ if (CONFIG.isDebug) {
         dom: DOM,
         showNotification,
         toggleMenu,
-        smoothScrollTo
+        smoothScrollTo,
+        enableLowPerformanceMode,
+        disableLowPerformanceMode,
+        animateStats
     };
-    console.log('💡 Accede a window.OceanGraph para debugging');
+    console.log('Accede a window.OceanGraph para debugging');
 }
 
-/* ===================================
-   FIN DEL SCRIPT
-   =================================== */
+init();
