@@ -26,19 +26,22 @@
             </div>
             <h2 class="loader-text">OCEAN <span>GRAPH</span></h2>
             <div class="loader-bar">
-                <div class="loader-progress"></div>
+                <div class="loader-progress" id="loaderProgress"></div>
             </div>
+            <p class="loader-status" id="loaderStatus">Cargando...</p>
         </div>
     </div>
 
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
             <a href="#inicio" class="logo" aria-label="Ocean Graph - Ir a inicio">
-                <img 
-                    src="Logo/OceanGraph - Ola.svg" 
-                    alt="Ocean Graph" 
-                    class="logo-svg"
-                >
+                <div class="logo-icon-wrapper">
+                    <img 
+                        src="Logo/OceanGraph - Ola.svg" 
+                        alt="Ocean Graph" 
+                        class="logo-svg"
+                    >
+                </div>
                 <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
             </a>
 
@@ -255,12 +258,13 @@
             <div class="portfolio-grid">
                 <article class="portfolio-item" data-category="design">
                     <div class="portfolio-image-container">
-                        <img 
-                            src="images\DSC00769.jpg" 
-                            alt="Proyecto de Diseño Gráfico"
-                            class="portfolio-img"
-                            loading="lazy"
-                        >
+                        <div class="portfolio-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <path d="M21 15l-5-5L5 21"/>
+                            </svg>
+                        </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Diseño Gráfico</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -270,12 +274,12 @@
 
                 <article class="portfolio-item" data-category="photography">
                     <div class="portfolio-image-container">
-                        <img 
-                            src="images\PXL_20251121_182815734.jpg" 
-                            alt="Proyecto de Fotografía"
-                            class="portfolio-img"
-                            loading="lazy"
-                        >
+                        <div class="portfolio-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Fotografía</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -285,12 +289,12 @@
 
                 <article class="portfolio-item" data-category="video">
                     <div class="portfolio-image-container">
-                        <img 
-                            src="images/portfolio/proyecto-3.jpg" 
-                            alt="Proyecto de Video"
-                            class="portfolio-img"
-                            loading="lazy"
-                        >
+                        <div class="portfolio-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect x="1" y="5" width="15" height="14" rx="2"/>
+                            </svg>
+                        </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Video</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -300,12 +304,12 @@
 
                 <article class="portfolio-item" data-category="videography">
                     <div class="portfolio-image-container">
-                        <img 
-                            src="images/portfolio/proyecto-4.jpg" 
-                            alt="Proyecto de Videografía"
-                            class="portfolio-img"
-                            loading="lazy"
-                        >
+                        <div class="portfolio-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                <path d="M16 3h-8v4h8V3z"/>
+                            </svg>
+                        </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Videografía</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -315,12 +319,13 @@
 
                 <article class="portfolio-item" data-category="social">
                     <div class="portfolio-image-container">
-                        <img 
-                            src="images\OG - Chat 4.png" 
-                            alt="Proyecto de Social Media"
-                            class="portfolio-img"
-                            loading="lazy"
-                        >
+                        <div class="portfolio-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Social Media</span>
                             <span class="portfolio-action">Ver proyecto</span>
@@ -330,12 +335,12 @@
 
                 <article class="portfolio-item" data-category="branding">
                     <div class="portfolio-image-container">
-                        <img 
-                            src="images/portfolio/proyecto-6.jpg" 
-                            alt="Proyecto de Branding"
-                            class="portfolio-img"
-                            loading="lazy"
-                        >
+                        <div class="portfolio-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
                         <div class="portfolio-overlay">
                             <span class="portfolio-category">Branding</span>
                             <span class="portfolio-action">Ver proyecto</span>
