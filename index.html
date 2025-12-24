@@ -8,7 +8,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Ocean Graph - Agencia de Marketing Digital. Diseño, Fotografía, Videos Profesionales, Videografía y Community Manager.">
     
-    <title>Ocean Graph - Marketing Digital Profesional</title>
+    <title>OceanGraph</title>
+
+    <link rel="icon" type="image/svg+xml" href="Logo/OceanGraph - Ola.svg">
+    <link rel="shortcut icon" href="Logo/OceanGraph - Ola.svg" type="image/svg+xml">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,19 +22,25 @@
 </head>
 <body>
 
+    <!-- ============================================
+         PANTALLA DE CARGA (SPINNER ICONIFY)
+         ============================================ -->
     <div class="loader-wrapper" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
-                <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph Logo" class="loader-logo-img">
+                <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0xMiwxQTExLDExLDAsMSwwLDIzLDEyLDExLDExLDAsMCwwLDEyLDFabTAsMTlhOCw4LDAsMSwxLDgtOEE4LDgsMCwwLDEsMTIsMjBaIiBvcGFjaXR5PSIwLjI1Ii8+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTAuNzIsMTkuOWE4LDgsMCwwLDEtNi41LTkuNzlBNy43Nyw3Ljc3LDAsMCwxLDEwLjQsNC4xNmE4LDgsMCwwLDEsOS40OSw2LjUyQTEuNTQsMS41NCwwLDAsMCwyMS4zOCwxMmguMTNhMS4zNywxLjM3LDAsMCwwLDEuMzgtMS41NCwxMSwxMSwwLDEsMC0xMi43LDEyLjM5QTEuNTQsMS41NCwwLDAsMCwxMiwyMS4zNGgwQTEuNDcsMS40NywwLDAsMCwxMC43MiwxOS45WiI+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBkdXI9IjAuNzVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgMTIgMTI7MzYwIDEyIDEyIi8+PC9wYXRoPjwvc3ZnPg=="
+                    alt="Cargando"
+                    class="loader-spinner"
+                >
             </div>
             <h2 class="loader-text">OCEAN <span>GRAPH</span></h2>
-            <div class="loader-bar">
-                <div class="loader-progress" id="loaderProgress"></div>
-            </div>
-            <p class="loader-status" id="loaderStatus">Cargando...</p>
         </div>
     </div>
 
+    <!-- ============================================
+         NAVEGACIÓN
+         ============================================ -->
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
             <a href="#inicio" class="logo" aria-label="Ocean Graph - Ir a inicio">
@@ -53,19 +62,36 @@
                 <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
             </ul>
 
-            <button 
-                class="hamburger" 
-                aria-label="Abrir menú de navegación"
-                aria-expanded="false"
-                aria-controls="nav-menu"
-            >
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </button>
+            <div class="nav-actions">
+                <button 
+    class="theme-toggle" 
+    type="button" 
+    aria-label="Cambiar a modo claro"
+    title="Cambiar tema"
+>
+    <!-- Icono luna (tema oscuro) -->
+    <span class="theme-icon theme-icon--moon" aria-hidden="true"></span>
+    <!-- Icono sol (tema claro) -->
+    <span class="theme-icon theme-icon--sun" aria-hidden="true"></span>
+</button>
+
+                <button 
+                    class="hamburger" 
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="nav-menu"
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
+    <!-- ============================================
+         VIDEO HERO
+         ============================================ -->
     <section class="video-hero" id="inicio">
         <div class="video-background">
             <video 
@@ -116,6 +142,9 @@
         </div>
     </section>
 
+    <!-- ============================================
+         QUIÉNES SOMOS
+         ============================================ -->
     <section class="about-section" id="nosotros">
         <div class="container">
             <header class="section-header">
@@ -163,6 +192,9 @@
         </div>
     </section>
 
+    <!-- ============================================
+         SERVICIOS
+         ============================================ -->
     <section class="services-section" id="servicios">
         <div class="container">
             <header class="section-header">
@@ -247,6 +279,9 @@
         </div>
     </section>
 
+    <!-- ============================================
+         PORTFOLIO
+         ============================================ -->
     <section class="portfolio-section" id="portfolio">
         <div class="container">
             <header class="section-header">
@@ -256,8 +291,17 @@
             </header>
 
             <div class="portfolio-grid">
+                <!-- ITEM 1 - DISEÑO GRÁFICO -->
                 <article class="portfolio-item" data-category="design">
                     <div class="portfolio-image-container">
+                        <!--
+                        <img 
+                            src="images/portfolio/diseno-grafico.jpg" 
+                            alt="Proyecto de Diseño Gráfico"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
+                        -->
                         <div class="portfolio-placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <rect x="3" y="3" width="18" height="18" rx="2"/>
@@ -272,8 +316,17 @@
                     </div>
                 </article>
 
+                <!-- ITEM 2 - FOTOGRAFÍA -->
                 <article class="portfolio-item" data-category="photography">
                     <div class="portfolio-image-container">
+                        <!--
+                        <img 
+                            src="images/portfolio/fotografia.jpg" 
+                            alt="Proyecto de Fotografía"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
+                        -->
                         <div class="portfolio-placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
@@ -287,8 +340,17 @@
                     </div>
                 </article>
 
+                <!-- ITEM 3 - VIDEO -->
                 <article class="portfolio-item" data-category="video">
                     <div class="portfolio-image-container">
+                        <!--
+                        <img 
+                            src="images/portfolio/video.jpg" 
+                            alt="Proyecto de Video"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
+                        -->
                         <div class="portfolio-placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <polygon points="23 7 16 12 23 17 23 7"/>
@@ -302,8 +364,17 @@
                     </div>
                 </article>
 
+                <!-- ITEM 4 - VIDEOGRAFÍA -->
                 <article class="portfolio-item" data-category="videography">
                     <div class="portfolio-image-container">
+                        <!--
+                        <img 
+                            src="images/portfolio/videografia.jpg" 
+                            alt="Proyecto de Videografía"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
+                        -->
                         <div class="portfolio-placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <rect x="2" y="7" width="20" height="14" rx="2"/>
@@ -317,8 +388,17 @@
                     </div>
                 </article>
 
+                <!-- ITEM 5 - SOCIAL MEDIA -->
                 <article class="portfolio-item" data-category="social">
                     <div class="portfolio-image-container">
+                        <!--
+                        <img 
+                            src="images/portfolio/social-media.jpg" 
+                            alt="Proyecto de Social Media"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
+                        -->
                         <div class="portfolio-placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z"/>
@@ -333,8 +413,17 @@
                     </div>
                 </article>
 
+                <!-- ITEM 6 - BRANDING -->
                 <article class="portfolio-item" data-category="branding">
                     <div class="portfolio-image-container">
+                        <!--
+                        <img 
+                            src="images/portfolio/branding.jpg" 
+                            alt="Proyecto de Branding"
+                            class="portfolio-img"
+                            loading="lazy"
+                        >
+                        -->
                         <div class="portfolio-placeholder">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                 <circle cx="12" cy="12" r="10"/>
@@ -351,6 +440,9 @@
         </div>
     </section>
 
+    <!-- ============================================
+         CONTACTO
+         ============================================ -->
     <section class="contact-section" id="contacto">
         <div class="container">
             <header class="section-header">
@@ -370,10 +462,22 @@
                     </div>
 
                     <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">📱</div>
+                        <div class="contact-icon" aria-hidden="true">
+                            <img 
+                                src="Logo/logos--whatsapp-icon.svg" 
+                                alt="WhatsApp" 
+                                class="contact-icon-img"
+                            >
+                        </div>
                         <div class="contact-details">
-                            <h4>Teléfono</h4>
-                            <a href="tel:+521234567890">+52 123 456 7890</a>
+                            <h4>WhatsApp</h4>
+                            <a 
+                                href="https://wa.me/584127209418" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                +58 412-7209418
+                            </a>
                         </div>
                     </div>
 
@@ -401,6 +505,9 @@
         </div>
     </section>
 
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-logo">
