@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#141414">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Explora el portfolio completo de Ocean Graph - Proyectos de Diseño Gráfico, Fotografía, Videos Profesionales, Videografía y Social Media.">
+    
+    <title>Portfolio Completo - Ocean Graph</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="Logo/OceanGraph - Ola.svg">
+    <link rel="shortcut icon" href="Logo/OceanGraph - Ola.svg" type="image/svg+xml">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+
+    <!-- ============================================
+         PANTALLA DE CARGA
+         ============================================ -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0xMiwxQTExLDExLDAsMSwwLDIzLDEyLDExLDExLDAsMCwwLDEyLDFabTAsMTlhOCw4LDAsMSwxLDgtOEE4LDgsMCwwLDEsMTIsMjBaIiBvcGFjaXR5PSIwLjI1Ii8+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTAuNzIsMTkuOWE4LDgsMCwwLDEtNi41LTkuNzlBNy43Nyw3Ljc3LDAsMCwxLDEwLjQsNC4xNmE4LDgsMCwwLDEsOS40OSw2LjUyQTEuNTQsMS41NCwwLDAsMCwyMS4zOCwxMmguMTNhMS4zNywxLjM3LDAsMCwwLDEuMzgtMS41NCwxMSwxMSwwLDEsMC0xMi43LDEyLjM5QTEuNTQsMS41NCwwLDAsMCwxMiwyMS4zNGgwQTEuNDcsMS40NywwLDAsMCwxMC43MiwxOS45WiI+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBkdXI9IjAuNzVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgMTIgMTI7MzYwIDEyIDEyIi8+PC9wYXRoPjwvc3ZnPg=="
+                    alt="Cargando"
+                    class="loader-spinner"
+                >
+            </div>
+            <h2 class="loader-text">OCEAN <span>GRAPH</span></h2>
+        </div>
+    </div>
+
+    <!-- ============================================
+         NAVEGACIÓN
+         ============================================ -->
+    <nav class="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="nav-container">
+            <a href="index.html" class="logo" aria-label="Ocean Graph - Volver al inicio">
+                <div class="logo-icon-wrapper">
+                    <img 
+                        src="Logo/OceanGraph - Ola.svg" 
+                        alt="Ocean Graph" 
+                        class="logo-svg"
+                    >
+                </div>
+                <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
+            </a>
+
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="index.html#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
+                <li role="none"><a href="index.html#servicios" class="nav-link" role="menuitem">Servicios</a></li>
+                <li role="none"><a href="InPortafolio.html" class="nav-link active" role="menuitem">Portfolio</a></li>
+                <li role="none"><a href="index.html#contacto" class="nav-link" role="menuitem">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button 
+                    class="theme-toggle" 
+                    type="button" 
+                    aria-label="Cambiar a modo claro"
+                    title="Cambiar tema"
+                >
+                    <span class="theme-icon theme-icon--moon" aria-hidden="true"></span>
+                    <span class="theme-icon theme-icon--sun" aria-hidden="true"></span>
+                </button>
+
+                <button 
+                    class="hamburger" 
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="nav-menu"
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO PORTFOLIO
+         ============================================ -->
+    <section class="portfolio-hero">
+        <div class="portfolio-hero-content">
+            <div class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Portfolio</span>
+            </div>
+            
+            <h1 class="portfolio-hero-title">
+                Nuestro <span class="title-highlight">Portfolio</span>
+            </h1>
+            
+            <p class="portfolio-hero-description">
+                Explora una selección de nuestros mejores trabajos en diseño gráfico, 
+                fotografía, videografía y estrategias de marketing digital.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FILTROS DE CATEGORÍA
+         ============================================ -->
+    <section class="portfolio-filters-section">
+        <div class="container">
+            <div class="portfolio-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
+                <button 
+                    class="filter-btn active" 
+                    data-filter="all"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="portfolio-grid"
+                >
+                    Todos
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="design"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="portfolio-grid"
+                >
+                    Diseño Gráfico
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="photography"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="portfolio-grid"
+                >
+                    Fotografía
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="video"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="portfolio-grid"
+                >
+                    Video
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="videography"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="portfolio-grid"
+                >
+                    Videografía
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="social"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="portfolio-grid"
+                >
+                    Social Media
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="branding"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="portfolio-grid"
+                >
+                    Branding
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         VIDEO DESTACADO DE YOUTUBE
+         ============================================ -->
+    <section class="portfolio-video-section">
+        <div class="container">
+            <div class="video-header">
+                <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
+                <p class="video-section-description">
+                    Mira este video para ver algunos de nuestros proyectos más destacados
+                </p>
+            </div>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe 
+                        class="portfolio-featured-video youtube-video"
+                        src="https://www.youtube.com/embed/seowB8lAxks?si=jd3vwv12wNKxKFdj"
+                        title="Portfolio Ocean Graph - Trabajos Destacados"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         GRID DE PROYECTOS
+         ============================================ -->
+    <section class="portfolio-grid-section">
+        <div class="container">
+            <div class="portfolio-grid" id="portfolio-grid" role="tabpanel">
+                
+                <!-- PROYECTO 1 - Diseño Gráfico -->
+                <article class="portfolio-project" data-category="design" data-id="1">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <path d="M21 15l-5-5L5 21"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Diseño Gráfico</span>
+                        <h3 class="project-title">Identidad Corporativa Premium</h3>
+                        <p class="project-description">Desarrollo completo de identidad visual para marca de lujo</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 2 - Fotografía -->
+                <article class="portfolio-project" data-category="photography" data-id="2">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Fotografía</span>
+                        <h3 class="project-title">Sesión Producto Gourmet</h3>
+                        <p class="project-description">Fotografía profesional de productos alimenticios premium</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 3 - Video -->
+                <article class="portfolio-project" data-category="video" data-id="3">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect x="1" y="5" width="15" height="14" rx="2"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Video</span>
+                        <h3 class="project-title">Campaña Publicitaria Digital</h3>
+                        <p class="project-description">Producción de video comercial para redes sociales</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 4 - Videografía -->
+                <article class="portfolio-project" data-category="videography" data-id="4">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="2" y="7" width="20" height="14" rx="2"/>
+                                <path d="M16 3h-8v4h8V3z"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Videografía</span>
+                        <h3 class="project-title">Cobertura Evento Corporativo</h3>
+                        <p class="project-description">Documentación completa de evento empresarial de 2 días</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 5 - Social Media -->
+                <article class="portfolio-project" data-category="social" data-id="5">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5z"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Social Media</span>
+                        <h3 class="project-title">Estrategia Instagram Boutique</h3>
+                        <p class="project-description">Gestión completa de redes sociales con crecimiento 300%</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 6 - Branding -->
+                <article class="portfolio-project" data-category="branding" data-id="6">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Branding</span>
+                        <h3 class="project-title">Rebranding Tech Startup</h3>
+                        <p class="project-description">Transformación completa de imagen de marca tecnológica</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 7 - Diseño -->
+                <article class="portfolio-project" data-category="design" data-id="7">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <path d="M21 15l-5-5L5 21"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Diseño Gráfico</span>
+                        <h3 class="project-title">Material POP Campaña Verano</h3>
+                        <p class="project-description">Diseño de material promocional para campaña estacional</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 8 - Fotografía -->
+                <article class="portfolio-project" data-category="photography" data-id="8">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                                <circle cx="12" cy="13" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Fotografía</span>
+                        <h3 class="project-title">Retrato Corporativo Ejecutivo</h3>
+                        <p class="project-description">Sesión fotográfica profesional para equipo directivo</p>
+                    </div>
+                </article>
+
+                <!-- PROYECTO 9 - Video -->
+                <article class="portfolio-project" data-category="video" data-id="9">
+                    <div class="project-image-wrapper">
+                        <div class="project-placeholder">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <polygon points="23 7 16 12 23 17 23 7"/>
+                                <rect x="1" y="5" width="15" height="14" rx="2"/>
+                            </svg>
+                        </div>
+                        <div class="project-overlay">
+                            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Ver proyecto
+                            </button>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Video</span>
+                        <h3 class="project-title">Video Institucional ONG</h3>
+                        <p class="project-description">Documental breve sobre organización sin fines de lucro</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Mensaje cuando no hay resultados -->
+            <div class="no-results" id="no-results" style="display: none;">
+                <div class="no-results-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </div>
+                <h3>No se encontraron proyectos</h3>
+                <p>Intenta seleccionar otra categoría</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         MODAL DE PROYECTO
+         ============================================ -->
+    <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close" aria-label="Cerrar modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="modal-body">
+                <div class="modal-image">
+                    <div class="modal-placeholder">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <path d="M21 15l-5-5L5 21"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="modal-info">
+                    <span class="modal-category" id="modal-category">Categoría</span>
+                    <h2 class="modal-title" id="modal-title">Título del Proyecto</h2>
+                    <p class="modal-description" id="modal-description">
+                        Descripción completa del proyecto con todos los detalles relevantes.
+                    </p>
+
+                    <div class="modal-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Cliente:</span>
+                            <span class="detail-value" id="modal-client">Nombre del cliente</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Fecha:</span>
+                            <span class="detail-value" id="modal-date">2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Servicios:</span>
+                            <span class="detail-value" id="modal-services">Diseño, Fotografía</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <a href="index.html#contacto" class="modal-btn modal-btn-primary">
+                            Iniciar Proyecto Similar
+                        </a>
+                        <button class="modal-btn modal-btn-secondary" id="modal-close-btn">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         CALL TO ACTION
+         ============================================ -->
+    <section class="portfolio-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">¿Tienes un proyecto en mente?</h2>
+                <p class="cta-description">
+                    Trabajemos juntos para crear algo extraordinario. 
+                    Contáctanos y cuéntanos tu idea.
+                </p>
+                <div class="cta-actions">
+                    <a href="index.html#contacto" class="cta-btn cta-btn-primary">
+                        Iniciar Proyecto
+                    </a>
+                    <a href="index.html" class="cta-btn cta-btn-secondary">
+                        Volver al Inicio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img 
+                    src="Logo/OceanGraph - Ola.svg" 
+                    alt="Ocean Graph Logo" 
+                    class="footer-logo-svg"
+                >
+            </div>
+
+            <p class="footer-copyright">
+                &copy; <span id="currentYear">2024</span> Ocean Graph
+            </p>
+
+            <div class="footer-social-section">
+                <p class="social-title">Visita nuestras redes sociales</p>
+                
+                <nav class="footer-social" aria-label="Redes sociales">
+                    <a href="https://www.instagram.com/oceangraficos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-social="instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="social-name">Instagram</span>
+                    </a>
+
+                    <a href="https://www.facebook.com/oceangraficos?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook" data-social="facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">Facebook</span>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@oceangraficos?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-social="tiktok">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">TikTok</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>
