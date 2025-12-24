@@ -1,18 +1,19 @@
 /* ===================================
    OCEAN GRAPH - MARKETING DIGITAL
-   Optimizado para Móvil y Desktop
+   Tema oscuro/claro conmutables
    =================================== */
 
 /* ===================================
-   VARIABLES CSS
+   VARIABLES CSS (TEMA OSCURO POR DEFECTO)
    =================================== */
 
 :root {
+    /* Paleta base tema oscuro */
     --color-primary: #009dff;
     --color-primary-light: #00d4ff;
-    --color-dark: #141414;
-    --color-dark-alt: #1a1a1a;
-    --color-white: #ffffff;
+    --color-dark: #141414;      /* fondo base oscuro */
+    --color-dark-alt: #1a1a1a;  /* secciones alternas oscuras */
+    --color-white: #ffffff;     /* texto principal (en oscuro = blanco) */
     
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
@@ -38,6 +39,14 @@
     --transition-normal: 0.3s ease;
     --transition-slow: 0.5s ease;
 }
+
+/* El JS cambia dinámicamente:
+   --color-dark, --color-dark-alt, --color-white
+   para tema claro:
+   --color-dark: #f2f2f2
+   --color-dark-alt: #e6e6e6
+   --color-white: #141414
+*/
 
 /* ===================================
    RESET Y CONFIGURACIÓN BASE
@@ -78,7 +87,7 @@ textarea {
 }
 
 /* ===================================
-   PANTALLA DE CARGA - MEJORADA
+   PANTALLA DE CARGA (SPINNER ICONIFY)
    =================================== */
 
 .loader-wrapper {
@@ -111,17 +120,20 @@ textarea {
 }
 
 .loader-logo {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 2rem;
-    animation: pulse 2s infinite;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.loader-logo-img {
+.loader-spinner {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(0, 157, 255, 0.3));
+    display: block;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 16px rgba(0, 157, 255, 0.45));
 }
 
 .loader-text {
@@ -129,7 +141,6 @@ textarea {
     font-weight: 300;
     letter-spacing: 3px;
     color: var(--color-white);
-    margin-bottom: 2rem;
 }
 
 .loader-text span {
@@ -137,61 +148,8 @@ textarea {
     font-weight: 500;
 }
 
-.loader-bar {
-    width: 100%;
-    max-width: 300px;
-    height: 4px;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 0 auto 1rem;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-}
-
-.loader-progress {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
-    border-radius: 10px;
-    transition: width 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.loader-progress::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    animation: shimmer 1.5s infinite;
-}
-
-.loader-status {
-    font-size: 0.85rem;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 1px;
-}
-
-@keyframes shimmer {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(100%);
-    }
-}
-
 /* ===================================
-   NAVEGACIÓN - LOGO CORREGIDO
+   NAVEGACIÓN + BOTÓN TEMA
    =================================== */
 
 .navbar {
@@ -209,7 +167,7 @@ textarea {
 
 .navbar.scrolled {
     background-color: rgba(20, 20, 20, 0.95);
-    border-bottom: 1px solid rgba(0, 157, 255, 0.2);
+    border-bottom-color: rgba(0, 0, 0, 0.3);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -274,39 +232,118 @@ textarea {
     display: flex;
     list-style: none;
     gap: 2.5rem;
-    align-items: center;
+    align-items: entre;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Botones nav como "pills" */
 .nav-link {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 400;
     letter-spacing: 0.5px;
-    padding: 0.5rem 0;
+    padding: 0.45rem 1.2rem;
     position: relative;
-    transition: color var(--transition-normal);
+    border-radius: 999px;
+    transition:
+        color var(--transition-normal),
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal),
+        transform var(--transition-fast);
 }
 
 .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--color-primary);
-    transition: width var(--transition-normal);
+    display: none;
 }
 
 .nav-link:hover,
+.nav-link:focus-visible,
 .nav-link.active {
-    color: var(--color-white);
+    background-color: var(--color-primary);
+    color: #141414;
+    box-shadow: 0 0 0 1px rgba(0, 157, 255, 0.5);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 100%;
+.nav-link:active {
+    transform: scale(0.97);
+}
+
+.nav-link:focus-visible {
+    outline: none;
+}
+
+/* Botón cambio de tema (iconos luna/sol) */
+.theme-toggle {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: 
+        background-color var(--transition-normal),
+        border-color var(--transition-normal),
+        transform var(--transition-fast),
+        box-shadow var(--transition-normal);
+}
+
+.theme-icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transition:
+        opacity var(--transition-normal),
+        transform var(--transition-normal),
+        box-shadow var(--transition-normal),
+        background-color var(--transition-normal),
+        border-color var(--transition-normal);
+}
+
+/* Luna: tema oscuro */
+.theme-icon--moon {
+    border: 2px solid var(--color-white);
+    box-shadow: 6px 0 0 0 var(--color-white);
+    background-color: transparent;
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Sol: tema claro */
+.theme-icon--sun {
+    background-color: #ffd54f;
+    box-shadow: 0 0 0 3px rgba(255, 213, 79, 0.4);
+    border: 2px solid #fbc02d;
+    opacity: 0;
+    transform: scale(0.4);
+}
+
+.theme-toggle:hover {
+    background-color: rgba(0, 157, 255, 0.15);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px rgba(0, 157, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 157, 255, 0.8);
 }
 
 .hamburger {
@@ -341,8 +378,43 @@ textarea {
     transform: rotate(-45deg) translate(7px, -7px);
 }
 
+/* Tema claro refinado */
+body.theme-light .navbar {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+body.theme-light .logo-text {
+    color: #141414;
+}
+
+body.theme-light .nav-link {
+    color: rgba(0, 0, 0, 0.75);
+}
+
+body.theme-light .nav-link:hover,
+body.theme-light .nav-link.active {
+    color: #141414;
+}
+
+body.theme-light .theme-toggle {
+    border-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+body.theme-light .theme-icon--moon {
+    opacity: 0;
+    transform: scale(0.4);
+    box-shadow: none;
+}
+
+body.theme-light .theme-icon--sun {
+    opacity: 1;
+    transform: scale(1);
+}
+
 /* ===================================
-   VIDEO HERO SECTION - OPTIMIZADO
+   VIDEO HERO SECTION (texto siempre blanco)
    =================================== */
 
 .video-hero {
@@ -427,16 +499,16 @@ textarea {
     margin-bottom: var(--spacing-md);
     letter-spacing: -2px;
     word-wrap: break-word;
+    color: #ffffff; /* siempre blanco */
 }
 
 .title-line {
     display: block;
-    color: var(--color-white);
 }
 
 .title-highlight {
     font-weight: 400;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light), var(--color-white));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light), #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -446,7 +518,8 @@ textarea {
     font-size: clamp(0.95rem, 2vw, 1.2rem);
     font-weight: 300;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.85);
+    color: #ffffff; /* siempre blanco */
+    opacity: 0.85;
     margin-bottom: var(--spacing-lg);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     max-width: 700px;
@@ -475,7 +548,8 @@ textarea {
     font-weight: 400;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff; /* siempre blanco */
+    opacity: 0.8;
 }
 
 .scroll-arrow {
@@ -515,7 +589,8 @@ section {
 .section-subtitle {
     font-size: clamp(0.95rem, 2vw, 1.1rem);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-white);
+    opacity: 0.7;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -530,7 +605,7 @@ section {
 }
 
 /* ===================================
-   SECCIÓN: QUIÉNES SOMOS
+   QUIÉNES SOMOS
    =================================== */
 
 .about-section {
@@ -546,7 +621,8 @@ section {
     font-size: clamp(1rem, 2vw, 1.1rem);
     font-weight: 300;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-white);
+    opacity: 0.85;
     margin-bottom: var(--spacing-sm);
 }
 
@@ -564,7 +640,7 @@ section {
 
 .stat-card {
     background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
     padding: var(--spacing-md);
     text-align: center;
@@ -591,12 +667,13 @@ section {
 .stat-label {
     font-size: clamp(0.85rem, 2vw, 0.95rem);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-white);
+    opacity: 0.7;
     letter-spacing: 0.5px;
 }
 
 /* ===================================
-   SECCIÓN: SERVICIOS
+   SERVICIOS
    =================================== */
 
 .services-section {
@@ -611,7 +688,7 @@ section {
 
 .service-card {
     background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 12px;
     padding: var(--spacing-md);
     transition: all var(--transition-normal);
@@ -646,11 +723,12 @@ section {
     font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: 300;
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white);
+    opacity: 0.8;
 }
 
 /* ===================================
-   SECCIÓN: PORTFOLIO - CORREGIDO
+   PORTFOLIO - IMÁGENES / ICONOS
    =================================== */
 
 .portfolio-section {
@@ -671,6 +749,11 @@ section {
     background-color: rgba(255, 255, 255, 0.02);
     -webkit-tap-highlight-color: transparent;
     aspect-ratio: 1 / 1;
+    transition: transform var(--transition-normal);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
 }
 
 .portfolio-image-container {
@@ -680,6 +763,22 @@ section {
     overflow: hidden;
 }
 
+/* Imagen real */
+.portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.portfolio-item:hover .portfolio-img,
+.portfolio-item:active .portfolio-img {
+    transform: scale(1.15);
+}
+
+/* Placeholder icono */
 .portfolio-placeholder {
     width: 100%;
     height: 100%;
@@ -687,7 +786,7 @@ section {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(0, 157, 255, 0.05), rgba(0, 157, 255, 0.02));
-    transition: transform var(--transition-slow);
+    transition: all var(--transition-slow);
 }
 
 .portfolio-placeholder svg {
@@ -699,7 +798,8 @@ section {
 
 .portfolio-item:hover .portfolio-placeholder,
 .portfolio-item:active .portfolio-placeholder {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(0, 157, 255, 0.08), rgba(0, 157, 255, 0.04));
 }
 
 .portfolio-item:hover .portfolio-placeholder svg,
@@ -708,6 +808,7 @@ section {
     transform: scale(1.2);
 }
 
+/* Overlay */
 .portfolio-overlay {
     position: absolute;
     top: 0;
@@ -741,11 +842,12 @@ section {
 .portfolio-action {
     font-size: 0.85rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white);
+    opacity: 0.8;
 }
 
 /* ===================================
-   SECCIÓN: CONTACTO
+   CONTACTO
    =================================== */
 
 .contact-section {
@@ -772,8 +874,16 @@ section {
 }
 
 .contact-icon {
-    font-size: 2rem;
     min-width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon-img {
+    width: 32px;
+    height: 32px;
+    display: block;
 }
 
 .contact-details h4 {
@@ -785,27 +895,30 @@ section {
 
 .contact-details p,
 .contact-details a {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white);
+    opacity: 0.8;
     font-size: 1rem;
     font-weight: 300;
     text-decoration: none;
-    transition: color var(--transition-normal);
+    transition: color var(--transition-normal), opacity var(--transition-normal);
 }
 
 .contact-details a:hover {
     color: var(--color-primary);
+    opacity: 1;
 }
 
 .contact-text p {
     font-size: clamp(1rem, 2vw, 1.1rem);
     font-weight: 300;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--color-white);
+    opacity: 0.8;
     margin-bottom: var(--spacing-sm);
 }
 
 /* ===================================
-   FOOTER CON REDES SOCIALES
+   FOOTER
    =================================== */
 
 .main-footer {
@@ -840,7 +953,8 @@ section {
 }
 
 .footer-copyright {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-white);
+    opacity: 0.7;
     font-size: 0.9rem;
     font-weight: 300;
 }
@@ -852,7 +966,8 @@ section {
 .social-title {
     font-size: 0.95rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-white);
+    opacity: 0.8;
     margin-bottom: var(--spacing-sm);
     letter-spacing: 0.5px;
 }
@@ -871,7 +986,8 @@ section {
     gap: 0.5rem;
     padding: 1rem;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-white);
+    opacity: 0.7;
     transition: all var(--transition-normal);
     border-radius: 12px;
     -webkit-tap-highlight-color: transparent;
@@ -892,6 +1008,7 @@ section {
 .social-link:hover,
 .social-link:active {
     color: var(--color-primary);
+    opacity: 1;
     background-color: rgba(0, 157, 255, 0.1);
 }
 
@@ -912,17 +1029,6 @@ section {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.05);
     }
 }
 
@@ -948,10 +1054,6 @@ section {
     body.is-mobile .portfolio-item,
     body.is-mobile .stat-card {
         transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    body.is-mobile .loader-logo {
-        animation: none;
     }
 
     body.is-mobile .hero-video {
@@ -989,6 +1091,10 @@ body.low-performance .video-overlay {
     .contact-content {
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
+    }
+
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
@@ -1033,7 +1139,7 @@ body.low-performance .video-overlay {
 
     .nav-link {
         font-size: 1.1rem;
-        padding: 0.8rem 0;
+        padding: 0.8rem 1.4rem;
     }
 
     .logo-icon-wrapper {
@@ -1134,14 +1240,10 @@ body.low-performance .video-overlay {
         font-size: 1.3rem;
         letter-spacing: 2px;
     }
-
-    .loader-bar {
-        max-width: 250px;
-    }
 }
 
 /* ===================================
-   RESPONSIVE - MÓVILES PEQUEÑOS
+   MÓVILES PEQUEÑOS
    =================================== */
 
 @media (max-width: 480px) {
@@ -1168,6 +1270,11 @@ body.low-performance .video-overlay {
         padding: var(--spacing-sm);
     }
 
+    .portfolio-placeholder svg {
+        width: 60px;
+        height: 60px;
+    }
+
     .loader-logo {
         width: 70px;
         height: 70px;
@@ -1175,10 +1282,6 @@ body.low-performance .video-overlay {
 
     .loader-text {
         font-size: 1.2rem;
-    }
-
-    .loader-bar {
-        max-width: 200px;
     }
 }
 
