@@ -72,8 +72,19 @@
                     aria-label="Cambiar a modo claro"
                     title="Cambiar tema"
                 >
-                    <span class="theme-icon theme-icon--moon" aria-hidden="true"></span>
-                    <span class="theme-icon theme-icon--sun" aria-hidden="true"></span>
+                    <!-- ICONO SOL BLANCO (Tema Oscuro - visible por defecto) -->
+                    <span class="theme-icon theme-icon--sun" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                            <path fill="#fff" d="M10 6.797a3.19 3.19 0 0 0-3.2 3.201a3.19 3.19 0 0 0 3.2 3.199a3.19 3.19 0 0 0 3.199-3.199A3.19 3.19 0 0 0 10 6.797m0 5.25a2.049 2.049 0 1 1 0-4.1a2.05 2.05 0 0 1 0 4.1M15 5c-.312-.312-.883-.248-1.273.142c-.39.391-.453.959-.141 1.272s.882.25 1.273-.141c.39-.39.453-.961.141-1.273m-9.858 8.729c-.391.39-.454.959-.142 1.271s.882.25 1.273-.141s.454-.961.142-1.273s-.883-.248-1.273.143M5 5c-.312.312-.249.883.141 1.273c.391.391.961.453 1.273.141s.249-.883-.142-1.273C5.883 4.752 5.312 4.688 5 5m8.727 9.857c.39.391.96.455 1.273.143s.249-.883-.142-1.274s-.96-.453-1.273-.141s-.248.882.142 1.272M10 4.998c.441 0 .8-.447.8-1C10.799 3.445 10.441 3 10 3s-.801.445-.801.998s.358 1 .801 1M10 17c.441 0 .8-.447.8-1s-.358-.998-.799-.998s-.801.445-.801.998c-.001.553.357 1 .8 1m-5-7c0-.441-.45-.8-1.003-.8S3 9.559 3 10s.444.8.997.8S5 10.442 5 10m12 0c0-.441-.448-.8-1.001-.8S15 9.559 15 10s.446.8.999.8S17 10.442 17 10"/>
+                        </svg>
+                    </span>
+                    
+                    <!-- ICONO LUNA NEGRA (Tema Claro - oculto por defecto) -->
+                    <span class="theme-icon theme-icon--moon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#000" d="M14.5 21q-1.858 0-3.497-.707T8.139 18.36t-1.931-2.864t-.708-3.491q0-1.874.71-3.511q.711-1.637 1.93-2.855t2.864-1.93T14.5 3q.812 0 1.558.139q.746.138 1.442.442q-1.833 1.498-2.916 3.674Q13.5 9.43 13.5 12t1.084 4.745T17.5 20.42q-.696.304-1.442.443Q15.312 21 14.5 21m0-1h.525q.25 0 .475-.05q-1.425-1.65-2.212-3.687T12.5 12t.788-4.262T15.5 4.05Q15.275 4 15.025 4H14.5q-3.325 0-5.663 2.338T6.5 12t2.338 5.663T14.5 20m-2-8"/>
+                        </svg>
+                    </span>
                 </button>
 
                 <button 
@@ -109,6 +120,47 @@
                 Explora una selección de nuestros mejores trabajos en diseño gráfico, 
                 fotografía, videografía y estrategias de marketing digital.
             </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         VIDEO DESTACADO (ARRIBA DE TODO)
+         ============================================ -->
+    <section class="portfolio-video-section">
+        <div class="container">
+            <div class="video-header">
+                <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
+                <p class="video-section-description">
+                    Mira este video para ver algunos de nuestros proyectos más destacados
+                </p>
+            </div>
+
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- PLACEHOLDER: Reemplaza con tu video de YouTube -->
+                    <!-- <div class="video-placeholder">
+                        <div class="video-placeholder-content">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+                            </svg>
+                            <p>Video próximamente</p>
+                        </div>
+                    </div>
+                     -->
+
+                    <!-- CUANDO TENGAS EL VIDEO, REEMPLAZA EL PLACEHOLDER CON ESTO: -->
+                    <iframe 
+                        class="portfolio-featured-video youtube-video"
+                        src="https://www.youtube.com/embed/K_xe0k5alwQ?si=HogN_V9AIVYbXUqH"
+                        title="Portfolio Ocean Graph - Trabajos Destacados"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    ></iframe>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -185,33 +237,6 @@
         </div>
     </section>
 
-    <!-- ============================================
-         VIDEO DESTACADO DE YOUTUBE
-         ============================================ -->
-    <section class="portfolio-video-section">
-        <div class="container">
-            <div class="video-header">
-                <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
-                <p class="video-section-description">
-                    Mira este video para ver algunos de nuestros proyectos más destacados
-                </p>
-            </div>
-
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <iframe 
-                        class="portfolio-featured-video youtube-video"
-                        src="https://www.youtube.com/embed/seowB8lAxks?si=jd3vwv12wNKxKFdj"
-                        title="Portfolio Ocean Graph - Trabajos Destacados"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
-                    ></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ============================================
          GRID DE PROYECTOS
