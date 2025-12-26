@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#141414">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Ocean Graph - Versión móvil. Agencia de Marketing Digital Independiente. Diseño, Fotografía, Videos Profesionales, Videografía, Community Manager y crecimiento en Instagram.">
+    
+    <title>Ocean Graph - Móvil</title>
+    
+    <!-- Favicon / Icono de pestaña -->
+    <link rel="icon" type="image/svg+xml" href="../Logo/OceanGraph - Ola.svg">
+    <link rel="shortcut icon" href="../Logo/OceanGraph - Ola.svg" type="image/svg+xml">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Tipografía Montserrat (familia completa) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <!-- Estilos específicos de la versión móvil -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============================================
+         PANTALLA DE CARGA (SPINNER ICONIFY)
+         ============================================ -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0xMiwxQTExLDExLDAsMSwwLDIzLDEyLDExLDExLDAsMCwwLDEyLDFabTAsMTlhOCw4LDAsMSwxLDgtOEE4LDgsMCwwLDEsMTIsMjBaIiBvcGFjaXR5PSIwLjI1Ii8+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTAuNzIsMTkuOWE4LDgsMCwwLDEtNi41LTkuNzlBNy43Nyw3Ljc3LDAsMCwxLDEwLjQsNC4xNmE4LDgsMCwwLDEsOS40OSw2LjUyQTEuNTQsMS41NCwwLDAsMCwyMS4zOCwxMmguMTNhMS4zNywxLjM3LDAsMCwwLDEuMzgtMS41NCwxMSwxMSwwLDEsMC0xMi43LDEyLjM5QTEuNTQsMS41NCwwLDAsMCwxMiwyMS4zNGgwQTEuNDcsMS40NywwLDAsMCwxMC43MiwxOS45WiI+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBkdXI9IjAuNzVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgMTIgMTI7MzYwIDEyIDEyIi8+PC9wYXRoPjwvc3ZnPg=="
+                    alt="Cargando"
+                    class="loader-spinner"
+                >
+            </div>
+            <h2 class="loader-text">OCEAN <span>GRAPH</span></h2>
+        </div>
+    </div>
+
+    <!-- ============================================
+         NAVEGACIÓN (VERSIÓN MÓVIL)
+         ============================================ -->
+    <nav class="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="nav-container">
+            <a href="#inicio" class="logo" aria-label="Ocean Graph - Ir a inicio">
+                <div class="logo-icon-wrapper">
+                    <img 
+                        src="../Logo/OceanGraph - Ola.svg" 
+                        alt="Ocean Graph" 
+                        class="logo-svg"
+                    >
+                </div>
+                <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
+            </a>
+
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#inicio" class="nav-link active" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
+                <!-- En el futuro: versión móvil de portafolio y comunidad -->
+                <li role="none"><a href="../InPortafolio.html" class="nav-link" role="menuitem">Portfolio</a></li>
+                <li role="none"><a href="../Community.html" class="nav-link" role="menuitem">Comunidad</a></li>
+                <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button 
+                    class="theme-toggle" 
+                    type="button" 
+                    aria-label="Cambiar a modo claro"
+                    title="Cambiar tema"
+                >
+                    <!-- ICONO SOL BLANCO (Tema Oscuro - visible por defecto) -->
+                    <span class="theme-icon theme-icon--sun" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                            <path fill="#fff" d="M10 6.797a3.19 3.19 0 0 0-3.2 3.201a3.19 3.19 0 0 0 3.2 3.199a3.19 3.19 0 0 0 3.199-3.199A3.19 3.19 0 0 0 10 6.797m0 5.25a2.049 2.049 0 1 1 0-4.1a2.05 2.05 0 0 1 0 4.1M15 5c-.312-.312-.883-.248-1.273.142c-.39.391-.453.959-.141 1.272s.882.25 1.273-.141c.39-.39.453-.961.141-1.273m-9.858 8.729c-.391.39-.454.959-.142 1.271s.882.25 1.273-.141s.454-.961.142-1.273s-.883-.248-1.273.143M5 5c-.312.312-.249.883.141 1.273c.391.391.961.453 1.273.141s.249-.883-.142-1.273C5.883 4.752 5.312 4.688 5 5m8.727 9.857c.39.391.96.455 1.273.143s.249-.883-.142-1.274s-.96-.453-1.273-.141s-.248.882.142 1.272M10 4.998c.441 0 .8-.447.8-1C10.799 3.445 10.441 3 10 3s-.801.445-.801.998s.358 1 .801 1M10 17c.441 0 .8-.447.8-1s-.358-.998-.799-.998s-.801.445-.801.998c-.001.553.357 1 .8 1m-5-7c0-.441-.45-.8-1.003-.8S3 9.559 3 10s.444.8.997.8S5 10.442 5 10m12 0c0-.441-.448-.8-1.001-.8S15 9.559 15 10s.446.8.999.8S17 10.442 17 10"/>
+                        </svg>
+                    </span>
+                    
+                    <!-- ICONO LUNA NEGRA (Tema Claro - oculto por defecto) -->
+                    <span class="theme-icon theme-icon--moon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#000" d="M14.5 21q-1.858 0-3.497-.707T8.139 18.36t-1.931-2.864t-.708-3.491q0-1.874.71-3.511q.711-1.637 1.93-2.855t2.864-1.93T14.5 3q.812 0 1.558.139q.746.138 1.442.442q-1.833 1.498-2.916 3.674Q13.5 9.43 13.5 12t1.084 4.745T17.5 20.42q-.696.304-1.442.443Q15.312 21 14.5 21m0-1h.525q.25 0 .475-.05q-1.425-1.65-2.212-3.687T12.5 12t.788-4.262T15.5 4.05Q15.275 4 15.025 4H14.5q-3.325 0-5.663 2.338T6.5 12t2.338 5.663T14.5 20m-2-8"/>
+                        </svg>
+                    </span>
+                </button>
+
+                <button 
+                    class="hamburger" 
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="nav-menu"
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         VIDEO HERO
+         ============================================ -->
+    <section class="video-hero" id="inicio">
+        <div class="video-background">
+            <video 
+                class="hero-video hero-video-desktop" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                preload="auto"
+            >
+                <source src="../video/evento carros_1.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+
+            <video 
+                class="hero-video hero-video-mobile" 
+                autoplay 
+                muted 
+                loop 
+                playsinline
+                preload="auto"
+            >
+                <source src="../video/evento carros_1.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="video-content">
+            <div class="video-content-wrapper">
+                <h1 class="video-title">
+                    <span class="title-line">Creamos</span>
+                    <span class="title-line">experiencias</span>
+                    <span class="title-line title-highlight">visuales únicas</span>
+                </h1>
+
+                <p class="video-description">
+                    Transformamos ideas en contenido profesional que conecta,
+                    inspira y genera resultados excepcionales.
+                </p>
+
+                <div class="scroll-indicator" aria-label="Desplazar hacia abajo">
+                    <span class="scroll-text">Descubre más</span>
+                    <span class="scroll-arrow" aria-hidden="true">↓</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         QUIÉNES SOMOS
+         ============================================ -->
+    <section class="about-section" id="nosotros">
+        <div class="container">
+            <header class="section-header">
+                <div class="divider" aria-hidden="true"></div>
+                <h2>Quiénes Somos</h2>
+                <p class="section-subtitle">Un equipo independiente enfocado en contenido para redes, especialmente Instagram</p>
+            </header>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        Somos un grupo de creativos y profesionales del marketing digital 
+                        comprometidos con la excelencia. Cada proyecto es una oportunidad 
+                        para demostrar nuestra pasión por el diseño, la fotografía y la 
+                        narrativa visual.
+                    </p>
+                    <p>
+                        Nuestra filosofía se basa en tres pilares fundamentales: 
+                        <strong>calidad</strong> en cada entrega, <strong>puntualidad</strong> 
+                        en los tiempos acordados, y <strong>accesibilidad</strong> para que 
+                        todos puedan acceder a servicios profesionales.
+                    </p>
+                    <p>
+                        Creemos que una buena experiencia de trabajo es tan importante como 
+                        el resultado final. Por eso, nos involucramos de cerca en cada proyecto, 
+                        entendiendo las necesidades únicas de cada cliente y adaptando el contenido 
+                        al lenguaje y dinámica de plataformas como Instagram.
+                    </p>
+                </div>
+
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="100">0+</div>
+                        <div class="stat-label">Proyectos Completados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="50">0+</div>
+                        <div class="stat-label">Clientes Satisfechos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-label">Servicios Especializados</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACTO
+         ============================================ -->
+    <section class="contact-section" id="contacto">
+        <div class="container">
+            <header class="section-header">
+                <div class="divider" aria-hidden="true"></div>
+                <h2>Hablemos de tu Proyecto</h2>
+                <p class="section-subtitle">Estamos aquí para hacer realidad tus ideas</p>
+            </header>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <!-- EMAIL -->
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <!-- Gmail SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:oceangraphven@gmail.com">oceangraphven@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <!-- WHATSAPP -->
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <img 
+                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU4IiB2aWV3Qm94PSIwIDAgMjU2IDI1OCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdCUkxIQ2NTeSIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFmYWYzOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzYwZDY2OSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdIVzZsZWN4aCIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGZpbGw9InVybCgjU1ZHQlJMSENjU3kpIiBkPSJNNS40NjMgMTI3LjQ1NmMtLjAwNiAyMS42NzcgNS42NTggNDIuODQzIDE2LjQyOCA2MS40OTlMNC40MzMgMjUyLjY5N2w2NS4yMzItMTcuMTA0YTEyMyAxMjMgMCAwIDAgNTguOCAxNC45N2guMDU0YzY3LjgxNSAwIDEyMy4wMTgtNTUuMTgzIDEyMy4wNDctMTIzLjAxYy4wMTMtMzIuODY3LTEyLjc3NS02My43NzMtMzYuMDA5LTg3LjAyNWMtMjMuMjMtMjMuMjUtNTQuMTI1LTM2LjA2MS04Ny4wNDMtMzYuMDc2Yy02Ny44MjMgMC0xMjMuMDIyIDU1LjE4LTEyMy4wNSAxMjMuMDA0Ii8+PHBhdGggZmlsbD0idXJsKCNTVkdIVzZsZWN4aCkiIGQ9Ik0xLjA3IDEyNy40MTZjLS4wMDcgMjIuNDU3IDUuODYgNDQuMzggMTcuMDE0IDYzLjcwNEwwIDI1Ny4xNDRsNjcuNTcxLTE3LjcxN2MxOC42MTggMTAuMTUxIDM5LjU4IDE1LjUwMyA2MC45MSAxNS41MTFoLjA1NWM3MC4yNDggMCAxMjcuNDM0LTU3LjE2OCAxMjcuNDY0LTEyNy40MjNjLjAxMi0zNC4wNDgtMTMuMjM2LTY2LjA2NS0zNy4zLTkwLjE1QzE5NC42MzMgMTMuMjg2IDE2Mi42MzMuMDE0IDEyOC41MzYgMEM1OC4yNzYgMCAxLjA5OSA1Ny4xNiAxLjA3MSAxMjcuNDF6bTQwLjI0IDYwLjM3NmwtMi41MjMtNC4wMDVjLTEwLjYwNi0xNi44NjQtMTYuMjA0LTM2LjM1Mi0xNi4xOTYtNTYuMzYzQzIyLjYxNCA2OS4wMjkgNzAuMTM4IDIxLjUyIDEyOC41NzYgMjEuNTJjMjguMy4wMTIgNTQuODk2IDExLjA0NCA3NC45IDMxLjA2YzIwLjAwMyAyMC4wMTggMzEuMDEgNDYuNjI4IDMxLjAwMyA3NC45M2MtLjAyNiA1OC4zOTUtNDcuNTUxIDEwNS45MS0xMDUuOTQzIDEwNS45MWgtLjA0MmMtMTkuMDEzLS4wMS0zNy42Ni01LjExNi01My45MjItMTQuNzY1bC0zLjg3LTIuMjk1bC00MC4wOTggMTAuNTEzeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik05Ni42NzggNzQuMTQ4Yy0yLjM4Ni01LjMwMy00Ljg5Ny01LjQxLTcuMTY2LTUuNTAzYy0xLjg1OC0uMDgtMy45ODItLjA3NC02LjEwNC0uMDc0Yy0yLjEyNCAwLTUuNTc1Ljc5OS04LjQ5MiAzLjk4NC0yLjkyIDMuMTg4LTExLjE0OCAxMC44OTItMTEuMTQ4IDI2LjU2MXMxMS40MTMgMzAuODEzIDEzLjAwNCAzMi45NGMxLjU5MyAyLjEyMyAyMi4wMzMgMzUuMzA3IDU0LjQwNSA0OC4wNzNjMjYuOTA0IDEwLjYwOSAzMi4zNzkgOC40OTkgMzguMjE4IDcuOTY3YzUuODQtLjUzIDE4Ljg0NC03LjcwMiAyMS40OTctMTUuMTM5YzIuNjU1LTcuNDM2IDIuNjU1LTEzLjgxIDEuODU5LTE1LjE0MmMtLjc5Ni0xLjMyNy0yLjkyLTIuMTI0LTYuMTA1LTMuNzE2cy0xOC44NDQtOS4yOTgtMjEuNzYzLTEwLjM2MWMtMi45Mi0xLjA2Mi01LjA0My0xLjU5Mi03LjE2NyAxLjU5N2MtMi4xMjQgMy4xODQtOC4yMjMgMTAuMzU2LTEwLjA4MiAxMi40OGMtMS44NTcgMi4xMjktMy43MTYgMi4zOTQtNi45LjgwMWMtMy4xODctMS41OTgtMTMuNDQ0LTQuOTU3LTI1LjYxMy0xNS44MDZjLTkuNDY4LTguNDQyLTE1Ljg2LTE4Ljg2Ny0xNy43MTgtMjIuMDU2Yy0xLjg1OC0zLjE4NC0uMTk5LTQuOTEgMS4zOTgtNi40OTdjMS40MzEtMS40MjcgMy4xODYtMy43MTkgNC43OC01LjU3OGMxLjU4OC0xLjg2IDIuMTE4LTMuMTg3IDMuMTgtNS4zMTFjMS4wNjMtMi4xMjYuNTMxLTMuOTg2LS4yNjQtNS41NzljLS43OTgtMS41OTMtNi45ODctMTcuMzQzLTkuODE5LTIzLjY0Ii8+PC9zdmc+" 
+                                alt="WhatsApp" 
+                                class="contact-icon-img"
+                            >
+                        </div>
+                        <div class="contact-details">
+                            <h4>WhatsApp</h4>
+                            <a 
+                                href="https://wa.me/584127209418" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                +58 412-7209418
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- UBICACIÓN -->
+                    <div class="contact-item">
+                        <div class="contact-icon" aria-hidden="true">
+                            <!-- Google Maps-style pin SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Ubicación</h4>
+                            <a 
+                                href="https://maps.app.goo.gl/kfvGdy2yDWTb6wax6" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                Venezuela, Edo La Guaira
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-text">
+                    <p>
+                        Nos encantaría conocer más sobre tu proyecto. Ya sea que necesites 
+                        un servicio específico o una solución completa de marketing digital, 
+                        estamos listos para ayudarte.
+                    </p>
+                    <p>
+                        Contáctanos y descubre cómo podemos transformar tu visión en realidad 
+                        con calidad profesional y un servicio excepcional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img 
+                    src="../Logo/OceanGraph - Ola.svg" 
+                    alt="Ocean Graph Logo" 
+                    class="footer-logo-svg"
+                >
+            </div>
+
+            <p class="footer-copyright">
+                &copy; <span id="currentYear">2024</span> Ocean Graph
+            </p>
+
+            <div class="footer-social-section">
+                <p class="social-title">Visita nuestras redes sociales</p>
+                
+                <nav class="footer-social" aria-label="Redes sociales">
+                    <a href="https://www.instagram.com/oceangraficos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-social="instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="social-name">Instagram</span>
+                    </a>
+
+                    <a href="https://www.facebook.com/oceangraficos?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook" data-social="facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">Facebook</span>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@oceangraficos?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-social="tiktok">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">TikTok</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts específicos versión móvil -->
+    <script src="script.js"></script>
+</body>
+</html>
