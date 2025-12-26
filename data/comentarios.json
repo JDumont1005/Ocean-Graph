@@ -1,10 +1,26 @@
 {
-  "ejemplo": [
+  "proyecto-1": [
     {
       "autor": "Equipo Ocean Graph",
       "rol": "Fundador",
-      "mensaje": "Este es un comentario de prueba.",
-      "fecha": "2025-12-26"
+      "mensaje": "Nuevo reel publicado con la campaña de verano.",
+      "fecha": "2024-12-30"
+    }
+  ],
+  "proyecto-3": [
+    {
+      "autor": "Soporte Técnico",
+      "rol": "Community Manager",
+      "mensaje": "Este video forma parte de la campaña para el cliente Urban Fashion Co.",
+      "fecha": "2024-12-28"
+    }
+  ],
+  "aviso-instagram": [
+    {
+      "autor": "Ocean Graph",
+      "rol": "Equipo",
+      "mensaje": "Síguenos en Instagram para ver los últimos reels y campañas: @oceangraficos",
+      "fecha": "2024-12-20"
     }
   ]
 }
