@@ -65,25 +65,25 @@
 
             <div class="nav-actions">
                 <button 
-                    class="theme-toggle" 
-                    type="button" 
-                    aria-label="Cambiar a modo claro"
-                    title="Cambiar tema"
-                >
-                    <span class="theme-icon theme-icon--moon" aria-hidden="true"></span>
-                    <span class="theme-icon theme-icon--sun" aria-hidden="true"></span>
-                </button>
-
-                <button 
-                    class="hamburger" 
-                    aria-label="Abrir menú de navegación"
-                    aria-expanded="false"
-                    aria-controls="nav-menu"
-                >
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
+    class="theme-toggle" 
+    type="button" 
+    aria-label="Cambiar a modo claro"
+    title="Cambiar tema"
+>
+    <!-- ICONO SOL BLANCO (Tema Oscuro - visible por defecto) -->
+    <span class="theme-icon theme-icon--sun" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <path fill="#fff" d="M10 6.797a3.19 3.19 0 0 0-3.2 3.201a3.19 3.19 0 0 0 3.2 3.199a3.19 3.19 0 0 0 3.199-3.199A3.19 3.19 0 0 0 10 6.797m0 5.25a2.049 2.049 0 1 1 0-4.1a2.05 2.05 0 0 1 0 4.1M15 5c-.312-.312-.883-.248-1.273.142c-.39.391-.453.959-.141 1.272s.882.25 1.273-.141c.39-.39.453-.961.141-1.273m-9.858 8.729c-.391.39-.454.959-.142 1.271s.882.25 1.273-.141s.454-.961.142-1.273s-.883-.248-1.273.143M5 5c-.312.312-.249.883.141 1.273c.391.391.961.453 1.273.141s.249-.883-.142-1.273C5.883 4.752 5.312 4.688 5 5m8.727 9.857c.39.391.96.455 1.273.143s.249-.883-.142-1.274s-.96-.453-1.273-.141s-.248.882.142 1.272M10 4.998c.441 0 .8-.447.8-1C10.799 3.445 10.441 3 10 3s-.801.445-.801.998s.358 1 .801 1M10 17c.441 0 .8-.447.8-1s-.358-.998-.799-.998s-.801.445-.801.998c-.001.553.357 1 .8 1m-5-7c0-.441-.45-.8-1.003-.8S3 9.559 3 10s.444.8.997.8S5 10.442 5 10m12 0c0-.441-.448-.8-1.001-.8S15 9.559 15 10s.446.8.999.8S17 10.442 17 10"/>
+        </svg>
+    </span>
+    
+    <!-- ICONO LUNA NEGRA (Tema Claro - oculto por defecto) -->
+    <span class="theme-icon theme-icon--moon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+            <path fill="#000" d="M14.5 21q-1.858 0-3.497-.707T8.139 18.36t-1.931-2.864t-.708-3.491q0-1.874.71-3.511q.711-1.637 1.93-2.855t2.864-1.93T14.5 3q.812 0 1.558.139q.746.138 1.442.442q-1.833 1.498-2.916 3.674Q13.5 9.43 13.5 12t1.084 4.745T17.5 20.42q-.696.304-1.442.443Q15.312 21 14.5 21m0-1h.525q.25 0 .475-.05q-1.425-1.65-2.212-3.687T12.5 12t.788-4.262T15.5 4.05Q15.275 4 15.025 4H14.5q-3.325 0-5.663 2.338T6.5 12t2.338 5.663T14.5 20m-2-8"/>
+        </svg>
+    </span>
+</button>
             </div>
         </div>
     </nav>
@@ -451,83 +451,86 @@
     </section>
 
     <!-- ============================================
-         CONTACTO
-         ============================================ -->
-    <section class="contact-section" id="contacto">
-        <div class="container">
-            <header class="section-header">
-                <div class="divider" aria-hidden="true"></div>
-                <h2>Hablemos de tu Proyecto</h2>
-                <p class="section-subtitle">Estamos aquí para hacer realidad tus ideas</p>
-            </header>
+     CONTACTO
+     ============================================ -->
+<section class="contact-section" id="contacto">
+    <div class="container">
+        <header class="section-header">
+            <div class="divider" aria-hidden="true"></div>
+            <h2>Hablemos de tu Proyecto</h2>
+            <p class="section-subtitle">Estamos aquí para hacer realidad tus ideas</p>
+        </header>
 
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-    <div class="contact-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457"/>
-        </svg>
-    </div>
-    <div class="contact-details">
-        <h4>Email</h4>
-        <a href="mailto:oceangraphven@gmail.com">oceangraphven@gmail.com</a>
-    </div>
-</div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">
-                            <img 
-                                src="Logo/logos--whatsapp-icon.svg" 
-                                alt="WhatsApp" 
-                                class="contact-icon-img"
-                            >
-                        </div>
-                        <div class="contact-details">
-                            <h4>WhatsApp</h4>
-                            <a 
-                                href="https://wa.me/584127209418" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                +58 412-7209418
-                            </a>
-                        </div>
+        <div class="contact-content">
+            <div class="contact-info">
+                <!-- EMAIL - Gmail SVG -->
+                <div class="contact-item">
+                    <div class="contact-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457"/>
+                        </svg>
                     </div>
-
-                    <div class="contact-item">
-    <div class="contact-icon" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5"/>
-        </svg>
-    </div>
-    <div class="contact-details">
-        <h4>Ubicación</h4>
-        <a 
-            href="https://maps.app.goo.gl/kfvGdy2yDWTb6wax6" 
-            target="_blank" 
-            rel="noopener noreferrer"
-        >
-            Venezuela, Edo La Guaira
-        </a>
-    </div>
-</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <a href="mailto:oceangraphven@gmail.com">oceangraphven@gmail.com</a>
+                    </div>
                 </div>
 
-                <div class="contact-text">
-                    <p>
-                        Nos encantaría conocer más sobre tu proyecto. Ya sea que necesites 
-                        un servicio específico o una solución completa de marketing digital, 
-                        estamos listos para ayudarte.
-                    </p>
-                    <p>
-                        Contáctanos y descubre cómo podemos transformar tu visión en realidad 
-                        con calidad profesional y un servicio excepcional.
-                    </p>
+                <!-- WHATSAPP - Nuevo icono -->
+                <div class="contact-item">
+                    <div class="contact-icon" aria-hidden="true">
+                        <img 
+                            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU4IiB2aWV3Qm94PSIwIDAgMjU2IDI1OCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdCUkxIQ2NTeSIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFmYWYzOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzYwZDY2OSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdIVzZsZWN4aCIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGZpbGw9InVybCgjU1ZHQlJMSENjU3kpIiBkPSJNNS40NjMgMTI3LjQ1NmMtLjAwNiAyMS42NzcgNS42NTggNDIuODQzIDE2LjQyOCA2MS40OTlMNC40MzMgMjUyLjY5N2w2NS4yMzItMTcuMTA0YTEyMyAxMjMgMCAwIDAgNTguOCAxNC45N2guMDU0YzY3LjgxNSAwIDEyMy4wMTgtNTUuMTgzIDEyMy4wNDctMTIzLjAxYy4wMTMtMzIuODY3LTEyLjc3NS02My43NzMtMzYuMDA5LTg3LjAyNWMtMjMuMjMtMjMuMjUtNTQuMTI1LTM2LjA2MS04Ny4wNDMtMzYuMDc2Yy02Ny44MjMgMC0xMjMuMDIyIDU1LjE4LTEyMy4wNSAxMjMuMDA0Ii8+PHBhdGggZmlsbD0idXJsKCNTVkdIVzZsZWN4aCkiIGQ9Ik0xLjA3IDEyNy40MTZjLS4wMDcgMjIuNDU3IDUuODYgNDQuMzggMTcuMDE0IDYzLjcwNEwwIDI1Ny4xNDdsNjcuNTcxLTE3LjcxN2MxOC42MTggMTAuMTUxIDM5LjU4IDE1LjUwMyA2MC45MSAxNS41MTFoLjA1NWM3MC4yNDggMCAxMjcuNDM0LTU3LjE2OCAxMjcuNDY0LTEyNy40MjNjLjAxMi0zNC4wNDgtMTMuMjM2LTY2LjA2NS0zNy4zLTkwLjE1QzE5NC42MzMgMTMuMjg2IDE2Mi42MzMuMDE0IDEyOC41MzYgMEM1OC4yNzYgMCAxLjA5OSA1Ny4xNiAxLjA3MSAxMjcuNDE2bTQwLjI0IDYwLjM3NmwtMi41MjMtNC4wMDVjLTEwLjYwNi0xNi44NjQtMTYuMjA0LTM2LjM1Mi0xNi4xOTYtNTYuMzYzQzIyLjYxNCA2OS4wMjkgNzAuMTM4IDIxLjUyIDEyOC41NzYgMjEuNTJjMjguMy4wMTIgNTQuODk2IDExLjA0NCA3NC45IDMxLjA2YzIwLjAwMyAyMC4wMTggMzEuMDEgNDYuNjI4IDMxLjAwMyA3NC45M2MtLjAyNiA1OC4zOTUtNDcuNTUxIDEwNS45MS0xMDUuOTQzIDEwNS45MWgtLjA0MmMtMTkuMDEzLS4wMS0zNy42Ni01LjExNi01My45MjItMTQuNzY1bC0zLjg3LTIuMjk1bC00MC4wOTggMTAuNTEzeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik05Ni42NzggNzQuMTQ4Yy0yLjM4Ni01LjMwMy00Ljg5Ny01LjQxLTcuMTY2LTUuNTAzYy0xLjg1OC0uMDgtMy45ODItLjA3NC02LjEwNC0uMDc0Yy0yLjEyNCAwLTUuNTc1Ljc5OS04LjQ5MiAzLjk4NGMtMi45MiAzLjE4OC0xMS4xNDggMTAuODkyLTExLjE0OCAyNi41NjFzMTEuNDEzIDMwLjgxMyAxMy4wMDQgMzIuOTRjMS41OTMgMi4xMjMgMjIuMDMzIDM1LjMwNyA1NC40MDUgNDguMDczYzI2LjkwNCAxMC42MDkgMzIuMzc5IDguNDk5IDM4LjIxOCA3Ljk2N2M1Ljg0LS41MyAxOC44NDQtNy43MDIgMjEuNDk3LTE1LjEzOWMyLjY1NS03LjQzNiAyLjY1NS0xMy44MSAxLjg1OS0xNS4xNDJjLS43OTYtMS4zMjctMi45Mi0yLjEyNC02LjEwNS0zLjcxNnMtMTguODQ0LTkuMjk4LTIxLjc2My0xMC4zNjFjLTIuOTItMS4wNjItNS4wNDMtMS41OTItNy4xNjcgMS41OTdjLTIuMTI0IDMuMTg0LTguMjIzIDEwLjM1Ni0xMC4wODIgMTIuNDhjLTEuODU3IDIuMTI5LTMuNzE2IDIuMzk0LTYuOS44MDFjLTMuMTg3LTEuNTk4LTEzLjQ0NC00Ljk1Ny0yNS42MTMtMTUuODA2Yy05LjQ2OC04LjQ0Mi0xNS44Ni0xOC44NjctMTcuNzE4LTIyLjA1NmMtMS44NTgtMy4xODQtLjE5OS00LjkxIDEuMzk4LTYuNDk3YzEuNDMxLTEuNDI3IDMuMTg2LTMuNzE5IDQuNzgtNS41NzhjMS41ODgtMS44NiAyLjExOC0zLjE4NyAzLjE4LTUuMzExYzEuMDYzLTIuMTI2LjUzMS0zLjk4Ni0uMjY0LTUuNTc5Yy0uNzk4LTEuNTkzLTYuOTg3LTE3LjM0My05LjgxOS0yMy42NCIvPjwvc3ZnPg==" 
+                            alt="WhatsApp" 
+                            class="contact-icon-img"
+                        >
+                    </div>
+                    <div class="contact-details">
+                        <h4>WhatsApp</h4>
+                        <a 
+                            href="https://wa.me/584127209418" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            +58 412-7209418
+                        </a>
+                    </div>
+                </div>
+
+                <!-- UBICACIÓN - Google Maps SVG -->
+                <div class="contact-item">
+                    <div class="contact-icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                            <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5"/>
+                        </svg>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Ubicación</h4>
+                        <a 
+                            href="https://maps.app.goo.gl/kfvGdy2yDWTb6wax6" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            Venezuela, Edo La Guaira
+                        </a>
+                    </div>
                 </div>
             </div>
+
+            <div class="contact-text">
+                <p>
+                    Nos encantaría conocer más sobre tu proyecto. Ya sea que necesites 
+                    un servicio específico o una solución completa de marketing digital, 
+                    estamos listos para ayudarte.
+                </p>
+                <p>
+                    Contáctanos y descubre cómo podemos transformar tu visión en realidad 
+                    con calidad profesional y un servicio excepcional.
+                </p>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- ============================================
          FOOTER
