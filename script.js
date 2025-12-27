@@ -16,7 +16,7 @@ const CONFIG = {
     statAnimationDuration: 1500,
     notificationDuration: 3000,
     debounceDelay: 100,
-    loaderMinTime: 800, // tiempo mínimo visible del loader (ms)
+    loaderMinTime: 500, // tiempo mínimo visible del loader (ms)
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
@@ -189,8 +189,12 @@ function initLoader() {
 
     document.body.style.overflow = 'hidden';
     const startTime = Date.now();
+    let finished = false;
 
-    function onLoaded() {
+    function proceed() {
+        if (finished) return;
+        finished = true;
+
         const elapsed = Date.now() - startTime;
         const remaining = Math.max(CONFIG.loaderMinTime - elapsed, 0);
 
@@ -201,27 +205,29 @@ function initLoader() {
                     console.log('[DESKTOP] Dispositivo móvil/tablet detectado. Redirigiendo a /mobile/index.html...');
                 }
 
-                // Mensaje informativo en el loader
                 if (DOM.loaderText) {
                     DOM.loaderText.innerHTML = 'OCEAN <span>GRAPH</span><br><small style="font-size:0.8rem;font-weight:300;opacity:0.8;">Detectando dispositivo móvil...</small>';
                 }
 
-                // Pequeña pausa para que el usuario vea el mensaje
+                // pequeña pausa para que se vea el mensaje
                 setTimeout(() => {
                     window.location.href = 'mobile/index.html';
                 }, 600);
-
             } else {
-                // Escritorio: continuar carga normal
                 hideLoader();
             }
         }, remaining);
     }
 
-    if (document.readyState === 'complete') {
-        onLoaded();
+    // Si el DOM ya está listo, empezamos la lógica de inmediato
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        proceed();
     } else {
-        window.addEventListener('load', onLoaded, { once: true });
+        // Disparar cuando el DOM esté listo (no esperamos a que cargue todo el vídeo)
+        document.addEventListener('DOMContentLoaded', proceed, { once: true });
+
+        // Fallback de seguridad por si DOMContentLoaded no llega (navegadores raros/embebidos)
+        setTimeout(proceed, 5000);
     }
 }
 
