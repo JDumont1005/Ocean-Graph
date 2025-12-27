@@ -2,13 +2,14 @@
    OCEAN GRAPH - JAVASCRIPT (ESCRITORIO)
    script.js
    Tema oscuro / claro + Loader + Hero
-   + Detección de dispositivo en la carga
+   Versión optimizada para escritorio
+   (solo usa chequeo móvil para redirigir a /mobile)
    =================================== */
 
 'use strict';
 
 /* ===================================
-   CONFIGURACIÓN Y VARIABLES GLOBALES
+   CONFIGURACIÓN
    =================================== */
 
 const CONFIG = {
@@ -16,16 +17,8 @@ const CONFIG = {
     statAnimationDuration: 1500,
     notificationDuration: 3000,
     debounceDelay: 100,
-    loaderMinTime: 500, // tiempo mínimo visible del loader (ms)
+    loaderMinTime: 800,
     isDebug: localStorage.getItem('debug') === 'true'
-};
-
-const DEVICE = {
-    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
-    isTablet: /iPad|Android/i.test(navigator.userAgent) && window.innerWidth >= 768,
-    isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
-    isAndroid: /Android/i.test(navigator.userAgent),
-    isTouchDevice: 'ontouchstart' in window || navigator.maxTouchPoints > 0
 };
 
 const DOM = {
@@ -40,13 +33,11 @@ const DOM = {
     heroVideoMobile: document.querySelector('.hero-video-mobile'),
     scrollIndicator: document.querySelector('.scroll-indicator'),
     statNumbers: document.querySelectorAll('.stat-number'),
-    serviceCards: document.querySelectorAll('.service-card'),
     fadeElements: document.querySelectorAll('.service-card, .stat-card'),
     yearElement: document.getElementById('currentYear'),
     themeToggle: document.querySelector('.theme-toggle')
 };
 
-/* HOME de escritorio: tiene .video-hero */
 const IS_HOME = !!document.querySelector('.video-hero');
 
 let isMenuOpen = false;
@@ -54,14 +45,18 @@ let statsAnimated = false;
 let currentTheme = 'dark';
 
 /* ===================================
-   DETECCIÓN: ¿ES MEJOR USAR VERSIÓN MÓVIL?
+   DETECCIÓN DISPOSITIVO (SOLO PARA REDIRIGIR)
    =================================== */
 
-function shouldUseMobileVersion() {
-    const isHandheldUA = DEVICE.isMobile || DEVICE.isTablet;      // por userAgent
-    const isSmallScreen = window.innerWidth <= 900;               // por tamaño
-    const isTouch = DEVICE.isTouchDevice;                         // entrada táctil
-    return isHandheldUA || (isSmallScreen && isTouch);
+/**
+ * Devuelve true si parece un dispositivo de mano (móvil/tablet)
+ * Se usa SOLO en la pantalla de carga para decidir si redirigir a /mobile.
+ */
+function isHandheldDevice() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isUAHandheld = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    const isSmallScreen = window.innerWidth <= 900;
+    return isUAHandheld || isSmallScreen;
 }
 
 /* ===================================
@@ -171,7 +166,7 @@ function initTheme() {
 }
 
 /* ===================================
-   PANTALLA DE CARGA
+   LOADER + CHEQUEO DISPOSITIVO
    =================================== */
 
 function hideLoader() {
@@ -181,7 +176,7 @@ function hideLoader() {
     setTimeout(() => {
         if (DOM.loader) DOM.loader.remove();
     }, 600);
-    if (CONFIG.isDebug) console.log('[DESKTOP] Loader ocultado (versión escritorio)');
+    if (CONFIG.isDebug) console.log('[DESKTOP] Loader ocultado (escritorio)');
 }
 
 function initLoader() {
@@ -199,40 +194,37 @@ function initLoader() {
         const remaining = Math.max(CONFIG.loaderMinTime - elapsed, 0);
 
         setTimeout(() => {
-            // Solo analizamos dispositivo en la página de inicio
-            if (IS_HOME && shouldUseMobileVersion()) {
+            if (IS_HOME && isHandheldDevice()) {
+                // Redirigir a versión móvil
                 if (CONFIG.isDebug) {
-                    console.log('[DESKTOP] Dispositivo móvil/tablet detectado. Redirigiendo a /mobile/index.html...');
+                    console.log('[DESKTOP] Dispositivo de mano detectado. Redirigiendo a /mobile/index.html...');
                 }
 
                 if (DOM.loaderText) {
                     DOM.loaderText.innerHTML = 'OCEAN <span>GRAPH</span><br><small style="font-size:0.8rem;font-weight:300;opacity:0.8;">Detectando dispositivo móvil...</small>';
                 }
 
-                // pequeña pausa para que se vea el mensaje
                 setTimeout(() => {
                     window.location.href = 'mobile/index.html';
                 }, 600);
             } else {
+                // Versión escritorio normal
                 hideLoader();
             }
         }, remaining);
     }
 
-    // Si el DOM ya está listo, empezamos la lógica de inmediato
     if (document.readyState === 'complete' || document.readyState === 'interactive') {
         proceed();
     } else {
-        // Disparar cuando el DOM esté listo (no esperamos a que cargue todo el vídeo)
         document.addEventListener('DOMContentLoaded', proceed, { once: true });
-
-        // Fallback de seguridad por si DOMContentLoaded no llega (navegadores raros/embebidos)
+        // Fallback por si algo se rompe: nunca dejar loader infinito
         setTimeout(proceed, 5000);
     }
 }
 
 /* ===================================
-   MENSAJES DE CONSOLA
+   CONSOLA
    =================================== */
 
 function initConsoleMessages() {
@@ -243,14 +235,6 @@ function initConsoleMessages() {
 
     if (CONFIG.isDebug) {
         console.log('[DESKTOP] DEBUG MODE ACTIVADO');
-    }
-
-    if (DEVICE.isMobile && !DEVICE.isTablet) {
-        console.log('[DESKTOP] UA móvil detectado');
-    } else if (DEVICE.isTablet) {
-        console.log('[DESKTOP] UA tablet detectado');
-    } else {
-        console.log('[DESKTOP] UA escritorio detectado');
     }
 }
 
@@ -321,9 +305,8 @@ function toggleMenu(forceClose = false) {
     DOM.navMenu?.classList.toggle('active', isMenuOpen);
     DOM.hamburger?.setAttribute('aria-expanded', String(isMenuOpen));
 
-    if (DEVICE.isMobile || DEVICE.isTablet) {
-        document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-    }
+    // En escritorio bloquear scroll al abrir menú lateral (no pasa nada si es pantalla grande)
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
 
     if (CONFIG.isDebug) {
         console.log('[DESKTOP] Menú', isMenuOpen ? 'abierto' : 'cerrado');
@@ -334,7 +317,7 @@ DOM.hamburger?.addEventListener('click', () => toggleMenu());
 
 DOM.navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        if (DEVICE.isMobile || DEVICE.isTablet) toggleMenu(true);
+        if (isMenuOpen) toggleMenu(true);
     });
 });
 
@@ -456,7 +439,6 @@ function initVideoControl() {
                     activeVideo.play().catch(() => {});
                 };
                 document.addEventListener('click', tryPlayOnInteraction, { once: true });
-                document.addEventListener('touchstart', tryPlayOnInteraction, { once: true });
             });
         }
     };
@@ -464,10 +446,7 @@ function initVideoControl() {
     if (activeVideo.readyState >= 3) {
         playVideo();
     } else {
-        activeVideo.addEventListener('loadeddata', () => {
-            if (CONFIG.isDebug) console.log('[DESKTOP] Video cargado');
-            playVideo();
-        }, { once: true });
+        activeVideo.addEventListener('loadeddata', playVideo, { once: true });
     }
 
     const videoObserver = new IntersectionObserver((entries) => {
@@ -568,7 +547,7 @@ function initFadeAnimations() {
 }
 
 /* ===================================
-   NOTIFICACIONES
+   NOTIFICACIONES (para Konami / debug)
    =================================== */
 
 function showNotification(message, duration = CONFIG.notificationDuration) {
@@ -609,20 +588,6 @@ function showNotification(message, duration = CONFIG.notificationDuration) {
 }
 
 /* ===================================
-   VIEWPORT HEIGHT (MÓVIL)
-   =================================== */
-
-function setViewportHeight() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', vh + 'px');
-}
-
-if (DEVICE.isMobile || DEVICE.isTablet) {
-    setViewportHeight();
-    window.addEventListener('resize', debounce(setViewportHeight, 200));
-}
-
-/* ===================================
    AÑO AUTOMÁTICO
    =================================== */
 
@@ -644,7 +609,6 @@ if (prefersReducedMotion.matches) {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') document.body.classList.add('keyboard-nav');
 });
-
 document.addEventListener('mousedown', () => {
     document.body.classList.remove('keyboard-nav');
 });
@@ -691,7 +655,6 @@ function init() {
 if (CONFIG.isDebug) {
     window.OceanGraph = {
         config: CONFIG,
-        device: DEVICE,
         dom: DOM,
         showNotification,
         toggleMenu,
@@ -707,5 +670,4 @@ if (CONFIG.isDebug) {
    =================================== */
 
 init();
-
 console.log('%c Ocean Graph listo (escritorio) ', 'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;');
