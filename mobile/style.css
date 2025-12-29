@@ -455,7 +455,7 @@ body.theme-light .theme-toggle {
 }
 
 .title-highlight {
-    font-weight: 400;
+    font-weight: 500;
     color: var(--color-primary); /* Fallback */
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light), #ffffff);
     background-clip: text;
@@ -463,6 +463,7 @@ body.theme-light .theme-toggle {
     color: transparent;
     -webkit-text-fill-color: transparent;
 }
+
 .video-description {
     font-size: 0.95rem;
     font-weight: 300;
@@ -595,16 +596,15 @@ section {
 }
 
 .stat-number {
-    font-size: clamp(2.5rem, 6vw, 3rem);
-    font-weight: 100;
+    font-size: 2.2rem;
+    font-weight: 200;
     color: var(--color-primary); /* Fallback */
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
+    margin-bottom: 0.3rem;
 }
 
 .stat-label {
@@ -713,34 +713,40 @@ section {
 }
 
 /* ===================================
-   FOOTER
+   FOOTER (MÓVIL - LOGO + © JUNTOS)
    =================================== */
 
 .main-footer {
     background-color: var(--color-dark);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: var(--spacing-lg) var(--spacing-md);
+    padding: 1.5rem var(--spacing-md);
 }
 
 .footer-content {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
     display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 0.8rem;
+    text-align: center;
 }
+
+/* Logo + texto en la misma fila */
 
 .footer-logo {
     display: flex;
+    align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .footer-logo-svg {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
-    transition: transform 0.8s ease;
+    transition: transform 0.6s ease;
 }
 
 .footer-logo-svg:hover {
@@ -750,56 +756,65 @@ section {
 .footer-copyright {
     font-size: 0.85rem;
     font-weight: 300;
-    opacity: 0.7;
+    opacity: 0.8;
+    white-space: nowrap;
 }
 
+/* Bloque de redes ocupa la fila inferior completa */
+
 .footer-social-section {
-    margin-top: var(--spacing-xs);
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin-top: 0.3rem;
 }
 
 .social-title {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 400;
     opacity: 0.85;
-    margin-bottom: var(--spacing-xs);
 }
 
 .footer-social {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: 0.6rem;
     flex-wrap: wrap;
 }
 
 .social-link {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.7rem;
-    border-radius: 12px;
+    gap: 0.25rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
     text-decoration: none;
     color: var(--color-white);
     opacity: 0.8;
-    transition: background-color var(--transition-normal),
-                transform var(--transition-fast),
-                color var(--transition-normal);
+    transition:
+        background-color var(--transition-normal),
+        opacity var(--transition-normal),
+        transform var(--transition-fast);
 }
 
 .social-link svg {
-    width: 26px;
-    height: 26px;
+    width: 20px;
+    height: 20px;
 }
 
 .social-name {
-    font-size: 0.8rem;
-    letter-spacing: 0.4px;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
-.social-link:hover {
-    background-color: rgba(0, 157, 255, 0.16);
-    color: var(--color-primary-light);
-    transform: translateY(-2px);
+.social-link:hover,
+.social-link:active {
+    background-color: rgba(0, 157, 255, 0.18);
+    opacity: 1;
+    transform: translateY(-1px);
 }
 
 /* ===================================
@@ -868,8 +883,12 @@ section {
     }
 
     .footer-logo-svg {
-        width: 45px;
-        height: 45px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .footer-copyright {
+        font-size: 0.8rem;
     }
 }
 

@@ -211,7 +211,6 @@ function initLoader() {
 
     document.body.style.overflow = 'hidden';
 
-    // Mensaje específico para móvil
     if (DOM.loaderText) {
         DOM.loaderText.innerHTML = 'OCEAN <span>GRAPH</span>';
     }
