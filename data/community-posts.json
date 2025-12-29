@@ -1,0 +1,118 @@
+[
+  {
+    "id": "fijado-1",
+    "type": "text",
+    "variant": "special-blue",
+    "avatar": "https://picsum.photos/seed/ocean-admin-1/80/80",
+    "name": "Equipo Ocean Graph",
+    "handle": "@oceangraficos",
+    "date": "2024-12-30",
+    "dateText": "30 dic 2024",
+    "tags": [
+      "Fijado",
+      "Aviso"
+    ],
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Salon_de_Madame_Geoffrin.jpg",
+    "imageAlt": "Mensaje destacado de bienvenida a la comunidad Ocean Graph",
+    "imageLink": "",
+    "paragraphs": [
+      "Bienvenido al apartado de Comunidad. Este es nuestro espacio para avisos rápidos, notas del equipo y actualizaciones importantes.",
+      "Este mensaje se está cargando desde el archivo data/community-posts.json. Puedes editarlo en GitHub sin tocar Community.html."
+    ]
+  },
+  {
+    "id": "instagram-1",
+    "type": "instagram",
+    "variant": "",
+    "avatar": "images/OceanGraph - Ola.png",
+    "name": "Ocean Graph · Contenido",
+    "handle": "@oceangraficos",
+    "date": "2024-12-20",
+    "dateText": "20 dic 2024",
+    "tags": [
+      "Instagram",
+      "Reel"
+    ],
+    "instagramUrl": "https://www.instagram.com/reel/DRsu-h4jpga/?utm_source=ig_embed&utm_campaign=loading",
+    "paragraphs": [
+      "Este reel muestra parte de nuestro enfoque creativo en Ocean Graph.",
+      "Cuidamos cada detalle del contenido para que funcione tanto en estética como en resultados."
+    ]
+  },
+  {
+    "id": "instagram-2",
+    "type": "instagram",
+    "variant": "",
+    "avatar": "images/OceanGraph - Ola.png",
+    "name": "Ocean Graph · Contenido",
+    "handle": "@oceangraficos",
+    "date": "2025-01-05",
+    "dateText": "5 ene 2025",
+    "tags": [
+      "Instagram",
+      "Post"
+    ],
+    "instagramUrl": "https://www.instagram.com/p/DRA3pcNDkj0/?utm_source=ig_embed&utm_campaign=loading",
+    "paragraphs": [
+      "Descripción del segundo post de Instagram.",
+      "El valor de un buen contenido está en la intención que le das. En cada decisión, en cada retoque, en cada segundo pensado... Porque cuando cuidas lo pequeño, lo grande llega solo."
+    ]
+  },
+  {
+    "id": "proyectos-1",
+    "type": "text",
+    "variant": "",
+    "avatar": "https://picsum.photos/seed/ocean-admin-3/80/80",
+    "name": "Ocean Graph · Proyectos",
+    "handle": "@oceangraficos",
+    "date": "2024-12-10",
+    "dateText": "10 dic 2024",
+    "tags": [
+      "Proyectos"
+    ],
+    "image": "https://destakamarketing.com/wp-content/uploads/2024/09/programas-de-Diseno-grafico.webp",
+    "imageAlt": "Vista previa de proyectos realizados por Ocean Graph",
+    "imageLink": "InPortafolio.html",
+    "paragraphs": [
+      "Estamos trabajando en nuevos proyectos que pronto se reflejarán en nuestro portafolio ampliado.",
+      "Si quieres ver ejemplos de lo que hacemos, visita InPortafolio.html y explora las distintas categorías de trabajo."
+    ]
+  },
+  {
+    "id": "general-1",
+    "type": "text",
+    "variant": "",
+    "avatar": "https://picsum.photos/seed/ocean-admin-4/80/80",
+    "name": "Ocean Graph",
+    "handle": "@oceangraficos",
+    "date": "2024-12-01",
+    "dateText": "1 dic 2024",
+    "tags": [
+      "Comunidad"
+    ],
+    "paragraphs": [
+      "Gracias por formar parte de la comunidad Ocean Graph.",
+      "Este espacio seguirá creciendo junto con nuestras campañas y contenido para redes, especialmente en Instagram."
+    ]
+  },
+  {
+    "id": "tiktok-1",
+    "type": "tiktok",
+    "variant": "",
+    "avatar": "https://picsum.photos/seed/ocean-tiktok/80/80",
+    "name": "Ocean Graph · TikTok",
+    "handle": "@oceangraficos",
+    "date": "2025-01-10",
+    "dateText": "10 ene 2025",
+    "tags": [
+      "TikTok",
+      "Video"
+    ],
+    "tiktokUrl": "https://www.tiktok.com/@oceangraficos/video/7566398461147417912",
+    "tiktokId": "7566398461147417912",
+    "paragraphs": [
+      "¿Solo son cortes? Pues claro, como decir que una pizza es solo pan con queso.",
+      "Detrás de cada corte hay creatividad, planificación y una pizca de magia. Aquí no solo se corta, se transforma cada segundo en una experiencia visual que te atrapa."
+    ]
+  }
+]

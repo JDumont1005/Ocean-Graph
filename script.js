@@ -1,9 +1,8 @@
 /* ===================================
-   OCEAN GRAPH - JAVASCRIPT (ESCRITORIO)
+   OCEAN GRAPH - ESCRITORIO
    script.js
-   Tema oscuro / claro + Loader + Hero
-   Versión optimizada para escritorio
-   (solo usa chequeo móvil para redirigir a /mobile)
+   Tema oscuro/claro + Loader + Hero
+   Versión optimizada solo para escritorio
    =================================== */
 
 'use strict';
@@ -33,7 +32,7 @@ const DOM = {
     heroVideoMobile: document.querySelector('.hero-video-mobile'),
     scrollIndicator: document.querySelector('.scroll-indicator'),
     statNumbers: document.querySelectorAll('.stat-number'),
-    fadeElements: document.querySelectorAll('.service-card, .stat-card'),
+    fadeElements: document.querySelectorAll('.stat-card'),
     yearElement: document.getElementById('currentYear'),
     themeToggle: document.querySelector('.theme-toggle')
 };
@@ -45,13 +44,10 @@ let statsAnimated = false;
 let currentTheme = 'dark';
 
 /* ===================================
-   DETECCIÓN DISPOSITIVO (SOLO PARA REDIRIGIR)
+   DETECCIÓN: ¿DEBERÍA USARSE VERSIÓN MÓVIL?
+   (solo para redirigir a /mobile/index.html)
    =================================== */
 
-/**
- * Devuelve true si parece un dispositivo de mano (móvil/tablet)
- * Se usa SOLO en la pantalla de carga para decidir si redirigir a /mobile.
- */
 function isHandheldDevice() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isUAHandheld = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
@@ -171,16 +167,24 @@ function initTheme() {
 
 function hideLoader() {
     if (!DOM.loader) return;
+
     DOM.loader.classList.add('hidden');
+    DOM.loader.setAttribute('aria-hidden', 'true');
+    DOM.loader.setAttribute('aria-busy', 'false');
     document.body.style.overflow = '';
+
     setTimeout(() => {
         if (DOM.loader) DOM.loader.remove();
     }, 600);
+
     if (CONFIG.isDebug) console.log('[DESKTOP] Loader ocultado (escritorio)');
 }
 
 function initLoader() {
     if (!DOM.loader) return;
+
+    DOM.loader.setAttribute('aria-busy', 'true');
+    DOM.loader.setAttribute('aria-hidden', 'false');
 
     document.body.style.overflow = 'hidden';
     const startTime = Date.now();
@@ -195,20 +199,19 @@ function initLoader() {
 
         setTimeout(() => {
             if (IS_HOME && isHandheldDevice()) {
-                // Redirigir a versión móvil
                 if (CONFIG.isDebug) {
                     console.log('[DESKTOP] Dispositivo de mano detectado. Redirigiendo a /mobile/index.html...');
                 }
 
                 if (DOM.loaderText) {
-                    DOM.loaderText.innerHTML = 'OCEAN <span>GRAPH</span><br><small style="font-size:0.8rem;font-weight:300;opacity:0.8;">Detectando dispositivo móvil...</small>';
+                    DOM.loaderText.innerHTML =
+                        'OCEAN <span>GRAPH</span><br><small style="font-size:0.8rem;font-weight:300;opacity:0.8;">Detectando dispositivo móvil...</small>';
                 }
 
                 setTimeout(() => {
                     window.location.href = 'mobile/index.html';
                 }, 600);
             } else {
-                // Versión escritorio normal
                 hideLoader();
             }
         }, remaining);
@@ -218,7 +221,7 @@ function initLoader() {
         proceed();
     } else {
         document.addEventListener('DOMContentLoaded', proceed, { once: true });
-        // Fallback por si algo se rompe: nunca dejar loader infinito
+        // Fallback: nunca dejar loader infinito
         setTimeout(proceed, 5000);
     }
 }
@@ -291,21 +294,22 @@ function handleNavbarScroll() {
 window.addEventListener('scroll', throttle(handleNavbarScroll, 100));
 
 /* ===================================
-   MENÚ HAMBURGUESA
+   MENÚ HAMBURGUESA (OCULTO EN ESCRITORIO, PERO FUNCIONAL)
    =================================== */
 
 function toggleMenu(forceClose = false) {
+    if (!DOM.hamburger || !DOM.navMenu) return;
+
     if (forceClose) {
         isMenuOpen = false;
     } else {
         isMenuOpen = !isMenuOpen;
     }
 
-    DOM.hamburger?.classList.toggle('active', isMenuOpen);
-    DOM.navMenu?.classList.toggle('active', isMenuOpen);
-    DOM.hamburger?.setAttribute('aria-expanded', String(isMenuOpen));
+    DOM.hamburger.classList.toggle('active', isMenuOpen);
+    DOM.navMenu.classList.toggle('active', isMenuOpen);
+    DOM.hamburger.setAttribute('aria-expanded', String(isMenuOpen));
 
-    // En escritorio bloquear scroll al abrir menú lateral (no pasa nada si es pantalla grande)
     document.body.style.overflow = isMenuOpen ? 'hidden' : '';
 
     if (CONFIG.isDebug) {
@@ -547,7 +551,7 @@ function initFadeAnimations() {
 }
 
 /* ===================================
-   NOTIFICACIONES (para Konami / debug)
+   NOTIFICACIONES (p.ej. para Konami)
    =================================== */
 
 function showNotification(message, duration = CONFIG.notificationDuration) {
@@ -609,6 +613,7 @@ if (prefersReducedMotion.matches) {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Tab') document.body.classList.add('keyboard-nav');
 });
+
 document.addEventListener('mousedown', () => {
     document.body.classList.remove('keyboard-nav');
 });
@@ -624,7 +629,10 @@ document.addEventListener('keydown', (e) => {
     konamiCode.push(e.key);
     konamiCode = konamiCode.slice(-10);
     if (konamiCode.join('') === konamiPattern.join('')) {
-        console.log('%c OCEAN GRAPH ACTIVADO ', 'background: linear-gradient(90deg, #009dff, #00d4ff); color: white; font-size: 20px; padding: 10px; font-weight: bold;');
+        console.log(
+            '%c OCEAN GRAPH ACTIVADO ',
+            'background: linear-gradient(90deg, #009dff, #00d4ff); color: white; font-size: 20px; padding: 10px; font-weight: bold;'
+        );
         showNotification('Easter Egg Descubierto');
         document.body.style.animation = 'pulse 0.5s ease 3';
     }
@@ -670,4 +678,7 @@ if (CONFIG.isDebug) {
    =================================== */
 
 init();
-console.log('%c Ocean Graph listo (escritorio) ', 'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;');
+console.log(
+    '%c Ocean Graph listo (escritorio) ',
+    'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;'
+);

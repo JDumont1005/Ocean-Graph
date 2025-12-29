@@ -1,0 +1,502 @@
+/* ===================================
+   OCEAN GRAPH - COMMUNITY PAGE
+   community.css
+   Masonry 3 columnas + tipografía + animaciones + olas
+   =================================== */
+
+/* ===================================
+   FONDO GEOMÉTRICO (OLAS)
+   =================================== */
+
+.community-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.community-bg .wave {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 45% 55% 60% 40% / 60% 40% 60% 40%;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.35), rgba(0, 0, 0, 0.05));
+    opacity: 0.22;
+    filter: blur(2px);
+    animation: waveFloat 22s ease-in-out infinite alternate;
+    will-change: transform, border-radius;
+}
+
+/* Posiciones iniciales */
+.wave-1 { top: -15%; left: -10%; animation-duration: 26s; }
+.wave-2 { top:  10%; left:  40%; animation-duration: 30s; }
+.wave-3 { top: -20%; right: -15%; animation-duration: 28s; }
+.wave-4 { bottom: -20%; left: -5%; animation-duration: 32s; }
+.wave-5 { bottom: -15%; right: 10%; animation-duration: 34s; }
+.wave-6 { top: 35%; left: 5%; animation-duration: 36s; }
+
+@keyframes waveFloat {
+    0% {
+        transform: translate3d(0, 0, 0) scale(1);
+        border-radius: 45% 55% 60% 40% / 60% 40% 60% 40%;
+    }
+    50% {
+        transform: translate3d(40px, 30px, 0) scale(1.05);
+        border-radius: 55% 45% 50% 50% / 50% 50% 55% 45%;
+    }
+    100% {
+        transform: translate3d(-20px, 50px, 0) scale(1.1);
+        border-radius: 40% 60% 45% 55% / 55% 45% 50% 50%;
+    }
+}
+
+/* ===================================
+   AJUSTES HERO COMUNIDAD
+   =================================== */
+
+#comunidad-hero {
+    background-color: transparent;
+}
+
+#comunidad-hero .about-content {
+    display: block;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#comunidad-hero .about-text p {
+    text-align: left;
+}
+
+/* Fondo del feed de comunidad */
+#comunidad-feed {
+    background-color: transparent;
+    padding-top: 0;
+}
+
+/* Ensanchar el contenedor y anular el grid global */
+#comunidad-feed .container {
+    max-width: 1500px;
+}
+
+#comunidad-feed .about-content {
+    display: block;
+}
+
+#comunidad-feed .about-text {
+    max-width: 100%;
+}
+
+/* ===================================
+   CONTENEDOR DEL GRID (MASONRY)
+   =================================== */
+
+/* Masonry con 3 columnas más anchas */
+.community-feed {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto var(--spacing-xl);
+    column-count: 3;
+    column-gap: var(--spacing-md);
+}
+
+/* ===================================
+   TARJETAS DE COMUNIDAD (CARDS)
+   =================================== */
+
+.community-post {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 var(--spacing-md);
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.02),
+        rgba(0, 157, 255, 0.05)
+    );
+    border: 3px solid rgba(255, 255, 255, 0.08);
+    padding: 1.4rem 1.8rem 1.5rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    transform: translateY(24px);
+
+    transition:
+        background-color var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal),
+        transform 0.6s ease,
+        opacity 0.6s ease;
+    overflow: hidden;
+}
+
+/* Visible cuando JS añade la clase */
+.community-post.community-post--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.community-post:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.03),
+        rgba(0, 157, 255, 0.08)
+    );
+    border-color: rgba(0, 157, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 22px 55px rgba(0, 0, 0, 0.6);
+}
+
+.community-post-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+/* ===================================
+   VARIANTES ESPECIALES
+   =================================== */
+
+/* Post especial azul (ej. fijado-1) */
+.community-post--special-blue {
+    background: radial-gradient(
+        circle at 0 0,
+        rgba(0, 119, 143, 0.55),
+        hsla(217, 87%, 3%, 0.95)
+    );
+    border-color: rgba(0, 157, 255, 0.95);
+    box-shadow: 0 12px 40px rgba(0, 157, 255, 0.55);
+}
+
+/* Hover con ratón + foco SOLO al navegar con teclado (.keyboard-nav) */
+.community-post--special-blue:hover,
+body.keyboard-nav .community-post--special-blue:focus-within {
+    background: radial-gradient(
+        circle at 100% 100%,
+        rgba(0, 160, 140, 0.65),
+        rgba(0, 135, 200, 0.85)
+    );
+    border-color: rgba(0, 195, 255, 0.95);
+    box-shadow: 0 18px 48px rgba(0, 160, 200, 0.45);
+    transform: translateY(-3px);
+}
+
+/* Modo claro: apariencia base */
+body.theme-light .community-post--special-blue {
+    background: linear-gradient(135deg, #e6f7ff, #ffffff);
+    border-color: rgba(0, 157, 255, 0.7);
+}
+
+/* Modo claro: hover ratón + foco teclado */
+body.theme-light .community-post--special-blue:hover,
+body.theme-light.keyboard-nav .community-post--special-blue:focus-within {
+    background: linear-gradient(135deg, #dff6ff, #ffffff);
+    border-color: rgba(0, 157, 255, 0.95);
+    box-shadow: 0 14px 36px rgba(0, 157, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* ===================================
+   HEADER: AVATAR + META
+   =================================== */
+
+.community-post-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+/* Avatar circular con imagen */
+.community-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.community-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Meta info: nombre, handle, fecha */
+.community-header-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    width: 100%;
+}
+
+.community-name-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+}
+
+.community-name {
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.community-handle {
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.community-dot {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+}
+
+.community-name-row time {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Tags tipo pill debajo del nombre */
+.community-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.community-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    background-color: rgba(0, 157, 255, 0.22);
+    color: var(--color-primary-light);
+}
+
+/* ===================================
+   CUERPO DEL POST
+   =================================== */
+
+.community-post-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--color-white);
+    opacity: 0.92;
+    margin-top: 0.1rem;
+}
+
+.community-post-body p:not(:last-child) {
+    margin-bottom: 0.65rem;
+}
+
+.community-post-body a {
+    color: var(--color-primary-light);
+    text-decoration: none;
+}
+
+.community-post-body a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================
+   IMAGEN OPCIONAL DEL POST (type: text)
+   =================================== */
+
+.community-post-media {
+    margin-bottom: 0.7rem;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.community-post-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.community-post-media a {
+    display: block;
+}
+
+/* Descripción controlada por JSON */
+.community-post-description p:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+/* ===================================
+   AJUSTES PARA EMBED DE INSTAGRAM Y TIKTOK
+   =================================== */
+
+.community-post-body .instagram-media {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 0.85rem 0 !important;
+    border-radius: 12px !important;
+    background: #141414 !important;
+    box-shadow: none !important;
+}
+
+.community-post-body .instagram-media * {
+    max-width: 100% !important;
+}
+
+/* TikTok embed */
+.community-post-body .tiktok-embed {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 0 0.85rem 0 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: #141414 !important;
+    box-shadow: none !important;
+}
+
+.community-post-body .tiktok-embed * {
+    max-width: 100% !important;
+}
+
+/* ===================================
+   FOOTER DEL POST (BOTÓN, LINKS, ETC.)
+   =================================== */
+
+.community-post-footer {
+    margin-top: 0.4rem;
+}
+
+/* Botón "Ver en Instagram / TikTok" */
+.community-post-footer .portfolio-more-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.45rem 1.2rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-primary);
+    background-color: transparent;
+    transition:
+        background-color var(--transition-normal),
+        color var(--transition-normal),
+        box-shadow var(--transition-normal),
+        transform var(--transition-fast);
+}
+
+.community-post-footer .portfolio-more-link:hover {
+    background-color: var(--color-primary);
+    color: #141414;
+    box-shadow: 0 8px 20px rgba(0, 157, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.community-post-footer .portfolio-more-link:active {
+    transform: scale(0.97);
+}
+
+/* ===================================
+   COMMUNITY - MODO CLARO
+   =================================== */
+
+body.theme-light .community-post {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.01),
+        rgba(0, 157, 255, 0.06)
+    );
+    border-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.25);
+}
+
+body.theme-light .community-post:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.015),
+        rgba(0, 157, 255, 0.1)
+    );
+    border-color: rgba(0, 157, 255, 0.4);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-light .community-name {
+    color: #141414;
+}
+
+body.theme-light .community-handle,
+body.theme-light .community-name-row time,
+body.theme-light .community-dot {
+    color: rgba(0, 0, 0, 0.65);
+}
+
+body.theme-light .community-post-body {
+    color: #141414;
+}
+
+/* Tag pills en modo claro */
+body.theme-light .community-tag {
+    background-color: rgba(0, 157, 255, 0.18);
+    color: #005d9c;
+}
+
+/* ===================================
+   COMMUNITY - RESPONSIVE (COLUMNAS)
+   =================================== */
+
+@media (max-width: 1400px) {
+    .community-feed {
+        max-width: 1300px;
+        column-count: 3;
+    }
+}
+
+@media (max-width: 1200px) {
+    .community-feed {
+        max-width: 1100px;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 800px) {
+    .community-feed {
+        max-width: 100%;
+        column-count: 1;
+        column-gap: 0;
+    }
+}
+
+/* ===================================
+   COMMUNITY - ACCESIBILIDAD
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .community-post,
+    .community-avatar img,
+    .community-bg .wave {
+        transition: none;
+        animation: none;
+    }
+
+    .community-post:hover {
+        transform: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+}

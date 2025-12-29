@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Enlace para saltar directamente al contenido principal (accesibilidad) -->
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
 
     <!-- ============================================
          PANTALLA DE CARGA
@@ -60,12 +62,13 @@
             </a>
 
             <ul class="nav-menu" role="menubar">
-                <li role="none"><a href="#inicio" class="nav-link active" role="menuitem">Inicio</a></li>
-                <li role="none"><a href="#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
-                <li role="none"><a href="InPortafolio.html" class="nav-link" role="menuitem">Portfolio</a></li>
-                <li role="none"><a href="Community.html" class="nav-link" role="menuitem">Comunidad</a></li>
-                <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
-            </ul>
+    <li role="none"><a href="#inicio" class="nav-link active" role="menuitem">Inicio</a></li>
+    <li role="none"><a href="#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
+    <li role="none"><a class="nav-link" role="menuitem">Servicios</a></li> <!-- sin href por ahora -->
+    <li role="none"><a href="InPortafolio.html" class="nav-link" role="menuitem">Portafolio</a></li>
+    <li role="none"><a href="Community.html" class="nav-link" role="menuitem">Comunidad</a></li>
+    <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
+</ul>
 
             <div class="nav-actions">
                 <button 
@@ -89,6 +92,7 @@
                     </span>
                 </button>
 
+                <!-- Menú hamburguesa (no visible en escritorio, pero se mantiene por accesibilidad/futuro) -->
                 <button 
                     class="hamburger" 
                     aria-label="Abrir menú de navegación"
@@ -104,193 +108,201 @@
     </nav>
 
     <!-- ============================================
-         VIDEO HERO
+         CONTENIDO PRINCIPAL
          ============================================ -->
-    <section class="video-hero" id="inicio">
-        <div class="video-background">
-            <video 
-                class="hero-video hero-video-desktop" 
-                autoplay 
-                muted 
-                loop 
-                playsinline
-                preload="auto"
-            >
-                <source src="video/evento carros_1.mp4" type="video/mp4">
-                Tu navegador no soporta videos HTML5.
-            </video>
+    <main id="main">
+        <!-- ============================================
+             VIDEO HERO
+             ============================================ -->
+        <section class="video-hero" id="inicio">
+            <div class="video-background">
+                <video 
+                    class="hero-video hero-video-desktop" 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    preload="auto"
+                >
+                    <source src="video/evento carros_1.mp4" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
 
-            <video 
-                class="hero-video hero-video-mobile" 
-                autoplay 
-                muted 
-                loop 
-                playsinline
-                preload="auto"
-            >
-                <source src="video/evento carros_1.mp4" type="video/mp4">
-                Tu navegador no soporta videos HTML5.
-            </video>
+                <video 
+                    class="hero-video hero-video-mobile" 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    preload="auto"
+                >
+                    <source src="video/evento carros_1.mp4" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
 
-            <div class="video-overlay"></div>
-        </div>
-
-        <div class="video-content">
-            <div class="video-content-wrapper">
-                <h1 class="video-title">
-                    <span class="title-line">Creamos</span>
-                    <span class="title-line">experiencias</span>
-                    <span class="title-line title-highlight">visuales únicas</span>
-                </h1>
-
-                <p class="video-description">
-                    Transformamos ideas en contenido profesional que conecta,
-                    inspira y genera resultados excepcionales.
-                </p>
-
-                <div class="scroll-indicator" aria-label="Desplazar hacia abajo">
-                    <span class="scroll-text">Descubre más</span>
-                    <span class="scroll-arrow" aria-hidden="true">↓</span>
-                </div>
+                <div class="video-overlay"></div>
             </div>
-        </div>
-    </section>
 
-    <!-- ============================================
-         QUIÉNES SOMOS
-         ============================================ -->
-    <section class="about-section" id="nosotros">
-        <div class="container">
-            <header class="section-header">
-                <div class="divider" aria-hidden="true"></div>
-                <h2>Quiénes Somos</h2>
-                <p class="section-subtitle">
-                    Un equipo independiente enfocado en contenido para redes, especialmente Instagram.
-                </p>
-            </header>
+            <div class="video-content">
+                <div class="video-content-wrapper">
+                    <h1 class="video-title">
+                        <span class="title-line">Creamos</span>
+                        <span class="title-line">experiencias</span>
+                        <span class="title-line title-highlight">visuales únicas</span>
+                    </h1>
 
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Somos un grupo de creativos y profesionales del marketing digital 
-                        comprometidos con la excelencia. Cada proyecto es una oportunidad 
-                        para demostrar nuestra pasión por el diseño, la fotografía y la 
-                        narrativa visual.
+                    <p class="video-description">
+                        Transformamos ideas en contenido profesional que conecta,
+                        inspira y genera resultados excepcionales.
                     </p>
-                    <p>
-                        Nuestra filosofía se basa en tres pilares fundamentales: 
-                        <strong>calidad</strong> en cada entrega, <strong>puntualidad</strong> 
-                        en los tiempos acordados, y <strong>accesibilidad</strong> para que 
-                        todos puedan acceder a servicios profesionales.
-                    </p>
-                    <p>
-                        Creemos que una buena experiencia de trabajo es tan importante como 
-                        el resultado final. Por eso, nos involucramos de cerca en cada proyecto, 
-                        entendiendo las necesidades únicas de cada cliente y adaptando el contenido 
-                        al lenguaje y dinámica de plataformas como Instagram.
-                    </p>
-                </div>
 
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="100">0+</div>
-                        <div class="stat-label">Proyectos Completados</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="50">0+</div>
-                        <div class="stat-label">Clientes Satisfechos</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="5">0</div>
-                        <div class="stat-label">Servicios Especializados</div>
+                    <div class="scroll-indicator" aria-label="Desplazar hacia abajo">
+                        <span class="scroll-text">Descubre más</span>
+                        <span class="scroll-arrow" aria-hidden="true">↓</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ============================================
-         CONTACTO
-         ============================================ -->
-    <section class="contact-section" id="contacto">
-        <div class="container">
-            <header class="section-header">
-                <div class="divider" aria-hidden="true"></div>
-                <h2>Hablemos de tu Proyecto</h2>
-            </header>
-
-            <div class="contact-content">
-                <div class="contact-info">
-                    <!-- EMAIL -->
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">
-                            <!-- Gmail SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457"/>
-                            </svg>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <a href="mailto:oceangraphven@gmail.com">oceangraphven@gmail.com</a>
-                        </div>
-                    </div>
-
-                    <!-- WHATSAPP -->
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">
-                            <img 
-                                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU4IiB2aWV3Qm94PSIwIDAgMjU2IDI1OCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdCUkxIQ2NTeSIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFmYWYzOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzYwZDY2OSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdIVzZsZWN4aCIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGZpbGw9InVybCgjU1ZHQlJMSENjU3kpIiBkPSJNNS40NjMgMTI3LjQ1NmMtLjAwNiAyMS42NzcgNS42NTggNDIuODQzIDE2LjQyOCA2MS40OTlMNC40MzMgMjUyLjY5N2w2NS4yMzItMTcuMTA0YTEyMyAxMjMgMCAwIDAgNTguOCAxNC45N2guMDU0YzY3LjgxNSAwIDEyMy4wMTgtNTUuMTgzIDEyMy4wNDctMTIzLjAxYy4wMTMtMzIuODY3LTEyLjc3NS02My43NzMtMzYuMDA5LTg3LjAyNWMtMjMuMjMtMjMuMjUtNTQuMTI1LTM2LjA2MS04Ny4wNDMtMzYuMDc2Yy02Ny44MjMgMC0xMjMuMDIyIDU1LjE4LTEyMy4wNSAxMjMuMDA0Ii8+PHBhdGggZmlsbD0idXJsKCNTVkdIVzZsZWN4aCkiIGQ9Ik0xLjA3IDEyNy40MTZjLS4wMDcgMjIuNDU3IDUuODYgNDQuMzggMTcuMDE0IDYzLjcwNEwwIDI1Ny4xNDRsNjcuNTcxLTE3LjcxN2MxOC42MTggMTAuMTUxIDM5LjU4IDE1LjUwMyA2MC45MSAxNS41MTFoLjA1NWM3MC4yNDggMCAxMjcuNDM0LTU3LjE2OCAxMjcuNDY0LTEyNy40MjNjLjAxMi0zNC4wNDgtMTMuMjM2LTY2LjA2NS0zNy4zLTkwLjE1QzE5NC42MzMgMTMuMjg2IDE2Mi42MzMuMDE0IDEyOC41MzYgMEM1OC4yNzYgMCAxLjA5OSA1Ny4xNiAxLjA3MSAxMjcuNDF6bTQwLjI0IDYwLjM3NmwtMi41MjMtNC4wMDVjLTEwLjYwNi0xNi44NjQtMTYuMjA0LTM2LjM1Mi0xNi4xOTYtNTYuMzYzQzIyLjYxNCA2OS4wMjkgNzAuMTM4IDIxLjUyIDEyOC41NzYgMjEuNTJjMjguMy4wMTIgNTQuODk2IDExLjA0NCA3NC45IDMxLjA2YzIwLjAwMyAyMC4wMTggMzEuMDEgNDYuNjI4IDMxLjAwMyA3NC45M2MtLjAyNiA1OC4zOTUtNDcuNTUxIDEwNS45MS0xMDUuOTQzIDEwNS45MWgtLjA0MmMtMTkuMDEzLS4wMS0zNy42Ni01LjExNi01My45MjItMTQuNzY1bC0zLjg3LTIuMjk1bC00MC4wOTggMTAuNTEzeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik05Ni42NzggNzQuMTQ4Yy0yLjM4Ni01LjMwMy00Ljg5Ny01LjQxLTcuMTY2LTUuNTAzYy0xLjg1OC0uMDgtMy45ODItLjA3NC02LjEwNC0uMDc0Yy0yLjEyNCAwLTUuNTc1Ljc5OS04LjQ5MiAzLjk4NC0yLjkyIDMuMTg4LTExLjE0OCAxMC44OTItMTEuMTQ4IDI2LjU2MXMxMS40MTMgMzAuODEzIDEzLjAwNCAzMi45NGMxLjU5MyAyLjEyMyAyMi4wMzMgMzUuMzA3IDU0LjQwNSA0OC4wNzNjMjYuOTA0IDEwLjYwOSAzMi4zNzkgOC40OTkgMzguMjE4IDcuOTY3YzUuODQtLjUzIDE4Ljg0NC03LjcwMiAyMS40OTctMTUuMTM5YzIuNjU1LTcuNDM2IDIuNjU1LTEzLjgxIDEuODU5LTE1LjE0MmMtLjc5Ni0xLjMyNy0yLjkyLTIuMTI0LTYuMTA1LTMuNzE2cy0xOC44NDQtOS4yOTgtMjEuNzYzLTEwLjM2MWMtMi45Mi0xLjA2Mi01LjA0My0xLjU5Mi03LjE2NyAxLjU5N2MtMi4xMjQgMy4xODQtOC4yMjMgMTAuMzU2LTEwLjA4MiAxMi40OGMtMS44NTcgMi4xMjktMy43MTYgMi4zOTQtNi45LjgwMWMtMy4xODctMS41OTgtMTMuNDQ0LTQuOTU3LTI1LjYxMy0xNS44MDZjLTkuNDY4LTguNDQyLTE1Ljg2LTE4Ljg2Ny0xNy43MTgtMjIuMDU2Yy0xLjg1OC0zLjE4NC0uMTk5LTQuOTEgMS4zOTgtNi40OTdjMS40MzEtMS40MjcgMy4xODYtMy43MTkgNC43OC01LjU3OGMxLjU4OC0xLjg2IDIuMTE4LTMuMTg3IDMuMTgtNS4zMTFjMS4wNjMtMi4xMjYuNTMxLTMuOTg2LS4yNjQtNS41NzljLS43OTgtMS41OTMtNi45ODctMTcuMzQzLTkuODE5LTIzLjY0Ii
-                                alt="WhatsApp" 
-                                class="contact-icon-img"
-                            >
-                        </div>
-                        <div class="contact-details">
-                            <h4>WhatsApp</h4>
-                            <a 
-                                href="https://wa.me/584127209418" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                +58 412-7209418
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- UBICACIÓN -->
-                    <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">
-                            <!-- Google Maps-style pin SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5"/>
-                            </svg>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Ubicación</h4>
-                            <a 
-                                href="https://maps.app.goo.gl/kfvGdy2yDWTb6wax6" 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                            >
-                                Venezuela, Edo La Guaira
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-text">
-                    <p>
-                        Nos encantaría conocer más sobre tu proyecto. Ya sea que necesites 
-                        un servicio específico o una solución completa de marketing digital, 
-                        estamos listos para ayudarte.
+        <!-- ============================================
+             QUIÉNES SOMOS
+             ============================================ -->
+        <section class="about-section" id="nosotros">
+            <div class="container">
+                <header class="section-header">
+                    <div class="divider" aria-hidden="true"></div>
+                    <h2>Quiénes Somos</h2>
+                    <p class="section-subtitle">
+                        Un equipo independiente enfocado en contenido para redes, especialmente Instagram.
                     </p>
-                    <p>
-                        Contáctanos y descubre cómo podemos transformar tu visión en realidad 
-                        con calidad profesional y un servicio excepcional.
-                    </p>
+                </header>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Somos un grupo de creativos y profesionales del marketing digital 
+                            comprometidos con la excelencia. Cada proyecto es una oportunidad 
+                            para demostrar nuestra pasión por el diseño, la fotografía y la 
+                            narrativa visual.
+                        </p>
+                        <p>
+                            Nuestra filosofía se basa en tres pilares fundamentales: 
+                            <strong>calidad</strong> en cada entrega, <strong>puntualidad</strong> 
+                            en los tiempos acordados, y <strong>accesibilidad</strong> para que 
+                            todos puedan acceder a servicios profesionales.
+                        </p>
+                        <p>
+                            Creemos que una buena experiencia de trabajo es tan importante como 
+                            el resultado final. Por eso, nos involucramos de cerca en cada proyecto, 
+                            entendiendo las necesidades únicas de cada cliente y adaptando el contenido 
+                            al lenguaje y dinámica de plataformas como Instagram.
+                        </p>
+                    </div>
+
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="100">0+</div>
+                            <div class="stat-label">Proyectos Completados</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="50">0+</div>
+                            <div class="stat-label">Clientes Satisfechos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="5">0</div>
+                            <div class="stat-label">Servicios Especializados</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- ============================================
+             CONTACTO
+             ============================================ -->
+        <section class="contact-section" id="contacto">
+            <div class="container">
+                <header class="section-header">
+                    <div class="divider" aria-hidden="true"></div>
+                    <h2>Hablemos de tu Proyecto</h2>
+                    <p class="section-subtitle">
+                        Estamos aquí para hacer realidad tus ideas.
+                    </p>
+                </header>
+
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <!-- EMAIL -->
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <!-- Gmail SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L12 9.545l8.073-6.052C21.69 2.28 24 3.434 24 5.457"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:oceangraphven@gmail.com">oceangraphven@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <!-- WHATSAPP -->
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <img 
+                                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU4IiB2aWV3Qm94PSIwIDAgMjU2IDI1OCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdCUkxIQ2NTeSIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFmYWYzOCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzYwZDY2OSIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJTVkdIVzZsZWN4aCIgeDE9IjUwJSIgeDI9IjUwJSIgeTE9IjEwMCUiIHkyPSIwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGZpbGw9InVybCgjU1ZHQlJMSENjU3kpIiBkPSJNNS40NjMgMTI3LjQ1NmMtLjAwNiAyMS42NzcgNS42NTggNDIuODQzIDE2LjQyOCA2MS40OTlMNC40MzMgMjUyLjY5N2w2NS4yMzItMTcuMTA0YTEyMyAxMjMgMCAwIDAgNTguOCAxNC45N2guMDU0YzY3LjgxNSAwIDEyMy4wMTgtNTUuMTgzIDEyMy4wNDctMTIzLjAxYy4wMTMtMzIuODY3LTEyLjc3NS02My43NzMtMzYuMDA5LTg3LjAyNWMtMjMuMjMtMjMuMjUtNTQuMTI1LTM2LjA2MS04Ny4wNDMtMzYuMDc2Yy02Ny44MjMgMC0xMjMuMDIyIDU1LjE4LTEyMy4wNSAxMjMuMDA0Ii8+PHBhdGggZmlsbD0idXJsKCNTVkdIVzZsZWN4aCkiIGQ9Ik0xLjA3IDEyNy40MTZjLS4wMDcgMjIuNDU3IDUuODYgNDQuMzggMTcuMDE0IDYzLjcwNEwwIDI1Ny4xNDRsNjcuNTcxLTE3LjcxN2MxOC42MTggMTAuMTUxIDM5LjU4IDE1LjUwMyA2MC45MSAxNS41MTFoLjA1NWM3MC4yNDggMCAxMjcuNDM0LTU3LjE2OCAxMjcuNDY0LTEyNy40MjNjLjAxMi0zNC4wNDgtMTMuMjM2LTY2LjA2NS0zNy4zLTkwLjE1QzE5NC42MzMgMTMuMjg2IDE2Mi42MzMuMDE0IDEyOC41MzYgMEM1OC4yNzYgMCAxLjA5OSA1Ny4xNiAxLjA3MSAxMjcuNDF6bTQwLjI0IDYwLjM3NmwtMi41MjMtNC4wMDVjLTEwLjYwNi0xNi44NjQtMTYuMjA0LTM2LjM1Mi0xNi4xOTYtNTYuMzYzQzIyLjYxNCA2OS4wMjkgNzAuMTM4IDIxLjUyIDEyOC41NzYgMjEuNTJjMjguMy4wMTIgNTQuODk2IDExLjA0NCA3NC45IDMxLjA2YzIwLjAwMyAyMC4wMTggMzEuMDEgNDYuNjI4IDMxLjAwMyA3NC45M2MtLjAyNiA1OC4zOTUtNDcuNTUxIDEwNS45MS0xMDUuOTQzIDEwNS45MWgtLjA0MmMtMTkuMDEzLS4wMS0zNy42Ni01LjExNi01My45MjItMTQuNzY1bC0zLjg3LTIuMjk1bC00MC4wOTggMTAuNTEzeiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik05Ni42NzggNzQuMTQ4Yy0yLjM4Ni01LjMwMy00Ljg5Ny01LjQxLTcuMTY2LTUuNTAzYy0xLjg1OC0uMDgtMy45ODItLjA3NC02LjEwNC0uMDc0Yy0yLjEyNCAwLTUuNTc1Ljc5OS04LjQ5MiAzLjk4NC0yLjkyIDMuMTg4LTExLjE0OCAxMC44OTItMTEuMTQ4IDI2LjU2MXMxMS40MTMgMzAuODEzIDEzLjAwNCAzMi45NGMxLjU5MyAyLjEyMyAyMi4wMzMgMzUuMzA3IDU0LjQwNSA0OC4wNzNjMjYuOTA0IDEwLjYwOSAzMi4zNzkgOC40OTkgMzguMjE4IDcuOTY3YzUuODQtLjUzIDE4Ljg0NC03LjcwMiAyMS40OTctMTUuMTM5YzIuNjU1LTcuNDM2IDIuNjU1LTEzLjgxIDEuODU5LTE1LjE0MmMtLjc5Ni0xLjMyNy0yLjkyLTIuMTI0LTYuMTA1LTMuNzE2cy0xOC44NDQtOS4yOTgtMjEuNzYzLTEwLjM2MWMtMi45Mi0xLjA2Mi01LjA0My0xLjU5Mi03LjE2NyAxLjU5N2MtMi4xMjQgMy4xODQtOC4yMjMgMTAuMzU2LTEwLjA4MiAxMi40OGMtMS44NTcgMi4xMjktMy43MTYgMi4zOTQtNi45LjgwMWMtMy4xODctMS41OTgtMTMuNDQ0LTQuOTU3LTI1LjYxMy0xNS44MDZjLTkuNDY4LTguNDQyLTE1Ljg2LTE4Ljg2Ny0xNy43MTgtMjIuMDU2Yy0xLjg1OC0zLjE4NC0uMTk5LTQuOTEgMS4zOTgtNi40OTdjMS40MzEtMS40MjcgMy4xODYtMy43MTkgNC43OC01LjU3OGMxLjU4OC0xLjg2IDIuMTE4LTMuMTg3IDMuMTgtNS4zMTFjMS4wNjMtMi4xMjYuNTMxLTMuOTg2LS4yNjQtNS41NzljLS43OTgtMS41OTMtNi45ODctMTcuMzQzLTkuODE5LTIzLjY0Ii 
+                                    alt="WhatsApp" 
+                                    class="contact-icon-img"
+                                >
+                            </div>
+                            <div class="contact-details">
+                                <h4>WhatsApp</h4>
+                                <a 
+                                    href="https://wa.me/584127209418" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    +58 412-7209418
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- UBICACIÓN -->
+                        <div class="contact-item">
+                            <div class="contact-icon" aria-hidden="true">
+                                <!-- Google Maps-style pin SVG -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                                    <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5"/>
+                                </svg>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Ubicación</h4>
+                                <a 
+                                    href="https://maps.app.goo.gl/kfvGdy2yDWTb6wax6" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                >
+                                    Venezuela, Edo La Guaira
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-text">
+                        <p>
+                            Nos encantaría conocer más sobre tu proyecto. Ya sea que necesites 
+                            un servicio específico o una solución completa de marketing digital, 
+                            estamos listos para ayudarte.
+                        </p>
+                        <p>
+                            Contáctanos y descubre cómo podemos transformar tu visión en realidad 
+                            con calidad profesional y un servicio excepcional.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- ============================================
          FOOTER
