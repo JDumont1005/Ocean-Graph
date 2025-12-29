@@ -7,26 +7,28 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Ocean Graph - Versión móvil. Agencia de Marketing Digital Independiente. Diseño, Fotografía, Videos Profesionales, Videografía, Community Manager y crecimiento en Instagram.">
-    
+
     <title>Ocean Graph - Móvil</title>
-    
-    <!-- Favicon / Icono de pestaña -->
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="../Logo/OceanGraph - Ola.svg">
     <link rel="shortcut icon" href="../Logo/OceanGraph - Ola.svg" type="image/svg+xml">
-    
+
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Tipografía Montserrat (familia completa) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
-    <!-- Estilos específicos de la versión móvil -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Estilos versión móvil -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- ============================================
-         PANTALLA DE CARGA (SPINNER ICONIFY)
+         PANTALLA DE CARGA
          ============================================ -->
     <div class="loader-wrapper" id="loader">
         <div class="loader-content">
@@ -42,7 +44,7 @@
     </div>
 
     <!-- ============================================
-         NAVEGACIÓN (VERSIÓN MÓVIL)
+         NAVEGACIÓN (MÓVIL)
          ============================================ -->
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
@@ -60,8 +62,10 @@
             <ul class="nav-menu" role="menubar">
                 <li role="none"><a href="#inicio" class="nav-link active" role="menuitem">Inicio</a></li>
                 <li role="none"><a href="#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
-                <!-- En el futuro: versión móvil de portafolio y comunidad -->
-                <li role="none"><a href="../InPortafolio.html" class="nav-link" role="menuitem">Portfolio</a></li>
+                <!-- Servicios (sin href por ahora, solo texto) -->
+                <li role="none"><a class="nav-link" role="menuitem">Servicios</a></li>
+                <!-- Portafolio y Comunidad apuntan a las páginas de escritorio -->
+                <li role="none"><a href="../InPortafolio.html" class="nav-link" role="menuitem">Portafolio</a></li>
                 <li role="none"><a href="../Community.html" class="nav-link" role="menuitem">Comunidad</a></li>
                 <li role="none"><a href="#contacto" class="nav-link" role="menuitem">Contacto</a></li>
             </ul>
@@ -163,7 +167,9 @@
             <header class="section-header">
                 <div class="divider" aria-hidden="true"></div>
                 <h2>Quiénes Somos</h2>
-                <p class="section-subtitle">Un equipo independiente enfocado en contenido para redes, especialmente Instagram</p>
+                <p class="section-subtitle">
+                    Un equipo independiente enfocado en contenido para redes, especialmente Instagram.
+                </p>
             </header>
 
             <div class="about-content">
@@ -338,7 +344,7 @@
         </div>
     </footer>
 
-    <!-- Scripts específicos versión móvil -->
+    <!-- Scripts versión móvil -->
     <script src="script.js"></script>
 </body>
 </html>
