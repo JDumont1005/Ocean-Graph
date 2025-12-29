@@ -1,21 +1,97 @@
 /* ===================================
    OCEAN GRAPH - COMMUNITY MOBILE
    mobile/community.css
-   Layout en columna + fondo de olas, más aire y navbar visible
+   Layout en columna + fondo de olas, navbar tipo móvil
    =================================== */
 
 /* ===================================
-   CONTEXTO PÁGINA COMUNIDAD MÓVIL
+   NAVBAR SOLO PARA Comunidad móvil
    =================================== */
 
-/* Fondo base oscuro */
+/* Ajuste de contenedor */
+.page-community-mobile .nav-container {
+    padding: 0.7rem 1rem;
+}
+
+/* Menú lateral oculto por defecto */
+.page-community-mobile .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    background-color: rgba(12, 12, 12, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1.8rem;
+    list-style: none;
+    transition: right var(--transition-normal);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: calc(var(--z-navbar) - 1);
+}
+
+/* Cuando el JS añade .active, el panel entra */
+.page-community-mobile .nav-menu.active {
+    right: 0;
+}
+
+/* Mostrar el botón hamburguesa en Comunidad móvil */
+.page-community-mobile .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem;
+    -webkit-tap-highlight-color: transparent;
+    z-index: var(--z-navbar);
+}
+
+.page-community-mobile .hamburger span {
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-white);
+    border-radius: 10px;
+    transition: all var(--transition-normal);
+}
+
+.page-community-mobile .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.page-community-mobile .hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.page-community-mobile .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Links dentro del menú lateral */
+.page-community-mobile .nav-link {
+    font-size: 1rem;
+    padding: 0.7rem 1.3rem;
+    text-align: left;
+}
+
+/* ===================================
+   CONTEXTO COMUNIDAD MÓVIL
+   =================================== */
+
 .page-community-mobile {
     background-color: var(--color-dark);
 }
 
-/* Asegura que el contenido empiece por debajo de la navbar fija */
+/* Asegura que el contenido no queda tapado por la navbar fija */
 .page-community-mobile main {
-    margin-top: 60px; /* aprox altura navbar */
+    margin-top: 60px; /* altura aproximada de la navbar */
     position: relative;
     z-index: 1;
 }
@@ -46,11 +122,11 @@
 
 /* Posiciones iniciales */
 .wave-1 { top: -25%; left: -20%; animation-duration: 26s; }
-.wave-2 { top:  0%;  left:  30%; animation-duration: 30s; }
+.wave-2 { top:   0%; left:  30%; animation-duration: 30s; }
 .wave-3 { top: -25%; right: -20%; animation-duration: 28s; }
 .wave-4 { bottom: -25%; left: -10%; animation-duration: 32s; }
 .wave-5 { bottom: -20%; right: 5%;  animation-duration: 34s; }
-.wave-6 { top: 40%;  left: 15%; animation-duration: 36s; }
+.wave-6 { top:  40%; left:  15%; animation-duration: 36s; }
 
 @keyframes waveFloat {
     0% {
@@ -86,7 +162,7 @@
 }
 
 /* ===================================
-   FEED DE COMUNIDAD
+   FEED
    =================================== */
 
 .community-section {
@@ -99,17 +175,17 @@
     padding-top: 0.5rem;
 }
 
-/* Contenedor de cards: una sola columna, centrada */
+/* Una sola columna centrada */
 .community-feed {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
     margin: 0 auto;
-    max-width: 560px; /* para que no toquen los bordes en móviles grandes */
+    max-width: 560px; /* aire lateral en móviles grandes */
 }
 
 /* ===================================
-   TARJETAS (CARDS)
+   TARJETAS
    =================================== */
 
 .community-post {
@@ -156,9 +232,7 @@
     gap: 0.9rem;
 }
 
-/* ===================================
-   VARIANTE ESPECIAL (FIJADO)
-   =================================== */
+/* VARIANTE ESPECIAL (FIJADO) */
 
 .community-post--special-blue {
     background: radial-gradient(
@@ -183,9 +257,7 @@ body.keyboard-nav .community-post--special-blue:focus-within {
     transform: translateY(-3px);
 }
 
-/* ===================================
-   HEADER: AVATAR + META
-   =================================== */
+/* HEADER */
 
 .community-post-header {
     display: flex;
@@ -269,9 +341,7 @@ body.keyboard-nav .community-post--special-blue:focus-within {
     color: var(--color-primary-light);
 }
 
-/* ===================================
-   CUERPO DEL POST
-   =================================== */
+/* CUERPO DEL POST */
 
 .community-post-body {
     font-size: 0.95rem;
@@ -368,9 +438,7 @@ body.keyboard-nav .community-post--special-blue:focus-within {
     transform: scale(0.97);
 }
 
-/* ===================================
-   MODO CLARO
-   =================================== */
+/* MODO CLARO */
 
 body.theme-light .community-post {
     background: linear-gradient(
@@ -411,9 +479,7 @@ body.theme-light .community-tag {
     color: #005d9c;
 }
 
-/* ===================================
-   ACCESIBILIDAD
-   =================================== */
+/* ACCESIBILIDAD */
 
 @media (prefers-reduced-motion: reduce) {
     .community-post,
