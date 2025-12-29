@@ -1,11 +1,7 @@
 /* ===================================
-   OCEAN GRAPH - COMMUNITY PAGE (MÓVIL)
+   OCEAN GRAPH - COMMUNITY MOBILE
    mobile/community.js
    Genera los posts desde ../data/community-posts.json
-   Soporta:
-   - type: "text"      -> imagen opcional + texto
-   - type: "instagram" -> embed oficial + texto
-   - type: "tiktok"    -> embed oficial + texto
    =================================== */
 
 'use strict';
@@ -42,6 +38,19 @@ function escapeHTML(str) {
         .replace(/'/g, '&#39;');
 }
 
+/**
+ * Ajusta rutas de imágenes para móvil.
+ * - Si empieza por http/https → se deja igual.
+ * - Si es relativa (ej. "images/..") → se antepone "../" porque estamos en /mobile.
+ */
+function resolveAssetPath(path) {
+    if (!path) return '';
+    const trimmed = path.trim().replace(/\\/g, '/'); // por si quedó algún backslash
+    if (/^https?:\/\//i.test(trimmed)) return trimmed;
+    // suponemos que las rutas del JSON están relativas a la raíz (como escritorio)
+    return '../' + trimmed.replace(/^\.?\//, '');
+}
+
 function renderTags(tags) {
     if (!Array.isArray(tags) || tags.length === 0) return '';
     return `
@@ -65,9 +74,10 @@ function getVariantClass(post) {
 function renderImage(post) {
     if (!post.image) return '';
 
+    const src = resolveAssetPath(post.image);
     const imgTag = `
         <img 
-            src="${escapeHTML(post.image)}" 
+            src="${escapeHTML(src)}" 
             alt="${escapeHTML(post.imageAlt || '')}" 
             loading="lazy"
         >
@@ -100,14 +110,16 @@ function renderImage(post) {
 
 function renderTextPost(post) {
     const variantClass = getVariantClass(post);
+    const avatarSrc = resolveAssetPath(post.avatar || '');
     return `
 <article class="community-post${variantClass}" data-post-id="${escapeHTML(post.id || '')}">
     <div class="community-post-inner">
         <header class="community-post-header">
             <div class="community-avatar">
                 <img 
-                    src="${escapeHTML(post.avatar || '')}" 
+                    src="${escapeHTML(avatarSrc)}" 
                     alt="${escapeHTML(post.name || 'Miembro de Ocean Graph')}"
+                    loading="lazy"
                 >
             </div>
             <div class="community-header-meta">
@@ -133,14 +145,16 @@ function renderTextPost(post) {
 function renderInstagramPost(post) {
     const variantClass = getVariantClass(post);
     const url = post.instagramUrl || '';
+    const avatarSrc = resolveAssetPath(post.avatar || '');
     return `
 <article class="community-post community-post--instagram${variantClass}" data-post-id="${escapeHTML(post.id || '')}">
     <div class="community-post-inner">
         <header class="community-post-header">
             <div class="community-avatar">
                 <img 
-                    src="${escapeHTML(post.avatar || '')}" 
+                    src="${escapeHTML(avatarSrc)}" 
                     alt="${escapeHTML(post.name || 'Miembro de contenido Ocean Graph')}"
+                    loading="lazy"
                 >
             </div>
             <div class="community-header-meta">
@@ -189,7 +203,7 @@ function renderTikTokPost(post) {
     const variantClass = getVariantClass(post);
     const url = post.tiktokUrl || '';
     const videoId = post.tiktokId || '';
-
+    const avatarSrc = resolveAssetPath(post.avatar || '');
     const previewText = (Array.isArray(post.paragraphs) && post.paragraphs[0])
         ? escapeHTML(post.paragraphs[0])
         : '';
@@ -200,8 +214,9 @@ function renderTikTokPost(post) {
         <header class="community-post-header">
             <div class="community-avatar">
                 <img 
-                    src="${escapeHTML(post.avatar || '')}" 
+                    src="${escapeHTML(avatarSrc)}" 
                     alt="${escapeHTML(post.name || 'Miembro de contenido Ocean Graph')}"
+                    loading="lazy"
                 >
             </div>
             <div class="community-header-meta">
@@ -255,19 +270,15 @@ function renderCommunityPosts(posts) {
     }
 
     const html = posts.map(post => {
-        if (post.type === 'instagram') {
-            return renderInstagramPost(post);
-        }
-        if (post.type === 'tiktok') {
-            return renderTikTokPost(post);
-        }
+        if (post.type === 'instagram') return renderInstagramPost(post);
+        if (post.type === 'tiktok') return renderTikTokPost(post);
         return renderTextPost(post);
     }).join('');
 
     COMMUNITY_DOM.feed.innerHTML = html;
     COMMUNITY_DOM.posts = COMMUNITY_DOM.feed.querySelectorAll('.community-post');
 
-    // Procesar embeds externos
+    // Procesar embeds externos si los scripts existen
     if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
         window.instgrm.Embeds.process();
     }
@@ -390,7 +401,7 @@ async function loadCommunityPosts() {
 async function initCommunityMobile() {
     if (!COMMUNITY_DOM.feed) {
         if (COMMUNITY_CONFIG.isDebug) {
-            console.log('Community (mobile): no se encontró #community-feed');
+            console.log('Community (mobile): no se encontró #community-feed, no se inicializa');
         }
         return;
     }
