@@ -167,7 +167,7 @@
     background: radial-gradient(
         circle at 0 0,
         rgba(0, 119, 143, 0.55),
-        hsla(217, 87%, 3%, 0.95)
+        hsla(308, 100%, 11%, 0.95)
     );
     border-color: rgba(0, 157, 255, 0.95);
     box-shadow: 0 12px 40px rgba(0, 157, 255, 0.55);
@@ -499,4 +499,5 @@ body.theme-light .community-tag {
         transform: none;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
+
 }
