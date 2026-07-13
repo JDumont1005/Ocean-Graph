@@ -710,6 +710,13 @@ section {
     transition: all var(--transition-normal);
 }
 
+/* Icono de Google (Material Symbols) para WhatsApp */
+.contact-icon-symbol.material-symbols-outlined {
+    font-size: 26px;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
 .contact-item:hover .contact-icon-img {
     transform: scale(1.1);
 }
