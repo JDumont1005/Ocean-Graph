@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#141414">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="Explora el portfolio completo de Ocean Graph - Proyectos de Diseño Gráfico, Fotografía, Videos Profesionales, Videografía y Social Media.">
+    <meta name="description" content="Explora el portfolio completo de Ocean Graph - Videos profesionales organizados por categorías: Salud, Belleza, Gastronomía, Turismo y más.">
     
     <title>Portfolio Completo - Ocean Graph</title>
     
@@ -58,13 +58,14 @@
             </a>
 
             <ul class="nav-menu" role="menubar">
-    <li role="none"><a href="index.html" class="nav-link" role="menuitem">Inicio</a></li>
-    <li role="none"><a href="index.html#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
-    <li role="none"><a href="index.html#servicios" class="nav-link" role="menuitem">Servicios</a></li>
-    <li role="none"><a href="InPortafolio.html" class="nav-link active" role="menuitem">Portafolio</a></li>
-    <li role="none"><a href="Community.html" class="nav-link" role="menuitem">Comunidad</a></li>
-    <li role="none"><a href="index.html#contacto" class="nav-link" role="menuitem">Contacto</a></li>
-</ul>
+                <li role="none"><a href="index.html" class="nav-link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="index.html#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
+                <li role="none"><a href="index.html#servicios" class="nav-link" role="menuitem">Servicios</a></li>
+                <li role="none"><a href="InPortafolio.html" class="nav-link active" role="menuitem">Portafolio</a></li>
+                <li role="none"><a href="Community.html" class="nav-link" role="menuitem">Comunidad</a></li>
+                <li role="none"><a href="index.html#contacto" class="nav-link" role="menuitem">Contacto</a></li>
+            </ul>
+
             <div class="nav-actions">
                 <button 
                     class="theme-toggle" 
@@ -113,451 +114,242 @@
             </div>
             
             <h1 class="portfolio-hero-title">
-                Nuestro <span class="title-highlight">Portfolio</span>
+                Nuestro <span class="title-highlight">Portafolio</span>
             </h1>
             
             <p class="portfolio-hero-description">
-                Explora una selección de nuestros mejores trabajos en diseño gráfico, 
-                fotografía, videografía y estrategias de marketing digital.
+                Explora una selección de nuestros mejores trabajos audiovisuales 
+                organizados por categorías. Todos los videos son producciones originales 
+                de Ocean Graph para el feed de nuestros clientes.
             </p>
         </div>
     </section>
 
     <!-- ============================================
-         VIDEO DESTACADO (ARRIBA DE TODO)
+         VIDEO DESTACADO
          ============================================ -->
     <section class="portfolio-video-section">
         <div class="container">
-            <div class="video-header">
-                <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
-                <p class="video-section-description">
-                    Mira este video para ver algunos de nuestros proyectos más destacados
-                </p>
-            </div>
+            <div class="video-showcase">
+                <!-- Columna izquierda: Texto -->
+                <div class="video-showcase-text">
+                    <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
+                    <p class="video-section-description">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum 
+                    </p>
+                </div>
 
-            <div class="video-container">
-                <div class="video-wrapper">
-                    <!-- PLACEHOLDER: Reemplaza con tu video de YouTube -->
-                    <!-- <div class="video-placeholder">
-                        <div class="video-placeholder-content">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="10"/>
-                                <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+                <!-- Columna derecha: Video vertical -->
+                <div class="video-showcase-media">
+                    <div class="video-wrapper" id="featured-video-wrapper">
+                        <video 
+                            class="portfolio-featured-video"
+                            muted
+                            playsinline
+                            preload="metadata"
+                            poster=""
+                        >
+                            <source src="video\Ocean hablando.mp4" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+
+                        <!-- Botón de sonido -->
+                        <button 
+                            class="video-sound-btn" 
+                            id="video-sound-btn"
+                            type="button"
+                            aria-label="Activar sonido"
+                            title="Activar sonido"
+                        >
+                            <svg class="sound-icon sound-icon--muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <line x1="23" y1="9" x2="17" y2="15"/>
+                                <line x1="17" y1="9" x2="23" y2="15"/>
                             </svg>
-                            <p>Video próximamente</p>
-                        </div>
+
+                            <svg class="sound-icon sound-icon--unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                        </button>
                     </div>
-                     -->
-
-                    <!-- CUANDO TENGAS EL VIDEO, REEMPLAZA EL PLACEHOLDER CON ESTO: -->
-                    <iframe 
-                        class="portfolio-featured-video youtube-video"
-                        src="https://www.youtube.com/embed/K_xe0k5alwQ?si=KuKdenJ80MM5QWfd"
-                        title="Portfolio Ocean Graph - Trabajos Destacados"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen
-                    ></iframe>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         FILTROS DE CATEGORÍA
+         CATEGORÍAS
          ============================================ -->
-    <section class="portfolio-filters-section">
+    <section class="portfolio-categories-section" id="categorias">
         <div class="container">
-            <div class="portfolio-filters" role="tablist" aria-label="Filtrar proyectos por categoría">
-                <button 
-                    class="filter-btn active" 
-                    data-filter="all"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="portfolio-grid"
-                >
-                    Todos
-                </button>
-                <button 
-                    class="filter-btn" 
-                    data-filter="design"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="portfolio-grid"
-                >
-                    Diseño Gráfico
-                </button>
-                <button 
-                    class="filter-btn" 
-                    data-filter="photography"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="portfolio-grid"
-                >
-                    Fotografía
-                </button>
-                <button 
-                    class="filter-btn" 
-                    data-filter="video"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="portfolio-grid"
-                >
-                    Video
-                </button>
-                <button 
-                    class="filter-btn" 
-                    data-filter="videography"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="portfolio-grid"
-                >
-                    Videografía
-                </button>
-                <button 
-                    class="filter-btn" 
-                    data-filter="social"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="portfolio-grid"
-                >
-                    Social Media
-                </button>
-                <button 
-                    class="filter-btn" 
-                    data-filter="branding"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="portfolio-grid"
-                >
-                    Branding
-                </button>
-            </div>
-        </div>
-    </section>
+            <header class="categories-header">
+                <h2 class="categories-title">Categorías.</h2>
+            </header>
 
-
-    <!-- ============================================
-         GRID DE PROYECTOS
-         ============================================ -->
-    <section class="portfolio-grid-section">
-        <div class="container">
-            <div class="portfolio-grid" id="portfolio-grid" role="tabpanel">
-                
-                <!-- PROYECTO 1 - Diseño Gráfico -->
-<article class="portfolio-project" data-category="design" data-id="1">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-design-1/900/600"
-            data-local-src="images/portfolio/diseno-grafico-1.jpg"
-            alt="Identidad Corporativa Premium - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Diseño Gráfico</span>
-        <h3 class="project-title">Identidad Corporativa Premium</h3>
-        <p class="project-description">Desarrollo completo de identidad visual para marca de lujo</p>
-    </div>
-</article>
-
-<!-- PROYECTO 2 - Fotografía -->
-<article class="portfolio-project" data-category="photography" data-id="2">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-photo-1/900/600"
-            data-local-src="images/portfolio/fotografia-1.jpg"
-            alt="Sesión Producto Gourmet - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Fotografía</span>
-        <h3 class="project-title">Sesión Producto Gourmet</h3>
-        <p class="project-description">Fotografía profesional de productos alimenticios premium</p>
-    </div>
-</article>
-
-<!-- PROYECTO 3 - Video -->
-<article class="portfolio-project" data-category="video" data-id="3">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-video-1/900/600"
-            data-local-src="images/portfolio/video-1.jpg"
-            alt="Campaña Publicitaria Digital - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Video</span>
-        <h3 class="project-title">Campaña Publicitaria Digital</h3>
-        <p class="project-description">Producción de video comercial para redes sociales</p>
-    </div>
-</article>
-
-<!-- PROYECTO 4 - Videografía -->
-<article class="portfolio-project" data-category="videography" data-id="4">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-videography-1/900/600"
-            data-local-src="images/portfolio/videografia-1.jpg"
-            alt="Cobertura Evento Corporativo - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Videografía</span>
-        <h3 class="project-title">Cobertura Evento Corporativo</h3>
-        <p class="project-description">Documentación completa de evento empresarial de 2 días</p>
-    </div>
-</article>
-
-<!-- PROYECTO 5 - Social Media -->
-<article class="portfolio-project" data-category="social" data-id="5">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-social-1/900/600"
-            data-local-src="images/portfolio/social-media-1.jpg"
-            alt="Estrategia Instagram Boutique - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Social Media</span>
-        <h3 class="project-title">Estrategia Instagram Boutique</h3>
-        <p class="project-description">Gestión completa de redes sociales con crecimiento 300%</p>
-    </div>
-</article>
-
-<!-- PROYECTO 6 - Branding -->
-<article class="portfolio-project" data-category="branding" data-id="6">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-branding-1/900/600"
-            data-local-src="images/portfolio/branding-1.jpg"
-            alt="Rebranding Tech Startup - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Branding</span>
-        <h3 class="project-title">Rebranding Tech Startup</h3>
-        <p class="project-description">Transformación completa de imagen de marca tecnológica</p>
-    </div>
-</article>
-
-<!-- PROYECTO 7 - Diseño Gráfico -->
-<article class="portfolio-project" data-category="design" data-id="7">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-design-2/900/600"
-            data-local-src="images/portfolio/diseno-grafico-2.jpg"
-            alt="Material POP Campaña Verano - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Diseño Gráfico</span>
-        <h3 class="project-title">Material POP Campaña Verano</h3>
-        <p class="project-description">Diseño de material promocional para campaña estacional</p>
-    </div>
-</article>
-
-<!-- PROYECTO 8 - Fotografía -->
-<article class="portfolio-project" data-category="photography" data-id="8">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-photo-2/900/600"
-            data-local-src="images/portfolio/fotografia-2.jpg"
-            alt="Retrato Corporativo Ejecutivo - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Fotografía</span>
-        <h3 class="project-title">Retrato Corporativo Ejecutivo</h3>
-        <p class="project-description">Sesión fotográfica profesional para equipo directivo</p>
-    </div>
-</article>
-
-<!-- PROYECTO 9 - Video -->
-<article class="portfolio-project" data-category="video" data-id="9">
-    <div class="project-image-wrapper">
-        <img 
-            src="https://picsum.photos/seed/ocean-video-2/900/600"
-            data-local-src="images/portfolio/video-2.jpg"
-            alt="Video Institucional ONG - Ocean Graph"
-            class="project-img"
-            loading="lazy"
-        >
-        <div class="project-overlay">
-            <button class="project-view-btn" aria-label="Ver detalles del proyecto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                </svg>
-                Ver proyecto
-            </button>
-        </div>
-    </div>
-    <div class="project-info">
-        <span class="project-category">Video</span>
-        <h3 class="project-title">Video Institucional ONG</h3>
-        <p class="project-description">Documental breve sobre organización sin fines de lucro</p>
-    </div>
-</article>
-
+            <!-- Grid de categorías (se genera dinámicamente por JS) -->
+            <div class="categories-grid" id="categories-grid" role="tablist" aria-label="Filtrar videos por categoría">
+                <!-- JS insertará los botones de categoría aquí -->
             </div>
 
-            <!-- Mensaje cuando no hay resultados -->
-            <div class="no-results" id="no-results" style="display: none;">
-                <div class="no-results-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
-                    </svg>
+            <!-- Panel de videos (se abre debajo al seleccionar categoría) -->
+            <div class="videos-panel" id="videos-panel" aria-hidden="true">
+                <div class="videos-panel-header">
+    <div class="panel-category-name" id="panel-category-name">
+        CATEGORÍA
+    </div>
+    <button 
+        class="panel-close-btn" 
+        id="panel-close-btn"
+        type="button"
+        aria-label="Cerrar panel de videos"
+    >
+        Cerrar
+    </button>
+</div>
+
+                <!-- Grid de videos de la categoría seleccionada -->
+                <div class="videos-grid" id="videos-grid">
+                    <!-- JS insertará las tarjetas de video aquí -->
                 </div>
-                <h3>No se encontraron proyectos</h3>
-                <p>Intenta seleccionar otra categoría</p>
+
+                <!-- Mensaje si no hay videos -->
+                <div class="videos-empty" id="videos-empty" style="display: none;">
+                    <p>No hay videos disponibles en esta categoría todavía.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         MODAL DE PROYECTO
+         MODAL DE VIDEO (REPRODUCTOR)
          ============================================ -->
-    <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div class="modal-overlay" id="modal-overlay"></div>
-        <div class="modal-content">
-            <button class="modal-close" id="modal-close" aria-label="Cerrar modal">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title" aria-hidden="true">
+        <div class="video-modal-overlay" id="video-modal-overlay"></div>
+
+        <div class="video-modal-content">
+            <!-- Botón cerrar -->
+            <button 
+                class="video-modal-close" 
+                id="video-modal-close"
+                type="button"
+                aria-label="Cerrar reproductor"
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"/>
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
 
-            <div class="modal-body">
-                <div class="modal-image">
-                    <div class="modal-placeholder">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <rect x="3" y="3" width="18" height="18" rx="2"/>
-                            <circle cx="8.5" cy="8.5" r="1.5"/>
-                            <path d="M21 15l-5-5L5 21"/>
-                        </svg>
+            <!-- Columna izquierda: Info del video -->
+            <div class="video-modal-info">
+                <div class="video-info-top">
+                    <div class="video-info-avatar">
+                        <img id="video-modal-avatar" src="" alt="Avatar del cliente">
+                    </div>
+                    <h3 class="video-info-title" id="video-modal-title">Título</h3>
+                    <p class="video-info-description" id="video-modal-description">
+                        Descripción del video.
+                    </p>
+                </div>
+
+                <div class="video-info-bottom">
+                    <div class="video-info-handle-wrapper">
+                        <div class="video-info-handle-avatar">
+                            <img id="video-modal-handle-avatar" src="" alt="">
+                        </div>
+                        <span class="video-info-handle" id="video-modal-handle">@handle</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna derecha: Video vertical -->
+            <div class="video-modal-player">
+                <video 
+                    id="video-modal-player"
+                    class="video-player"
+                    playsinline
+                    preload="metadata"
+                    controls
+                >
+                    <source id="video-modal-source" src="" type="video/mp4">
+                    Tu navegador no soporta videos HTML5.
+                </video>
+            </div>
+        </div>
+    </div>
+
+        <!-- ============================================
+         MODAL DE IMAGEN (GALERÍA)
+         ============================================ -->
+    <div class="image-modal" id="image-modal" role="dialog" aria-modal="true" aria-labelledby="image-modal-title" aria-hidden="true">
+        <div class="image-modal-overlay" id="image-modal-overlay"></div>
+
+        <div class="image-modal-content">
+            <!-- Botón cerrar -->
+            <button 
+                class="image-modal-close" 
+                id="image-modal-close"
+                type="button"
+                aria-label="Cerrar galería"
+            >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <!-- Columna izquierda: Info -->
+            <div class="image-modal-info">
+                <div class="image-info-top">
+                    <div class="image-info-avatar">
+                        <img id="image-modal-avatar" src="" alt="Avatar del cliente">
+                    </div>
+                    <h3 class="image-info-title" id="image-modal-title">Título</h3>
+                    <div class="image-info-description" id="image-modal-description">
+                        Descripción de la imagen.
                     </div>
                 </div>
 
-                <div class="modal-info">
-                    <span class="modal-category" id="modal-category">Categoría</span>
-                    <h2 class="modal-title" id="modal-title">Título del Proyecto</h2>
-                    <p class="modal-description" id="modal-description">
-                        Descripción completa del proyecto con todos los detalles relevantes.
-                    </p>
+                <div class="image-info-bottom">
+                    <span class="image-info-handle" id="image-modal-handle">@handle</span>
+                </div>
+            </div>
 
-                    <div class="modal-details">
-                        <div class="detail-item">
-                            <span class="detail-label">Cliente:</span>
-                            <span class="detail-value" id="modal-client">Nombre del cliente</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Fecha:</span>
-                            <span class="detail-value" id="modal-date">2024</span>
-                        </div>
-                        <div class="detail-item">
-                            <span class="detail-label">Servicios:</span>
-                            <span class="detail-value" id="modal-services">Diseño, Fotografía</span>
-                        </div>
+            <!-- Columna derecha: Imagen -->
+            <div class="image-modal-viewer">
+                <div class="image-viewer-wrapper" id="image-viewer-wrapper">
+                    <img id="image-modal-image" src="" alt="">
+                </div>
+
+                <!-- Controles inferiores (solo si hay múltiples imágenes) -->
+                <div class="image-viewer-controls" id="image-viewer-controls">
+                    <button 
+                        class="image-nav-btn image-nav-prev" 
+                        id="image-nav-prev"
+                        type="button"
+                        aria-label="Imagen anterior"
+                    >
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="15 18 9 12 15 6"/>
+                        </svg>
+                    </button>
+
+                    <div class="image-counter" id="image-counter">
+                        <span id="image-current">1</span> / <span id="image-total">1</span>
                     </div>
 
-                    <div class="modal-actions">
-                        <a href="index.html#contacto" class="modal-btn modal-btn-primary">
-                            Iniciar Proyecto Similar
-                        </a>
-                        <button class="modal-btn modal-btn-secondary" id="modal-close-btn">
-                            Cerrar
-                        </button>
-                    </div>
+                    <button 
+                        class="image-nav-btn image-nav-next" 
+                        id="image-nav-next"
+                        type="button"
+                        aria-label="Imagen siguiente"
+                    >
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="9 18 15 12 9 6"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
