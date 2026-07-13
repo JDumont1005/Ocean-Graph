@@ -1,0 +1,502 @@
+{
+  "categories": [
+    {
+      "id": "belleza",
+      "name": "Belleza",
+      "icon": "💅"
+    },
+    {
+      "id": "salud",
+      "name": "Salud",
+      "icon": "💙"
+    },
+    {
+      "id": "joyeria",
+      "name": "Joyería",
+      "icon": "💎"
+    },
+    {
+      "id": "perfumes",
+      "name": "Perfumes",
+      "icon": "🧴"
+    },
+    {
+      "id": "mecanica",
+      "name": "Mecánica",
+      "icon": "🔧"
+    },
+    {
+      "id": "servicios",
+      "name": "Servicios",
+      "icon": "🛠️"
+    },
+    {
+      "id": "ninos",
+      "name": "Niños",
+      "icon": "🧸"
+    },
+    {
+      "id": "turismo",
+      "name": "Turismo",
+      "icon": "✈️"
+    },
+    {
+      "id": "gastronomia",
+      "name": "Gastronomía",
+      "icon": "🍽️"
+    },
+    {
+      "id": "moda",
+      "name": "Moda",
+      "icon": "👗"
+    },
+    {
+      "id": "fitness",
+      "name": "Fitness",
+      "icon": "💪"
+    },
+    {
+      "id": "eventos",
+      "name": "Eventos",
+      "icon": "🎉"
+    },
+    {
+      "id": "ocean",
+      "name": "Ocean Graph",
+      "icon": "🌊"
+    }
+  ],
+
+  "videos": [
+    {
+      "id": "ATSV-001",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Caso Sr. Williams",
+      "description": "Este video es un aviso de la categoría de salud.",
+      "thumbnail": "images/ATSV/CasosrwilliamslistoPortada.png",
+      "avatar": "images/ATSV-Logo.png",
+      "handle": "@atusaludvargas",
+      "videoUrl": "video/ATSV/Casosrwilliamslisto.mp4"
+    },
+    {
+      "id": "ATSV-002",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Caso Yoly y Hernán",
+      "description": "Descripción del video de la categoría actual.",
+      "thumbnail": "images/ATSV/casoyolyyhernanPortada.png",
+      "avatar": "images/ATSV-Logo.png",
+      "handle": "@atusaludvargas",
+      "videoUrl": "video/ATSV/casoyolyyhernan.mp4"
+    },
+    {
+      "id": "ATSV-003",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Entrevista Caterym y Hernán",
+      "description": "Tips para el cuidado de tus dientes cada día.",
+      "thumbnail": "images/ATSV/entrevistacaterymyHernánPortada.png",
+      "avatar": "images/ATSV-Logo.png",
+      "handle": "@atusaludvargas",
+      "videoUrl": "video/ATSV/entrevistacaterymyHernán.mp4"
+    },
+    {
+      "id": "Marielsys-001",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Marielsys Cursos",
+      "description": "Curso de bienestar y salud integral, diseñado para mejorar la calidad de vida de los participantes. Incluye técnicas de relajación, nutrición y ejercicios para el bienestar físico y mental.",
+      "thumbnail": "images/Marielsys/MarielsysCursoPortada.png",
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@bienestar_ve",
+      "videoUrl": "video/Marielsys/Marielsys curso.mp4"
+    },
+    {
+      "id": "salud-002",
+      "type": "image",
+      "categoryId": "salud",
+      "title": "Campaña Odontológica",
+      "description": "Serie fotográfica realizada para la campaña de concientización sobre salud bucal. Cada imagen fue cuidadosamente compuesta para transmitir profesionalismo, confianza y limpieza.\n\nEl objetivo principal era mostrar la importancia de los chequeos regulares y el cuidado dental preventivo.\n\nTrabajamos con iluminación de estudio profesional y post-producción detallada para lograr un acabado premium acorde a la imagen de la marca.\n\nLa serie completa se publicó como carrusel en Instagram con excelente recepción del público objetivo.",
+      "thumbnail": "https://picsum.photos/seed/campana-dental-thumb/900/1200",
+      "images": [
+        "https://picsum.photos/seed/campana-dental-1/900/1200",
+        "https://picsum.photos/seed/campana-dental-2/900/1200",
+        "https://picsum.photos/seed/campana-dental-3/900/1200",
+        "https://picsum.photos/seed/campana-dental-4/900/1200"
+      ],
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@od_marielsysvasquez"
+    },
+
+    {
+      "id": "belleza-001",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Maquillaje Natural",
+      "description": "Look natural para el día a día.",
+      "thumbnail": "https://picsum.photos/seed/belleza-1/900/1600",
+      "avatar": "https://picsum.photos/seed/makeup-1/100/100",
+      "handle": "@makeup_studio",
+      "videoUrl": "video/belleza-01.mp4"
+    },
+    {
+      "id": "belleza-002",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Skincare Rutina",
+      "description": "Los pasos esenciales para una piel radiante.",
+      "thumbnail": "https://picsum.photos/seed/belleza-2/900/1600",
+      "avatar": "https://picsum.photos/seed/skincare/100/100",
+      "handle": "@skincare_pro",
+      "videoUrl": "video/belleza-02.mp4"
+    },
+    {
+      "id": "belleza-003",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Peinado Rápido",
+      "description": "Peinado en menos de 5 minutos.",
+      "thumbnail": "https://picsum.photos/seed/belleza-3/900/1600",
+      "avatar": "https://picsum.photos/seed/hair/100/100",
+      "handle": "@hair_style_ve",
+      "videoUrl": "video/belleza-03.mp4"
+    },
+    {
+      "id": "belleza-004",
+      "type": "image",
+      "categoryId": "belleza",
+      "title": "Portada de Marca",
+      "description": "Una sola imagen icónica que representa la esencia de la marca. Diseñada para funcionar como portada principal en redes sociales y material promocional.",
+      "thumbnail": "https://picsum.photos/seed/portada-belleza/900/1200",
+      "images": [
+        "https://picsum.photos/seed/portada-belleza/900/1200"
+      ],
+      "avatar": "https://picsum.photos/seed/portada-avatar/100/100",
+      "handle": "@makeup_studio"
+    },
+
+    {
+      "id": "Karat-001",
+      "type": "video",
+      "categoryId": "joyeria",
+      "title": "Oro y Kilataje",
+      "description": "Nueva colección en oro de 18k.",
+      "thumbnail": "images/Karat/OroyKilatajePortada.png",
+      "avatar": "images/Karat-Logo.jpg",
+      "handle": "@karatbyjackma",
+      "videoUrl": "video/Karat/OroyKilataje.mp4"
+    },
+    {
+      "id": "Karat-002",
+      "type": "video",
+      "categoryId": "joyeria",
+      "title": "No Sabes Si Es Oro",
+      "description": "Diseños únicos para el momento perfecto.",
+      "thumbnail": "images/Karat/nosabessiesoroPortada.png",
+      "avatar": "images/Karat-Logo.jpg",
+      "handle": "@karatbyjackma",
+      "videoUrl": "video/Karat/nosabessiesoro.mp4"
+    },
+    {
+      "id": "Karat-003",
+      "type": "video",
+      "categoryId": "joyeria",
+      "title": "Elegir Prendas",
+      "description": "Diseños únicos para el momento perfecto.",
+      "thumbnail": "images/Karat/elegirprendasPortada.png",
+      "avatar": "images/Karat-Logo.jpg",
+      "handle": "@karatbyjackma",
+      "videoUrl": "video/Karat/elegirprendas.mp4"
+    },
+    {
+      "id": "Karat-004",
+      "type": "video",
+      "categoryId": "joyeria",
+      "title": "3 Tipos de Prendas para Regalar",
+      "description": "Diseños únicos para el momento perfecto.",
+      "thumbnail": "images/Karat/3tiposdeprendaspararegalarPortada.png",
+      "avatar": "images/Karat-Logo.jpg",
+      "handle": "@karatbyjackma",
+      "videoUrl": "video/Karat/3tiposdeprendaspararegalar.mp4"
+    },
+    {
+      "id": "joyeria-003",
+      "type": "image",
+      "categoryId": "joyeria",
+      "title": "Editorial Premium",
+      "description": "Editorial fotográfica completa para la colección premium de joyas. Un total de 6 tomas cuidadosamente diseñadas para mostrar cada pieza en su máximo esplendor.\n\nUtilizamos macro fotografía profesional con iluminación controlada para capturar el brillo y los detalles de cada joya.\n\nLa serie se distribuyó en catálogo digital, redes sociales y material impreso para tienda física.",
+      "thumbnail": "https://picsum.photos/seed/joya-editorial-thumb/900/1200",
+      "images": [
+        "https://picsum.photos/seed/joya-editorial-1/900/1200",
+        "https://picsum.photos/seed/joya-editorial-2/900/1200",
+        "https://picsum.photos/seed/joya-editorial-3/900/1200",
+        "https://picsum.photos/seed/joya-editorial-4/900/1200",
+        "https://picsum.photos/seed/joya-editorial-5/900/1200",
+        "https://picsum.photos/seed/joya-editorial-6/900/1200"
+      ],
+      "avatar": "https://picsum.photos/seed/joya-1/100/100",
+      "handle": "@joyeria_luxury"
+    },
+
+    {
+      "id": "FrenosSun-001",
+      "type": "video",
+      "categoryId": "mecanica",
+      "title": "Promocional Freno",
+      "description": "Promoción de nuestros servicios de frenos y mecánica automotriz.",
+      "thumbnail": "images/FrenosSun/PromocionalFrenoPortada.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenos.sun",
+      "videoUrl": "video/FrenosSun/PromocionalFreno.mp4"
+    },
+
+    {
+      "id": "FrenosSun-002",
+      "type": "video",
+      "categoryId": "mecanica",
+      "title": "Si Fallan Tus Frenos Modificado",
+      "description": "Video promocional de la marca Frenos Sun, destacando la calidad y durabilidad de sus productos para el mantenimiento de vehículos.",
+      "thumbnail": "images/FrenosSun/sifallantusfrenosmodificadoPortada.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenos.sun",
+      "videoUrl": "video/FrenosSun/sifallantusfrenosmodificado.mp4"
+    },
+
+    {
+      "id": "FrenosSun-003",
+      "type": "video",
+      "categoryId": "mecanica",
+      "title": "Los Mecánicos Corregido",
+      "description": "Video promocional de la marca Frenos Sun, destacando la calidad y durabilidad de sus productos para el mantenimiento de vehículos.",
+      "thumbnail": "images/FrenosSun/losmecanicoscorregidoPortada.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenos.sun",
+      "videoUrl": "video/FrenosSun/losmecanicoscorregido.mp4"
+    },
+
+    {
+      "id": "FrenosSun-004",
+      "type": "video",
+      "categoryId": "mecanica",
+      "title": "Sistema de Frenos",
+      "description": "Sistema de frenos de alta calidad para garantizar la seguridad y el rendimiento de tu vehículo. Descubre cómo nuestros productos pueden mejorar tu experiencia de conducción.",
+      "thumbnail": "images/FrenosSun/sistemadefrenosPortada.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenos.sun",
+      "videoUrl": "video/FrenosSun/sistemadefrenos.mp4"
+    },
+
+    {
+      "id": "FrenosSun-005",
+      "type": "video",
+      "categoryId": "mecanica",
+      "title": "Hiper Ventilados Veneka",
+      "description": "Hiper ventilados Veneka: La solución perfecta para un frenado eficiente y seguro. Descubre cómo nuestros productos pueden mejorar tu experiencia de conducción y garantizar la seguridad en cada viaje.",
+      "thumbnail": "images/FrenosSun/hiperventiladosvenekaPortada.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenos.sun",
+      "videoUrl": "video/FrenosSun/hiperventiladosveneka.mp4"
+    },
+
+    {
+      "id": "TransporteJacob-001",
+      "type": "video",
+      "categoryId": "servicios",
+      "title": "Ganarnos tu Confianza",
+      "description": "Video promocional de la empresa Transporte Jacob, destacando su compromiso con la seguridad y la confianza en el transporte de mercancías. El video resalta la experiencia y profesionalismo del equipo, así como la calidad de los servicios ofrecidos.",
+      "thumbnail": "images/TransporteeJacob/ganarnostuconfianzaPortada.png",
+      "avatar": "images/TransporteJacob-Logo.png",
+      "handle": "@transportejacob.2013",
+      "videoUrl": "video/TransporteJacob/ganarnos tu confianza.mp4"
+    },
+
+    {
+      "id": "TransporteJacob-002",
+      "type": "video",
+      "categoryId": "servicios",
+      "title": "Presentación Transporte Jacob",
+      "description": "Video corporativo de la empresa Transporte Jacob, mostrando sus instalaciones, flota de vehículos y servicios de transporte. El video destaca la eficiencia, seguridad y confiabilidad de la empresa en el transporte de mercancías, así como su compromiso con la satisfacción del cliente.",
+      "thumbnail": "images/TransporteeJacob/presentacióntransporteJacobPortada.png",
+      "avatar": "images/TransporteJacob-Logo.png",
+      "handle": "@transportejacob.2013",
+      "videoUrl": "video/TransporteJacob/presentación transporte Jacob.mp4"
+    },
+
+    {
+      "id": "perfumes-001",
+      "type": "video",
+      "categoryId": "perfumes",
+      "title": "Fragancia Nueva",
+      "description": "Lanzamiento de nuestra nueva fragancia premium.",
+      "thumbnail": "https://picsum.photos/seed/perfumes-1/900/1600",
+      "avatar": "https://picsum.photos/seed/perfume-1/100/100",
+      "handle": "@perfumes_boutique",
+      "videoUrl": "video/perfume-01.mp4"
+    },
+    {
+      "id": "perfumes-002",
+      "type": "video",
+      "categoryId": "perfumes",
+      "title": "Aromas Únicos",
+      "description": "Descubre nuestra selección exclusiva.",
+      "thumbnail": "https://picsum.photos/seed/perfumes-2/900/1600",
+      "avatar": "https://picsum.photos/seed/perfume-2/100/100",
+      "handle": "@aromas_ve",
+      "videoUrl": "video/perfume-02.mp4"
+    },
+
+    {
+      "id": "eventos-001",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "Evento de Carros",
+      "description": "Autos clásicos y modernos en exhibición.",
+      "thumbnail": "images/Evento/Evento001.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenossun",
+      "videoUrl": "video/Evento/Eventocarros.mp4"
+    },
+
+    {
+      "id": "eventos-002",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "Nissan Video Corto",
+      "description": "Descubre las últimas características del Nissan.",
+      "thumbnail": "images/Evento/Evento002.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenossun",
+      "videoUrl": "video/Evento/Nissanvideocorto.mp4"
+    },
+
+    {
+      "id": "eventos-003",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "BK3 Audi",
+      "description": "Experiencia de conducción y diseño del Audi BK3.",
+      "thumbnail": "images/Evento/Evento003.png",
+      "avatar": "images/FrenosSun-Logo.png",
+      "handle": "@frenossun",
+      "videoUrl": "video/Evento/BK3AUDI.mp4"
+    },
+
+    {
+      "id": "ninos-001",
+      "type": "video",
+      "categoryId": "ninos",
+      "title": "Juguetes Educativos",
+      "description": "Nueva línea de juguetes para el aprendizaje.",
+      "thumbnail": "https://picsum.photos/seed/ninos-1/900/1600",
+      "avatar": "https://picsum.photos/seed/ninos/100/100",
+      "handle": "@juguetes_kids",
+      "videoUrl": "video/ninos-01.mp4"
+    },
+    {
+      "id": "ninos-002",
+      "type": "video",
+      "categoryId": "ninos",
+      "title": "Ropa Infantil",
+      "description": "Colección primavera-verano para los más pequeños.",
+      "thumbnail": "https://picsum.photos/seed/ninos-2/900/1600",
+      "avatar": "https://picsum.photos/seed/ninos-2/100/100",
+      "handle": "@ropa_infantil_ve",
+      "videoUrl": "video/ninos-02.mp4"
+    },
+
+    {
+      "id": "turismo-001",
+      "type": "video",
+      "categoryId": "turismo",
+      "title": "Playa Paradisíaca",
+      "description": "Descubre los mejores destinos de Venezuela.",
+      "thumbnail": "https://picsum.photos/seed/turismo-1/900/1600",
+      "avatar": "https://picsum.photos/seed/turismo-1/100/100",
+      "handle": "@viajes_ve",
+      "videoUrl": "video/turismo-01.mp4"
+    },
+    {
+      "id": "turismo-002",
+      "type": "video",
+      "categoryId": "turismo",
+      "title": "Aventura Total",
+      "description": "Tours de aventura para toda la familia.",
+      "thumbnail": "https://picsum.photos/seed/turismo-2/900/1600",
+      "avatar": "https://picsum.photos/seed/turismo-2/100/100",
+      "handle": "@aventura_tours",
+      "videoUrl": "video/turismo-02.mp4"
+    },
+
+    {
+      "id": "gastronomia-001",
+      "type": "video",
+      "categoryId": "gastronomia",
+      "title": "Menú del Día",
+      "description": "Platillos exclusivos preparados con amor.",
+      "thumbnail": "https://picsum.photos/seed/gastro-1/900/1600",
+      "avatar": "https://picsum.photos/seed/gastro-1/100/100",
+      "handle": "@restaurante_gourmet",
+      "videoUrl": "video/gastronomia-01.mp4"
+    },
+    {
+      "id": "gastronomia-002",
+      "type": "video",
+      "categoryId": "gastronomia",
+      "title": "Postres Artesanales",
+      "description": "Dulces creaciones hechas a mano.",
+      "thumbnail": "https://picsum.photos/seed/gastro-2/900/1600",
+      "avatar": "https://picsum.photos/seed/gastro-2/100/100",
+      "handle": "@postres_artesanales",
+      "videoUrl": "video/gastronomia-02.mp4"
+    },
+
+    {
+      "id": "moda-001",
+      "type": "video",
+      "categoryId": "moda",
+      "title": "Nueva Colección",
+      "description": "Tendencias de la temporada.",
+      "thumbnail": "https://picsum.photos/seed/moda-1/900/1600",
+      "avatar": "https://picsum.photos/seed/moda-1/100/100",
+      "handle": "@moda_boutique",
+      "videoUrl": "video/moda-01.mp4"
+    },
+    
+    {
+      "id": "Ocean-001",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "Video Prueba Ocean Camión",
+      "description": "Prueba de video para Ocean Camión.",
+      "thumbnail": "images/Ocean/VideopruebaOceancamionPortada.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/VideopruebaOceancamion.mp4"
+    },
+
+    {
+      "id": "Ocean-002",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "La Limonera",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Ocean/LaLimonera-HDPortada.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/LaLimonera-HD.mp4"
+    },
+
+    {
+      "id": "fitness-001",
+      "type": "video",
+      "categoryId": "fitness",
+      "title": "Rutina de Ejercicios",
+      "description": "Entrena desde casa con esta rutina completa.",
+      "thumbnail": "https://picsum.photos/seed/fitness-1/900/1600",
+      "avatar": "https://picsum.photos/seed/fitness-1/100/100",
+      "handle": "@gym_lifestyle",
+      "videoUrl": "video/fitness-01.mp4"
+    }
+  ]
+}
