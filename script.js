@@ -42,6 +42,7 @@ const IS_HOME = !!document.querySelector('.video-hero');
 let isMenuOpen = false;
 let statsAnimated = false;
 let currentTheme = 'dark';
+let heroVideoJumpTimeout = null; // <<< nuevo
 
 /* ===================================
    DETECCIÓN: ¿DEBERÍA USARSE VERSIÓN MÓVIL?
@@ -424,6 +425,50 @@ if (DOM.scrollIndicator) {
 }
 
 /* ===================================
+   VIDEO HERO – SALTOS ALEATORIOS
+   =================================== */
+
+function startHeroVideoRandomJumps(video) {
+    if (!video) return;
+
+    const MIN_DELAY = 4;  // segundos mínimo entre saltos
+    const MAX_DELAY = 8; // segundos máximo entre saltos
+
+    function scheduleNextJump() {
+        if (!video.duration || isNaN(video.duration)) {
+            heroVideoJumpTimeout = setTimeout(scheduleNextJump, 1000);
+            return;
+        }
+
+        const delay = (Math.random() * (MAX_DELAY - MIN_DELAY) + MIN_DELAY) * 1000;
+
+        heroVideoJumpTimeout = setTimeout(() => {
+            const visible = isElementInViewport(video, 80);
+            if (!document.hidden && visible && !video.paused) {
+                const target = Math.random() * Math.max(video.duration - 1, 0);
+                try {
+                    video.currentTime = target;
+                    if (CONFIG.isDebug) {
+                        console.log('[DESKTOP] Hero video saltó a', target.toFixed(1), 's');
+                    }
+                } catch (err) {
+                    if (CONFIG.isDebug) {
+                        console.warn('[DESKTOP] Error al hacer seek en video hero:', err);
+                    }
+                }
+            }
+            scheduleNextJump();
+        }, delay);
+    }
+
+    scheduleNextJump();
+
+    window.addEventListener('beforeunload', () => {
+        if (heroVideoJumpTimeout) clearTimeout(heroVideoJumpTimeout);
+    }, { once: true });
+}
+
+/* ===================================
    VIDEO HERO
    =================================== */
 
@@ -437,13 +482,21 @@ function initVideoControl() {
     const playVideo = () => {
         const playPromise = activeVideo.play();
         if (playPromise && typeof playPromise.then === 'function') {
-            playPromise.catch(err => {
-                if (CONFIG.isDebug) console.log('[DESKTOP] Autoplay bloqueado:', err.message);
-                const tryPlayOnInteraction = () => {
-                    activeVideo.play().catch(() => {});
-                };
-                document.addEventListener('click', tryPlayOnInteraction, { once: true });
-            });
+            playPromise
+                .then(() => {
+                    startHeroVideoRandomJumps(activeVideo);
+                })
+                .catch(err => {
+                    if (CONFIG.isDebug) console.log('[DESKTOP] Autoplay bloqueado:', err.message);
+                    const tryPlayOnInteraction = () => {
+                        activeVideo.play().then(() => {
+                            startHeroVideoRandomJumps(activeVideo);
+                        }).catch(() => {});
+                    };
+                    document.addEventListener('click', tryPlayOnInteraction, { once: true });
+                });
+        } else {
+            startHeroVideoRandomJumps(activeVideo);
         }
     };
 
