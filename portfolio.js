@@ -1,775 +1,787 @@
 /* ===================================
    OCEAN GRAPH - PORTFOLIO PAGE JS
-   JavaScript para InPortafolio.html
-   Sin emojis para evitar errores
+   Sistema de categorías + videos + imágenes desde JSON
    =================================== */
 
 'use strict';
 
 /* ===================================
-   CONFIGURACION
+   CONFIGURACIÓN
    =================================== */
 
 const PORTFOLIO_CONFIG = {
-    animationDuration: 300,
-    scrollOffset: 100,
+    dataUrl: 'data/portfolio-videos.json',
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
 /* ===================================
-   DOM ELEMENTS
+   REFERENCIAS AL DOM
    =================================== */
 
 const PORTFOLIO_DOM = {
-    filterButtons: document.querySelectorAll('.filter-btn'),
-    projects: document.querySelectorAll('.portfolio-project'),
-    noResults: document.getElementById('no-results'),
-    modal: document.getElementById('project-modal'),
-    modalOverlay: document.getElementById('modal-overlay'),
-    modalClose: document.getElementById('modal-close'),
-    modalCloseBtn: document.getElementById('modal-close-btn'),
-    modalCategory: document.getElementById('modal-category'),
-    modalTitle: document.getElementById('modal-title'),
-    modalDescription: document.getElementById('modal-description'),
-    modalClient: document.getElementById('modal-client'),
-    modalDate: document.getElementById('modal-date'),
-    modalServices: document.getElementById('modal-services'),
-    viewButtons: document.querySelectorAll('.project-view-btn'),
-    featuredVideo: document.querySelector('.portfolio-featured-video'),
-    videoSection: document.querySelector('.portfolio-video-section')
+    // Categorías
+    categoriesGrid: document.getElementById('categories-grid'),
+    
+    // Panel de contenido
+    videosPanel: document.getElementById('videos-panel'),
+    panelCategoryName: document.getElementById('panel-category-name'),
+    panelCloseBtn: document.getElementById('panel-close-btn'),
+    videosGrid: document.getElementById('videos-grid'),
+    videosEmpty: document.getElementById('videos-empty'),
+    
+    // Modal reproductor de VIDEO
+    videoModal: document.getElementById('video-modal'),
+    videoModalOverlay: document.getElementById('video-modal-overlay'),
+    videoModalClose: document.getElementById('video-modal-close'),
+    videoModalPlayer: document.getElementById('video-modal-player'),
+    videoModalSource: document.getElementById('video-modal-source'),
+    videoModalAvatar: document.getElementById('video-modal-avatar'),
+    videoModalTitle: document.getElementById('video-modal-title'),
+    videoModalDescription: document.getElementById('video-modal-description'),
+    videoModalHandleAvatar: document.getElementById('video-modal-handle-avatar'),
+    videoModalHandle: document.getElementById('video-modal-handle'),
+    
+    // Modal de IMAGEN
+    imageModal: document.getElementById('image-modal'),
+    imageModalOverlay: document.getElementById('image-modal-overlay'),
+    imageModalClose: document.getElementById('image-modal-close'),
+    imageModalAvatar: document.getElementById('image-modal-avatar'),
+    imageModalTitle: document.getElementById('image-modal-title'),
+    imageModalDescription: document.getElementById('image-modal-description'),
+    imageModalHandle: document.getElementById('image-modal-handle'),
+    imageModalImage: document.getElementById('image-modal-image'),
+    imageViewerControls: document.getElementById('image-viewer-controls'),
+    imageNavPrev: document.getElementById('image-nav-prev'),
+    imageNavNext: document.getElementById('image-nav-next'),
+    imageCurrent: document.getElementById('image-current'),
+    imageTotal: document.getElementById('image-total'),
+    
+    // Video destacado
+    featuredVideo: document.querySelector('.portfolio-featured-video')
 };
 
 /* ===================================
-   DATOS DE PROYECTOS
+   ESTADO DE LA APLICACIÓN
    =================================== */
 
-const PROJECT_DATA = {
-    1: {
-        category: 'Diseño Gráfico',
-        title: 'Identidad Corporativa Premium',
-        description: 'Desarrollo completo de identidad visual para marca de lujo, incluyendo logotipo, paleta de colores, tipografía corporativa y manual de marca. El proyecto abarcó desde la conceptualización inicial hasta la implementación en todos los puntos de contacto con el cliente.',
-        client: 'Luxury Brands Inc.',
-        date: 'Marzo 2024',
-        services: 'Branding, Diseño de Logo, Manual de Marca'
-    },
-    2: {
-        category: 'Fotografía',
-        title: 'Sesión Producto Gourmet',
-        description: 'Fotografía profesional de productos alimenticios premium para catálogo digital y redes sociales. Sesión realizada en estudio con iluminación controlada, enfocada en resaltar texturas y colores naturales de cada producto.',
-        client: 'Gourmet Delights',
-        date: 'Febrero 2024',
-        services: 'Fotografía de Producto, Edición, Retoque Digital'
-    },
-    3: {
-        category: 'Video',
-        title: 'Campaña Publicitaria Digital',
-        description: 'Producción de video comercial de 30 segundos optimizado para redes sociales (Instagram, Facebook, TikTok). Incluye conceptualización, storyboard, filmación, edición y post-producción con motion graphics.',
-        client: 'Urban Fashion Co.',
-        date: 'Enero 2024',
-        services: 'Producción Audiovisual, Motion Graphics, Edición'
-    },
-    4: {
-        category: 'Videografía',
-        title: 'Cobertura Evento Corporativo',
-        description: 'Documentación completa de evento empresarial de 2 días, incluyendo conferencias, actividades de networking y ceremonias. Entrega de video resumen de 5 minutos y material completo sin editar para archivo.',
-        client: 'Tech Summit 2024',
-        date: 'Abril 2024',
-        services: 'Videografía Multi-cámara, Edición, Color Grading'
-    },
-    5: {
-        category: 'Social Media',
-        title: 'Estrategia Instagram Boutique',
-        description: 'Gestión completa de redes sociales durante 6 meses, logrando crecimiento orgánico de 300% en seguidores. Incluye creación de contenido, calendario editorial, community management y análisis de métricas.',
-        client: 'Bella Boutique',
-        date: 'Octubre 2023 - Marzo 2024',
-        services: 'Community Management, Creación de Contenido, Estrategia Digital'
-    },
-    6: {
-        category: 'Branding',
-        title: 'Rebranding Tech Startup',
-        description: 'Transformación completa de imagen de marca para startup tecnológica en crecimiento. Nuevo posicionamiento, identidad visual moderna y sistema de comunicación coherente en todos los canales.',
-        client: 'InnovateTech',
-        date: 'Diciembre 2023',
-        services: 'Estrategia de Marca, Diseño, Comunicación Corporativa'
-    },
-    7: {
-        category: 'Diseño Gráfico',
-        title: 'Material POP Campaña Verano',
-        description: 'Diseño de material promocional punto de venta para campaña estacional: banners, displays, señalética y material impreso. Concepto fresco y juvenil alineado con la identidad de marca.',
-        client: 'Summer Vibes Store',
-        date: 'Mayo 2024',
-        services: 'Diseño Gráfico, Material Impreso, Señalética'
-    },
-    8: {
-        category: 'Fotografía',
-        title: 'Retrato Corporativo Ejecutivo',
-        description: 'Sesión fotográfica profesional para equipo directivo de empresa multinacional. Retratos individuales y grupales en ambiente corporativo, con iluminación profesional y edición de alta calidad.',
-        client: 'Global Corp International',
-        date: 'Marzo 2024',
-        services: 'Fotografía Corporativa, Retrato Profesional, Edición'
-    },
-    9: {
-        category: 'Video',
-        title: 'Video Institucional ONG',
-        description: 'Documental breve de 8 minutos sobre organización sin fines de lucro, mostrando su impacto social y actividades. Incluye entrevistas, grabación de campo y narrativa emotiva.',
-        client: 'Fundación Esperanza',
-        date: 'Febrero 2024',
-        services: 'Documental, Entrevistas, Edición Narrativa'
-    }
+const PORTFOLIO_STATE = {
+    data: null,
+    currentCategory: null,
+    currentItem: null,
+    currentImages: [],
+    currentImageIndex: 0
 };
 
 /* ===================================
-   ESTADO DE LA APLICACION
+   UTILIDADES
    =================================== */
 
-let currentFilter = 'all';
-let currentProjectId = null;
+function escapeHTML(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
 
-/* ===================================
-   SISTEMA DE FILTRADO
-   =================================== */
-
-function filterProjects(category) {
+function debugLog(...args) {
     if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Filtrando por categoria:', category);
+        console.log('[PORTFOLIO]', ...args);
     }
-
-    currentFilter = category;
-    let visibleCount = 0;
-
-    PORTFOLIO_DOM.projects.forEach(project => {
-        const projectCategory = project.getAttribute('data-category');
-        const shouldShow = category === 'all' || projectCategory === category;
-
-        if (shouldShow) {
-            project.classList.remove('filtering-out');
-            project.classList.add('filtering-in');
-            
-            setTimeout(() => {
-                project.classList.remove('hidden');
-                project.classList.remove('filtering-in');
-            }, PORTFOLIO_CONFIG.animationDuration);
-            
-            visibleCount++;
-        } else {
-            project.classList.add('filtering-out');
-            
-            setTimeout(() => {
-                project.classList.add('hidden');
-                project.classList.remove('filtering-out');
-            }, PORTFOLIO_CONFIG.animationDuration);
-        }
-    });
-
-    if (PORTFOLIO_DOM.noResults) {
-        if (visibleCount === 0) {
-            PORTFOLIO_DOM.noResults.style.display = 'block';
-        } else {
-            PORTFOLIO_DOM.noResults.style.display = 'none';
-        }
-    }
-
-    updateFilterButtons(category);
 }
 
 /* ===================================
-   ACTUALIZAR BOTONES DE FILTRO
+   ICONOS SVG
    =================================== */
 
-function updateFilterButtons(activeCategory) {
-    PORTFOLIO_DOM.filterButtons.forEach(button => {
-        const buttonCategory = button.getAttribute('data-filter');
+const ICONS = {
+    play: `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>`,
+    image: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/>
+        <path d="M21 15l-5-5L5 21"/>
+    </svg>`,
+    gallery: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"/>
+        <path d="M21 15l-5-5L5 21"/>
+    </svg>`
+};
+
+/* ===================================
+   CARGA DEL JSON
+   =================================== */
+
+async function loadPortfolioData() {
+    try {
+        const response = await fetch(PORTFOLIO_CONFIG.dataUrl, { cache: 'no-cache' });
         
-        if (buttonCategory === activeCategory) {
-            button.classList.add('active');
-            button.setAttribute('aria-selected', 'true');
-        } else {
-            button.classList.remove('active');
-            button.setAttribute('aria-selected', 'false');
+        if (!response.ok) {
+            console.warn('[PORTFOLIO] No se pudo cargar el JSON. Status:', response.status);
+            return null;
         }
-    });
+        
+        const data = await response.json();
+        debugLog('JSON cargado:', data);
+        return data;
+    } catch (error) {
+        console.error('[PORTFOLIO] Error al cargar el JSON:', error);
+        return null;
+    }
 }
 
 /* ===================================
-   INICIALIZAR FILTROS
+   RENDERIZAR CATEGORÍAS
    =================================== */
 
-function initFilters() {
-    PORTFOLIO_DOM.filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const category = button.getAttribute('data-filter');
-            filterProjects(category);
-            
-            if (window.innerWidth <= 768) {
-                button.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }
+function renderCategories(categories) {
+    if (!PORTFOLIO_DOM.categoriesGrid || !Array.isArray(categories)) return;
+    
+    const html = categories.map(cat => `
+        <button 
+            class="category-btn" 
+            data-category-id="${escapeHTML(cat.id)}"
+            role="tab"
+            aria-selected="false"
+            type="button"
+        >
+            <span class="category-icon" aria-hidden="true">${escapeHTML(cat.icon || '📁')}</span>
+            <span class="category-name">${escapeHTML(cat.name)}</span>
+        </button>
+    `).join('');
+    
+    PORTFOLIO_DOM.categoriesGrid.innerHTML = html;
+    
+    PORTFOLIO_DOM.categoriesGrid.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const catId = btn.getAttribute('data-category-id');
+            selectCategory(catId);
         });
     });
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Filtros inicializados:', PORTFOLIO_DOM.filterButtons.length);
-    }
+    
+    debugLog('Categorías renderizadas:', categories.length);
 }
 
 /* ===================================
-   ABRIR MODAL
+   SELECCIONAR CATEGORÍA
    =================================== */
 
-function openModal(projectId) {
-    const projectData = PROJECT_DATA[projectId];
+function selectCategory(categoryId) {
+    if (!PORTFOLIO_STATE.data) return;
     
-    if (!projectData) {
-        console.error('Proyecto no encontrado:', projectId);
+    const category = PORTFOLIO_STATE.data.categories.find(c => c.id === categoryId);
+    if (!category) {
+        console.warn('[PORTFOLIO] Categoría no encontrada:', categoryId);
         return;
     }
+    
+    // Toggle: clic en misma categoría → cerrar
+    if (PORTFOLIO_STATE.currentCategory === categoryId) {
+        closePanel();
+        return;
+    }
+    
+    PORTFOLIO_STATE.currentCategory = categoryId;
+    
+    // Actualizar estados de botones
+    PORTFOLIO_DOM.categoriesGrid.querySelectorAll('.category-btn').forEach(btn => {
+        const isActive = btn.getAttribute('data-category-id') === categoryId;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', String(isActive));
+    });
+    
+    // Filtrar items de esta categoría
+    const items = PORTFOLIO_STATE.data.videos.filter(v => v.categoryId === categoryId);
+    
+    // Actualizar título del panel
+    PORTFOLIO_DOM.panelCategoryName.textContent = category.name.toUpperCase();
+    
+    // Renderizar items
+    renderItems(items);
+    
+    // Abrir panel
+    openPanel();
+    
+    // Scroll suave
+    setTimeout(() => {
+        PORTFOLIO_DOM.videosPanel.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }, 100);
+    
+    debugLog('Categoría seleccionada:', category.name, '| Items:', items.length);
+}
 
-    currentProjectId = projectId;
+/* ===================================
+   RENDERIZAR ITEMS (VIDEO O IMAGEN)
+   =================================== */
 
-    if (PORTFOLIO_DOM.modalCategory) {
-        PORTFOLIO_DOM.modalCategory.textContent = projectData.category;
+function renderItems(items) {
+    if (!PORTFOLIO_DOM.videosGrid) return;
+    
+    if (!items || items.length === 0) {
+        PORTFOLIO_DOM.videosGrid.innerHTML = '';
+        PORTFOLIO_DOM.videosEmpty.style.display = 'block';
+        return;
     }
     
-    if (PORTFOLIO_DOM.modalTitle) {
-        PORTFOLIO_DOM.modalTitle.textContent = projectData.title;
-    }
+    PORTFOLIO_DOM.videosEmpty.style.display = 'none';
     
-    if (PORTFOLIO_DOM.modalDescription) {
-        PORTFOLIO_DOM.modalDescription.textContent = projectData.description;
-    }
-    
-    if (PORTFOLIO_DOM.modalClient) {
-        PORTFOLIO_DOM.modalClient.textContent = projectData.client;
-    }
-    
-    if (PORTFOLIO_DOM.modalDate) {
-        PORTFOLIO_DOM.modalDate.textContent = projectData.date;
-    }
-    
-    if (PORTFOLIO_DOM.modalServices) {
-        PORTFOLIO_DOM.modalServices.textContent = projectData.services;
-    }
-
-    if (PORTFOLIO_DOM.modal) {
-        PORTFOLIO_DOM.modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
+    const html = items.map((item, index) => {
+        const type = item.type || 'video';
         
-        PORTFOLIO_DOM.modal.setAttribute('aria-hidden', 'false');
-        
-        if (PORTFOLIO_DOM.modalClose) {
-            PORTFOLIO_DOM.modalClose.focus();
+        if (type === 'image') {
+            return renderImageCard(item, index);
         }
-    }
-
-    pauseFeaturedVideo();
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Modal abierto para proyecto:', projectId, projectData.title);
-    }
-}
-
-/* ===================================
-   CERRAR MODAL
-   =================================== */
-
-function closeModal() {
-    if (PORTFOLIO_DOM.modal) {
-        PORTFOLIO_DOM.modal.classList.remove('active');
-        document.body.style.overflow = '';
+        return renderVideoCard(item, index);
+    }).join('');
+    
+    PORTFOLIO_DOM.videosGrid.innerHTML = html;
+    
+    // Listeners
+    PORTFOLIO_DOM.videosGrid.querySelectorAll('.video-card').forEach(card => {
+        const itemId = card.getAttribute('data-item-id');
+        const itemType = card.getAttribute('data-item-type');
         
-        PORTFOLIO_DOM.modal.setAttribute('aria-hidden', 'true');
-        
-        currentProjectId = null;
-    }
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Modal cerrado');
-    }
-}
-
-/* ===================================
-   INICIALIZAR MODAL
-   =================================== */
-
-function initModal() {
-    PORTFOLIO_DOM.viewButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            const projectCard = button.closest('.portfolio-project');
-            if (projectCard) {
-                const projectId = parseInt(projectCard.getAttribute('data-id'));
-                openModal(projectId);
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.video-card-play-btn, .video-card-image-btn')) return;
+            if (itemType === 'image') {
+                openImageModal(itemId);
+            } else {
+                openVideoModal(itemId);
             }
         });
-    });
-
-    if (PORTFOLIO_DOM.modalClose) {
-        PORTFOLIO_DOM.modalClose.addEventListener('click', closeModal);
-    }
-
-    if (PORTFOLIO_DOM.modalCloseBtn) {
-        PORTFOLIO_DOM.modalCloseBtn.addEventListener('click', closeModal);
-    }
-
-    if (PORTFOLIO_DOM.modalOverlay) {
-        PORTFOLIO_DOM.modalOverlay.addEventListener('click', closeModal);
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && PORTFOLIO_DOM.modal?.classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Modal inicializado');
-    }
-}
-
-/* ===================================
-   NAVEGACION CON TECLADO EN FILTROS
-   =================================== */
-
-function initKeyboardNavigation() {
-    const filterContainer = document.querySelector('.portfolio-filters');
-    
-    if (!filterContainer) return;
-
-    filterContainer.addEventListener('keydown', (e) => {
-        const buttons = Array.from(PORTFOLIO_DOM.filterButtons);
-        const currentIndex = buttons.indexOf(document.activeElement);
         
-        if (currentIndex === -1) return;
-
-        let nextIndex;
-
-        switch(e.key) {
-            case 'ArrowRight':
-                e.preventDefault();
-                nextIndex = (currentIndex + 1) % buttons.length;
-                buttons[nextIndex].focus();
-                break;
-            
-            case 'ArrowLeft':
-                e.preventDefault();
-                nextIndex = currentIndex - 1;
-                if (nextIndex < 0) nextIndex = buttons.length - 1;
-                buttons[nextIndex].focus();
-                break;
-            
-            case 'Home':
-                e.preventDefault();
-                buttons[0].focus();
-                break;
-            
-            case 'End':
-                e.preventDefault();
-                buttons[buttons.length - 1].focus();
-                break;
-        }
-    });
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Navegacion por teclado inicializada');
-    }
-}
-
-/* ===================================
-   ANIMACION FADE-IN AL SCROLL
-   =================================== */
-
-function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, index * 50);
-                
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    PORTFOLIO_DOM.projects.forEach(project => {
-        project.style.opacity = '0';
-        project.style.transform = 'translateY(30px)';
-        project.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(project);
-    });
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Animaciones de scroll inicializadas');
-    }
-}
-
-/* ===================================
-   DETECCION DE DISPOSITIVO
-   =================================== */
-
-const DEVICE_INFO = {
-    isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
-    isTablet: /iPad|Android/i.test(navigator.userAgent) && window.innerWidth >= 768,
-    isTouchDevice: 'ontouchstart' in window || navigator.maxTouchPoints > 0
-};
-
-/* ===================================
-   OPTIMIZACIONES PARA MOVIL
-   =================================== */
-
-function initMobileOptimizations() {
-    if (DEVICE_INFO.isMobile || DEVICE_INFO.isTablet) {
-        document.body.classList.add('is-mobile-portfolio');
-        
-        const filterSection = document.querySelector('.portfolio-filters-section');
-        if (filterSection) {
-            filterSection.style.position = 'relative';
-            filterSection.style.top = '0';
+        const playBtn = card.querySelector('.video-card-play-btn');
+        if (playBtn) {
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openVideoModal(itemId);
+            });
         }
         
-        if (PORTFOLIO_CONFIG.isDebug) {
-            console.log('Optimizaciones movil aplicadas');
+        const imageBtn = card.querySelector('.video-card-image-btn');
+        if (imageBtn) {
+            imageBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openImageModal(itemId);
+            });
         }
-    }
+    });
+    
+    debugLog('Items renderizados:', items.length);
 }
 
 /* ===================================
-   SMOOTH SCROLL PARA BREADCRUMB
+   RENDERIZAR TARJETA DE VIDEO
    =================================== */
 
-function initSmoothScroll() {
-    const breadcrumbLinks = document.querySelectorAll('.breadcrumb a');
-    
-    breadcrumbLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
+function renderVideoCard(item, index) {
+    return `
+        <article 
+            class="video-card" 
+            data-item-id="${escapeHTML(item.id)}"
+            data-item-type="video"
+            style="animation-delay: ${index * 60}ms;"
+        >
+            <div class="video-card-thumbnail">
+                <img 
+                    src="${escapeHTML(item.thumbnail || '')}" 
+                    alt="${escapeHTML(item.title || 'Video')}"
+                    loading="lazy"
+                >
+                <div class="video-card-watermark">
+                    <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph">
+                </div>
+            </div>
             
-            if (href.includes('#')) {
-                e.preventDefault();
-                const targetId = href.split('#')[1];
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
-                    const targetPosition = targetElement.offsetTop - navbarHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
+            <div class="video-card-info">
+                <div class="video-card-avatar">
+                    <img 
+                        src="${escapeHTML(item.avatar || '')}" 
+                        alt="${escapeHTML(item.handle || 'Cliente')}"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="video-card-details">
+                    <h4 class="video-card-title">${escapeHTML(item.title || 'Sin título')}</h4>
+                    <p class="video-card-description">${escapeHTML(item.description || '')}</p>
+                    <span class="video-card-handle">${escapeHTML(item.handle || '')}</span>
+                </div>
+                <button 
+                    class="video-card-play-btn" 
+                    type="button"
+                    aria-label="Reproducir ${escapeHTML(item.title || 'video')}"
+                >
+                    ${ICONS.play}
+                </button>
+            </div>
+        </article>
+    `;
 }
 
 /* ===================================
-   PREVENIR SCROLL DEL BODY EN MODAL
+   RENDERIZAR TARJETA DE IMAGEN
    =================================== */
 
-function preventBodyScroll() {
-    const modalContent = document.querySelector('.modal-content');
+function renderImageCard(item, index) {
+    const images = Array.isArray(item.images) ? item.images : (item.image ? [item.image] : []);
+    const imageCount = images.length;
+    const firstImage = images[0] || '';
     
-    if (!modalContent) return;
+    const countBadge = imageCount > 1 ? `
+        <div class="video-card-count">
+            ${ICONS.gallery}
+            <span>${imageCount}</span>
+        </div>
+    ` : '';
+    
+    return `
+        <article 
+            class="video-card" 
+            data-item-id="${escapeHTML(item.id)}"
+            data-item-type="image"
+            style="animation-delay: ${index * 60}ms;"
+        >
+            <div class="video-card-thumbnail">
+                <img 
+                    src="${escapeHTML(firstImage)}" 
+                    alt="${escapeHTML(item.title || 'Imagen')}"
+                    loading="lazy"
+                >
+                ${countBadge}
+                <div class="video-card-watermark">
+                    <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph">
+                </div>
+            </div>
+            
+            <div class="video-card-info">
+                <div class="video-card-avatar">
+                    <img 
+                        src="${escapeHTML(item.avatar || '')}" 
+                        alt="${escapeHTML(item.handle || 'Cliente')}"
+                        loading="lazy"
+                    >
+                </div>
+                <div class="video-card-details">
+                    <h4 class="video-card-title">${escapeHTML(item.title || 'Sin título')}</h4>
+                    <p class="video-card-description">${escapeHTML(item.description || '')}</p>
+                    <span class="video-card-handle">${escapeHTML(item.handle || '')}</span>
+                </div>
+                <button 
+                    class="video-card-image-btn" 
+                    type="button"
+                    aria-label="Ver ${escapeHTML(item.title || 'imagen')}"
+                >
+                    ${ICONS.image}
+                </button>
+            </div>
+        </article>
+    `;
+}
 
-    let isScrolling = false;
+/* ===================================
+   ABRIR / CERRAR PANEL
+   =================================== */
 
-    modalContent.addEventListener('touchstart', () => {
-        isScrolling = false;
+function openPanel() {
+    if (!PORTFOLIO_DOM.videosPanel) return;
+    PORTFOLIO_DOM.videosPanel.classList.add('active');
+    PORTFOLIO_DOM.videosPanel.setAttribute('aria-hidden', 'false');
+}
+
+function closePanel() {
+    if (!PORTFOLIO_DOM.videosPanel) return;
+    PORTFOLIO_DOM.videosPanel.classList.remove('active');
+    PORTFOLIO_DOM.videosPanel.setAttribute('aria-hidden', 'true');
+    
+    PORTFOLIO_DOM.categoriesGrid.querySelectorAll('.category-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-selected', 'false');
     });
+    
+    PORTFOLIO_STATE.currentCategory = null;
+    debugLog('Panel cerrado');
+}
 
-    modalContent.addEventListener('touchmove', () => {
-        isScrolling = true;
-    });
+/* ===================================
+   MODAL DE VIDEO
+   =================================== */
 
-    modalContent.addEventListener('touchend', (e) => {
-        if (!isScrolling) {
-            e.preventDefault();
+function openVideoModal(itemId) {
+    if (!PORTFOLIO_STATE.data) return;
+    
+    const item = PORTFOLIO_STATE.data.videos.find(v => v.id === itemId);
+    if (!item) {
+        console.warn('[PORTFOLIO] Video no encontrado:', itemId);
+        return;
+    }
+    
+    PORTFOLIO_STATE.currentItem = itemId;
+    
+    PORTFOLIO_DOM.videoModalAvatar.src = item.avatar || '';
+    PORTFOLIO_DOM.videoModalAvatar.alt = item.title || 'Video';
+    PORTFOLIO_DOM.videoModalTitle.textContent = item.title || 'Sin título';
+    PORTFOLIO_DOM.videoModalDescription.textContent = item.description || '';
+    PORTFOLIO_DOM.videoModalHandleAvatar.src = item.avatar || '';
+    PORTFOLIO_DOM.videoModalHandleAvatar.alt = '';
+    PORTFOLIO_DOM.videoModalHandle.textContent = item.handle || '';
+    
+    PORTFOLIO_DOM.videoModalSource.src = item.videoUrl || '';
+    PORTFOLIO_DOM.videoModalPlayer.load();
+    
+    if (PORTFOLIO_DOM.featuredVideo && !PORTFOLIO_DOM.featuredVideo.paused) {
+        PORTFOLIO_DOM.featuredVideo.pause();
+    }
+    
+    PORTFOLIO_DOM.videoModal.classList.add('active');
+    PORTFOLIO_DOM.videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+        const playPromise = PORTFOLIO_DOM.videoModalPlayer.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(err => debugLog('No se pudo reproducir automáticamente:', err.message));
         }
-    });
+    }, 200);
+    
+    debugLog('Modal video abierto:', item.title);
 }
 
-/* ===================================
-   CONTADOR DE PROYECTOS VISIBLES
-   =================================== */
-
-function updateProjectCount() {
-    const visibleProjects = Array.from(PORTFOLIO_DOM.projects).filter(
-        project => !project.classList.contains('hidden')
-    );
+function closeVideoModal() {
+    if (!PORTFOLIO_DOM.videoModal) return;
     
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Proyectos visibles:', visibleProjects.length);
+    PORTFOLIO_DOM.videoModal.classList.remove('active');
+    PORTFOLIO_DOM.videoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    
+    if (PORTFOLIO_DOM.videoModalPlayer) {
+        PORTFOLIO_DOM.videoModalPlayer.pause();
+        PORTFOLIO_DOM.videoModalPlayer.currentTime = 0;
     }
     
-    return visibleProjects.length;
+    PORTFOLIO_STATE.currentItem = null;
+    debugLog('Modal video cerrado');
 }
 
 /* ===================================
-   LAZY LOADING DE IMAGENES
+   MODAL DE IMAGEN (GALERÍA)
    =================================== */
 
-function initLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
+function openImageModal(itemId) {
+    if (!PORTFOLIO_STATE.data) return;
     
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                const src = img.getAttribute('data-src');
-                
-                if (src) {
-                    img.setAttribute('src', src);
-                    img.removeAttribute('data-src');
-                }
-                
-                imageObserver.unobserve(img);
-            }
-        });
-    });
+    const item = PORTFOLIO_STATE.data.videos.find(v => v.id === itemId);
+    if (!item) {
+        console.warn('[PORTFOLIO] Imagen no encontrada:', itemId);
+        return;
+    }
     
-    images.forEach(img => imageObserver.observe(img));
+    const images = Array.isArray(item.images) ? item.images : (item.image ? [item.image] : []);
     
-    if (PORTFOLIO_CONFIG.isDebug && images.length > 0) {
-        console.log('Lazy loading inicializado para', images.length, 'imagenes');
+    if (images.length === 0) {
+        console.warn('[PORTFOLIO] Item sin imágenes:', itemId);
+        return;
+    }
+    
+    PORTFOLIO_STATE.currentItem = itemId;
+    PORTFOLIO_STATE.currentImages = images;
+    PORTFOLIO_STATE.currentImageIndex = 0;
+    
+    PORTFOLIO_DOM.imageModalAvatar.src = item.avatar || '';
+    PORTFOLIO_DOM.imageModalAvatar.alt = item.title || 'Imagen';
+    PORTFOLIO_DOM.imageModalTitle.textContent = item.title || 'Sin título';
+    
+    const description = item.description || '';
+    PORTFOLIO_DOM.imageModalDescription.innerHTML = description
+        .split('\n')
+        .filter(p => p.trim())
+        .map(p => `<p>${escapeHTML(p.trim())}</p>`)
+        .join('');
+    
+    PORTFOLIO_DOM.imageModalHandle.textContent = item.handle || '';
+    
+    if (images.length > 1) {
+        PORTFOLIO_DOM.imageViewerControls.classList.remove('single-image');
+        PORTFOLIO_DOM.imageTotal.textContent = images.length;
+    } else {
+        PORTFOLIO_DOM.imageViewerControls.classList.add('single-image');
+    }
+    
+    updateImageViewer(0);
+    
+    PORTFOLIO_DOM.imageModal.classList.add('active');
+    PORTFOLIO_DOM.imageModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    
+    if (PORTFOLIO_DOM.featuredVideo && !PORTFOLIO_DOM.featuredVideo.paused) {
+        PORTFOLIO_DOM.featuredVideo.pause();
+    }
+    
+    debugLog('Modal imagen abierto:', item.title, '| Imágenes:', images.length);
+}
+
+function closeImageModal() {
+    if (!PORTFOLIO_DOM.imageModal) return;
+    
+    PORTFOLIO_DOM.imageModal.classList.remove('active');
+    PORTFOLIO_DOM.imageModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    
+    PORTFOLIO_STATE.currentItem = null;
+    PORTFOLIO_STATE.currentImages = [];
+    PORTFOLIO_STATE.currentImageIndex = 0;
+    debugLog('Modal imagen cerrado');
+}
+
+function updateImageViewer(index) {
+    const total = PORTFOLIO_STATE.currentImages.length;
+    if (index < 0 || index >= total) return;
+    
+    PORTFOLIO_STATE.currentImageIndex = index;
+    
+    const img = PORTFOLIO_DOM.imageModalImage;
+    
+    img.classList.add('fading');
+    
+    setTimeout(() => {
+        img.src = PORTFOLIO_STATE.currentImages[index];
+        img.alt = `Imagen ${index + 1} de ${total}`;
+        img.onload = () => img.classList.remove('fading');
+    }, 200);
+    
+    if (PORTFOLIO_DOM.imageCurrent) {
+        PORTFOLIO_DOM.imageCurrent.textContent = index + 1;
+    }
+    
+    if (PORTFOLIO_DOM.imageNavPrev) {
+        PORTFOLIO_DOM.imageNavPrev.disabled = index === 0;
+    }
+    if (PORTFOLIO_DOM.imageNavNext) {
+        PORTFOLIO_DOM.imageNavNext.disabled = index === total - 1;
+    }
+}
+
+function nextImage() {
+    const nextIdx = PORTFOLIO_STATE.currentImageIndex + 1;
+    if (nextIdx < PORTFOLIO_STATE.currentImages.length) {
+        updateImageViewer(nextIdx);
+    }
+}
+
+function prevImage() {
+    const prevIdx = PORTFOLIO_STATE.currentImageIndex - 1;
+    if (prevIdx >= 0) {
+        updateImageViewer(prevIdx);
     }
 }
 
 /* ===================================
-   MANEJO DE ORIENTACION
+   VIDEO DESTACADO (SCROLL AUTO-PLAY)
    =================================== */
 
-function handleOrientationChange() {
-    if (DEVICE_INFO.isMobile || DEVICE_INFO.isTablet) {
-        window.addEventListener('orientationchange', () => {
-            setTimeout(() => {
-                if (PORTFOLIO_DOM.modal?.classList.contains('active')) {
-                    closeModal();
-                }
-                
-                pauseFeaturedVideo();
-                
-                if (PORTFOLIO_CONFIG.isDebug) {
-                    console.log('Orientacion cambiada');
-                }
-            }, 100);
-        });
-    }
-}
-
-/* ===================================
-   CONTROL DE VIDEO DESTACADO
-   =================================== */
+let featuredVideoObserver = null;
 
 function pauseFeaturedVideo() {
-    if (!PORTFOLIO_DOM.featuredVideo) return;
+    const video = PORTFOLIO_DOM.featuredVideo;
+    if (!video) return;
+    if (!video.paused) {
+        video.pause();
+        const wrapper = video.closest('.video-wrapper');
+        if (wrapper) wrapper.classList.remove('is-playing');
+    }
+}
 
-    const isYouTube = PORTFOLIO_DOM.featuredVideo.tagName === 'IFRAME';
-    
-    if (isYouTube) {
-        const iframeSrc = PORTFOLIO_DOM.featuredVideo.src;
-        PORTFOLIO_DOM.featuredVideo.src = iframeSrc;
-        
-        if (PORTFOLIO_CONFIG.isDebug) {
-            console.log('Video de YouTube reiniciado');
-        }
-    } else {
-        if (typeof PORTFOLIO_DOM.featuredVideo.pause === 'function') {
-            PORTFOLIO_DOM.featuredVideo.pause();
-            
-            if (PORTFOLIO_CONFIG.isDebug) {
-                console.log('Video pausado');
-            }
+function playFeaturedVideo() {
+    const video = PORTFOLIO_DOM.featuredVideo;
+    if (!video) return;
+    if (video.paused) {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.then === 'function') {
+            playPromise
+                .then(() => {
+                    const wrapper = video.closest('.video-wrapper');
+                    if (wrapper) wrapper.classList.add('is-playing');
+                })
+                .catch(err => debugLog('Autoplay bloqueado:', err.message));
         }
     }
 }
 
 function initFeaturedVideo() {
-    if (!PORTFOLIO_DOM.featuredVideo) {
-        if (PORTFOLIO_CONFIG.isDebug) {
-            console.log('No hay video destacado en la pagina');
-        }
+    const video = PORTFOLIO_DOM.featuredVideo;
+    const soundBtn = document.getElementById('video-sound-btn');
+    
+    if (!video) {
+        debugLog('No hay video destacado');
         return;
     }
-
-    const isYouTube = PORTFOLIO_DOM.featuredVideo.tagName === 'IFRAME';
-
-    if (!isYouTube && PORTFOLIO_DOM.featuredVideo.tagName === 'VIDEO') {
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting && !PORTFOLIO_DOM.featuredVideo.paused) {
-                    PORTFOLIO_DOM.featuredVideo.pause();
-                }
-            });
-        }, { threshold: 0.25 });
-
-        videoObserver.observe(PORTFOLIO_DOM.featuredVideo);
-
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden && !PORTFOLIO_DOM.featuredVideo.paused) {
-                PORTFOLIO_DOM.featuredVideo.pause();
+    
+    featuredVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                playFeaturedVideo();
+            } else {
+                pauseFeaturedVideo();
+            }
+        });
+    }, { threshold: 0.4 });
+    
+    featuredVideoObserver.observe(video);
+    
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) pauseFeaturedVideo();
+    });
+    
+    video.addEventListener('ended', () => {
+        video.currentTime = 0;
+        playFeaturedVideo();
+    });
+    
+    if (soundBtn) {
+        video.addEventListener('playing', () => {
+            if (video.muted) soundBtn.classList.add('pulse');
+        }, { once: true });
+        
+        soundBtn.addEventListener('click', () => {
+            video.muted = !video.muted;
+            if (video.muted) {
+                soundBtn.classList.remove('is-unmuted');
+                soundBtn.setAttribute('aria-label', 'Activar sonido');
+                soundBtn.title = 'Activar sonido';
+            } else {
+                soundBtn.classList.add('is-unmuted');
+                soundBtn.classList.remove('pulse');
+                soundBtn.setAttribute('aria-label', 'Silenciar');
+                soundBtn.title = 'Silenciar';
             }
         });
     }
-
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Video destacado inicializado (Tipo: ' + (isYouTube ? 'YouTube' : 'HTML5') + ')');
-    }
-}
-
-/* ===================================
-   ANALYTICS TRACKING (PLACEHOLDER)
-   =================================== */
-
-function trackEvent(eventName, eventData) {
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Event tracked:', eventName, eventData);
-    }
-}
-
-/* ===================================
-   COMPARTIR PROYECTO (FUTURO)
-   =================================== */
-
-function shareProject(projectId) {
-    const projectData = PROJECT_DATA[projectId];
     
-    if (!projectData) return;
+    debugLog('Video destacado inicializado');
+}
 
-    const shareData = {
-        title: projectData.title,
-        text: projectData.description,
-        url: window.location.href + '?project=' + projectId
-    };
+/* ===================================
+   EVENTOS GLOBALES
+   =================================== */
 
-    if (navigator.share) {
-        navigator.share(shareData)
-            .then(() => {
-                if (PORTFOLIO_CONFIG.isDebug) {
-                    console.log('Proyecto compartido exitosamente');
-                }
-                trackEvent('share_project', { project_id: projectId });
-            })
-            .catch(err => {
-                console.error('Error al compartir:', err);
-            });
-    } else {
-        if (PORTFOLIO_CONFIG.isDebug) {
-            console.log('Web Share API no disponible');
+function initGlobalEvents() {
+    if (PORTFOLIO_DOM.panelCloseBtn) {
+        PORTFOLIO_DOM.panelCloseBtn.addEventListener('click', closePanel);
+    }
+    
+    if (PORTFOLIO_DOM.videoModalClose) {
+        PORTFOLIO_DOM.videoModalClose.addEventListener('click', closeVideoModal);
+    }
+    if (PORTFOLIO_DOM.videoModalOverlay) {
+        PORTFOLIO_DOM.videoModalOverlay.addEventListener('click', closeVideoModal);
+    }
+    
+    if (PORTFOLIO_DOM.imageModalClose) {
+        PORTFOLIO_DOM.imageModalClose.addEventListener('click', closeImageModal);
+    }
+    if (PORTFOLIO_DOM.imageModalOverlay) {
+        PORTFOLIO_DOM.imageModalOverlay.addEventListener('click', closeImageModal);
+    }
+    if (PORTFOLIO_DOM.imageNavPrev) {
+        PORTFOLIO_DOM.imageNavPrev.addEventListener('click', prevImage);
+    }
+    if (PORTFOLIO_DOM.imageNavNext) {
+        PORTFOLIO_DOM.imageNavNext.addEventListener('click', nextImage);
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (PORTFOLIO_DOM.videoModal?.classList.contains('active')) {
+                closeVideoModal();
+                return;
+            }
+            if (PORTFOLIO_DOM.imageModal?.classList.contains('active')) {
+                closeImageModal();
+                return;
+            }
+            if (PORTFOLIO_DOM.videosPanel?.classList.contains('active')) {
+                closePanel();
+                return;
+            }
         }
-    }
+        
+        if (PORTFOLIO_DOM.imageModal?.classList.contains('active')) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextImage();
+            }
+        }
+    });
 }
 
 /* ===================================
-   INICIALIZACION DE URL PARAMS
+   INICIALIZACIÓN
    =================================== */
 
-function checkURLParams() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const projectId = urlParams.get('project');
-    const category = urlParams.get('category');
+async function initPortfolio() {
+    debugLog('Inicializando Portfolio...');
     
-    if (projectId && PROJECT_DATA[projectId]) {
-        setTimeout(() => {
-            openModal(parseInt(projectId));
-        }, 500);
-    }
-    
-    if (category && category !== 'all') {
-        setTimeout(() => {
-            filterProjects(category);
-        }, 300);
-    }
-
-    if (PORTFOLIO_CONFIG.isDebug && (projectId || category)) {
-        console.log('Parametros URL detectados - project:', projectId, 'category:', category);
-    }
-}
-
-/* ===================================
-   DEBUGGING HELPERS
-   =================================== */
-
-function enableDebugMode() {
-    window.PortfolioDebug = {
-        filterProjects,
-        openModal,
-        closeModal,
-        updateProjectCount,
-        shareProject,
-        pauseFeaturedVideo,
-        PROJECT_DATA,
-        PORTFOLIO_DOM,
-        currentFilter,
-        currentProjectId
-    };
-    
-    console.log('Portfolio Debug Mode habilitado');
-    console.log('Accede a window.PortfolioDebug para debugging');
-}
-
-/* ===================================
-   INICIALIZACION PRINCIPAL
-   =================================== */
-
-function initPortfolio() {
-    console.log('Inicializando Portfolio Page...');
-    
-    initFilters();
-    initModal();
-    initKeyboardNavigation();
-    initScrollAnimations();
-    initMobileOptimizations();
-    initSmoothScroll();
-    preventBodyScroll();
-    initLazyLoading();
-    handleOrientationChange();
-    checkURLParams();
     initFeaturedVideo();
+    initGlobalEvents();
     
-    if (PORTFOLIO_CONFIG.isDebug) {
-        enableDebugMode();
+    const data = await loadPortfolioData();
+    
+    if (!data) {
+        console.warn('[PORTFOLIO] No se pudieron cargar los datos');
+        if (PORTFOLIO_DOM.categoriesGrid) {
+            PORTFOLIO_DOM.categoriesGrid.innerHTML = 
+                '<p style="color: rgba(255,255,255,0.6); text-align: center; grid-column: 1/-1;">No se pudieron cargar las categorías.</p>';
+        }
+        return;
     }
     
-    console.log('Portfolio Page inicializado correctamente');
+    PORTFOLIO_STATE.data = data;
+    
+    if (data.categories && Array.isArray(data.categories)) {
+        renderCategories(data.categories);
+    }
+    
+    debugLog('Portfolio inicializado correctamente');
+    debugLog('Categorías:', data.categories?.length || 0);
+    debugLog('Items totales:', data.videos?.length || 0);
 }
 
 /* ===================================
-   VERIFICAR QUE ESTAMOS EN PORTFOLIO
+   ARRANQUE
    =================================== */
 
-if (window.location.pathname.includes('InPortafolio') || 
-    document.querySelector('.portfolio-hero')) {
-    
+if (document.querySelector('.portfolio-categories-section')) {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initPortfolio);
     } else {
         initPortfolio();
     }
-} else {
-    if (PORTFOLIO_CONFIG.isDebug) {
-        console.log('Portfolio.js cargado pero no estamos en pagina de portfolio');
-    }
 }
 
 /* ===================================
-   EXPORTAR FUNCIONES (OPCIONAL)
+   DEBUG (OPCIONAL)
    =================================== */
 
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        filterProjects,
-        openModal,
-        closeModal,
-        PROJECT_DATA
+if (PORTFOLIO_CONFIG.isDebug) {
+    window.OceanPortfolio = {
+        config: PORTFOLIO_CONFIG,
+        dom: PORTFOLIO_DOM,
+        state: PORTFOLIO_STATE,
+        selectCategory,
+        openVideoModal,
+        openImageModal,
+        closeVideoModal,
+        closeImageModal,
+        closePanel,
+        nextImage,
+        prevImage,
+        loadPortfolioData
     };
+    console.log('[PORTFOLIO] window.OceanPortfolio disponible para debugging');
 }
