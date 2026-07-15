@@ -1,6 +1,6 @@
 /* ===================================
    OCEAN GRAPH - PORTFOLIO PAGE JS
-   Sistema de categorías + videos + imágenes desde JSON
+   Sistema de categorías + videos + imágenes + reproductor custom
    =================================== */
 
 'use strict';
@@ -11,6 +11,7 @@
 
 const PORTFOLIO_CONFIG = {
     dataUrl: 'data/portfolio-videos.json',
+    controlsHideDelay: 2500, // ms para ocultar controles del reproductor
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
@@ -29,7 +30,7 @@ const PORTFOLIO_DOM = {
     videosGrid: document.getElementById('videos-grid'),
     videosEmpty: document.getElementById('videos-empty'),
     
-    // Modal reproductor de VIDEO
+    // Modal VIDEO
     videoModal: document.getElementById('video-modal'),
     videoModalOverlay: document.getElementById('video-modal-overlay'),
     videoModalClose: document.getElementById('video-modal-close'),
@@ -41,7 +42,19 @@ const PORTFOLIO_DOM = {
     videoModalHandleAvatar: document.getElementById('video-modal-handle-avatar'),
     videoModalHandle: document.getElementById('video-modal-handle'),
     
-    // Modal de IMAGEN
+    // Reproductor personalizado
+    customPlayer: document.getElementById('custom-player'),
+    playerCenterPlay: document.getElementById('player-center-play'),
+    playerControls: document.getElementById('player-controls'),
+    playerCurrentTime: document.getElementById('player-current-time'),
+    playerDuration: document.getElementById('player-duration'),
+    playerProgress: document.getElementById('player-progress'),
+    playerProgressFilled: document.getElementById('player-progress-filled'),
+    playerProgressHandle: document.getElementById('player-progress-handle'),
+    playerVolumeBtn: document.getElementById('player-volume-btn'),
+    playerPlayBtn: document.getElementById('player-play-btn'),
+    
+    // Modal IMAGEN
     imageModal: document.getElementById('image-modal'),
     imageModalOverlay: document.getElementById('image-modal-overlay'),
     imageModalClose: document.getElementById('image-modal-close'),
@@ -61,7 +74,7 @@ const PORTFOLIO_DOM = {
 };
 
 /* ===================================
-   ESTADO DE LA APLICACIÓN
+   ESTADO
    =================================== */
 
 const PORTFOLIO_STATE = {
@@ -69,7 +82,10 @@ const PORTFOLIO_STATE = {
     currentCategory: null,
     currentItem: null,
     currentImages: [],
-    currentImageIndex: 0
+    currentImageIndex: 0,
+    // Reproductor
+    isDragging: false,
+    controlsHideTimeout: null
 };
 
 /* ===================================
@@ -89,6 +105,13 @@ function debugLog(...args) {
     if (PORTFOLIO_CONFIG.isDebug) {
         console.log('[PORTFOLIO]', ...args);
     }
+}
+
+function formatTime(seconds) {
+    if (!seconds || isNaN(seconds) || !isFinite(seconds)) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
 }
 
 /* ===================================
@@ -116,23 +139,21 @@ const ICONS = {
 async function loadPortfolioData() {
     try {
         const response = await fetch(PORTFOLIO_CONFIG.dataUrl, { cache: 'no-cache' });
-        
         if (!response.ok) {
-            console.warn('[PORTFOLIO] No se pudo cargar el JSON. Status:', response.status);
+            console.warn('[PORTFOLIO] Status:', response.status);
             return null;
         }
-        
         const data = await response.json();
         debugLog('JSON cargado:', data);
         return data;
     } catch (error) {
-        console.error('[PORTFOLIO] Error al cargar el JSON:', error);
+        console.error('[PORTFOLIO] Error al cargar JSON:', error);
         return null;
     }
 }
 
 /* ===================================
-   RENDERIZAR CATEGORÍAS
+   RENDER CATEGORÍAS
    =================================== */
 
 function renderCategories(categories) {
@@ -171,12 +192,8 @@ function selectCategory(categoryId) {
     if (!PORTFOLIO_STATE.data) return;
     
     const category = PORTFOLIO_STATE.data.categories.find(c => c.id === categoryId);
-    if (!category) {
-        console.warn('[PORTFOLIO] Categoría no encontrada:', categoryId);
-        return;
-    }
+    if (!category) return;
     
-    // Toggle: clic en misma categoría → cerrar
     if (PORTFOLIO_STATE.currentCategory === categoryId) {
         closePanel();
         return;
@@ -184,38 +201,28 @@ function selectCategory(categoryId) {
     
     PORTFOLIO_STATE.currentCategory = categoryId;
     
-    // Actualizar estados de botones
     PORTFOLIO_DOM.categoriesGrid.querySelectorAll('.category-btn').forEach(btn => {
         const isActive = btn.getAttribute('data-category-id') === categoryId;
         btn.classList.toggle('active', isActive);
         btn.setAttribute('aria-selected', String(isActive));
     });
     
-    // Filtrar items de esta categoría
     const items = PORTFOLIO_STATE.data.videos.filter(v => v.categoryId === categoryId);
     
-    // Actualizar título del panel
     PORTFOLIO_DOM.panelCategoryName.textContent = category.name.toUpperCase();
     
-    // Renderizar items
     renderItems(items);
-    
-    // Abrir panel
     openPanel();
     
-    // Scroll suave
     setTimeout(() => {
-        PORTFOLIO_DOM.videosPanel.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
+        PORTFOLIO_DOM.videosPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
     
     debugLog('Categoría seleccionada:', category.name, '| Items:', items.length);
 }
 
 /* ===================================
-   RENDERIZAR ITEMS (VIDEO O IMAGEN)
+   RENDER ITEMS
    =================================== */
 
 function renderItems(items) {
@@ -231,27 +238,19 @@ function renderItems(items) {
     
     const html = items.map((item, index) => {
         const type = item.type || 'video';
-        
-        if (type === 'image') {
-            return renderImageCard(item, index);
-        }
-        return renderVideoCard(item, index);
+        return type === 'image' ? renderImageCard(item, index) : renderVideoCard(item, index);
     }).join('');
     
     PORTFOLIO_DOM.videosGrid.innerHTML = html;
     
-    // Listeners
     PORTFOLIO_DOM.videosGrid.querySelectorAll('.video-card').forEach(card => {
         const itemId = card.getAttribute('data-item-id');
         const itemType = card.getAttribute('data-item-type');
         
         card.addEventListener('click', (e) => {
             if (e.target.closest('.video-card-play-btn, .video-card-image-btn')) return;
-            if (itemType === 'image') {
-                openImageModal(itemId);
-            } else {
-                openVideoModal(itemId);
-            }
+            if (itemType === 'image') openImageModal(itemId);
+            else openVideoModal(itemId);
         });
         
         const playBtn = card.querySelector('.video-card-play-btn');
@@ -274,10 +273,6 @@ function renderItems(items) {
     debugLog('Items renderizados:', items.length);
 }
 
-/* ===================================
-   RENDERIZAR TARJETA DE VIDEO
-   =================================== */
-
 function renderVideoCard(item, index) {
     return `
         <article 
@@ -287,44 +282,27 @@ function renderVideoCard(item, index) {
             style="animation-delay: ${index * 60}ms;"
         >
             <div class="video-card-thumbnail">
-                <img 
-                    src="${escapeHTML(item.thumbnail || '')}" 
-                    alt="${escapeHTML(item.title || 'Video')}"
-                    loading="lazy"
-                >
+                <img src="${escapeHTML(item.thumbnail || '')}" alt="${escapeHTML(item.title || 'Video')}" loading="lazy">
                 <div class="video-card-watermark">
                     <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph">
                 </div>
             </div>
-            
             <div class="video-card-info">
                 <div class="video-card-avatar">
-                    <img 
-                        src="${escapeHTML(item.avatar || '')}" 
-                        alt="${escapeHTML(item.handle || 'Cliente')}"
-                        loading="lazy"
-                    >
+                    <img src="${escapeHTML(item.avatar || '')}" alt="${escapeHTML(item.handle || 'Cliente')}" loading="lazy">
                 </div>
                 <div class="video-card-details">
                     <h4 class="video-card-title">${escapeHTML(item.title || 'Sin título')}</h4>
                     <p class="video-card-description">${escapeHTML(item.description || '')}</p>
                     <span class="video-card-handle">${escapeHTML(item.handle || '')}</span>
                 </div>
-                <button 
-                    class="video-card-play-btn" 
-                    type="button"
-                    aria-label="Reproducir ${escapeHTML(item.title || 'video')}"
-                >
+                <button class="video-card-play-btn" type="button" aria-label="Reproducir ${escapeHTML(item.title || 'video')}">
                     ${ICONS.play}
                 </button>
             </div>
         </article>
     `;
 }
-
-/* ===================================
-   RENDERIZAR TARJETA DE IMAGEN
-   =================================== */
 
 function renderImageCard(item, index) {
     const images = Array.isArray(item.images) ? item.images : (item.image ? [item.image] : []);
@@ -346,35 +324,22 @@ function renderImageCard(item, index) {
             style="animation-delay: ${index * 60}ms;"
         >
             <div class="video-card-thumbnail">
-                <img 
-                    src="${escapeHTML(firstImage)}" 
-                    alt="${escapeHTML(item.title || 'Imagen')}"
-                    loading="lazy"
-                >
+                <img src="${escapeHTML(firstImage)}" alt="${escapeHTML(item.title || 'Imagen')}" loading="lazy">
                 ${countBadge}
                 <div class="video-card-watermark">
                     <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph">
                 </div>
             </div>
-            
             <div class="video-card-info">
                 <div class="video-card-avatar">
-                    <img 
-                        src="${escapeHTML(item.avatar || '')}" 
-                        alt="${escapeHTML(item.handle || 'Cliente')}"
-                        loading="lazy"
-                    >
+                    <img src="${escapeHTML(item.avatar || '')}" alt="${escapeHTML(item.handle || 'Cliente')}" loading="lazy">
                 </div>
                 <div class="video-card-details">
                     <h4 class="video-card-title">${escapeHTML(item.title || 'Sin título')}</h4>
                     <p class="video-card-description">${escapeHTML(item.description || '')}</p>
                     <span class="video-card-handle">${escapeHTML(item.handle || '')}</span>
                 </div>
-                <button 
-                    class="video-card-image-btn" 
-                    type="button"
-                    aria-label="Ver ${escapeHTML(item.title || 'imagen')}"
-                >
+                <button class="video-card-image-btn" type="button" aria-label="Ver ${escapeHTML(item.title || 'imagen')}">
                     ${ICONS.image}
                 </button>
             </div>
@@ -403,7 +368,6 @@ function closePanel() {
     });
     
     PORTFOLIO_STATE.currentCategory = null;
-    debugLog('Panel cerrado');
 }
 
 /* ===================================
@@ -414,24 +378,30 @@ function openVideoModal(itemId) {
     if (!PORTFOLIO_STATE.data) return;
     
     const item = PORTFOLIO_STATE.data.videos.find(v => v.id === itemId);
-    if (!item) {
-        console.warn('[PORTFOLIO] Video no encontrado:', itemId);
-        return;
-    }
+    if (!item) return;
     
     PORTFOLIO_STATE.currentItem = itemId;
     
+    // Llenar info
     PORTFOLIO_DOM.videoModalAvatar.src = item.avatar || '';
     PORTFOLIO_DOM.videoModalAvatar.alt = item.title || 'Video';
     PORTFOLIO_DOM.videoModalTitle.textContent = item.title || 'Sin título';
     PORTFOLIO_DOM.videoModalDescription.textContent = item.description || '';
     PORTFOLIO_DOM.videoModalHandleAvatar.src = item.avatar || '';
-    PORTFOLIO_DOM.videoModalHandleAvatar.alt = '';
     PORTFOLIO_DOM.videoModalHandle.textContent = item.handle || '';
     
+    // Cargar video
     PORTFOLIO_DOM.videoModalSource.src = item.videoUrl || '';
     PORTFOLIO_DOM.videoModalPlayer.load();
     
+    // Reset del reproductor visual
+    PORTFOLIO_DOM.customPlayer.classList.remove('is-playing', 'controls-hidden');
+    PORTFOLIO_DOM.playerProgressFilled.style.width = '0%';
+    PORTFOLIO_DOM.playerProgressHandle.style.left = '0%';
+    PORTFOLIO_DOM.playerCurrentTime.textContent = '0:00';
+    PORTFOLIO_DOM.playerDuration.textContent = '0:00';
+    
+    // Pausar destacado
     if (PORTFOLIO_DOM.featuredVideo && !PORTFOLIO_DOM.featuredVideo.paused) {
         PORTFOLIO_DOM.featuredVideo.pause();
     }
@@ -440,11 +410,9 @@ function openVideoModal(itemId) {
     PORTFOLIO_DOM.videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     
+    // Autoplay
     setTimeout(() => {
-        const playPromise = PORTFOLIO_DOM.videoModalPlayer.play();
-        if (playPromise && typeof playPromise.catch === 'function') {
-            playPromise.catch(err => debugLog('No se pudo reproducir automáticamente:', err.message));
-        }
+        playVideo();
     }, 200);
     
     debugLog('Modal video abierto:', item.title);
@@ -462,29 +430,210 @@ function closeVideoModal() {
         PORTFOLIO_DOM.videoModalPlayer.currentTime = 0;
     }
     
+    PORTFOLIO_DOM.customPlayer.classList.remove('is-playing', 'controls-hidden');
+    clearTimeout(PORTFOLIO_STATE.controlsHideTimeout);
+    
     PORTFOLIO_STATE.currentItem = null;
-    debugLog('Modal video cerrado');
 }
 
 /* ===================================
-   MODAL DE IMAGEN (GALERÍA)
+   REPRODUCTOR PERSONALIZADO
+   =================================== */
+
+function playVideo() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video) return;
+    
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(err => debugLog('No se pudo reproducir:', err.message));
+    }
+}
+
+function pauseVideo() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video) return;
+    video.pause();
+}
+
+function togglePlay() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video) return;
+    
+    if (video.paused) {
+        playVideo();
+    } else {
+        pauseVideo();
+    }
+}
+
+function toggleMute() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video) return;
+    
+    video.muted = !video.muted;
+    PORTFOLIO_DOM.playerVolumeBtn.classList.toggle('muted', video.muted);
+    PORTFOLIO_DOM.playerVolumeBtn.setAttribute('aria-label', video.muted ? 'Activar sonido' : 'Silenciar');
+}
+
+function updateProgress() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video || !video.duration || PORTFOLIO_STATE.isDragging) return;
+    
+    const percent = (video.currentTime / video.duration) * 100;
+    PORTFOLIO_DOM.playerProgressFilled.style.width = `${percent}%`;
+    PORTFOLIO_DOM.playerProgressHandle.style.left = `${percent}%`;
+    PORTFOLIO_DOM.playerCurrentTime.textContent = formatTime(video.currentTime);
+}
+
+function updateDuration() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video) return;
+    PORTFOLIO_DOM.playerDuration.textContent = formatTime(video.duration);
+}
+
+function seekVideo(event) {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (!video || !video.duration) return;
+    
+    const rect = PORTFOLIO_DOM.playerProgress.getBoundingClientRect();
+    const clickX = (event.clientX || (event.touches && event.touches[0]?.clientX)) - rect.left;
+    const percent = Math.max(0, Math.min(1, clickX / rect.width));
+    
+    video.currentTime = percent * video.duration;
+    
+    // Actualizar visualmente al instante
+    PORTFOLIO_DOM.playerProgressFilled.style.width = `${percent * 100}%`;
+    PORTFOLIO_DOM.playerProgressHandle.style.left = `${percent * 100}%`;
+}
+
+function showControls() {
+    const player = PORTFOLIO_DOM.customPlayer;
+    if (!player) return;
+    
+    player.classList.remove('controls-hidden');
+    clearTimeout(PORTFOLIO_STATE.controlsHideTimeout);
+    
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    if (video && !video.paused) {
+        PORTFOLIO_STATE.controlsHideTimeout = setTimeout(() => {
+            player.classList.add('controls-hidden');
+        }, PORTFOLIO_CONFIG.controlsHideDelay);
+    }
+}
+
+function initCustomPlayer() {
+    const video = PORTFOLIO_DOM.videoModalPlayer;
+    const player = PORTFOLIO_DOM.customPlayer;
+    if (!video || !player) return;
+    
+    // Eventos del video HTML5
+    video.addEventListener('play', () => {
+        player.classList.add('is-playing');
+        showControls();
+    });
+    
+    video.addEventListener('pause', () => {
+        player.classList.remove('is-playing');
+        clearTimeout(PORTFOLIO_STATE.controlsHideTimeout);
+        player.classList.remove('controls-hidden');
+    });
+    
+    video.addEventListener('timeupdate', updateProgress);
+    video.addEventListener('loadedmetadata', updateDuration);
+    video.addEventListener('durationchange', updateDuration);
+    
+    video.addEventListener('ended', () => {
+        player.classList.remove('is-playing');
+        video.currentTime = 0;
+    });
+    
+    // Click en el video = play/pause
+    video.addEventListener('click', togglePlay);
+    
+    // Botón play central
+    PORTFOLIO_DOM.playerCenterPlay?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        playVideo();
+    });
+    
+    // Botón play/pause de la barra
+    PORTFOLIO_DOM.playerPlayBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        togglePlay();
+    });
+    
+    // Botón volumen
+    PORTFOLIO_DOM.playerVolumeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMute();
+    });
+    
+    // Barra de progreso: click para seek
+    PORTFOLIO_DOM.playerProgress?.addEventListener('click', seekVideo);
+    
+    // Barra de progreso: arrastrar (drag)
+    PORTFOLIO_DOM.playerProgress?.addEventListener('mousedown', (e) => {
+        PORTFOLIO_STATE.isDragging = true;
+        PORTFOLIO_DOM.playerProgress.classList.add('dragging');
+        seekVideo(e);
+    });
+    
+    document.addEventListener('mousemove', (e) => {
+        if (PORTFOLIO_STATE.isDragging) seekVideo(e);
+    });
+    
+    document.addEventListener('mouseup', () => {
+        if (PORTFOLIO_STATE.isDragging) {
+            PORTFOLIO_STATE.isDragging = false;
+            PORTFOLIO_DOM.playerProgress?.classList.remove('dragging');
+        }
+    });
+    
+    // Soporte táctil para el drag
+    PORTFOLIO_DOM.playerProgress?.addEventListener('touchstart', (e) => {
+        PORTFOLIO_STATE.isDragging = true;
+        PORTFOLIO_DOM.playerProgress.classList.add('dragging');
+        seekVideo(e);
+    }, { passive: true });
+    
+    document.addEventListener('touchmove', (e) => {
+        if (PORTFOLIO_STATE.isDragging) seekVideo(e);
+    }, { passive: true });
+    
+    document.addEventListener('touchend', () => {
+        if (PORTFOLIO_STATE.isDragging) {
+            PORTFOLIO_STATE.isDragging = false;
+            PORTFOLIO_DOM.playerProgress?.classList.remove('dragging');
+        }
+    });
+    
+    // Mostrar controles al mover mouse sobre el player
+    player.addEventListener('mousemove', showControls);
+    player.addEventListener('mouseleave', () => {
+        if (!video.paused) {
+            clearTimeout(PORTFOLIO_STATE.controlsHideTimeout);
+            PORTFOLIO_STATE.controlsHideTimeout = setTimeout(() => {
+                player.classList.add('controls-hidden');
+            }, 1000);
+        }
+    });
+    
+    debugLog('Reproductor personalizado inicializado');
+}
+
+/* ===================================
+   MODAL DE IMAGEN
    =================================== */
 
 function openImageModal(itemId) {
     if (!PORTFOLIO_STATE.data) return;
     
     const item = PORTFOLIO_STATE.data.videos.find(v => v.id === itemId);
-    if (!item) {
-        console.warn('[PORTFOLIO] Imagen no encontrada:', itemId);
-        return;
-    }
+    if (!item) return;
     
     const images = Array.isArray(item.images) ? item.images : (item.image ? [item.image] : []);
-    
-    if (images.length === 0) {
-        console.warn('[PORTFOLIO] Item sin imágenes:', itemId);
-        return;
-    }
+    if (images.length === 0) return;
     
     PORTFOLIO_STATE.currentItem = itemId;
     PORTFOLIO_STATE.currentImages = images;
@@ -519,8 +668,6 @@ function openImageModal(itemId) {
     if (PORTFOLIO_DOM.featuredVideo && !PORTFOLIO_DOM.featuredVideo.paused) {
         PORTFOLIO_DOM.featuredVideo.pause();
     }
-    
-    debugLog('Modal imagen abierto:', item.title, '| Imágenes:', images.length);
 }
 
 function closeImageModal() {
@@ -533,7 +680,6 @@ function closeImageModal() {
     PORTFOLIO_STATE.currentItem = null;
     PORTFOLIO_STATE.currentImages = [];
     PORTFOLIO_STATE.currentImageIndex = 0;
-    debugLog('Modal imagen cerrado');
 }
 
 function updateImageViewer(index) {
@@ -541,45 +687,32 @@ function updateImageViewer(index) {
     if (index < 0 || index >= total) return;
     
     PORTFOLIO_STATE.currentImageIndex = index;
-    
     const img = PORTFOLIO_DOM.imageModalImage;
     
     img.classList.add('fading');
-    
     setTimeout(() => {
         img.src = PORTFOLIO_STATE.currentImages[index];
         img.alt = `Imagen ${index + 1} de ${total}`;
         img.onload = () => img.classList.remove('fading');
     }, 200);
     
-    if (PORTFOLIO_DOM.imageCurrent) {
-        PORTFOLIO_DOM.imageCurrent.textContent = index + 1;
-    }
-    
-    if (PORTFOLIO_DOM.imageNavPrev) {
-        PORTFOLIO_DOM.imageNavPrev.disabled = index === 0;
-    }
-    if (PORTFOLIO_DOM.imageNavNext) {
-        PORTFOLIO_DOM.imageNavNext.disabled = index === total - 1;
-    }
+    if (PORTFOLIO_DOM.imageCurrent) PORTFOLIO_DOM.imageCurrent.textContent = index + 1;
+    if (PORTFOLIO_DOM.imageNavPrev) PORTFOLIO_DOM.imageNavPrev.disabled = index === 0;
+    if (PORTFOLIO_DOM.imageNavNext) PORTFOLIO_DOM.imageNavNext.disabled = index === total - 1;
 }
 
 function nextImage() {
     const nextIdx = PORTFOLIO_STATE.currentImageIndex + 1;
-    if (nextIdx < PORTFOLIO_STATE.currentImages.length) {
-        updateImageViewer(nextIdx);
-    }
+    if (nextIdx < PORTFOLIO_STATE.currentImages.length) updateImageViewer(nextIdx);
 }
 
 function prevImage() {
     const prevIdx = PORTFOLIO_STATE.currentImageIndex - 1;
-    if (prevIdx >= 0) {
-        updateImageViewer(prevIdx);
-    }
+    if (prevIdx >= 0) updateImageViewer(prevIdx);
 }
 
 /* ===================================
-   VIDEO DESTACADO (SCROLL AUTO-PLAY)
+   VIDEO DESTACADO
    =================================== */
 
 let featuredVideoObserver = null;
@@ -613,19 +746,12 @@ function playFeaturedVideo() {
 function initFeaturedVideo() {
     const video = PORTFOLIO_DOM.featuredVideo;
     const soundBtn = document.getElementById('video-sound-btn');
-    
-    if (!video) {
-        debugLog('No hay video destacado');
-        return;
-    }
+    if (!video) return;
     
     featuredVideoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                playFeaturedVideo();
-            } else {
-                pauseFeaturedVideo();
-            }
+            if (entry.isIntersecting) playFeaturedVideo();
+            else pauseFeaturedVideo();
         });
     }, { threshold: 0.4 });
     
@@ -659,8 +785,6 @@ function initFeaturedVideo() {
             }
         });
     }
-    
-    debugLog('Video destacado inicializado');
 }
 
 /* ===================================
@@ -708,6 +832,7 @@ function initGlobalEvents() {
             }
         }
         
+        // Navegación de imágenes
         if (PORTFOLIO_DOM.imageModal?.classList.contains('active')) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
@@ -715,6 +840,17 @@ function initGlobalEvents() {
             } else if (e.key === 'ArrowRight') {
                 e.preventDefault();
                 nextImage();
+            }
+        }
+        
+        // Atajos del reproductor de video
+        if (PORTFOLIO_DOM.videoModal?.classList.contains('active')) {
+            if (e.key === ' ' || e.key === 'k') {
+                e.preventDefault();
+                togglePlay();
+            } else if (e.key === 'm') {
+                e.preventDefault();
+                toggleMute();
             }
         }
     });
@@ -729,6 +865,7 @@ async function initPortfolio() {
     
     initFeaturedVideo();
     initGlobalEvents();
+    initCustomPlayer();
     
     const data = await loadPortfolioData();
     
@@ -748,8 +885,6 @@ async function initPortfolio() {
     }
     
     debugLog('Portfolio inicializado correctamente');
-    debugLog('Categorías:', data.categories?.length || 0);
-    debugLog('Items totales:', data.videos?.length || 0);
 }
 
 /* ===================================
@@ -765,7 +900,7 @@ if (document.querySelector('.portfolio-categories-section')) {
 }
 
 /* ===================================
-   DEBUG (OPCIONAL)
+   DEBUG
    =================================== */
 
 if (PORTFOLIO_CONFIG.isDebug) {
@@ -781,7 +916,8 @@ if (PORTFOLIO_CONFIG.isDebug) {
         closePanel,
         nextImage,
         prevImage,
-        loadPortfolioData
+        togglePlay,
+        toggleMute
     };
-    console.log('[PORTFOLIO] window.OceanPortfolio disponible para debugging');
+    console.log('[PORTFOLIO] window.OceanPortfolio disponible');
 }
