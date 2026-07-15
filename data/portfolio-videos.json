@@ -132,6 +132,42 @@
     },
 
     {
+      "id": "Marielsys-003",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Miedo al Odontólogo 2",
+      "description": "Video educativo sobre cómo superar el miedo al odontólogo, con consejos prácticos y técnicas de relajación para hacer que la visita al dentista sea una experiencia más cómoda y menos estresante.",
+      "thumbnail": "images/Marielsys/consejos practicos para estas navidades.png",
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@od_marielsysvasquez",
+      "videoUrl": "video/Marielsys/consejos practicos para estas navidades.mp4"
+    },
+
+    {
+      "id": "Marielsys-004",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Miedo al Odontólogo 3",
+      "description": "Video educativo sobre cómo superar el miedo al odontólogo, con consejos prácticos y técnicas de relajación para hacer que la visita al dentista sea una experiencia más cómoda y menos estresante.",
+      "thumbnail": "images/Marielsys/Marielsys servicios.png",
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@od_marielsysvasquez",
+      "videoUrl": "video/Marielsys/Marielsys servicios.mp4"
+    },
+
+    {
+      "id": "Marielsys-005",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Miedo al Odontólogo 4",
+      "description": "Video educativo sobre cómo superar el miedo al odontólogo, con consejos prácticos y técnicas de relajación para hacer que la visita al dentista sea una experiencia más cómoda y menos estresante.",
+      "thumbnail": "images\\Marielsys\\pregunta frecuente.png",
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@od_marielsysvasquez",
+      "videoUrl": "video/Marielsys/pregunta frecuente.mp4"
+    },
+
+    {
       "id": "salud-002",
       "type": "image",
       "categoryId": "salud",
