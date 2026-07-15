@@ -238,14 +238,35 @@
     background-color: var(--color-dark);
     padding: var(--spacing-md) 0 var(--spacing-lg);
     min-height: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fondo de figuras geométricas */
+.categories-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Contenedor principal por encima del fondo */
+.portfolio-categories-section .container {
+    position: relative;
+    z-index: 1;
 }
 
 .categories-header {
     text-align: center;
     margin-bottom: var(--spacing-md);
+    width: 100%;
 }
 
 .categories-title {
+    display: block;
+    width: 100%;
+    text-align: center;
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 300;
     color: var(--color-white);
@@ -254,7 +275,240 @@
 }
 
 /* ===================================
+   FIGURAS GEOMÉTRICAS ANIMADAS
+   =================================== */
+
+.shape {
+    position: absolute;
+    opacity: 0.06;
+    will-change: transform;
+}
+
+.shape-circle {
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+}
+
+.shape-square {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+    border-radius: 8px;
+    transform: rotate(15deg);
+}
+
+.shape-triangle {
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 90px solid var(--color-primary);
+    opacity: 0.05;
+}
+
+.shape-hexagon {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+/* Posiciones + tamaños + animaciones */
+.shape-1 {
+    width: 180px;
+    height: 180px;
+    top: 5%;
+    left: 8%;
+    animation: floatSlow 20s ease-in-out infinite;
+}
+
+.shape-2 {
+    width: 120px;
+    height: 120px;
+    top: 15%;
+    right: 12%;
+    animation: floatMedium 25s ease-in-out infinite;
+}
+
+.shape-3 {
+    top: 60%;
+    left: 15%;
+    animation: floatSlow 28s ease-in-out infinite reverse;
+}
+
+.shape-4 {
+    width: 140px;
+    height: 140px;
+    bottom: 10%;
+    right: 8%;
+    animation: floatMedium 22s ease-in-out infinite reverse;
+}
+
+.shape-5 {
+    width: 90px;
+    height: 90px;
+    top: 45%;
+    right: 25%;
+    animation: floatFast 18s ease-in-out infinite;
+}
+
+.shape-6 {
+    width: 80px;
+    height: 80px;
+    bottom: 25%;
+    left: 40%;
+    animation: floatSlow 30s ease-in-out infinite;
+}
+
+.shape-7 {
+    top: 30%;
+    left: 50%;
+    animation: floatMedium 26s ease-in-out infinite reverse;
+    transform: scale(0.7);
+}
+
+.shape-8 {
+    width: 100px;
+    height: 100px;
+    bottom: 5%;
+    left: 5%;
+    animation: floatFast 24s ease-in-out infinite reverse;
+}
+
+@keyframes floatSlow {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    33% {
+        transform: translate(30px, -40px) rotate(120deg);
+    }
+    66% {
+        transform: translate(-20px, 30px) rotate(240deg);
+    }
+}
+
+@keyframes floatMedium {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate(-40px, 50px) rotate(180deg);
+    }
+}
+
+@keyframes floatFast {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(20px, 30px) rotate(90deg);
+    }
+    50% {
+        transform: translate(-30px, 40px) rotate(180deg);
+    }
+    75% {
+        transform: translate(30px, -20px) rotate(270deg);
+    }
+}
+
+/* Responsive: menos figuras en móvil */
+@media (max-width: 768px) {
+    .shape-5,
+    .shape-6,
+    .shape-7,
+    .shape-8 {
+        display: none;
+    }
+    
+    .shape-1,
+    .shape-2,
+    .shape-4 {
+        opacity: 0.04;
+    }
+}
+
+/* Accesibilidad: sin animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+    .shape {
+        animation: none !important;
+    }
+}
+
+/* Tema claro: figuras más visibles */
+body.theme-light .shape {
+    opacity: 0.08;
+}
+
+body.theme-light .shape-triangle {
+    opacity: 0.06;
+}
+
+/* ===================================
    GRID DE CATEGORÍAS (PÍLDORAS)
+   =================================== */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto var(--spacing-lg);
+    padding: 0 var(--spacing-sm);
+}
+
+.category-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    color: var(--color-white);
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.category-btn:hover {
+    background-color: rgba(0, 157, 255, 0.15);
+    border-color: rgba(0, 157, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 157, 255, 0.2);
+}
+
+.category-btn:active {
+    transform: scale(0.97);
+}
+
+.category-btn.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 157, 255, 0.5);
+}
+
+.category-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+.category-icon {
+    font-size: 1.3rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.category-name {
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+/* ===================================
+   GRID DE CATEGORÍAS
    =================================== */
 
 .categories-grid {
@@ -826,7 +1080,6 @@
     cursor: pointer;
 }
 
-/* Botón play grande central */
 .player-center-play {
     position: absolute;
     top: 50%;
@@ -868,7 +1121,6 @@
     transform: translate(-50%, -50%) scale(0.7);
 }
 
-/* Barra de controles inferior */
 .player-controls {
     position: absolute;
     bottom: 0;
@@ -901,7 +1153,6 @@
     gap: 0.8rem;
 }
 
-/* Tiempo */
 .player-time {
     display: flex;
     align-items: center;
@@ -919,7 +1170,6 @@
     opacity: 0.6;
 }
 
-/* Barra de progreso */
 .player-progress {
     flex: 1;
     padding: 8px 0;
@@ -970,7 +1220,6 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* Botones acciones */
 .player-actions {
     display: flex;
     align-items: center;
@@ -1035,7 +1284,7 @@
 }
 
 /* ===================================
-   MODAL DE IMAGEN (GALERÍA)
+   MODAL DE IMAGEN
    =================================== */
 
 .image-modal {
@@ -1578,7 +1827,6 @@
         gap: 1rem;
     }
 
-    /* Modal video en móvil */
     .video-modal {
         padding: 0;
     }
@@ -1638,7 +1886,6 @@
         font-size: 0.8rem;
     }
 
-    /* Modal imagen en móvil */
     .image-modal {
         padding: 0;
     }
@@ -1805,8 +2052,6 @@ body.theme-light .portfolio-video-section {
     border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
-/* ===== SECCIÓN CATEGORÍAS ===== */
-
 body.theme-light .portfolio-categories-section {
     background-color: var(--color-dark);
 }
@@ -1833,8 +2078,6 @@ body.theme-light .category-btn.active {
     color: #ffffff;
 }
 
-/* ===== PANEL ===== */
-
 body.theme-light .videos-panel {
     background-color: rgba(0, 0, 0, 0.04);
     border-color: rgba(0, 0, 0, 0.1);
@@ -1859,8 +2102,6 @@ body.theme-light .panel-close-btn:hover {
     border-color: rgba(0, 0, 0, 0.4);
     color: #141414;
 }
-
-/* ===== TARJETAS ===== */
 
 body.theme-light .video-card {
     background-color: #ffffff;
@@ -1914,8 +2155,6 @@ body.theme-light .videos-empty p {
     opacity: 0.6;
 }
 
-/* ===== MODAL VIDEO EN MODO CLARO ===== */
-
 body.theme-light .video-modal-overlay {
     background-color: rgba(0, 0, 0, 0.4);
 }
@@ -1961,8 +2200,6 @@ body.theme-light .video-info-handle-avatar {
 body.theme-light .video-modal-player {
     background-color: #000;
 }
-
-/* ===== MODAL IMAGEN EN MODO CLARO ===== */
 
 body.theme-light .image-modal-overlay {
     background-color: rgba(0, 0, 0, 0.4);
@@ -2027,8 +2264,6 @@ body.theme-light .image-nav-btn:hover {
     background-color: rgba(0, 157, 255, 0.85);
     border-color: var(--color-primary);
 }
-
-/* ===== CTA ===== */
 
 body.theme-light .cta-btn-secondary {
     background-color: rgba(0, 0, 0, 0.06);

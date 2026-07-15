@@ -1,6 +1,6 @@
 /* ===================================
    OCEAN GRAPH - PORTFOLIO PAGE JS
-   Sistema de categorías + videos + imágenes + reproductor custom
+   Sistema de categorías + videos + imágenes + reproductor custom con loader
    =================================== */
 
 'use strict';
@@ -11,7 +11,7 @@
 
 const PORTFOLIO_CONFIG = {
     dataUrl: 'data/portfolio-videos.json',
-    controlsHideDelay: 2500, // ms para ocultar controles del reproductor
+    controlsHideDelay: 2500,
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
@@ -83,7 +83,6 @@ const PORTFOLIO_STATE = {
     currentItem: null,
     currentImages: [],
     currentImageIndex: 0,
-    // Reproductor
     isDragging: false,
     controlsHideTimeout: null
 };
@@ -131,6 +130,12 @@ const ICONS = {
         <path d="M21 15l-5-5L5 21"/>
     </svg>`
 };
+
+/* ===================================
+   INDICADOR DE CARGA (LOADER)
+   =================================== */
+
+
 
 /* ===================================
    CARGA DEL JSON
@@ -382,7 +387,6 @@ function openVideoModal(itemId) {
     
     PORTFOLIO_STATE.currentItem = itemId;
     
-    // Llenar info
     PORTFOLIO_DOM.videoModalAvatar.src = item.avatar || '';
     PORTFOLIO_DOM.videoModalAvatar.alt = item.title || 'Video';
     PORTFOLIO_DOM.videoModalTitle.textContent = item.title || 'Sin título';
@@ -390,7 +394,6 @@ function openVideoModal(itemId) {
     PORTFOLIO_DOM.videoModalHandleAvatar.src = item.avatar || '';
     PORTFOLIO_DOM.videoModalHandle.textContent = item.handle || '';
     
-    // Cargar video
     PORTFOLIO_DOM.videoModalSource.src = item.videoUrl || '';
     PORTFOLIO_DOM.videoModalPlayer.load();
     
@@ -401,7 +404,6 @@ function openVideoModal(itemId) {
     PORTFOLIO_DOM.playerCurrentTime.textContent = '0:00';
     PORTFOLIO_DOM.playerDuration.textContent = '0:00';
     
-    // Pausar destacado
     if (PORTFOLIO_DOM.featuredVideo && !PORTFOLIO_DOM.featuredVideo.paused) {
         PORTFOLIO_DOM.featuredVideo.pause();
     }
@@ -410,7 +412,6 @@ function openVideoModal(itemId) {
     PORTFOLIO_DOM.videoModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     
-    // Autoplay
     setTimeout(() => {
         playVideo();
     }, 200);
@@ -502,7 +503,6 @@ function seekVideo(event) {
     
     video.currentTime = percent * video.duration;
     
-    // Actualizar visualmente al instante
     PORTFOLIO_DOM.playerProgressFilled.style.width = `${percent * 100}%`;
     PORTFOLIO_DOM.playerProgressHandle.style.left = `${percent * 100}%`;
 }
@@ -522,12 +522,17 @@ function showControls() {
     }
 }
 
+/* ===================================
+   INICIALIZAR REPRODUCTOR
+   =================================== */
+
 function initCustomPlayer() {
     const video = PORTFOLIO_DOM.videoModalPlayer;
     const player = PORTFOLIO_DOM.customPlayer;
     if (!video || !player) return;
     
-    // Eventos del video HTML5
+    // === EVENTOS DE REPRODUCCIÓN ===
+    
     video.addEventListener('play', () => {
         player.classList.add('is-playing');
         showControls();
@@ -548,31 +553,28 @@ function initCustomPlayer() {
         video.currentTime = 0;
     });
     
-    // Click en el video = play/pause
+    // === CLICK EN VIDEO = PLAY/PAUSE ===
     video.addEventListener('click', togglePlay);
     
-    // Botón play central
+    // === BOTONES ===
     PORTFOLIO_DOM.playerCenterPlay?.addEventListener('click', (e) => {
         e.stopPropagation();
         playVideo();
     });
     
-    // Botón play/pause de la barra
     PORTFOLIO_DOM.playerPlayBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         togglePlay();
     });
     
-    // Botón volumen
     PORTFOLIO_DOM.playerVolumeBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleMute();
     });
     
-    // Barra de progreso: click para seek
+    // === BARRA DE PROGRESO ===
     PORTFOLIO_DOM.playerProgress?.addEventListener('click', seekVideo);
     
-    // Barra de progreso: arrastrar (drag)
     PORTFOLIO_DOM.playerProgress?.addEventListener('mousedown', (e) => {
         PORTFOLIO_STATE.isDragging = true;
         PORTFOLIO_DOM.playerProgress.classList.add('dragging');
@@ -590,7 +592,6 @@ function initCustomPlayer() {
         }
     });
     
-    // Soporte táctil para el drag
     PORTFOLIO_DOM.playerProgress?.addEventListener('touchstart', (e) => {
         PORTFOLIO_STATE.isDragging = true;
         PORTFOLIO_DOM.playerProgress.classList.add('dragging');
@@ -608,7 +609,7 @@ function initCustomPlayer() {
         }
     });
     
-    // Mostrar controles al mover mouse sobre el player
+    // === MOSTRAR CONTROLES AL MOVER MOUSE ===
     player.addEventListener('mousemove', showControls);
     player.addEventListener('mouseleave', () => {
         if (!video.paused) {
@@ -619,7 +620,7 @@ function initCustomPlayer() {
         }
     });
     
-    debugLog('Reproductor personalizado inicializado');
+    debugLog('Reproductor personalizado inicializado (con loader)');
 }
 
 /* ===================================
@@ -832,7 +833,6 @@ function initGlobalEvents() {
             }
         }
         
-        // Navegación de imágenes
         if (PORTFOLIO_DOM.imageModal?.classList.contains('active')) {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
@@ -843,7 +843,6 @@ function initGlobalEvents() {
             }
         }
         
-        // Atajos del reproductor de video
         if (PORTFOLIO_DOM.videoModal?.classList.contains('active')) {
             if (e.key === ' ' || e.key === 'k') {
                 e.preventDefault();
@@ -917,7 +916,7 @@ if (PORTFOLIO_CONFIG.isDebug) {
         nextImage,
         prevImage,
         togglePlay,
-        toggleMute
+        toggleMute,
     };
     console.log('[PORTFOLIO] window.OceanPortfolio disponible');
 }

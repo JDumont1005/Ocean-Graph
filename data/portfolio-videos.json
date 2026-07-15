@@ -64,6 +64,11 @@
       "id": "ocean",
       "name": "Ocean Graph",
       "icon": "🌊"
+    },
+    {
+      "id": "3d",
+      "name": "3D",
+      "icon": "🧊"
     }
   ],
 

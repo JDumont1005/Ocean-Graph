@@ -4,30 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#141414">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="description" content="Explora el portfolio completo de Ocean Graph - Videos profesionales organizados por categorías: Salud, Belleza, Gastronomía, Turismo y más.">
     
     <title>Portfolio Completo - Ocean Graph</title>
     
-    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="Logo/OceanGraph - Ola.svg">
     <link rel="shortcut icon" href="Logo/OceanGraph - Ola.svg" type="image/svg+xml">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="portfolio.css">
 </head>
 <body>
 
-    <!-- ============================================
-         PANTALLA DE CARGA
-         ============================================ -->
+    <!-- PANTALLA DE CARGA -->
     <div class="loader-wrapper" id="loader">
         <div class="loader-content">
             <div class="loader-logo">
@@ -41,18 +37,12 @@
         </div>
     </div>
 
-    <!-- ============================================
-         NAVEGACIÓN
-         ============================================ -->
+    <!-- NAVEGACIÓN -->
     <nav class="navbar" role="navigation" aria-label="Navegación principal">
         <div class="nav-container">
             <a href="index.html" class="logo" aria-label="Ocean Graph - Volver al inicio">
                 <div class="logo-icon-wrapper">
-                    <img 
-                        src="Logo/OceanGraph - Ola.svg" 
-                        alt="Ocean Graph" 
-                        class="logo-svg"
-                    >
+                    <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph" class="logo-svg">
                 </div>
                 <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
             </a>
@@ -67,20 +57,12 @@
             </ul>
 
             <div class="nav-actions">
-                <button 
-                    class="theme-toggle" 
-                    type="button" 
-                    aria-label="Cambiar a modo claro"
-                    title="Cambiar tema"
-                >
-                    <!-- ICONO SOL BLANCO (Tema Oscuro - visible por defecto) -->
+                <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" title="Cambiar tema">
                     <span class="theme-icon theme-icon--sun" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
                             <path fill="#fff" d="M10 6.797a3.19 3.19 0 0 0-3.2 3.201a3.19 3.19 0 0 0 3.2 3.199a3.19 3.19 0 0 0 3.199-3.199A3.19 3.19 0 0 0 10 6.797m0 5.25a2.049 2.049 0 1 1 0-4.1a2.05 2.05 0 0 1 0 4.1M15 5c-.312-.312-.883-.248-1.273.142c-.39.391-.453.959-.141 1.272s.882.25 1.273-.141c.39-.39.453-.961.141-1.273m-9.858 8.729c-.391.39-.454.959-.142 1.271s.882.25 1.273-.141s.454-.961.142-1.273s-.883-.248-1.273.143M5 5c-.312.312-.249.883.141 1.273c.391.391.961.453 1.273.141s.249-.883-.142-1.273C5.883 4.752 5.312 4.688 5 5m8.727 9.857c.39.391.96.455 1.273.143s.249-.883-.142-1.274s-.96-.453-1.273-.141s-.248.882.142 1.272M10 4.998c.441 0 .8-.447.8-1C10.799 3.445 10.441 3 10 3s-.801.445-.801.998s.358 1 .801 1M10 17c.441 0 .8-.447.8-1s-.358-.998-.799-.998s-.801.445-.801.998c-.001.553.357 1 .8 1m-5-7c0-.441-.45-.8-1.003-.8S3 9.559 3 10s.444.8.997.8S5 10.442 5 10m12 0c0-.441-.448-.8-1.001-.8S15 9.559 15 10s.446.8.999.8S17 10.442 17 10"/>
                         </svg>
                     </span>
-                    
-                    <!-- ICONO LUNA NEGRA (Tema Claro - oculto por defecto) -->
                     <span class="theme-icon theme-icon--moon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                             <path fill="#000" d="M14.5 21q-1.858 0-3.497-.707T8.139 18.36t-1.931-2.864t-.708-3.491q0-1.874.71-3.511q.711-1.637 1.93-2.855t2.864-1.93T14.5 3q.812 0 1.558.139q.746.138 1.442.442q-1.833 1.498-2.916 3.674Q13.5 9.43 13.5 12t1.084 4.745T17.5 20.42q-.696.304-1.442.443Q15.312 21 14.5 21m0-1h.525q.25 0 .475-.05q-1.425-1.65-2.212-3.687T12.5 12t.788-4.262T15.5 4.05Q15.275 4 15.025 4H14.5q-3.325 0-5.663 2.338T6.5 12t2.338 5.663T14.5 20m-2-8"/>
@@ -88,12 +70,7 @@
                     </span>
                 </button>
 
-                <button 
-                    class="hamburger" 
-                    aria-label="Abrir menú de navegación"
-                    aria-expanded="false"
-                    aria-controls="nav-menu"
-                >
+                <button class="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="nav-menu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -102,9 +79,7 @@
         </div>
     </nav>
 
-    <!-- ============================================
-         HERO PORTFOLIO
-         ============================================ -->
+    <!-- HERO -->
     <section class="portfolio-hero">
         <div class="portfolio-hero-content">
             <div class="breadcrumb" aria-label="Breadcrumb">
@@ -125,13 +100,10 @@
         </div>
     </section>
 
-    <!-- ============================================
-         VIDEO DESTACADO
-         ============================================ -->
+    <!-- VIDEO DESTACADO -->
     <section class="portfolio-video-section">
         <div class="container">
             <div class="video-showcase">
-                <!-- Columna izquierda: Texto -->
                 <div class="video-showcase-text">
                     <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
                     <p class="video-section-description">
@@ -139,34 +111,19 @@
                     </p>
                 </div>
 
-                <!-- Columna derecha: Video vertical -->
                 <div class="video-showcase-media">
                     <div class="video-wrapper" id="featured-video-wrapper">
-                        <video 
-                            class="portfolio-featured-video"
-                            muted
-                            playsinline
-                            preload="metadata"
-                            poster=""
-                        >
+                        <video class="portfolio-featured-video" muted playsinline preload="metadata" poster="">
                             <source src="video\Ocean hablando.mp4" type="video/mp4">
                             Tu navegador no soporta videos HTML5.
                         </video>
 
-                        <!-- Botón de sonido -->
-                        <button 
-                            class="video-sound-btn" 
-                            id="video-sound-btn"
-                            type="button"
-                            aria-label="Activar sonido"
-                            title="Activar sonido"
-                        >
+                        <button class="video-sound-btn" id="video-sound-btn" type="button" aria-label="Activar sonido" title="Activar sonido">
                             <svg class="sound-icon sound-icon--muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
                                 <line x1="23" y1="9" x2="17" y2="15"/>
                                 <line x1="17" y1="9" x2="23" y2="15"/>
                             </svg>
-
                             <svg class="sound-icon sound-icon--unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
                                 <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
@@ -179,10 +136,22 @@
         </div>
     </section>
 
-    <!-- ============================================
+        <!-- ============================================
          CATEGORÍAS
          ============================================ -->
     <section class="portfolio-categories-section" id="categorias">
+        <!-- Fondo con figuras geométricas animadas -->
+        <div class="categories-bg" aria-hidden="true">
+            <div class="shape shape-circle shape-1"></div>
+            <div class="shape shape-square shape-2"></div>
+            <div class="shape shape-triangle shape-3"></div>
+            <div class="shape shape-hexagon shape-4"></div>
+            <div class="shape shape-circle shape-5"></div>
+            <div class="shape shape-square shape-6"></div>
+            <div class="shape shape-triangle shape-7"></div>
+            <div class="shape shape-circle shape-8"></div>
+        </div>
+
         <div class="container">
             <header class="categories-header">
                 <h2 class="categories-title">Categorías.</h2>
@@ -222,36 +191,25 @@
         </div>
     </section>
 
-    <!-- ============================================
-         MODAL DE VIDEO (REPRODUCTOR PERSONALIZADO)
-         ============================================ -->
+    <!-- MODAL DE VIDEO -->
     <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title" aria-hidden="true">
         <div class="video-modal-overlay" id="video-modal-overlay"></div>
 
         <div class="video-modal-content">
-            <!-- Botón cerrar -->
-            <button 
-                class="video-modal-close" 
-                id="video-modal-close"
-                type="button"
-                aria-label="Cerrar reproductor"
-            >
+            <button class="video-modal-close" id="video-modal-close" type="button" aria-label="Cerrar reproductor">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"/>
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
 
-            <!-- Columna izquierda: Info del video -->
             <div class="video-modal-info">
                 <div class="video-info-top">
                     <div class="video-info-avatar">
                         <img id="video-modal-avatar" src="" alt="Avatar del cliente">
                     </div>
                     <h3 class="video-info-title" id="video-modal-title">Título</h3>
-                    <p class="video-info-description" id="video-modal-description">
-                        Descripción del video.
-                    </p>
+                    <p class="video-info-description" id="video-modal-description">Descripción del video.</p>
                 </div>
 
                 <div class="video-info-bottom">
@@ -264,42 +222,27 @@
                 </div>
             </div>
 
-            <!-- Columna derecha: Video vertical con reproductor personalizado -->
             <div class="video-modal-player">
                 <div class="custom-player" id="custom-player">
-                    <video 
-                        id="video-modal-player"
-                        class="video-player"
-                        playsinline
-                        preload="metadata"
-                    >
+                    <video id="video-modal-player" class="video-player" playsinline preload="metadata">
                         <source id="video-modal-source" src="" type="video/mp4">
                         Tu navegador no soporta videos HTML5.
                     </video>
 
-                    <!-- Botón play grande central (aparece cuando está en pausa) -->
-                    <button 
-                        class="player-center-play" 
-                        id="player-center-play"
-                        type="button"
-                        aria-label="Reproducir"
-                    >
+                    <button class="player-center-play" id="player-center-play" type="button" aria-label="Reproducir">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <polygon points="6 4 20 12 6 20 6 4"/>
                         </svg>
                     </button>
 
-                    <!-- Controles personalizados -->
                     <div class="player-controls" id="player-controls">
                         <div class="player-controls-row">
-                            <!-- Tiempo -->
                             <div class="player-time">
                                 <span id="player-current-time">0:00</span>
                                 <span class="player-time-sep">/</span>
                                 <span id="player-duration">0:00</span>
                             </div>
 
-                            <!-- Barra de progreso -->
                             <div class="player-progress" id="player-progress">
                                 <div class="player-progress-bar">
                                     <div class="player-progress-filled" id="player-progress-filled"></div>
@@ -307,15 +250,8 @@
                                 </div>
                             </div>
 
-                            <!-- Botones derecha -->
                             <div class="player-actions">
-                                <!-- Botón volumen -->
-                                <button 
-                                    class="player-btn player-volume-btn" 
-                                    id="player-volume-btn"
-                                    type="button"
-                                    aria-label="Silenciar/Activar sonido"
-                                >
+                                <button class="player-btn player-volume-btn" id="player-volume-btn" type="button" aria-label="Silenciar/Activar sonido">
                                     <svg class="player-icon-volume-on" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                                     </svg>
@@ -324,13 +260,7 @@
                                     </svg>
                                 </button>
 
-                                <!-- Botón play/pause -->
-                                <button 
-                                    class="player-btn player-play-btn" 
-                                    id="player-play-btn"
-                                    type="button"
-                                    aria-label="Reproducir/Pausar"
-                                >
+                                <button class="player-btn player-play-btn" id="player-play-btn" type="button" aria-label="Reproducir/Pausar">
                                     <svg class="player-icon-play" viewBox="0 0 24 24" fill="currentColor">
                                         <polygon points="6 4 20 12 6 20 6 4"/>
                                     </svg>
@@ -347,36 +277,25 @@
         </div>
     </div>
 
-    <!-- ============================================
-         MODAL DE IMAGEN (GALERÍA)
-         ============================================ -->
+    <!-- MODAL DE IMAGEN -->
     <div class="image-modal" id="image-modal" role="dialog" aria-modal="true" aria-labelledby="image-modal-title" aria-hidden="true">
         <div class="image-modal-overlay" id="image-modal-overlay"></div>
 
         <div class="image-modal-content">
-            <!-- Botón cerrar -->
-            <button 
-                class="image-modal-close" 
-                id="image-modal-close"
-                type="button"
-                aria-label="Cerrar galería"
-            >
+            <button class="image-modal-close" id="image-modal-close" type="button" aria-label="Cerrar galería">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"/>
                     <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
             </button>
 
-            <!-- Columna izquierda: Info -->
             <div class="image-modal-info">
                 <div class="image-info-top">
                     <div class="image-info-avatar">
                         <img id="image-modal-avatar" src="" alt="Avatar del cliente">
                     </div>
                     <h3 class="image-info-title" id="image-modal-title">Título</h3>
-                    <div class="image-info-description" id="image-modal-description">
-                        Descripción de la imagen.
-                    </div>
+                    <div class="image-info-description" id="image-modal-description">Descripción de la imagen.</div>
                 </div>
 
                 <div class="image-info-bottom">
@@ -384,20 +303,13 @@
                 </div>
             </div>
 
-            <!-- Columna derecha: Imagen -->
             <div class="image-modal-viewer">
                 <div class="image-viewer-wrapper" id="image-viewer-wrapper">
                     <img id="image-modal-image" src="" alt="">
                 </div>
 
-                <!-- Controles inferiores (solo si hay múltiples imágenes) -->
                 <div class="image-viewer-controls" id="image-viewer-controls">
-                    <button 
-                        class="image-nav-btn image-nav-prev" 
-                        id="image-nav-prev"
-                        type="button"
-                        aria-label="Imagen anterior"
-                    >
+                    <button class="image-nav-btn image-nav-prev" id="image-nav-prev" type="button" aria-label="Imagen anterior">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <polygon points="15 18 9 12 15 6"/>
                         </svg>
@@ -407,12 +319,7 @@
                         <span id="image-current">1</span> / <span id="image-total">1</span>
                     </div>
 
-                    <button 
-                        class="image-nav-btn image-nav-next" 
-                        id="image-nav-next"
-                        type="button"
-                        aria-label="Imagen siguiente"
-                    >
+                    <button class="image-nav-btn image-nav-next" id="image-nav-next" type="button" aria-label="Imagen siguiente">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <polygon points="9 18 15 12 9 6"/>
                         </svg>
@@ -422,9 +329,7 @@
         </div>
     </div>
 
-    <!-- ============================================
-         CALL TO ACTION
-         ============================================ -->
+    <!-- CTA -->
     <section class="portfolio-cta">
         <div class="container">
             <div class="cta-content">
@@ -434,28 +339,18 @@
                     Contáctanos y cuéntanos tu idea.
                 </p>
                 <div class="cta-actions">
-                    <a href="index.html#contacto" class="cta-btn cta-btn-primary">
-                        Iniciar Proyecto
-                    </a>
-                    <a href="index.html" class="cta-btn cta-btn-secondary">
-                        Volver al Inicio
-                    </a>
+                    <a href="index.html#contacto" class="cta-btn cta-btn-primary">Iniciar Proyecto</a>
+                    <a href="index.html" class="cta-btn cta-btn-secondary">Volver al Inicio</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================
-         FOOTER
-         ============================================ -->
+    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <img 
-                    src="Logo/OceanGraph - Ola.svg" 
-                    alt="Ocean Graph Logo" 
-                    class="footer-logo-svg"
-                >
+                <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph Logo" class="footer-logo-svg">
             </div>
 
             <p class="footer-copyright">
@@ -493,7 +388,6 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
     <script src="portfolio.js"></script>
 </body>
