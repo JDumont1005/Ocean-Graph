@@ -74,6 +74,22 @@
 
   "videos": [
     {
+      "id": "salud-002",
+      "type": "image",
+      "categoryId": "salud",
+      "title": "Campaña Odontológica",
+      "description": "Serie fotográfica realizada para la campaña de concientización sobre salud bucal. Cada imagen fue cuidadosamente compuesta para transmitir profesionalismo, confianza y limpieza.\n\nEl objetivo principal era mostrar la importancia de los chequeos regulares y el cuidado dental preventivo.\n\nTrabajamos con iluminación de estudio profesional y post-producción detallada para lograr un acabado premium acorde a la imagen de la marca.\n\nLa serie completa se publicó como carrusel en Instagram con excelente recepción del público objetivo.",
+      "thumbnail": "https://picsum.photos/seed/campana-dental-thumb/900/1200",
+      "images": [
+        "https://picsum.photos/seed/campana-dental-1/900/1200",
+        "https://picsum.photos/seed/campana-dental-2/900/1200",
+        "https://picsum.photos/seed/campana-dental-3/900/1200",
+        "https://picsum.photos/seed/campana-dental-4/900/1200"
+      ],
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@od_marielsysvasquez"
+    },
+    {
       "id": "ATSV-001",
       "type": "video",
       "categoryId": "salud",
@@ -168,23 +184,6 @@
     },
 
     {
-      "id": "salud-002",
-      "type": "image",
-      "categoryId": "salud",
-      "title": "Campaña Odontológica",
-      "description": "Serie fotográfica realizada para la campaña de concientización sobre salud bucal. Cada imagen fue cuidadosamente compuesta para transmitir profesionalismo, confianza y limpieza.\n\nEl objetivo principal era mostrar la importancia de los chequeos regulares y el cuidado dental preventivo.\n\nTrabajamos con iluminación de estudio profesional y post-producción detallada para lograr un acabado premium acorde a la imagen de la marca.\n\nLa serie completa se publicó como carrusel en Instagram con excelente recepción del público objetivo.",
-      "thumbnail": "https://picsum.photos/seed/campana-dental-thumb/900/1200",
-      "images": [
-        "https://picsum.photos/seed/campana-dental-1/900/1200",
-        "https://picsum.photos/seed/campana-dental-2/900/1200",
-        "https://picsum.photos/seed/campana-dental-3/900/1200",
-        "https://picsum.photos/seed/campana-dental-4/900/1200"
-      ],
-      "avatar": "images/Marielsys-Logo.png",
-      "handle": "@od_marielsysvasquez"
-    },
-
-    {
       "id": "belleza-001",
       "type": "video",
       "categoryId": "belleza",
@@ -194,28 +193,6 @@
       "avatar": "https://picsum.photos/seed/makeup-1/100/100",
       "handle": "@makeup_studio",
       "videoUrl": "video/belleza-01.mp4"
-    },
-    {
-      "id": "belleza-002",
-      "type": "video",
-      "categoryId": "belleza",
-      "title": "Skincare Rutina",
-      "description": "Los pasos esenciales para una piel radiante.",
-      "thumbnail": "https://picsum.photos/seed/belleza-2/900/1600",
-      "avatar": "https://picsum.photos/seed/skincare/100/100",
-      "handle": "@skincare_pro",
-      "videoUrl": "video/belleza-02.mp4"
-    },
-    {
-      "id": "belleza-003",
-      "type": "video",
-      "categoryId": "belleza",
-      "title": "Peinado Rápido",
-      "description": "Peinado en menos de 5 minutos.",
-      "thumbnail": "https://picsum.photos/seed/belleza-3/900/1600",
-      "avatar": "https://picsum.photos/seed/hair/100/100",
-      "handle": "@hair_style_ve",
-      "videoUrl": "video/belleza-03.mp4"
     },
     {
       "id": "belleza-004",
