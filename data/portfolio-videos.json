@@ -101,6 +101,7 @@
       "handle": "@atusaludvargas",
       "videoUrl": "video/ATSV/entrevistacaterymyHernán.mp4"
     },
+
     {
       "id": "Marielsys-001",
       "type": "video",
@@ -109,9 +110,22 @@
       "description": "Curso de bienestar y salud integral, diseñado para mejorar la calidad de vida de los participantes. Incluye técnicas de relajación, nutrición y ejercicios para el bienestar físico y mental.",
       "thumbnail": "images/Marielsys/MarielsysCursoPortada.png",
       "avatar": "images/Marielsys-Logo.png",
-      "handle": "@bienestar_ve",
+      "handle": "@od_marielsysvasquez",
       "videoUrl": "video/Marielsys/Marielsys curso.mp4"
     },
+
+    {
+      "id": "Marielsys-002",
+      "type": "video",
+      "categoryId": "salud",
+      "title": "Miedo al Odontólogo",
+      "description": "Video educativo sobre cómo superar el miedo al odontólogo, con consejos prácticos y técnicas de relajación para hacer que la visita al dentista sea una experiencia más cómoda y menos estresante.",
+      "thumbnail": "images/Marielsys/miedoalodontologPortada.png",
+      "avatar": "images/Marielsys-Logo.png",
+      "handle": "@od_marielsysvasquez",
+      "videoUrl": "video/Marielsys/miedoalodontologo.mp4"
+    },
+
     {
       "id": "salud-002",
       "type": "image",
