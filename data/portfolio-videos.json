@@ -727,6 +727,39 @@
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos"
     },
+    {
+      "id": "GastronomiaSushiFotos",
+      "type": "image",
+      "categoryId": "gastronomia",
+      "title": "Gastronomía Sushi",
+      "description": "Buena comida japonesa, capturada en imágenes que resaltan su sabor y presentación. Cada fotografía está cuidadosamente compuesta para mostrar la textura, los ingredientes frescos y la calidad de los platos de sushi, invitando al espectador a disfrutar de una experiencia culinaria única.",
+      "thumbnail": "",
+      "images": [
+        "images/Gastronomia/GastronomiaSushi/DSC08456.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08492.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08505.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08521.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08546.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08593.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08596.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08672.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08674.jpg",
+        "images/Gastronomia/GastronomiaSushi/DSC08682.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
+    {
+      "id": "Publicidad",
+      "type": "video",
+      "categoryId": "gastronomia",
+      "title": "Evento de bebidas",
+      "description": "Bebidas y cocteles en un evento especial, capturados en un video que resalta la creatividad y presentación de cada bebida. El video muestra la preparación de los cócteles, la interacción con los invitados y la atmósfera del evento, invitando al espectador a disfrutar de una experiencia culinaria única.",
+      "thumbnail": "images/Gastronomia/4 productos Baruch Import listo.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Gastronomia/4 productos Baruch Import listo.mp4"
+    },
 
 
 
