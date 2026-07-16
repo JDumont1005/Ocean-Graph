@@ -572,6 +572,39 @@
       "handle": "@oceangraficos",
       "videoUrl": "video/Ocean/TitoReel.mp4"
     },
+    {
+      "id": "Ocean-004",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "Aldo Edición Bici",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Ocean/AldoEdicionBici.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/AldoEdicionBici.mp4"
+    },
+    {
+      "id": "Ocean-005",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "Aldo Video Reel 02 Audio",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Ocean/AldoVideoReel02 Audio.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/AldoVideoReel02 Audio.mp4"
+    },
+    {
+      "id": "Ocean-006",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "Aldo Video Reel 03 Audio",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Ocean/AldoVideoReel03 Audio.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/AldoVideoReel03 Audio.mp4"
+    },
 
     {
       "id": "fitness-001",
