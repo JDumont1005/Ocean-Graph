@@ -184,18 +184,62 @@
     },
 
     {
-      "id": "belleza-001",
+      "id": "SpaLari-001",
       "type": "video",
       "categoryId": "belleza",
       "title": "Maquillaje Natural",
       "description": "Look natural para el día a día.",
-      "thumbnail": "https://picsum.photos/seed/belleza-1/900/1600",
-      "avatar": "https://picsum.photos/seed/makeup-1/100/100",
-      "handle": "@makeup_studio",
-      "videoUrl": "video/belleza-01.mp4"
+      "thumbnail": "images/SpaLari/depilacion axila.png",
+      "avatar": "images/SpaLari-Logo.png",
+      "handle": "@spalari_ @spa.lari",
+      "videoUrl": "video/SpaLari/depilacion axila.mp4"
     },
     {
-      "id": "belleza-004",
+      "id": "SpaLari-002",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Maquillaje Natural 2",
+      "description": "Look natural para el día a día.",
+      "thumbnail": "images/SpaLari/Diseñando cejas.png",
+      "avatar": "images/SpaLari-Logo.png",
+      "handle": "@spalari_ @spa.lari",
+      "videoUrl": "video/SpaLari/Diseñando cejas.mp4"
+    },
+    {
+      "id": "SpaLari-003",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Maquillaje Natural 3",
+      "description": "Look natural para el día a día.",
+      "thumbnail": "images/SpaLari/historia ceja y pestaña.png",
+      "avatar": "images/SpaLari-Logo.png",
+      "handle": "@spalari_ @spa.lari",
+      "videoUrl": "video/SpaLari/historia ceja y pestaña.mp4"
+    },
+    {
+      "id": "SpaLari-004",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Maquillaje Natural 4",
+      "description": "Look natural para el día a día.",
+      "thumbnail": "images/SpaLari/Micropigmentación de cejas.png",
+      "avatar": "images/SpaLari-Logo.png",
+      "handle": "@spalari_ @spa.lari",
+      "videoUrl": "video/SpaLari/Micropigmentación de cejas.mp4"
+    },
+    {
+      "id": "SpaLari-005",
+      "type": "video",
+      "categoryId": "belleza",
+      "title": "Maquillaje Natural 5",
+      "description": "Look natural para el día a día.",
+      "thumbnail": "images/SpaLari/Limpieza facial Spalari.png",
+      "avatar": "images/SpaLari-Logo.png",
+      "handle": "@spalari_ @spa.lari",
+      "videoUrl": "video/SpaLari/Limpieza facial Spalari.mp4"
+    },
+    {
+      "id": "SpaLari-006",
       "type": "image",
       "categoryId": "belleza",
       "title": "Portada de Marca",
@@ -506,7 +550,6 @@
       "handle": "@oceangraficos",
       "videoUrl": "video/Ocean/VideopruebaOceancamion.mp4"
     },
-
     {
       "id": "Ocean-002",
       "type": "video",
@@ -517,6 +560,17 @@
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos",
       "videoUrl": "video/Ocean/LaLimonera-HD.mp4"
+    },
+    {
+      "id": "Ocean-003",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "TitoReel",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Ocean/TitoReel.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/TitoReel.mp4"
     },
 
     {
