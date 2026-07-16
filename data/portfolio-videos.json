@@ -558,6 +558,28 @@
       "handle": "@oceangraficos"
     },
     {
+      "id": "Yari",
+      "type": "image",
+      "categoryId": "sesiones",
+      "title": "Yari Sesion de Fotos",
+      "description": "Sesión fotográfica de Yari, capturando los momentos más especiales y emotivos del día. Cada imagen refleja la alegría, el amor y la celebración de la unión de dos personas. La sesión se realizó en un entorno natural y romántico, utilizando técnicas de iluminación y composición para resaltar la belleza de los novios y el ambiente.",
+      "thumbnail": "images/Sesiones/Yari/DSC09323-2.jpg",
+      "images": [
+        "images/Sesiones/Yari/DSC09175-2.jpg",
+        "images/Sesiones/Yari/DSC09229-2.jpg",
+        "images/Sesiones/Yari/DSC09241-2.jpg",
+        "images/Sesiones/Yari/DSC09323-2.jpg",
+        "images/Sesiones/Yari/DSC09336-2.jpg",
+        "images/Sesiones/Yari/DSC09342-2.jpg",
+        "images/Sesiones/Yari/DSC09430-2 - copia.jpg",
+        "images/Sesiones/Yari/DSC09466-2.jpg",
+        "images/Sesiones/Yari/DSC09505-2.jpg",
+        "images/Sesiones/Yari/DSC09533-2.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
+    {
       "id": "Sesion-de-Estefania",
       "type": "image",
       "categoryId": "sesiones",
