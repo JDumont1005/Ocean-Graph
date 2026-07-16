@@ -46,6 +46,11 @@
       "icon": "🍽️"
     },
     {
+      "id": "productos",
+      "name": "Productos",
+      "icon": "🛒"
+    },
+    {
       "id": "moda",
       "name": "Moda",
       "icon": "👗"
@@ -749,16 +754,30 @@
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos"
     },
+
+
+
     {
       "id": "Publicidad",
       "type": "video",
-      "categoryId": "gastronomia",
+      "categoryId": "productos",
       "title": "Evento de bebidas",
       "description": "Bebidas y cocteles en un evento especial, capturados en un video que resalta la creatividad y presentación de cada bebida. El video muestra la preparación de los cócteles, la interacción con los invitados y la atmósfera del evento, invitando al espectador a disfrutar de una experiencia culinaria única.",
-      "thumbnail": "images/Gastronomia/4 productos Baruch Import listo.png",
+      "thumbnail": "images/Productos/4 productos Baruch Import listo.png",
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos",
-      "videoUrl": "video/Gastronomia/4 productos Baruch Import listo.mp4"
+      "videoUrl": "video/Productos/4 productos Baruch Import listo.mp4"
+    },
+    {
+      "id": "Publicidad2",
+      "type": "video",
+      "categoryId": "productos",
+      "title": "Sobrero Ventilador Baruch Import",
+      "description": "Calidad y diseño en cada detalle, capturados en un video que resalta la funcionalidad y estilo del producto. El video muestra el sombrero ventilador en acción, destacando su comodidad y versatilidad, invitando al espectador a descubrir una experiencia única de frescura y moda.",
+      "thumbnail": "images/Productos/Sobrero ventilador baruch import listo.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Productos/Sobrero ventilador baruch import listo.mp4"
     },
 
 
