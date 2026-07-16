@@ -61,6 +61,11 @@
       "icon": "🎉"
     },
     {
+      "id": "sesiones",
+      "name": "Sesiones",
+      "icon": "📸"
+    },
+    {
       "id": "ocean",
       "name": "Ocean Graph",
       "icon": "🌊"
@@ -462,6 +467,108 @@
       "handle": "@oceangraficos"
     },
     {
+      "id": "BodaFotos2",
+      "type": "image",
+      "categoryId": "eventos",
+      "title": "Sesion de Fotos Boda 2",
+      "description": "Sesión fotográfica de boda, capturando los momentos más especiales y emotivos del día. Cada imagen refleja la alegría, el amor y la celebración de la unión de dos personas. La sesión se realizó en un entorno natural y romántico, utilizando técnicas de iluminación y composición para resaltar la belleza de los novios y el ambiente.",
+      "thumbnail": "",
+      "images": [
+        "images/Evento/BodaFotos2/DSC05844.jpg",
+        "images/Evento/BodaFotos2/DSC05872.jpg",
+        "images/Evento/BodaFotos2/DSC05920.jpg",
+        "images/Evento/BodaFotos2/DSC06179.jpg",
+        "images/Evento/BodaFotos2/DSC06257.jpg",
+        "images/Evento/BodaFotos2/DSC06305.jpg",
+        "images/Evento/BodaFotos2/DSC06325.jpg",
+        "images/Evento/BodaFotos2/DSC06359.jpg",
+        "images/Evento/BodaFotos2/DSC06703.jpg",
+        "images/Evento/BodaFotos2/DSC06718.jpg",
+        "images/Evento/BodaFotos2/DSC06723.jpg",
+        "images/Evento/BodaFotos2/DSC06727.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
+
+
+
+    {
+      "id": "EmbarazadaFotos",
+      "type": "image",
+      "categoryId": "sesiones",
+      "title": "Sesion de Fotos Embarazada",
+      "description": "Sesión fotográfica de embarazada, capturando los momentos más especiales y emotivos del día. Cada imagen refleja la alegría, el amor y la celebración de la unión de dos personas. La sesión se realizó en un entorno natural y romántico, utilizando técnicas de iluminación y composición para resaltar la belleza de los novios y el ambiente.",
+      "thumbnail": "",
+      "images": [
+        "images/Sesiones/EmbarazadaFotos/DSC08746.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08747.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08750.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08755.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08757.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08759.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08777.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08783.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08784.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08798.jpg",
+        "images/Sesiones/EmbarazadaFotos/DSC08802.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
+    {
+      "id": "Sesion-de-Alanis",
+      "type": "image",
+      "categoryId": "sesiones",
+      "title": "Sesion de Alanis",
+      "description": "Sesión fotográfica de Alanis, capturando los momentos más especiales y emotivos del día. Cada imagen refleja la alegría, el amor y la celebración de la unión de dos personas. La sesión se realizó en un entorno natural y romántico, utilizando técnicas de iluminación y composición para resaltar la belleza de los novios y el ambiente.",
+      "thumbnail": "",
+      "images": [
+        "images/Sesiones/SesionDeFotosAlanis/DSC06451.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06464.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06482.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06490.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06535.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06552.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06567.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06584.jpg",
+        "images/Sesiones/SesionDeFotosAlanis/DSC06778.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
+    {
+      "id": "Sesion-de-Estefania",
+      "type": "image",
+      "categoryId": "sesiones",
+      "title": "Sesion de Estefania",
+      "description": "Sesión fotográfica de Estefania, capturando los momentos más especiales y emotivos del día. Cada imagen refleja la alegría, el amor y la celebración de la unión de dos personas. La sesión se realizó en un entorno natural y romántico, utilizando técnicas de iluminación y composición para resaltar la belleza de los novios y el ambiente.",
+      "thumbnail": "",
+      "images": [
+        "images/Sesiones/SesionDeFotosEstefania/DSC07375.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07389.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07393.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07446.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07459.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07490.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07511.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07538.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07561.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07566.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07620.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07632.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07643.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07674.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07699.jpg",
+        "images/Sesiones/SesionDeFotosEstefania/DSC07707.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
+
+
+
+    {
       "id": "eventos-001",
       "type": "video",
       "categoryId": "eventos",
@@ -550,6 +657,8 @@
       "videoUrl": "video/Evento/AldoVideoReel03 Audio.mp4"
     },
 
+
+
     {
       "id": "ninos-001",
       "type": "video",
@@ -596,28 +705,30 @@
       "videoUrl": "video/turismo-02.mp4"
     },
 
+
+
     {
-      "id": "gastronomia-001",
-      "type": "video",
+      "id": "HamburguesaFotos",
+      "type": "image",
       "categoryId": "gastronomia",
-      "title": "Menú del Día",
-      "description": "Platillos exclusivos preparados con amor.",
-      "thumbnail": "https://picsum.photos/seed/gastro-1/900/1600",
-      "avatar": "https://picsum.photos/seed/gastro-1/100/100",
-      "handle": "@restaurante_gourmet",
-      "videoUrl": "video/gastronomia-01.mp4"
+      "title": "Fotos de Hamburguesa",
+      "description": "Hamburguesas jugosas y deliciosas, capturadas en imágenes que resaltan su sabor y presentación. Cada fotografía está cuidadosamente compuesta para mostrar la textura, los ingredientes frescos y la calidad de las hamburguesas, invitando al espectador a disfrutar de una experiencia culinaria única.",
+      "thumbnail": "",
+      "images": [
+        "images/Gastronomia/Hamburguesa/DSC07151.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07158.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07165.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07168.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07199.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07213.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07235.jpg",
+        "images/Gastronomia/Hamburguesa/DSC07237.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
     },
-    {
-      "id": "gastronomia-002",
-      "type": "video",
-      "categoryId": "gastronomia",
-      "title": "Postres Artesanales",
-      "description": "Dulces creaciones hechas a mano.",
-      "thumbnail": "https://picsum.photos/seed/gastro-2/900/1600",
-      "avatar": "https://picsum.photos/seed/gastro-2/100/100",
-      "handle": "@postres_artesanales",
-      "videoUrl": "video/gastronomia-02.mp4"
-    },
+
+
 
     {
       "id": "moda-001",
