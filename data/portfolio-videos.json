@@ -26,9 +26,9 @@
       "icon": "🔧"
     },
     {
-      "id": "servicios",
-      "name": "Servicios",
-      "icon": "🛠️"
+      "id": "transporte",
+      "name": "Transporte",
+      "icon": "🚚"
     },
     {
       "id": "ninos",
@@ -378,7 +378,7 @@
     {
       "id": "TransporteJacob-001",
       "type": "video",
-      "categoryId": "servicios",
+      "categoryId": "transporte",
       "title": "Ganarnos tu Confianza",
       "description": "Video promocional de la empresa Transporte Jacob, destacando su compromiso con la seguridad y la confianza en el transporte de mercancías. El video resalta la experiencia y profesionalismo del equipo, así como la calidad de los servicios ofrecidos.",
       "thumbnail": "images/TransporteeJacob/ganarnostuconfianzaPortada.png",
@@ -390,7 +390,7 @@
     {
       "id": "TransporteJacob-002",
       "type": "video",
-      "categoryId": "servicios",
+      "categoryId": "transporte",
       "title": "Presentación Transporte Jacob",
       "description": "Video corporativo de la empresa Transporte Jacob, mostrando sus instalaciones, flota de vehículos y servicios de transporte. El video destaca la eficiencia, seguridad y confiabilidad de la empresa en el transporte de mercancías, así como su compromiso con la satisfacción del cliente.",
       "thumbnail": "images/TransporteeJacob/presentacióntransporteJacobPortada.png",
@@ -399,29 +399,68 @@
       "videoUrl": "video/TransporteJacob/presentación transporte Jacob.mp4"
     },
 
+
+
     {
-      "id": "perfumes-001",
+      "id": "EsenciaDiv-001",
       "type": "video",
       "categoryId": "perfumes",
-      "title": "Fragancia Nueva",
+      "title": "Lanzamiento de Nueva Fragancia",
       "description": "Lanzamiento de nuestra nueva fragancia premium.",
-      "thumbnail": "https://picsum.photos/seed/perfumes-1/900/1600",
-      "avatar": "https://picsum.photos/seed/perfume-1/100/100",
-      "handle": "@perfumes_boutique",
-      "videoUrl": "video/perfume-01.mp4"
+      "thumbnail": "images/EsenciaDivina/EsenciaDivina1.png",
+      "avatar": "images/EsenciaDivina-Logo.png",
+      "handle": "@esenciadivina.oficial",
+      "videoUrl": "video/EsenciaDivina/EsenciaDivina1.mp4"
     },
     {
-      "id": "perfumes-002",
+      "id": "EsenciaDiv-002",
+      "type": "video",
+      "categoryId": "perfumes",
+      "title": "Colección Exclusiva",
+      "description": "Descubre nuestra selección exclusiva.",
+      "thumbnail": "images/EsenciaDivina/EsenciaDivina2.png",
+      "avatar": "images/EsenciaDivina-Logo.png",
+      "handle": "@esenciadivina.oficial",
+      "videoUrl": "video/EsenciaDivina/EsenciaDivina2.mp4"
+    },
+    {
+      "id": "EsenciaDiv-003",
       "type": "video",
       "categoryId": "perfumes",
       "title": "Aromas Únicos",
       "description": "Descubre nuestra selección exclusiva.",
-      "thumbnail": "https://picsum.photos/seed/perfumes-2/900/1600",
-      "avatar": "https://picsum.photos/seed/perfume-2/100/100",
-      "handle": "@aromas_ve",
-      "videoUrl": "video/perfume-02.mp4"
+      "thumbnail": "images/EsenciaDivina/EsenciaDivina3.png",
+      "avatar": "images/EsenciaDivina-Logo.png",
+      "handle": "@esenciadivina.oficial",
+      "videoUrl": "video/EsenciaDivina/EsenciaDivina3.mp4"
     },
 
+
+
+    {
+      "id": "BodaFotos",
+      "type": "image",
+      "categoryId": "eventos",
+      "title": "Sesion de Fotos Boda",
+      "description": "Sesión fotográfica de boda, capturando los momentos más especiales y emotivos del día. Cada imagen refleja la alegría, el amor y la celebración de la unión de dos personas. La sesión se realizó en un entorno natural y romántico, utilizando técnicas de iluminación y composición para resaltar la belleza de los novios y el ambiente.",
+      "thumbnail": "",
+      "images": [
+        "images/Evento/BodaFotos/DSC02937.jpg",
+        "images/Evento/BodaFotos/DSC02973.jpg",
+        "images/Evento/BodaFotos/DSC02991.jpg",
+        "images/Evento/BodaFotos/DSC03222.jpg",
+        "images/Evento/BodaFotos/DSC03443.jpg",
+        "images/Evento/BodaFotos/DSC03455.jpg",
+        "images/Evento/BodaFotos/DSC03469.jpg",
+        "images/Evento/BodaFotos/DSC03999.jpg",
+        "images/Evento/BodaFotos/DSC04304.jpg",
+        "images/Evento/BodaFotos/DSC04308.jpg",
+        "images/Evento/BodaFotos/DSC04313.jpg",
+        "images/Evento/BodaFotos/DSC04326.jpg"
+      ],
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos"
+    },
     {
       "id": "eventos-001",
       "type": "video",
@@ -433,7 +472,6 @@
       "handle": "@frenossun",
       "videoUrl": "video/Evento/Eventocarros.mp4"
     },
-
     {
       "id": "eventos-002",
       "type": "video",
@@ -445,7 +483,6 @@
       "handle": "@frenossun",
       "videoUrl": "video/Evento/Nissanvideocorto.mp4"
     },
-
     {
       "id": "eventos-003",
       "type": "video",
@@ -456,6 +493,61 @@
       "avatar": "images/FrenosSun-Logo.png",
       "handle": "@frenossun",
       "videoUrl": "video/Evento/BK3AUDI.mp4"
+    },
+    {
+      "id": "eventos-004",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "La Limonera",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Evento/LaLimonera-HDPortada.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Evento/LaLimonera-HD.mp4"
+    },
+    {
+      "id": "eventos-005",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "TitoReel",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Evento/TitoReel.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Evento/TitoReel.mp4"
+    },
+    {
+      "id": "eventos-006",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "Aldo Edición Bici",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Evento/AldoEdicionBici.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Evento/AldoEdicionBici.mp4"
+    },
+    {
+      "id": "eventos-007",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "Aldo Video Reel 02 Audio",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Evento/AldoVideoReel02 Audio.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Evento/AldoVideoReel02 Audio.mp4"
+    },
+    {
+      "id": "eventos-008",
+      "type": "video",
+      "categoryId": "eventos",
+      "title": "Aldo Video Reel 03 Audio",
+      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
+      "thumbnail": "images/Evento/AldoVideoReel03 Audio.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Evento/AldoVideoReel03 Audio.mp4"
     },
 
     {
@@ -549,61 +641,6 @@
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos",
       "videoUrl": "video/Ocean/VideopruebaOceancamion.mp4"
-    },
-    {
-      "id": "Ocean-002",
-      "type": "video",
-      "categoryId": "ocean",
-      "title": "La Limonera",
-      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
-      "thumbnail": "images/Ocean/LaLimonera-HDPortada.png",
-      "avatar": "images/OceanGraph-Ola.png",
-      "handle": "@oceangraficos",
-      "videoUrl": "video/Ocean/LaLimonera-HD.mp4"
-    },
-    {
-      "id": "Ocean-003",
-      "type": "video",
-      "categoryId": "ocean",
-      "title": "TitoReel",
-      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
-      "thumbnail": "images/Ocean/TitoReel.png",
-      "avatar": "images/OceanGraph-Ola.png",
-      "handle": "@oceangraficos",
-      "videoUrl": "video/Ocean/TitoReel.mp4"
-    },
-    {
-      "id": "Ocean-004",
-      "type": "video",
-      "categoryId": "ocean",
-      "title": "Aldo Edición Bici",
-      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
-      "thumbnail": "images/Ocean/AldoEdicionBici.png",
-      "avatar": "images/OceanGraph-Ola.png",
-      "handle": "@oceangraficos",
-      "videoUrl": "video/Ocean/AldoEdicionBici.mp4"
-    },
-    {
-      "id": "Ocean-005",
-      "type": "video",
-      "categoryId": "ocean",
-      "title": "Aldo Video Reel 02 Audio",
-      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
-      "thumbnail": "images/Ocean/AldoVideoReel02 Audio.png",
-      "avatar": "images/OceanGraph-Ola.png",
-      "handle": "@oceangraficos",
-      "videoUrl": "video/Ocean/AldoVideoReel02 Audio.mp4"
-    },
-    {
-      "id": "Ocean-006",
-      "type": "video",
-      "categoryId": "ocean",
-      "title": "Aldo Video Reel 03 Audio",
-      "description": "Go-Kart en la Limonera, un lugar lleno de diversión y adrenalina.",
-      "thumbnail": "images/Ocean/AldoVideoReel03 Audio.png",
-      "avatar": "images/OceanGraph-Ola.png",
-      "handle": "@oceangraficos",
-      "videoUrl": "video/Ocean/AldoVideoReel03 Audio.mp4"
     },
 
     {
