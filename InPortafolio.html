@@ -80,63 +80,34 @@
     </nav>
 
     <!-- HERO -->
-    <section class="portfolio-hero">
-        <div class="portfolio-hero-content">
-            <div class="breadcrumb" aria-label="Breadcrumb">
-                <a href="index.html">Inicio</a>
-                <span class="breadcrumb-separator">/</span>
-                <span class="breadcrumb-current">Portfolio</span>
-            </div>
-            
-            <h1 class="portfolio-hero-title">
-                <span class="title-highlight">PORTFOLIO</span>
-            </h1>
-            
-            <p class="portfolio-hero-description">
-                Explora una selección de nuestros mejores trabajos audiovisuales 
-                organizados por categorías. Todos los videos son producciones originales 
-                de Ocean Graph para el feed de nuestros clientes.
-            </p>
+<section class="portfolio-hero">
+    <!-- Imagen de fondo aleatoria (se carga por JS) -->
+    <div class="portfolio-hero-bg" id="portfolio-hero-bg" aria-hidden="true"></div>
+    
+    <!-- Overlay oscuro -->
+    <div class="portfolio-hero-overlay" aria-hidden="true"></div>
+    
+    <div class="portfolio-hero-content">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+            <a href="index.html">Inicio</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Portfolio</span>
         </div>
-    </section>
+        
+        <h1 class="portfolio-hero-title">
+            <span class="title-highlight">PortFolio</span>
+        </h1>
+        
+        <p class="portfolio-hero-description">
+            Explora una selección de nuestros mejores trabajos audiovisuales 
+            organizados por categorías. Todos los videos son producciones originales 
+            de Ocean Graph para el feed de nuestros clientes.
+        </p>
+    </div>
+</section>
 
-    <!-- VIDEO DESTACADO -->
-    <section class="portfolio-video-section">
-        <div class="container">
-            <div class="video-showcase">
-                <div class="video-showcase-text">
-                    <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
-                    <p class="video-section-description">
-                        Mira este video para ver algunos de nuestros proyectos más destacados
-                    </p>
-                </div>
 
-                <div class="video-showcase-media">
-                    <div class="video-wrapper" id="featured-video-wrapper">
-                        <video class="portfolio-featured-video" muted playsinline preload="metadata" poster="">
-                            <source src="video\Ocean hablando.mp4" type="video/mp4">
-                            Tu navegador no soporta videos HTML5.
-                        </video>
-
-                        <button class="video-sound-btn" id="video-sound-btn" type="button" aria-label="Activar sonido" title="Activar sonido">
-                            <svg class="sound-icon sound-icon--muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                                <line x1="23" y1="9" x2="17" y2="15"/>
-                                <line x1="17" y1="9" x2="23" y2="15"/>
-                            </svg>
-                            <svg class="sound-icon sound-icon--unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <!-- ============================================
+    <!-- ============================================
          CATEGORÍAS
          ============================================ -->
     <section class="portfolio-categories-section" id="categorias">
@@ -329,23 +300,44 @@
         </div>
     </div>
 
-    <!-- CTA -->
-    <section class="portfolio-cta">
+
+    <!-- VIDEO DESTACADO -->
+    <section class="portfolio-video-section">
         <div class="container">
-            <div class="cta-content">
-                <h2 class="cta-title">¿Tienes un proyecto en mente?</h2>
-                <p class="cta-description">
-                    Trabajemos juntos para crear algo extraordinario. 
-                    Contáctanos y cuéntanos tu idea.
-                </p>
-                <div class="cta-actions">
-                    <a href="index.html#contacto" class="cta-btn cta-btn-primary">Iniciar Proyecto</a>
-                    <a href="index.html" class="cta-btn cta-btn-secondary">Volver al Inicio</a>
+            <div class="video-showcase">
+                <div class="video-showcase-text">
+                    <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
+                    <p class="video-section-description">
+                        Mira este video para ver algunos de nuestros proyectos más destacados
+                    </p>
+                </div>
+
+                <div class="video-showcase-media">
+                    <div class="video-wrapper" id="featured-video-wrapper">
+                        <video class="portfolio-featured-video" muted playsinline preload="metadata" poster="">
+                            <source src="video\Ocean hablando.mp4" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+
+                        <button class="video-sound-btn" id="video-sound-btn" type="button" aria-label="Activar sonido" title="Activar sonido">
+                            <svg class="sound-icon sound-icon--muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <line x1="23" y1="9" x2="17" y2="15"/>
+                                <line x1="17" y1="9" x2="23" y2="15"/>
+                            </svg>
+                            <svg class="sound-icon sound-icon--unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+        
     <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-content">

@@ -10,26 +10,72 @@
 .portfolio-hero {
     position: relative;
     padding: calc(60px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
-    background: linear-gradient(
-        135deg,
-        var(--color-dark) 0%,
-        var(--color-dark-alt) 50%,
-        rgba(0, 157, 255, 0.05) 100%
-    );
+    background-color: var(--color-dark);
     text-align: center;
     min-height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+}
+
+/* Imagen de fondo aleatoria */
+.portfolio-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.portfolio-hero-bg.loaded {
+    opacity: 1;
+}
+
+/* Overlay dinámico (cambia según claridad de imagen) */
+.portfolio-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: background 0.6s ease;
+    background: linear-gradient(
+        135deg,
+        rgba(20, 20, 20, 0.85) 0%,
+        rgba(20, 20, 20, 0.75) 50%,
+        rgba(0, 157, 255, 0.25) 100%
+    );
+}
+
+/* Overlay para imagen CLARA (texto oscuro) */
+.portfolio-hero.hero-text-dark .portfolio-hero-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.75) 0%,
+        rgba(255, 255, 255, 0.65) 50%,
+        rgba(0, 157, 255, 0.15) 100%
+    );
 }
 
 .portfolio-hero-content {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
     margin: 0 auto;
     animation: fadeInUp 0.8s ease;
 }
 
-.breadcrumb {
+/* --- TEXTO ADAPTATIVO --- */
+
+/* Modo texto CLARO (por defecto - imagen oscura) */
+.portfolio-hero .breadcrumb {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,28 +83,29 @@
     margin-bottom: var(--spacing-md);
     font-size: 0.9rem;
     font-weight: 300;
-    color: var(--color-white);
-    opacity: 0.7;
+    color: #ffffff;
+    opacity: 0.9;
+    transition: color 0.6s ease;
 }
 
-.breadcrumb a {
-    color: var(--color-primary);
+.portfolio-hero .breadcrumb a {
+    color: var(--color-primary-light);
     text-decoration: none;
     transition: opacity var(--transition-normal);
 }
 
-.breadcrumb a:hover {
+.portfolio-hero .breadcrumb a:hover {
     opacity: 0.8;
     text-decoration: underline;
 }
 
-.breadcrumb-separator {
-    color: var(--color-white);
-    opacity: 0.4;
+.portfolio-hero .breadcrumb-separator {
+    color: #ffffff;
+    opacity: 0.5;
 }
 
-.breadcrumb-current {
-    color: var(--color-white);
+.portfolio-hero .breadcrumb-current {
+    color: #ffffff;
 }
 
 .portfolio-hero-title {
@@ -66,18 +113,56 @@
     font-weight: 100;
     margin-bottom: var(--spacing-md);
     letter-spacing: -1px;
-    color: var(--color-white);
+    color: #ffffff;
     line-height: 1.2;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    transition: color 0.6s ease, text-shadow 0.6s ease;
 }
 
 .portfolio-hero-description {
     font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 300;
     line-height: 1.8;
-    color: var(--color-white);
-    opacity: 0.85;
+    color: #ffffff;
+    opacity: 0.95;
     max-width: 600px;
     margin: 0 auto;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: color 0.6s ease, text-shadow 0.6s ease;
+}
+
+/* Modo texto OSCURO (cuando la imagen es clara) */
+.portfolio-hero.hero-text-dark .breadcrumb {
+    color: #141414;
+    opacity: 1;
+}
+
+.portfolio-hero.hero-text-dark .breadcrumb a {
+    color: var(--color-primary);
+}
+
+.portfolio-hero.hero-text-dark .breadcrumb-separator {
+    color: #141414;
+    opacity: 0.6;
+}
+
+.portfolio-hero.hero-text-dark .breadcrumb-current {
+    color: #141414;
+}
+
+.portfolio-hero.hero-text-dark .portfolio-hero-title {
+    color: #141414;
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.4);
+}
+
+.portfolio-hero.hero-text-dark .portfolio-hero-description {
+    color: #141414;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+/* El "PORTFOLIO" del title-highlight mantiene su color de marca */
+.portfolio-hero .title-highlight {
+    color: var(--color-primary);
 }
 
 /* ===================================
@@ -85,9 +170,9 @@
    =================================== */
 
 .portfolio-video-section {
-    background-color: var(--color-dark);
+    background-color: #0d0d0d; /* Más oscuro para diferenciarlo del fondo de categorías */
     padding: var(--spacing-xl) 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .video-showcase {
@@ -131,7 +216,7 @@
 
 .video-wrapper {
     position: relative;
-    width: 320px;
+    width: 420px; /* Antes 320px */
     aspect-ratio: 9 / 16;
     border-radius: 20px;
     overflow: hidden;
@@ -157,6 +242,11 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    transform: translateZ(0); /* Aceleración por hardware */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* ===================================
@@ -1569,90 +1659,6 @@ body.theme-light .shape-triangle {
 }
 
 /* ===================================
-   CALL TO ACTION
-   =================================== */
-
-.portfolio-cta {
-    background: linear-gradient(
-        135deg,
-        var(--color-dark) 0%,
-        rgba(0, 157, 255, 0.08) 100%
-    );
-    padding: var(--spacing-xl) var(--spacing-md);
-    text-align: center;
-}
-
-.cta-content {
-    max-width: 700px;
-    margin: 0 auto;
-}
-
-.cta-title {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    font-weight: 300;
-    color: var(--color-white);
-    margin-bottom: var(--spacing-md);
-    letter-spacing: -0.5px;
-}
-
-.cta-description {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    font-weight: 300;
-    color: var(--color-white);
-    opacity: 0.85;
-    line-height: 1.8;
-    margin-bottom: var(--spacing-lg);
-}
-
-.cta-actions {
-    display: flex;
-    gap: var(--spacing-sm);
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.cta-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2rem;
-    font-size: 1rem;
-    font-weight: 500;
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    text-decoration: none;
-    border-radius: 12px;
-    transition: all var(--transition-normal);
-    letter-spacing: 0.3px;
-    -webkit-tap-highlight-color: transparent;
-}
-
-.cta-btn-primary {
-    background-color: var(--color-primary);
-    color: #141414;
-}
-
-.cta-btn-primary:hover {
-    background-color: var(--color-primary-light);
-    box-shadow: 0 8px 25px rgba(0, 157, 255, 0.4);
-    transform: translateY(-3px);
-}
-
-.cta-btn-secondary {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: var(--color-white);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.cta-btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-.cta-btn:active {
-    transform: scale(0.97);
-}
-
-/* ===================================
    ANIMACIONES
    =================================== */
 
@@ -1697,8 +1703,9 @@ body.theme-light .shape-triangle {
     }
 
     .video-wrapper {
-        width: 280px;
-    }
+    width: 320px; /* Antes 280px */
+    border-radius: 16px;
+}
 
     .categories-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -2024,7 +2031,6 @@ body.theme-light .shape-triangle {
     .video-modal-close,
     .image-modal-close,
     .image-nav-btn,
-    .cta-btn,
     .video-wrapper,
     .video-sound-btn,
     .player-btn,
@@ -2032,6 +2038,42 @@ body.theme-light .shape-triangle {
         transition: none;
         animation: none;
     }
+}
+
+/* ===================================
+   OPTIMIZACIÓN GPU - VIDEOS E IMÁGENES
+   =================================== */
+
+/* Aceleración por hardware para thumbnails de tarjetas */
+.video-card-thumbnail img,
+.video-card-avatar img,
+.video-card-watermark img {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Aceleración para imágenes del modal */
+.image-viewer-wrapper img,
+.image-info-avatar img {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Aceleración para el reproductor de video del modal */
+.video-player {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Aceleración para el video destacado */
+.portfolio-featured-video {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* ===================================
@@ -2263,14 +2305,4 @@ body.theme-light .image-nav-btn {
 body.theme-light .image-nav-btn:hover {
     background-color: rgba(0, 157, 255, 0.85);
     border-color: var(--color-primary);
-}
-
-body.theme-light .cta-btn-secondary {
-    background-color: rgba(0, 0, 0, 0.06);
-    border-color: rgba(0, 0, 0, 0.15);
-}
-
-body.theme-light .cta-btn-secondary:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    border-color: rgba(0, 0, 0, 0.2);
 }

@@ -88,6 +88,154 @@ const PORTFOLIO_STATE = {
 };
 
 /* ===================================
+   IMÁGENES DE FONDO ALEATORIAS (HERO)
+   =================================== */
+
+const HERO_BG_CONFIG = {
+    dataUrl: 'data/hero-backgrounds.json',
+    brightnessThreshold: 128 // 0-255. Menor = más sensible a imágenes oscuras
+};
+
+async function loadHeroBackgrounds() {
+    try {
+        const response = await fetch(HERO_BG_CONFIG.dataUrl, { cache: 'no-cache' });
+        if (!response.ok) {
+            console.warn('[HERO-BG] Status:', response.status);
+            return null;
+        }
+        const data = await response.json();
+        debugLog('Hero backgrounds cargados:', data);
+        return data;
+    } catch (error) {
+        console.error('[HERO-BG] Error al cargar JSON:', error);
+        return null;
+    }
+}
+
+/**
+ * Analiza el brillo promedio de una imagen
+ * @param {HTMLImageElement} img - Imagen ya cargada
+ * @returns {number} - Brillo entre 0 (oscuro) y 255 (claro)
+ */
+function analyzeImageBrightness(img) {
+    try {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Reducimos el tamaño para análisis más rápido
+        const sampleSize = 50;
+        canvas.width = sampleSize;
+        canvas.height = sampleSize;
+        
+        ctx.drawImage(img, 0, 0, sampleSize, sampleSize);
+        const imageData = ctx.getImageData(0, 0, sampleSize, sampleSize);
+        const data = imageData.data;
+        
+        let totalBrightness = 0;
+        let pixelCount = 0;
+        
+        // Analizamos cada pixel (RGBA = 4 valores por pixel)
+        for (let i = 0; i < data.length; i += 4) {
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            // Fórmula de luminancia percibida (más precisa que promedio simple)
+            const brightness = (0.299 * r + 0.587 * g + 0.114 * b);
+            totalBrightness += brightness;
+            pixelCount++;
+        }
+        
+        const avgBrightness = totalBrightness / pixelCount;
+        debugLog('Brillo promedio detectado:', avgBrightness.toFixed(1));
+        return avgBrightness;
+    } catch (error) {
+        console.warn('[HERO-BG] Error al analizar brillo (posible CORS):', error);
+        return null;
+    }
+}
+
+/**
+ * Aplica el color de texto según brillo o preferencia manual
+ * @param {string} mode - 'auto', 'light' o 'dark'
+ * @param {number|null} brightness - Brillo de imagen (si es auto)
+ */
+function applyHeroTextColor(mode, brightness) {
+    const hero = document.querySelector('.portfolio-hero');
+    if (!hero) return;
+    
+    let useDarkText = false;
+    
+    if (mode === 'dark') {
+        useDarkText = true;
+    } else if (mode === 'light') {
+        useDarkText = false;
+    } else {
+        // Modo auto: decide según brillo
+        if (brightness !== null && brightness > HERO_BG_CONFIG.brightnessThreshold) {
+            useDarkText = true;
+        }
+    }
+    
+    hero.classList.toggle('hero-text-dark', useDarkText);
+    debugLog('Texto del hero:', useDarkText ? 'OSCURO' : 'CLARO');
+}
+
+async function initHeroBackground() {
+    const heroBg = document.getElementById('portfolio-hero-bg');
+    if (!heroBg) return;
+    
+    const data = await loadHeroBackgrounds();
+    if (!data || !Array.isArray(data.backgrounds)) return;
+    
+    // Filtra solo las imágenes activas
+    const activeBackgrounds = data.backgrounds.filter(bg => bg.active === true);
+    
+    if (activeBackgrounds.length === 0) {
+        debugLog('No hay backgrounds activos');
+        return;
+    }
+    
+    // Elige una imagen aleatoria
+    const randomIndex = Math.floor(Math.random() * activeBackgrounds.length);
+    const selected = activeBackgrounds[randomIndex];
+    const textMode = selected.textColor || 'auto';
+    
+    // Precarga la imagen para fade-in suave + análisis de brillo
+    const img = new Image();
+    img.crossOrigin = 'anonymous'; // Necesario para analizar brillo
+    
+    img.onload = () => {
+        heroBg.style.backgroundImage = `url('${selected.url}')`;
+        heroBg.setAttribute('aria-label', selected.alt || '');
+        heroBg.classList.add('loaded');
+        
+        // Analiza brillo solo si modo es 'auto'
+        let brightness = null;
+        if (textMode === 'auto') {
+            brightness = analyzeImageBrightness(img);
+        }
+        
+        applyHeroTextColor(textMode, brightness);
+        
+        debugLog('Hero background aplicado:', selected.id, '|', selected.url);
+    };
+    
+    img.onerror = () => {
+        console.warn('[HERO-BG] Error al cargar imagen:', selected.url);
+        // Fallback: intenta cargar sin crossOrigin
+        const fallbackImg = new Image();
+        fallbackImg.onload = () => {
+            heroBg.style.backgroundImage = `url('${selected.url}')`;
+            heroBg.classList.add('loaded');
+            applyHeroTextColor(textMode, null);
+        };
+        fallbackImg.src = selected.url;
+    };
+    
+    img.src = selected.url;
+}
+
+/* ===================================
    UTILIDADES
    =================================== */
 
@@ -287,14 +435,30 @@ function renderVideoCard(item, index) {
             style="animation-delay: ${index * 60}ms;"
         >
             <div class="video-card-thumbnail">
-                <img src="${escapeHTML(item.thumbnail || '')}" alt="${escapeHTML(item.title || 'Video')}" loading="lazy">
+                <img 
+                    src="${escapeHTML(item.thumbnail || '')}" 
+                    alt="${escapeHTML(item.title || 'Video')}" 
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                >
                 <div class="video-card-watermark">
-                    <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph">
+                    <img 
+                        src="Logo/OceanGraph - Ola.svg" 
+                        alt="Ocean Graph"
+                        loading="lazy"
+                        decoding="async"
+                    >
                 </div>
             </div>
             <div class="video-card-info">
                 <div class="video-card-avatar">
-                    <img src="${escapeHTML(item.avatar || '')}" alt="${escapeHTML(item.handle || 'Cliente')}" loading="lazy">
+                    <img 
+                        src="${escapeHTML(item.avatar || '')}" 
+                        alt="${escapeHTML(item.handle || 'Cliente')}" 
+                        loading="lazy"
+                        decoding="async"
+                    >
                 </div>
                 <div class="video-card-details">
                     <h4 class="video-card-title">${escapeHTML(item.title || 'Sin título')}</h4>
@@ -329,15 +493,31 @@ function renderImageCard(item, index) {
             style="animation-delay: ${index * 60}ms;"
         >
             <div class="video-card-thumbnail">
-                <img src="${escapeHTML(firstImage)}" alt="${escapeHTML(item.title || 'Imagen')}" loading="lazy">
+                <img 
+                    src="${escapeHTML(firstImage)}" 
+                    alt="${escapeHTML(item.title || 'Imagen')}" 
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="low"
+                >
                 ${countBadge}
                 <div class="video-card-watermark">
-                    <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph">
+                    <img 
+                        src="Logo/OceanGraph - Ola.svg" 
+                        alt="Ocean Graph"
+                        loading="lazy"
+                        decoding="async"
+                    >
                 </div>
             </div>
             <div class="video-card-info">
                 <div class="video-card-avatar">
-                    <img src="${escapeHTML(item.avatar || '')}" alt="${escapeHTML(item.handle || 'Cliente')}" loading="lazy">
+                    <img 
+                        src="${escapeHTML(item.avatar || '')}" 
+                        alt="${escapeHTML(item.handle || 'Cliente')}" 
+                        loading="lazy"
+                        decoding="async"
+                    >
                 </div>
                 <div class="video-card-details">
                     <h4 class="video-card-title">${escapeHTML(item.title || 'Sin título')}</h4>
@@ -862,6 +1042,7 @@ function initGlobalEvents() {
 async function initPortfolio() {
     debugLog('Inicializando Portfolio...');
     
+    initHeroBackground();
     initFeaturedVideo();
     initGlobalEvents();
     initCustomPlayer();
