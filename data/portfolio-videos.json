@@ -512,7 +512,17 @@
     },
 
 
-
+    {
+      "id": "CreandoRecuerdosAmigos",
+      "type": "video",
+      "categoryId": "sesiones",
+      "title": "Creando Recuerdos con Amigos",
+    "description": "Video de sesión fotográfica con amigos, capturando momentos espontáneos y divertidos. Cada toma refleja la alegría y la camaradería del grupo, utilizando técnicas de iluminación natural y composición para resaltar la autenticidad de las interacciones.",
+      "thumbnail": "images/Sesiones/CreandoRecuerdosAmigos.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Sesiones/creando recuerdos a amigos pt1.mp4"
+    },
     {
       "id": "EmbarazadaFotos",
       "type": "image",
@@ -750,6 +760,8 @@
       "handle": "@oceangraficos",
       "videoUrl": "video/Productos/Sobrero ventilador baruch import listo.mp4"
     },
+
+
     
     {
       "id": "Ocean-001",
@@ -762,6 +774,19 @@
       "handle": "@oceangraficos",
       "videoUrl": "video/Ocean/VideopruebaOceancamion.mp4"
     },
+    {
+      "id": "Ocean-002",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "Antes, Después, Resultado",
+      "description": "Video mostrando el proceso de transformación de un proyecto, desde el estado inicial hasta el resultado final. Cada etapa del proceso se captura en detalle, destacando la dedicación y el esfuerzo invertido para lograr un resultado impresionante.",
+      "thumbnail": "",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/antes, despues, resultado.mp4"
+    },
+
+
 
     {
       "id": "AldoBici",
