@@ -2,7 +2,7 @@
   "backgrounds": [
     {
       "id": "bg-001",
-      "url": "https://picsum.photos/seed/portfolio1/1920/1080",
+      "url": "images/ocean-waves-clear-blue-sky.jpg.jpeg",
       "alt": "Fondo Portfolio 1",
       "category": "eventos",
       "textColor": "auto",
@@ -10,33 +10,17 @@
     },
     {
       "id": "bg-002",
-      "url": "https://picsum.photos/seed/portfolio2/1920/1080",
+      "url": "images/beautiful-scenery-fascinating-underwater-world-island-bonaire-caribbean.jpg.jpeg",
       "alt": "Fondo Portfolio 2",
       "category": "sesiones",
       "textColor": "auto",
       "active": true
     },
     {
-      "id": "bg-003",
-      "url": "https://picsum.photos/seed/portfolio3/1920/1080",
-      "alt": "Fondo Portfolio 3",
-      "category": "gastronomia",
-      "textColor": "auto",
-      "active": true
-    },
-    {
-      "id": "bg-004",
-      "url": "https://picsum.photos/seed/portfolio4/1920/1080",
-      "alt": "Fondo Portfolio 4",
-      "category": "belleza",
-      "textColor": "auto",
-      "active": true
-    },
-    {
-      "id": "bg-005",
-      "url": "https://picsum.photos/seed/portfolio5/1920/1080",
-      "alt": "Fondo Portfolio 5",
-      "category": "joyeria",
+      "id": "bg-002",
+      "url": "images/beautiful-seaside-waves.jpg.jpeg",
+      "alt": "Fondo Portfolio 2",
+      "category": "sesiones",
       "textColor": "auto",
       "active": true
     }

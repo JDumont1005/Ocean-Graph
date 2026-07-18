@@ -917,3 +917,63 @@ section {
     -ms-user-select: none;
     user-select: none;
 }
+
+/* ===================================
+   TEMA CLARO - AJUSTES GLOBALES MÓVIL
+   =================================== */
+
+/* Menú lateral en modo claro */
+body.theme-light .nav-menu {
+    background-color: var(--color-dark);
+    border-left-color: rgba(0, 0, 0, 0.12);
+}
+
+body.theme-light .nav-menu .nav-link {
+    color: rgba(0, 0, 0, 0.75);
+}
+
+body.theme-light .nav-menu .nav-link.active,
+body.theme-light .nav-menu .nav-link:hover {
+    color: #ffffff;
+}
+
+/* Hamburguesa en modo claro */
+body.theme-light .hamburger span {
+    background-color: #141414;
+}
+
+/* Contact icon backgrounds */
+body.theme-light .contact-icon {
+    background-color: rgba(0, 157, 255, 0.1);
+}
+
+/* Contact item hover */
+body.theme-light .contact-item:hover {
+    background-color: rgba(0, 157, 255, 0.06);
+}
+
+/* Stat cards */
+body.theme-light .stat-card {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.theme-light .stat-card:hover {
+    border-color: rgba(0, 157, 255, 0.4);
+    box-shadow: 0 8px 24px rgba(0, 157, 255, 0.15);
+}
+
+/* Footer */
+body.theme-light .main-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Video overlay más suave en tema claro */
+body.theme-light .video-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(20, 20, 20, 0.7) 0%,
+        rgba(20, 20, 20, 0.6) 50%,
+        rgba(0, 157, 255, 0.2) 100%
+    );
+}
