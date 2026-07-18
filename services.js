@@ -7,6 +7,24 @@
 'use strict';
 
 /* ===================================
+   GUARDIÁN: DETECCIÓN MÓVIL
+   =================================== */
+
+(function checkMobileRedirect() {
+    const preference = localStorage.getItem('og-device-preference');
+    if (preference === 'desktop') return;
+    
+    const ua = navigator.userAgent || '';
+    const isUAHandheld = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    const hasTouchSupport = ('ontouchstart' in window) && (navigator.maxTouchPoints > 0);
+    
+    if ((isUAHandheld && hasTouchSupport) || preference === 'mobile') {
+        localStorage.setItem('og-device-preference', 'mobile');
+        window.location.replace('mobile/ServicesMobile.html');
+    }
+})();
+
+/* ===================================
    CONFIGURACIÓN
    =================================== */
 

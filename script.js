@@ -55,11 +55,17 @@ const DEVICE_KEY = 'og-device-preference'; // 'mobile' | 'desktop' | null
  */
 function isHandheldDevice() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // Detección estricta por User Agent (dispositivos reales)
     const isUAHandheld = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-    const isSmallScreen = window.innerWidth <= 900;
-    return isUAHandheld || isSmallScreen;
+    
+    // Verificar si tiene soporte táctil real (no emulado)
+    const hasTouchSupport = ('ontouchstart' in window) && (navigator.maxTouchPoints > 0);
+    
+    // Solo consideramos móvil si el UA lo confirma
+    // El ancho de pantalla YA NO decide (evita falsos positivos en DevTools/redimensionar)
+    return isUAHandheld && hasTouchSupport;
 }
-
 /**
  * Obtiene preferencia guardada del usuario
  */
