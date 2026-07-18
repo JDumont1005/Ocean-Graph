@@ -1284,14 +1284,9 @@
 }
 
 /* ===================================
-   OPTIMIZACIÓN GPU
+   OPTIMIZACIÓN GPU (solo videos)
    =================================== */
 
-.video-card-thumbnail img,
-.video-card-avatar img,
-.video-card-watermark img,
-.image-viewer-wrapper img,
-.image-info-avatar img,
 .video-player,
 .portfolio-featured-video {
     transform: translateZ(0);
