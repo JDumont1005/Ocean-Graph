@@ -71,4 +71,4 @@ WhatsApp: +58 412-7209418
 Email: oceangraphven@gmail.com
 Ubicación: Venezuela, Edo. La Guaira.
 
-<div align="center"> <p>© 2024 Ocean Graph. Todos los derechos reservados.</p> </div>
+<div align="center"> <p>© 2026 Ocean Graph. Todos los derechos reservados.</p> </div>
