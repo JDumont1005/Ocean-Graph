@@ -1164,9 +1164,10 @@
    =================================== */
 
 .portfolio-video-section {
-    background-color: #0d0d0d;
+    background-color: var(--color-dark-alt);
     padding: var(--spacing-lg) 0;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background-color var(--transition-normal);
 }
 
 .video-showcase {
@@ -1360,6 +1361,11 @@ body.theme-light .videos-empty p {
 body.theme-light .video-section-title,
 body.theme-light .video-section-description {
     color: #141414;
+}
+/* Video destacado en tema claro */
+body.theme-light .portfolio-video-section {
+    background-color: var(--color-dark-alt);
+    border-top-color: rgba(0, 0, 0, 0.1);
 }
 
 /* ===================================
