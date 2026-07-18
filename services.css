@@ -1,0 +1,258 @@
+/* ===================================
+   OCEAN GRAPH - SERVICIOS
+   services.css
+   Estilos específicos para Servicios.html
+   =================================== */
+
+/* ===================================
+   HERO SERVICIOS
+   =================================== */
+
+.services-hero {
+    position: relative;
+    padding: calc(60px + var(--spacing-xl)) var(--spacing-md) var(--spacing-xl);
+    background-color: var(--color-primary);
+    text-align: center;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Imagen de fondo aleatoria */
+.services-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.services-hero-bg.loaded {
+    opacity: 1;
+}
+
+/* Overlay uniforme */
+.services-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: background 0.6s ease;
+    background: rgba(20, 20, 20, 0.75);
+}
+
+/* Overlay para imagen clara (texto oscuro) */
+.services-hero.hero-text-dark .services-hero-overlay {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.services-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* --- BREADCRUMB --- */
+
+.services-hero .breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: var(--spacing-md);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #ffffff;
+    opacity: 0.9;
+    transition: color 0.6s ease;
+}
+
+.services-hero .breadcrumb a {
+    color: var(--color-primary-light);
+    text-decoration: none;
+    transition: opacity var(--transition-normal);
+}
+
+.services-hero .breadcrumb a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+.services-hero .breadcrumb-separator {
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.services-hero .breadcrumb-current {
+    color: #ffffff;
+}
+
+/* --- TÍTULO --- */
+
+.services-hero-title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 400;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    transition: text-shadow 0.6s ease;
+}
+
+.services-hero .title-highlight-services {
+    color: var(--color-primary);
+}
+
+/* --- DESCRIPCIÓN --- */
+
+.services-hero-description {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 300;
+    line-height: 1.8;
+    color: #ffffff;
+    opacity: 0.95;
+    max-width: 720px;
+    margin: 0 auto var(--spacing-lg);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: color 0.6s ease, text-shadow 0.6s ease;
+}
+
+/* --- INDICADOR SCROLL --- */
+
+.services-scroll-indicator {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+    margin-top: var(--spacing-sm);
+}
+
+.services-scroll-indicator:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.services-scroll-indicator .scroll-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.services-scroll-indicator .scroll-arrow {
+    font-size: 1.5rem;
+    color: #ffffff;
+    animation: bounce 2s infinite;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* --- TEXTO ADAPTATIVO PARA IMAGEN CLARA --- */
+
+.services-hero.hero-text-dark .breadcrumb {
+    color: #141414;
+    opacity: 1;
+}
+
+.services-hero.hero-text-dark .breadcrumb a {
+    color: var(--color-primary);
+}
+
+.services-hero.hero-text-dark .breadcrumb-separator,
+.services-hero.hero-text-dark .breadcrumb-current {
+    color: #141414;
+}
+
+.services-hero.hero-text-dark .services-hero-title {
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.4);
+}
+
+.services-hero.hero-text-dark .services-hero-description {
+    color: #141414;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+.services-hero.hero-text-dark .services-scroll-indicator .scroll-text,
+.services-hero.hero-text-dark .services-scroll-indicator .scroll-arrow {
+    color: #141414;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* ===================================
+   ANIMACIONES
+   =================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(6px);
+    }
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 1024px) {
+    .services-hero {
+        min-height: 70vh;
+        padding: calc(60px + var(--spacing-lg)) var(--spacing-md) var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-hero {
+        min-height: 60vh;
+    }
+
+    .services-hero-title {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .services-hero-description {
+        margin-bottom: var(--spacing-md);
+    }
+}
+
+/* ===================================
+   ACCESIBILIDAD
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .services-hero-bg,
+    .services-hero-content,
+    .services-scroll-indicator,
+    .scroll-arrow {
+        transition: none;
+        animation: none;
+    }
+}

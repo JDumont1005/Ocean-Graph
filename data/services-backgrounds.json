@@ -1,0 +1,44 @@
+{
+  "backgrounds": [
+    {
+      "id": "sv-bg-001",
+      "url": "https://picsum.photos/seed/services1/1920/1080",
+      "alt": "Fondo Servicios 1",
+      "category": "diseño",
+      "textColor": "auto",
+      "active": true
+    },
+    {
+      "id": "sv-bg-002",
+      "url": "https://picsum.photos/seed/services2/1920/1080",
+      "alt": "Fondo Servicios 2",
+      "category": "video",
+      "textColor": "auto",
+      "active": true
+    },
+    {
+      "id": "sv-bg-003",
+      "url": "https://picsum.photos/seed/services3/1920/1080",
+      "alt": "Fondo Servicios 3",
+      "category": "fotografia",
+      "textColor": "auto",
+      "active": true
+    },
+    {
+      "id": "sv-bg-004",
+      "url": "https://picsum.photos/seed/services4/1920/1080",
+      "alt": "Fondo Servicios 4",
+      "category": "marketing",
+      "textColor": "auto",
+      "active": true
+    },
+    {
+      "id": "sv-bg-005",
+      "url": "https://picsum.photos/seed/services5/1920/1080",
+      "alt": "Fondo Servicios 5",
+      "category": "branding",
+      "textColor": "auto",
+      "active": true
+    }
+  ]
+}
