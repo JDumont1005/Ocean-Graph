@@ -48,9 +48,9 @@
     transition: background 0.6s ease;
     background: linear-gradient(
         135deg,
-        rgba(20, 20, 20, 0.85) 0%,
+        rgba(68, 68, 68, 0.85) 0%,
         rgba(20, 20, 20, 0.75) 50%,
-        rgba(0, 157, 255, 0.25) 100%
+        rgba(0, 112, 182, 0.25) 100%
     );
 }
 

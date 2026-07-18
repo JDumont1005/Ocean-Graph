@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#141414">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Portfolio Ocean Graph - Versión móvil. Explora nuestros trabajos audiovisuales organizados por categorías.">
+
+    <title>Portfolio · Ocean Graph (Móvil)</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../Logo/OceanGraph - Ola.svg">
+    <link rel="shortcut icon" href="../Logo/OceanGraph - Ola.svg" type="image/svg+xml">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Estilos base móvil + específicos portafolio -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="portfolio.css">
+</head>
+<body class="page-portfolio-mobile">
+
+    <!-- LOADER -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img
+                    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBmaWxsPSJjdXJyZW50Q29sb3IiIGQ9Ik0xMiwxQTExLDExLDAsMSwwLDIzLDEyLDExLDExLDAsMCwwLDEyLDFabTAsMTlhOCw4LDAsMSwxLDgtOEE4LDgsMCwwLDEsMTIsMjBaIiBvcGFjaXR5PSIwLjI1Ii8+PHBhdGggZmlsbD0iY3VycmVudENvbG9yIiBkPSJNMTAuNzIsMTkuOWE4LDgsMCwwLDEtNi41LTkuNzlBNy43Nyw3Ljc3LDAsMCwxLDEwLjQsNC4xNmE4LDgsMCwwLDEsOS40OSw2LjUyQTEuNTQsMS41NCwwLDAsMCwyMS4zOCwxMmguMTNhMS4zNywxLjM3LDAsMCwwLDEuMzgtMS41NCwxMSwxMSwwLDEsMC0xMi43LDEyLjM5QTEuNTQsMS41NCwwLDAsMCwxMiwyMS4zNGgwQTEuNDcsMS40NywwLDAsMCwxMC43MiwxOS45WiI+PGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBkdXI9IjAuNzVzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjAgMTIgMTI7MzYwIDEyIDEyIi8+PC9wYXRoPjwvc3ZnPg=="
+                    alt="Cargando"
+                    class="loader-spinner"
+                >
+            </div>
+            <h2 class="loader-text">OCEAN <span>GRAPH</span></h2>
+        </div>
+    </div>
+
+    <!-- NAVBAR MÓVIL -->
+    <nav class="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="nav-container">
+            <a href="index.html#inicio" class="logo" aria-label="Ocean Graph - Ir al inicio móvil">
+                <div class="logo-icon-wrapper">
+                    <img 
+                        src="../Logo/OceanGraph - Ola.svg" 
+                        alt="Ocean Graph" 
+                        class="logo-svg"
+                    >
+                </div>
+                <span class="logo-text">OCEAN <span class="logo-accent">GRAPH</span></span>
+            </a>
+
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html#inicio" class="nav-link" role="menuitem">Inicio</a></li>
+                <li role="none"><a href="index.html#nosotros" class="nav-link" role="menuitem">Nosotros</a></li>
+                <li role="none"><a class="nav-link" role="menuitem">Servicios</a></li>
+                <li role="none"><a href="PortfolioMobile.html" class="nav-link active" role="menuitem">Portafolio</a></li>
+                <li role="none"><a href="CommunityMobile.html" class="nav-link" role="menuitem">Comunidad</a></li>
+                <li role="none"><a href="index.html#contacto" class="nav-link" role="menuitem">Contacto</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button 
+                    class="theme-toggle" 
+                    type="button" 
+                    aria-label="Cambiar a modo claro"
+                    title="Cambiar tema"
+                >
+                    <span class="theme-icon theme-icon--sun" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                            <path fill="#fff" d="M10 6.797a3.19 3.19 0 0 0-3.2 3.201a3.19 3.19 0 0 0 3.2 3.199a3.19 3.19 0 0 0 3.199-3.199A3.19 3.19 0 0 0 10 6.797m0 5.25a2.049 2.049 0 1 1 0-4.1a2.05 2.05 0 0 1 0 4.1M15 5c-.312-.312-.883-.248-1.273.142c-.39.391-.453.959-.141 1.272s.882.25 1.273-.141c.39-.39.453-.961.141-1.273m-9.858 8.729c-.391.39-.454.959-.142 1.271s.882.25 1.273-.141s.454-.961.142-1.273s-.883-.248-1.273.143M5 5c-.312.312-.249.883.141 1.273c.391.391.961.453 1.273.141s.249-.883-.142-1.273C5.883 4.752 5.312 4.688 5 5m8.727 9.857c.39.391.96.455 1.273.143s.249-.883-.142-1.274s-.96-.453-1.273-.141s-.248.882.142 1.272M10 4.998c.441 0 .8-.447.8-1C10.799 3.445 10.441 3 10 3s-.801.445-.801.998s.358 1 .801 1M10 17c.441 0 .8-.447.8-1s-.358-.998-.799-.998s-.801.445-.801.998c-.001.553.357 1 .8 1m-5-7c0-.441-.45-.8-1.003-.8S3 9.559 3 10s.444.8.997.8S5 10.442 5 10m12 0c0-.441-.448-.8-1.001-.8S15 9.559 15 10s.446.8.999.8S17 10.442 17 10"/>
+                        </svg>
+                    </span>
+                    <span class="theme-icon theme-icon--moon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="#000" d="M14.5 21q-1.858 0-3.497-.707T8.139 18.36t-1.931-2.864t-.708-3.491q0-1.874.71-3.511q.711-1.637 1.93-2.855t2.864-1.93T14.5 3q.812 0 1.558.139q.746.138 1.442.442q-1.833 1.498-2.916 3.674Q13.5 9.43 13.5 12t1.084 4.745T17.5 20.42q-.696.304-1.442.443Q15.312 21 14.5 21m0-1h.525q.25 0 .475-.05q-1.425-1.65-2.212-3.687T12.5 12t.788-4.262T15.5 4.05Q15.275 4 15.025 4H14.5q-3.325 0-5.663 2.338T6.5 12t2.338 5.663T14.5 20m-2-8"/>
+                        </svg>
+                    </span>
+                </button>
+
+                <button 
+                    class="hamburger" 
+                    aria-label="Abrir menú de navegación"
+                    aria-expanded="false"
+                    aria-controls="nav-menu"
+                >
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO PORTFOLIO -->
+    <section class="portfolio-hero">
+        <div class="portfolio-hero-bg" id="portfolio-hero-bg" aria-hidden="true"></div>
+        <div class="portfolio-hero-overlay" aria-hidden="true"></div>
+        
+        <div class="portfolio-hero-content">
+            <div class="breadcrumb" aria-label="Breadcrumb">
+                <a href="index.html">Inicio</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Portfolio</span>
+            </div>
+            
+            <h1 class="portfolio-hero-title">
+                <span class="title-highlight">PortFolio</span>
+            </h1>
+            
+            <p class="portfolio-hero-description">
+                Explora nuestros trabajos organizados por categorías.
+            </p>
+        </div>
+    </section>
+
+    <!-- CATEGORÍAS (chips deslizables) -->
+    <section class="portfolio-categories-section" id="categorias">
+        <div class="categories-header-mobile">
+            <h2 class="categories-title-mobile">Categorías</h2>
+            <span class="categories-hint">Toca una</span>
+        </div>
+
+        <!-- Scroll horizontal de chips -->
+        <div class="categories-scroll-wrapper">
+            <div class="categories-grid" id="categories-grid" role="tablist" aria-label="Filtrar por categoría">
+                <!-- JS insertará chips aquí -->
+            </div>
+        </div>
+
+        <!-- Panel de resultados -->
+        <div class="videos-panel" id="videos-panel" aria-hidden="true">
+            <div class="videos-panel-header">
+                <div class="panel-category-name" id="panel-category-name">CATEGORÍA</div>
+                <button 
+                    class="panel-close-btn" 
+                    id="panel-close-btn"
+                    type="button"
+                    aria-label="Cerrar categoría"
+                >
+                    Cerrar
+                </button>
+            </div>
+
+            <div class="videos-grid" id="videos-grid">
+                <!-- JS insertará las cards aquí -->
+            </div>
+
+            <div class="videos-empty" id="videos-empty" style="display: none;">
+                <p>No hay contenido en esta categoría todavía.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE VIDEO (Fullscreen tipo Reels) -->
+    <div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-labelledby="video-modal-title" aria-hidden="true">
+        <div class="video-modal-content">
+            <button class="video-modal-close" id="video-modal-close" type="button" aria-label="Cerrar reproductor">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="video-modal-player">
+                <div class="custom-player" id="custom-player">
+                    <video id="video-modal-player" class="video-player" playsinline preload="metadata">
+                        <source id="video-modal-source" src="" type="video/mp4">
+                        Tu navegador no soporta videos HTML5.
+                    </video>
+
+                    <button class="player-center-play" id="player-center-play" type="button" aria-label="Reproducir">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="6 4 20 12 6 20 6 4"/>
+                        </svg>
+                    </button>
+
+                    <!-- Info overlay superpuesto abajo -->
+                    <div class="player-info-overlay">
+                        <div class="player-info-user">
+                            <div class="player-info-avatar">
+                                <img id="video-modal-avatar" src="" alt="">
+                            </div>
+                            <span class="player-info-handle" id="video-modal-handle">@handle</span>
+                        </div>
+                        <h3 class="player-info-title" id="video-modal-title">Título</h3>
+                        <p class="player-info-description" id="video-modal-description">Descripción</p>
+                    </div>
+
+                    <!-- Controles inferiores -->
+                    <div class="player-controls" id="player-controls">
+                        <div class="player-progress" id="player-progress">
+                            <div class="player-progress-bar">
+                                <div class="player-progress-filled" id="player-progress-filled"></div>
+                                <div class="player-progress-handle" id="player-progress-handle"></div>
+                            </div>
+                        </div>
+
+                        <div class="player-controls-row">
+                            <div class="player-time">
+                                <span id="player-current-time">0:00</span>
+                                <span class="player-time-sep">/</span>
+                                <span id="player-duration">0:00</span>
+                            </div>
+
+                            <div class="player-actions">
+                                <button class="player-btn player-volume-btn" id="player-volume-btn" type="button" aria-label="Sonido">
+                                    <svg class="player-icon-volume-on" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                    </svg>
+                                    <svg class="player-icon-volume-off" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.17v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                                    </svg>
+                                </button>
+
+                                <button class="player-btn player-play-btn" id="player-play-btn" type="button" aria-label="Reproducir/Pausar">
+                                    <svg class="player-icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                        <polygon points="6 4 20 12 6 20 6 4"/>
+                                    </svg>
+                                    <svg class="player-icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                        <rect x="6" y="4" width="4" height="16"/>
+                                        <rect x="14" y="4" width="4" height="16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE IMAGEN (Fullscreen con swipe) -->
+    <div class="image-modal" id="image-modal" role="dialog" aria-modal="true" aria-labelledby="image-modal-title" aria-hidden="true">
+        <div class="image-modal-content">
+            <button class="image-modal-close" id="image-modal-close" type="button" aria-label="Cerrar galería">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="image-modal-viewer" id="image-modal-viewer">
+                <div class="image-viewer-wrapper" id="image-viewer-wrapper">
+                    <img id="image-modal-image" src="" alt="">
+                </div>
+
+                <!-- Contador superior -->
+                <div class="image-counter" id="image-counter">
+                    <span id="image-current">1</span> / <span id="image-total">1</span>
+                </div>
+
+                <!-- Info overlay inferior -->
+                <div class="image-info-overlay" id="image-info-overlay">
+                    <div class="image-info-user">
+                        <div class="image-info-avatar">
+                            <img id="image-modal-avatar" src="" alt="">
+                        </div>
+                        <span class="image-info-handle" id="image-modal-handle">@handle</span>
+                    </div>
+                    <h3 class="image-info-title" id="image-modal-title">Título</h3>
+                    <button class="image-info-toggle" id="image-info-toggle" type="button">
+                        Ver descripción
+                    </button>
+                    <div class="image-info-description" id="image-modal-description">
+                        Descripción
+                    </div>
+                </div>
+
+                <!-- Navegación lateral -->
+                <button class="image-nav-btn image-nav-prev" id="image-nav-prev" type="button" aria-label="Anterior">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="15 18 9 12 15 6"/>
+                    </svg>
+                </button>
+                <button class="image-nav-btn image-nav-next" id="image-nav-next" type="button" aria-label="Siguiente">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="9 18 15 12 9 6"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO DESTACADO -->
+    <section class="portfolio-video-section">
+        <div class="container">
+            <div class="video-showcase">
+                <div class="video-showcase-text">
+                    <h2 class="video-section-title">Conoce Nuestro Trabajo</h2>
+                    <p class="video-section-description">
+                        Un vistazo a lo que hacemos en Ocean Graph.
+                    </p>
+                </div>
+
+                <div class="video-showcase-media">
+                    <div class="video-wrapper" id="featured-video-wrapper">
+                        <video class="portfolio-featured-video" muted playsinline preload="metadata">
+                            <source src="../video\Ocean_hablando.mp4" type="video/mp4">
+                            Tu navegador no soporta videos HTML5.
+                        </video>
+
+                        <button class="video-sound-btn" id="video-sound-btn" type="button" aria-label="Activar sonido">
+                            <svg class="sound-icon sound-icon--muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <line x1="23" y1="9" x2="17" y2="15"/>
+                                <line x1="17" y1="9" x2="23" y2="15"/>
+                            </svg>
+                            <svg class="sound-icon sound-icon--unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img 
+                    src="../Logo/OceanGraph - Ola.svg" 
+                    alt="Ocean Graph Logo" 
+                    class="footer-logo-svg"
+                >
+            </div>
+
+            <p class="footer-copyright">
+                &copy; <span id="currentYear">2024</span> Ocean Graph
+            </p>
+
+            <div class="footer-social-section">
+                <p class="social-title">Visita nuestras redes sociales</p>
+                
+                <nav class="footer-social" aria-label="Redes sociales">
+                    <a href="https://www.instagram.com/oceangraficos" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-social="instagram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+                        </svg>
+                        <span class="social-name">Instagram</span>
+                    </a>
+
+                    <a href="https://www.facebook.com/oceangraficos?locale=es_LA" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook" data-social="facebook">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">Facebook</span>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@oceangraficos?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-social="tiktok">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="social-name">TikTok</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="portfolio.js"></script>
+</body>
+</html>

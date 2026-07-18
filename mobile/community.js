@@ -2,6 +2,7 @@
    OCEAN GRAPH - COMMUNITY MOBILE
    mobile/community.js
    Genera los posts desde ../data/community-posts.json
+   Optimizado con Lazy Loading de embeds (Instagram/TikTok)
    =================================== */
 
 'use strict';
@@ -10,7 +11,8 @@
 
 const COMMUNITY_CONFIG = {
     isDebug: localStorage.getItem('debug') === 'true',
-    postsUrl: '../data/community-posts.json'
+    postsUrl: '../data/community-posts.json',
+    embedRootMargin: '200px' // Precarga embeds cuando estén a 200px de aparecer
 };
 
 /* DOM */
@@ -40,14 +42,11 @@ function escapeHTML(str) {
 
 /**
  * Ajusta rutas de imágenes para móvil.
- * - Si empieza por http/https → se deja igual.
- * - Si es relativa (ej. "images/..") → se antepone "../" porque estamos en /mobile.
  */
 function resolveAssetPath(path) {
     if (!path) return '';
-    const trimmed = path.trim().replace(/\\/g, '/'); // por si quedó algún backslash
+    const trimmed = path.trim().replace(/\\/g, '/');
     if (/^https?:\/\//i.test(trimmed)) return trimmed;
-    // suponemos que las rutas del JSON están relativas a la raíz (como escritorio)
     return '../' + trimmed.replace(/^\.?\//, '');
 }
 
@@ -80,6 +79,7 @@ function renderImage(post) {
             src="${escapeHTML(src)}" 
             alt="${escapeHTML(post.imageAlt || '')}" 
             loading="lazy"
+            decoding="async"
         >
     `;
 
@@ -112,7 +112,7 @@ function renderTextPost(post) {
     const variantClass = getVariantClass(post);
     const avatarSrc = resolveAssetPath(post.avatar || '');
     return `
-<article class="community-post${variantClass}" data-post-id="${escapeHTML(post.id || '')}">
+<article class="community-post${variantClass}" data-post-id="${escapeHTML(post.id || '')}" data-post-type="text">
     <div class="community-post-inner">
         <header class="community-post-header">
             <div class="community-avatar">
@@ -120,6 +120,7 @@ function renderTextPost(post) {
                     src="${escapeHTML(avatarSrc)}" 
                     alt="${escapeHTML(post.name || 'Miembro de Ocean Graph')}"
                     loading="lazy"
+                    decoding="async"
                 >
             </div>
             <div class="community-header-meta">
@@ -142,12 +143,22 @@ function renderTextPost(post) {
     `.trim();
 }
 
+/**
+ * Instagram con LAZY: se genera el placeholder,
+ * el blockquote real se inserta cuando el post entra en viewport
+ */
 function renderInstagramPost(post) {
     const variantClass = getVariantClass(post);
     const url = post.instagramUrl || '';
     const avatarSrc = resolveAssetPath(post.avatar || '');
     return `
-<article class="community-post community-post--instagram${variantClass}" data-post-id="${escapeHTML(post.id || '')}">
+<article 
+    class="community-post community-post--instagram${variantClass}" 
+    data-post-id="${escapeHTML(post.id || '')}"
+    data-post-type="instagram"
+    data-embed-url="${escapeHTML(url)}"
+    data-embed-loaded="false"
+>
     <div class="community-post-inner">
         <header class="community-post-header">
             <div class="community-avatar">
@@ -155,6 +166,7 @@ function renderInstagramPost(post) {
                     src="${escapeHTML(avatarSrc)}" 
                     alt="${escapeHTML(post.name || 'Miembro de contenido Ocean Graph')}"
                     loading="lazy"
+                    decoding="async"
                 >
             </div>
             <div class="community-header-meta">
@@ -169,15 +181,17 @@ function renderInstagramPost(post) {
         </header>
 
         <div class="community-post-body">
-            <blockquote
-              class="instagram-media"
-              data-instgrm-captioned
-              data-instgrm-permalink="${escapeHTML(url)}"
-              data-instgrm-version="14"
-              style="margin:0;"
-            >
-              <a href="${escapeHTML(url)}"></a>
-            </blockquote>
+            <!-- Placeholder mientras carga -->
+            <div class="community-embed-placeholder" aria-hidden="true">
+                <div class="embed-placeholder-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="embed-placeholder-text">Cargando publicación...</span>
+            </div>
 
             <div class="community-post-description">
                 ${renderParagraphs(post.paragraphs)}
@@ -199,17 +213,23 @@ function renderInstagramPost(post) {
     `.trim();
 }
 
+/**
+ * TikTok con LAZY: mismo mecanismo
+ */
 function renderTikTokPost(post) {
     const variantClass = getVariantClass(post);
     const url = post.tiktokUrl || '';
     const videoId = post.tiktokId || '';
     const avatarSrc = resolveAssetPath(post.avatar || '');
-    const previewText = (Array.isArray(post.paragraphs) && post.paragraphs[0])
-        ? escapeHTML(post.paragraphs[0])
-        : '';
-
     return `
-<article class="community-post community-post--tiktok${variantClass}" data-post-id="${escapeHTML(post.id || '')}">
+<article 
+    class="community-post community-post--tiktok${variantClass}" 
+    data-post-id="${escapeHTML(post.id || '')}"
+    data-post-type="tiktok"
+    data-embed-url="${escapeHTML(url)}"
+    data-embed-id="${escapeHTML(videoId)}"
+    data-embed-loaded="false"
+>
     <div class="community-post-inner">
         <header class="community-post-header">
             <div class="community-avatar">
@@ -217,6 +237,7 @@ function renderTikTokPost(post) {
                     src="${escapeHTML(avatarSrc)}" 
                     alt="${escapeHTML(post.name || 'Miembro de contenido Ocean Graph')}"
                     loading="lazy"
+                    decoding="async"
                 >
             </div>
             <div class="community-header-meta">
@@ -231,16 +252,15 @@ function renderTikTokPost(post) {
         </header>
 
         <div class="community-post-body">
-            <blockquote
-              class="tiktok-embed"
-              cite="${escapeHTML(url)}"
-              data-video-id="${escapeHTML(videoId)}"
-              style="max-width: 605px; min-width: 325px; margin:0;"
-            >
-                <section>
-                    <p>${previewText}</p>
-                </section>
-            </blockquote>
+            <!-- Placeholder mientras carga -->
+            <div class="community-embed-placeholder" aria-hidden="true">
+                <div class="embed-placeholder-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                    </svg>
+                </div>
+                <span class="embed-placeholder-text">Cargando video TikTok...</span>
+            </div>
 
             <div class="community-post-description">
                 ${renderParagraphs(post.paragraphs)}
@@ -277,13 +297,142 @@ function renderCommunityPosts(posts) {
 
     COMMUNITY_DOM.feed.innerHTML = html;
     COMMUNITY_DOM.posts = COMMUNITY_DOM.feed.querySelectorAll('.community-post');
+}
 
-    // Procesar embeds externos si los scripts existen
+/* ===================================
+   LAZY LOADING DE EMBEDS
+   =================================== */
+
+/**
+ * Carga el embed real de Instagram dentro del post
+ */
+function loadInstagramEmbed(post) {
+    const url = post.getAttribute('data-embed-url');
+    const body = post.querySelector('.community-post-body');
+    const placeholder = post.querySelector('.community-embed-placeholder');
+    
+    if (!url || !body || post.getAttribute('data-embed-loaded') === 'true') return;
+    
+    const blockquote = document.createElement('blockquote');
+    blockquote.className = 'instagram-media';
+    blockquote.setAttribute('data-instgrm-captioned', '');
+    blockquote.setAttribute('data-instgrm-permalink', url);
+    blockquote.setAttribute('data-instgrm-version', '14');
+    blockquote.style.margin = '0';
+    blockquote.innerHTML = `<a href="${url}"></a>`;
+    
+    // Insertar antes de la descripción
+    const desc = body.querySelector('.community-post-description');
+    if (desc) {
+        body.insertBefore(blockquote, desc);
+    } else {
+        body.appendChild(blockquote);
+    }
+    
+    // Ocultar placeholder
+    if (placeholder) {
+        placeholder.style.display = 'none';
+    }
+    
+    post.setAttribute('data-embed-loaded', 'true');
+    
+    // Procesar el embed
     if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
         window.instgrm.Embeds.process();
     }
+    
+    if (COMMUNITY_CONFIG.isDebug) {
+        console.log('Community (mobile): Instagram embed cargado', post.getAttribute('data-post-id'));
+    }
+}
+
+/**
+ * Carga el embed real de TikTok dentro del post
+ */
+function loadTikTokEmbed(post) {
+    const url = post.getAttribute('data-embed-url');
+    const videoId = post.getAttribute('data-embed-id');
+    const body = post.querySelector('.community-post-body');
+    const placeholder = post.querySelector('.community-embed-placeholder');
+    
+    if (!url || !videoId || !body || post.getAttribute('data-embed-loaded') === 'true') return;
+    
+    const desc = body.querySelector('.community-post-description');
+    const previewP = desc?.querySelector('p');
+    const previewText = previewP ? previewP.textContent.trim() : '';
+    
+    const blockquote = document.createElement('blockquote');
+    blockquote.className = 'tiktok-embed';
+    blockquote.setAttribute('cite', url);
+    blockquote.setAttribute('data-video-id', videoId);
+    blockquote.style.cssText = 'max-width: 605px; min-width: 325px; margin:0;';
+    blockquote.innerHTML = `<section><p>${previewText}</p></section>`;
+    
+    if (desc) {
+        body.insertBefore(blockquote, desc);
+    } else {
+        body.appendChild(blockquote);
+    }
+    
+    if (placeholder) {
+        placeholder.style.display = 'none';
+    }
+    
+    post.setAttribute('data-embed-loaded', 'true');
+    
     if (window.tiktokEmbed && typeof window.tiktokEmbed.load === 'function') {
         window.tiktokEmbed.load();
+    }
+    
+    if (COMMUNITY_CONFIG.isDebug) {
+        console.log('Community (mobile): TikTok embed cargado', post.getAttribute('data-post-id'));
+    }
+}
+
+/**
+ * Observa posts con embeds y los carga cuando estén cerca del viewport
+ */
+function initLazyEmbeds() {
+    if (!COMMUNITY_DOM.posts) return;
+    
+    const embedPosts = Array.from(COMMUNITY_DOM.posts).filter(post => {
+        const type = post.getAttribute('data-post-type');
+        return type === 'instagram' || type === 'tiktok';
+    });
+    
+    if (embedPosts.length === 0) return;
+    
+    // Fallback si no hay IntersectionObserver
+    if (!('IntersectionObserver' in window)) {
+        embedPosts.forEach(post => {
+            const type = post.getAttribute('data-post-type');
+            if (type === 'instagram') loadInstagramEmbed(post);
+            else if (type === 'tiktok') loadTikTokEmbed(post);
+        });
+        return;
+    }
+    
+    const embedObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            
+            const post = entry.target;
+            const type = post.getAttribute('data-post-type');
+            
+            if (type === 'instagram') loadInstagramEmbed(post);
+            else if (type === 'tiktok') loadTikTokEmbed(post);
+            
+            obs.unobserve(post);
+        });
+    }, {
+        rootMargin: COMMUNITY_CONFIG.embedRootMargin,
+        threshold: 0.01
+    });
+    
+    embedPosts.forEach(post => embedObserver.observe(post));
+    
+    if (COMMUNITY_CONFIG.isDebug) {
+        console.log('Community (mobile): lazy embeds inicializados para', embedPosts.length, 'posts');
     }
 }
 
@@ -307,10 +456,6 @@ function enhanceCommunityAccessibility() {
             post.setAttribute('aria-label', preview);
         }
     });
-
-    if (COMMUNITY_CONFIG.isDebug) {
-        console.log('Community (mobile): accesibilidad mejorada para', COMMUNITY_DOM.posts.length, 'posts');
-    }
 }
 
 /* INTERACCIÓN POR TECLADO */
@@ -329,10 +474,6 @@ function initKeyboardInteraction() {
             }
         });
     });
-
-    if (COMMUNITY_CONFIG.isDebug) {
-        console.log('Community (mobile): interacción de teclado inicializada');
-    }
 }
 
 /* ANIMACIONES DE ENTRADA */
@@ -383,10 +524,6 @@ async function loadCommunityPosts() {
             return null;
         }
 
-        if (COMMUNITY_CONFIG.isDebug) {
-            console.log('Community (mobile): JSON cargado:', data);
-        }
-
         return data;
     } catch (error) {
         if (COMMUNITY_CONFIG.isDebug) {
@@ -399,19 +536,11 @@ async function loadCommunityPosts() {
 /* INICIALIZACIÓN */
 
 async function initCommunityMobile() {
-    if (!COMMUNITY_DOM.feed) {
-        if (COMMUNITY_CONFIG.isDebug) {
-            console.log('Community (mobile): no se encontró #community-feed, no se inicializa');
-        }
-        return;
-    }
+    if (!COMMUNITY_DOM.feed) return;
 
     const posts = await loadCommunityPosts();
     if (!posts || posts.length === 0) {
         COMMUNITY_DOM.feed.innerHTML = '';
-        if (COMMUNITY_CONFIG.isDebug) {
-            console.log('Community (mobile): no hay posts que mostrar');
-        }
         return;
     }
 
@@ -421,6 +550,7 @@ async function initCommunityMobile() {
     enhanceCommunityAccessibility();
     initKeyboardInteraction();
     initPostAnimations();
+    initLazyEmbeds();
 
     if (COMMUNITY_CONFIG.isDebug) {
         console.log('Community (mobile): inicializada con', COMMUNITY_DOM.posts.length, 'posts');

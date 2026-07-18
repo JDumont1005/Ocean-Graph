@@ -24,7 +24,7 @@
     "id": "instagram-1",
     "type": "instagram",
     "variant": "",
-    "avatar": "images/OceanGraph - Ola.png",
+    "avatar": "images/OceanGraph-Ola.png",
     "name": "Ocean Graph · Contenido",
     "handle": "@oceangraficos",
     "date": "2024-12-20",
@@ -43,7 +43,7 @@
     "id": "instagram-2",
     "type": "instagram",
     "variant": "",
-    "avatar": "images/OceanGraph - Ola.png",
+    "avatar": "images/OceanGraph-Ola.png",
     "name": "Ocean Graph · Contenido",
     "handle": "@oceangraficos",
     "date": "2025-01-05",
@@ -54,8 +54,8 @@
     ],
     "instagramUrl": "https://www.instagram.com/p/DRA3pcNDkj0/?utm_source=ig_embed&utm_campaign=loading",
     "paragraphs": [
-      "Descripción del segundo post de Instagram.",
-      "El valor de un buen contenido está en la intención que le das. En cada decisión, en cada retoque, en cada segundo pensado... Porque cuando cuidas lo pequeño, lo grande llega solo."
+      "El valor de un buen contenido está en la intención que le das 📍",
+      "En cada decisión, en cada retoque, en cada segundo pensado... Porque cuándo cuidas lo pequeño, lo grande llega solo"
     ]
   },
   {
@@ -79,23 +79,6 @@
     ]
   },
   {
-    "id": "general-1",
-    "type": "text",
-    "variant": "",
-    "avatar": "https://picsum.photos/seed/ocean-admin-4/80/80",
-    "name": "Ocean Graph",
-    "handle": "@oceangraficos",
-    "date": "2024-12-01",
-    "dateText": "1 dic 2024",
-    "tags": [
-      "Comunidad"
-    ],
-    "paragraphs": [
-      "Gracias por formar parte de la comunidad Ocean Graph.",
-      "Este espacio seguirá creciendo junto con nuestras campañas y contenido para redes, especialmente en Instagram."
-    ]
-  },
-  {
     "id": "tiktok-1",
     "type": "tiktok",
     "variant": "",
@@ -113,6 +96,23 @@
     "paragraphs": [
       "¿Solo son cortes? Pues claro, como decir que una pizza es solo pan con queso.",
       "Detrás de cada corte hay creatividad, planificación y una pizca de magia. Aquí no solo se corta, se transforma cada segundo en una experiencia visual que te atrapa."
+    ]
+  },
+  {
+    "id": "general-1",
+    "type": "text",
+    "variant": "",
+    "avatar": "https://picsum.photos/seed/ocean-admin-4/80/80",
+    "name": "Ocean Graph",
+    "handle": "@oceangraficos",
+    "date": "2024-12-01",
+    "dateText": "1 dic 2024",
+    "tags": [
+      "Comunidad"
+    ],
+    "paragraphs": [
+      "Gracias por formar parte de la comunidad Ocean Graph.",
+      "Este espacio seguirá creciendo junto con nuestras campañas y contenido para redes, especialmente en Instagram."
     ]
   }
 ]

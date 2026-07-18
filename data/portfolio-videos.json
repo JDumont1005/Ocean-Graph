@@ -1,6 +1,11 @@
 {
   "categories": [
     {
+      "id": "ocean",
+      "name": "Ocean Graph",
+      "icon": "🌊"
+    },
+    {
       "id": "eventos",
       "name": "Eventos",
       "icon": "🎉"
@@ -24,6 +29,11 @@
       "id": "mecanica",
       "name": "Mecánica",
       "icon": "🔧"
+    },
+    {
+      "id": "infantil",
+      "name": "Infantil",
+      "icon": "👶"
     },
     {
       "id": "belleza",
@@ -59,16 +69,6 @@
       "id": "sesiones",
       "name": "Sesiones",
       "icon": "📸"
-    },
-    {
-      "id": "ocean",
-      "name": "Ocean Graph",
-      "icon": "🌊"
-    },
-    {
-      "id": "3d",
-      "name": "3D",
-      "icon": "🧊"
     }
   ],
 
@@ -183,6 +183,8 @@
       "videoUrl": "video/Marielsys/pregunta frecuente.mp4"
     },
 
+
+
     {
       "id": "SpaLari-001",
       "type": "video",
@@ -239,18 +241,18 @@
       "videoUrl": "video/SpaLari/Limpieza facial Spalari.mp4"
     },
     {
-      "id": "SpaLari-006",
-      "type": "image",
+      "id": "VIPSpa-001",
+      "type": "video",
       "categoryId": "belleza",
-      "title": "Portada de Marca",
-      "description": "Una sola imagen icónica que representa la esencia de la marca. Diseñada para funcionar como portada principal en redes sociales y material promocional.",
-      "thumbnail": "https://picsum.photos/seed/portada-belleza/900/1200",
-      "images": [
-        "https://picsum.photos/seed/portada-belleza/900/1200"
-      ],
-      "avatar": "https://picsum.photos/seed/portada-avatar/100/100",
-      "handle": "@makeup_studio"
+      "title": "Cuanto cuesta",
+      "description": "Algo",
+      "thumbnail": "images/VIPSpa/cuanto cuesta.png",
+      "avatar": "images/VIPSpa-Logo.png",
+      "handle": "@vipspa.salon",
+      "videoUrl": "video/VIPSpa/cuanto cuesta.mp4"
     },
+
+
 
     {
       "id": "Karat-001",
@@ -669,26 +671,26 @@
 
 
     {
-      "id": "turismo-001",
-      "type": "video",
-      "categoryId": "turismo",
-      "title": "Playa Paradisíaca",
-      "description": "Descubre los mejores destinos de Venezuela.",
-      "thumbnail": "https://picsum.photos/seed/turismo-1/900/1600",
-      "avatar": "https://picsum.photos/seed/turismo-1/100/100",
-      "handle": "@viajes_ve",
-      "videoUrl": "video/turismo-01.mp4"
-    },
-    {
       "id": "turismo-002",
       "type": "video",
       "categoryId": "turismo",
-      "title": "Aventura Total",
-      "description": "Tours de aventura para toda la familia.",
-      "thumbnail": "https://picsum.photos/seed/turismo-2/900/1600",
-      "avatar": "https://picsum.photos/seed/turismo-2/100/100",
-      "handle": "@aventura_tours",
-      "videoUrl": "video/turismo-02.mp4"
+      "title": "Helicoptero",
+      "description": "Comparación de la transformación de un espacio antes y después de una remodelación.",
+      "thumbnail": "images/Turismo/Vuelo en helicopter 1.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/turismo/Vuelo en helicopter 1.mp4"
+    },
+    {
+      "id": "turismo-001",
+      "type": "video",
+      "categoryId": "turismo",
+      "title": "Antes y Después Resultado",
+      "description": "Comparación de la transformación de un espacio antes y después de una remodelación.",
+      "thumbnail": "images/Ocean/antesdespuesresultado.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/antesdespuesresultado.mp4"
     },
 
 
@@ -762,6 +764,7 @@
     },
 
 
+
     
     {
       "id": "Ocean-001",
@@ -778,13 +781,25 @@
       "id": "Ocean-002",
       "type": "video",
       "categoryId": "ocean",
-      "title": "Antes, Después, Resultado",
-      "description": "Video mostrando el proceso de transformación de un proyecto, desde el estado inicial hasta el resultado final. Cada etapa del proceso se captura en detalle, destacando la dedicación y el esfuerzo invertido para lograr un resultado impresionante.",
-      "thumbnail": "",
+      "title": "Historia Antes y Después Fotos",
+      "description": "Un viaje visual que narra la transformación de un espacio a través de imágenes impactantes. El video muestra el proceso de cambio, desde el estado inicial hasta el resultado final, destacando los detalles y la evolución del lugar. Cada toma está cuidadosamente seleccionada para contar una historia de renovación y creatividad, invitando al espectador a apreciar la belleza del antes y después.",
+      "thumbnail": "images/Ocean/historiaantesdespuesfotos.png",
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos",
-      "videoUrl": "video/Ocean/antes, despues, resultado.mp4"
+      "videoUrl": "video/Ocean/historiaantesdespuesfotos.mp4"
     },
+    {
+      "id": "Ocean-003",
+      "type": "video",
+      "categoryId": "ocean",
+      "title": "Antes y Después Resultado",
+      "description": "Un viaje visual que narra la transformación de un espacio a través de imágenes impactantes. El video muestra el proceso de cambio, desde el estado inicial hasta el resultado final, destacando los detalles y la evolución del lugar. Cada toma está cuidadosamente seleccionada para contar una historia de renovación y creatividad, invitando al espectador a apreciar la belleza del antes y después.",
+      "thumbnail": "images/Ocean/antesdespuesresultado.png",
+      "avatar": "images/OceanGraph-Ola.png",
+      "handle": "@oceangraficos",
+      "videoUrl": "video/Ocean/antesdespuesresultado.mp4"
+    },
+
 
 
 
@@ -857,6 +872,28 @@
       "avatar": "images/OceanGraph-Ola.png",
       "handle": "@oceangraficos",
       "videoUrl": "video/Evento/AldoVideoReel03 Audio.mp4"
+    },
+
+    {
+      "id": "Kikis-01",
+      "type": "video",
+      "categoryId": "infantil",
+      "title": "",
+      "description": "",
+      "thumbnail": "images/Kikis/El video que mandó a hacer la jefa.png",
+      "avatar": "images/Kikis-Logo.png",
+      "handle": "@kikis_shoplg",
+      "videoUrl": "video/Kikis/El video que mandó a hacer la jefa.mp4"
+    },{
+      "id": "Kikis-02",
+      "type": "video",
+      "categoryId": "infantil",
+      "title": "",
+      "description": "",
+      "thumbnail": "images/Kikis/Productos que no te pueden faltar.png",
+      "avatar": "images/Kikis-Logo.png",
+      "handle": "@kikis_shoplg",
+      "videoUrl": "video/Kikis/Productos que no te pueden faltar.mp4"
     }
   ]
 }

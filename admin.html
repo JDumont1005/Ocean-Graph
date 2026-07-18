@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel Comunidad - Ocean Graph</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel privado para fundadores de Ocean Graph. Gestión de posts de la Comunidad.">
+
+    <!-- Fuente principal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Estilos específicos del panel -->
+    <style>
+        body.page-admin {
+            background: radial-gradient(circle at top, #101820, #050608);
+            color: #ffffff;
+        }
+
+        .admin-shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem 3rem;
+        }
+
+        .admin-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+        }
+
+        .admin-badge {
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(0,157,255,0.5);
+            color: var(--color-primary-light);
+        }
+
+        .admin-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+        }
+
+        .admin-subtitle {
+            font-size: 0.9rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        .admin-session-info {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            text-align: right;
+        }
+
+        .admin-btn-logout {
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .admin-btn-logout:hover:not(:disabled) {
+            background: rgba(255,255,255,0.08);
+        }
+        .admin-btn-logout:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        /* Tarjetas base */
+        .admin-card {
+            background: rgba(15, 18, 24, 0.96);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 1.5rem 1.7rem;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+        }
+
+        .admin-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        /* Vistas */
+        #admin-login-view,
+        #admin-app-view {
+            display: none;
+        }
+        #admin-login-view.active,
+        #admin-app-view.active {
+            display: block;
+        }
+
+        /* LOGIN */
+
+        .admin-login-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .admin-login-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1.3rem;
+        }
+
+        .admin-form-group {
+            margin-bottom: 0.9rem;
+        }
+
+        .admin-form-group label {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.25rem;
+            opacity: 0.8;
+        }
+
+        .admin-input,
+        .admin-textarea,
+        .admin-select {
+            width: 100%;
+            padding: 0.55rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(10,10,10,0.85);
+            color: #fff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .admin-input:focus,
+        .admin-textarea:focus,
+        .admin-select:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 1px rgba(0,157,255,0.3);
+            background: rgba(5,5,5,0.95);
+        }
+
+        .admin-textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .admin-actions-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.3rem;
+        }
+
+        .admin-btn-primary {
+            padding: 0.7rem 1.4rem;
+            border-radius: 999px;
+            border: none;
+            background: var(--color-primary);
+            color: #141414;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .admin-btn-primary:hover {
+            background: var(--color-primary-light);
+            box-shadow: 0 8px 20px rgba(0,157,255,0.45);
+            transform: translateY(-1px);
+        }
+
+        .admin-btn-secondary {
+            padding: 0.65rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: transparent;
+            color: #fff;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .admin-btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .admin-helper {
+            font-size: 0.78rem;
+            opacity: 0.7;
+        }
+
+        .admin-status {
+            margin-top: 0.7rem;
+            font-size: 0.84rem;
+        }
+        .admin-status--ok {
+            color: #5dd39e;
+        }
+        .admin-status--error {
+            color: #ff8080;
+        }
+
+        /* APP: formulario de nuevo/edición post */
+
+        .admin-section-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .admin-section-subtitle {
+            font-size: 0.88rem;
+            opacity: 0.8;
+            margin-bottom: 0.6rem;
+        }
+
+        .admin-edit-indicator {
+            font-size: 0.8rem;
+            color: #ffd56a;
+            opacity: 0.9;
+            margin-bottom: 0.6rem;
+            display: none;
+        }
+        .admin-edit-indicator.active {
+            display: block;
+        }
+
+        .admin-post-type-row {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .admin-chip {
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.25);
+            font-size: 0.8rem;
+            cursor: pointer;
+            opacity: 0.75;
+            background: transparent;
+            color: #fff;
+            transition: all 0.2s ease;
+        }
+        .admin-chip.active {
+            border-color: var(--color-primary);
+            background: rgba(0,157,255,0.16);
+            opacity: 1;
+        }
+
+        .admin-columns {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 1.1rem;
+        }
+
+        .admin-box {
+            background: rgba(0,0,0,0.25);
+            border-radius: 12px;
+            padding: 1rem 1.1rem;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .admin-box-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.6rem;
+            opacity: 0.85;
+        }
+
+        .admin-post-preview {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .admin-type-fields {
+            display: none;
+        }
+        .admin-type-fields.active {
+            display: block;
+        }
+
+        /* Lista de publicaciones existentes */
+
+        .admin-posts-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .admin-posts-sort-select {
+            font-size: 0.8rem;
+            background: rgba(0,0,0,0.35);
+            color: #fff;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 0.25rem 0.7rem;
+            outline: none;
+        }
+
+        .admin-posts-list {
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 0.3rem;
+            font-size: 0.85rem;
+            margin-top: 0.6rem;
+        }
+
+        .admin-posts-list-empty {
+            opacity: 0.7;
+            font-size: 0.84rem;
+        }
+
+        .admin-post-item {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) auto;
+            gap: 0.6rem;
+            padding: 0.55rem 0.35rem;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .admin-post-item:last-child {
+            border-bottom: none;
+        }
+
+        .admin-post-meta {
+            flex: 1;
+        }
+
+        .admin-post-name {
+            font-weight: 500;
+            margin-bottom: 0.15rem;
+        }
+
+        .admin-post-meta-line {
+            font-size: 0.8rem;
+            opacity: 0.75;
+        }
+
+        .admin-post-type-tag {
+            display: inline-block;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: rgba(0,157,255,0.18);
+            color: var(--color-primary-light);
+            margin-right: 0.35rem;
+        }
+
+        .admin-post-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            align-items: flex-end;
+        }
+
+        .admin-post-move,
+        .admin-post-edit,
+        .admin-post-delete {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.25);
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .admin-post-move:hover {
+            background: rgba(255,255,255,0.08);
+        }
+
+        .admin-post-edit {
+            border-color: rgba(0,157,255,0.7);
+            color: var(--color-primary-light);
+        }
+        .admin-post-edit:hover {
+            background: rgba(0,157,255,0.12);
+        }
+
+        .admin-post-delete {
+            border-color: rgba(255,80,80,0.7);
+            color: #ff8080;
+        }
+        .admin-post-delete:hover {
+            background: rgba(255,80,80,0.12);
+        }
+
+        @media (max-width: 960px) {
+            .admin-grid,
+            .admin-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="page-admin">
+
+    <div class="admin-shell">
+        <!-- HEADER -->
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <div class="footer-logo">
+                    <img src="Logo/OceanGraph - Ola.svg" alt="Ocean Graph" class="footer-logo-svg">
+                </div>
+                <div>
+                    <div class="admin-badge">Panel Comunidad</div>
+                    <h1 class="admin-title">Ocean Graph · Fundadores</h1>
+                    <p class="admin-subtitle">
+                        Gestión privada de publicaciones para el apartado Comunidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="admin-session-info">
+                <div id="admin-session-state">Sesión no iniciada</div>
+                <button type="button" class="admin-btn-logout" id="admin-logout-btn" disabled>
+                    Cerrar sesión
+                </button>
+            </div>
+        </header>
+
+        <!-- VISTA LOGIN -->
+        <main id="admin-login-view" class="active">
+            <section class="admin-card">
+                <h2 class="admin-login-title">Acceso para fundadores</h2>
+                <p class="admin-login-description">
+                    Introduce tus credenciales para acceder al panel de Comunidad. Este apartado es privado
+                    y está reservado únicamente al equipo fundador.
+                </p>
+
+                <form id="admin-login-form" autocomplete="off">
+                    <div class="admin-form-group">
+                        <label for="login-username">Usuario</label>
+                        <input
+                            type="text"
+                            id="login-username"
+                            class="admin-input"
+                            name="username"
+                            required
+                            autofocus
+                            title="Nombre de usuario asignado a los fundadores para entrar en el panel."
+                        >
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="login-password">Contraseña de ingreso</label>
+                        <input
+                            type="password"
+                            id="login-password"
+                            class="admin-input"
+                            name="password"
+                            required
+                            title="Contraseña principal para acceder al panel de fundadores."
+                        >
+                    </div>
+
+                    <div class="admin-actions-row">
+                        <button type="submit" class="admin-btn-primary">
+                            Iniciar sesión
+                        </button>
+                        <span class="admin-helper">
+                            La contraseña se valida en el servidor. No se guarda en este navegador.
+                        </span>
+                    </div>
+
+                    <div id="admin-login-status" class="admin-status"></div>
+                </form>
+            </section>
+        </main>
+
+        <!-- VISTA APP -->
+        <main id="admin-app-view">
+            <div class="admin-grid">
+                <!-- COLUMNA: NUEVO / EDITAR POST -->
+                <section class="admin-card">
+                    <h2 class="admin-section-title">Nuevo post de Comunidad</h2>
+                    <p class="admin-section-subtitle">
+                        Crea o edita tarjetas para el timeline de Comunidad. El contenido se añadirá a la fuente de datos
+                        que utiliza la página pública.
+                    </p>
+                    <div id="admin-edit-indicator" class="admin-edit-indicator">
+                        Modo edición activado. Estás modificando un post existente.
+                        Usa "Cancelar edición" para volver al modo creación.
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label>Tipo de post</label>
+                        <div class="admin-post-type-row" id="admin-post-type-row">
+                            <button type="button" class="admin-chip active" data-type="text" title="Post normal con imagen opcional y texto.">Texto</button>
+                            <button type="button" class="admin-chip" data-type="instagram" title="Embed de una publicación o reel de Instagram.">Instagram</button>
+                            <button type="button" class="admin-chip" data-type="tiktok" title="Embed de un video de TikTok.">TikTok</button>
+                        </div>
+                    </div>
+
+                    <form id="admin-post-form" autocomplete="off">
+                        <input type="hidden" id="post-type" name="type" value="text">
+
+                        <div class="admin-columns">
+                            <!-- META COMÚN -->
+                            <div class="admin-box">
+                                <div class="admin-box-title">Datos generales</div>
+
+                                <div class="admin-form-group">
+                                    <label for="post-name">Nombre / encabezado</label>
+                                    <input
+                                        type="text"
+                                        id="post-name"
+                                        class="admin-input"
+                                        required
+                                        title="Texto principal que aparecerá como nombre del autor o del bloque (por ejemplo, 'Equipo Ocean Graph')."
+                                    >
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="post-handle">Handle / usuario (@)</label>
+                                    <input
+                                        type="text"
+                                        id="post-handle"
+                                        class="admin-input"
+                                        value="@oceangraficos"
+                                        title="Usuario asociado al mensaje (por ejemplo, @oceangraficos). Se muestra junto al nombre."
+                                    >
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="post-avatar">URL de avatar</label>
+                                    <input
+                                        type="url"
+                                        id="post-avatar"
+                                        class="admin-input"
+                                        placeholder="https://..."
+                                        title="URL de la imagen de perfil que se mostrará en la parte superior del post."
+                                    >
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="post-tags">Etiquetas (separadas por coma)</label>
+                                    <input
+                                        type="text"
+                                        id="post-tags"
+                                        class="admin-input"
+                                        placeholder="Fijado, Aviso"
+                                        title="Palabras clave que aparecen como chips debajo del nombre, separadas por comas."
+                                    >
+                                </div>
+
+                                <div class="admin-form-group">
+                                    <label for="post-variant">Variante visual (opcional)</label>
+                                    <select
+                                        id="post-variant"
+                                        class="admin-select"
+                                        title="Permite aplicar estilos especiales al post (por ejemplo, 'special-blue' para un post fijado)."
+                                    >
+                                        <option value="">Normal</option>
+                                        <option value="special-blue">Especial azul (fijado)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- CAMPOS ESPECÍFICOS SEGÚN TIPO -->
+                            <div class="admin-box">
+                                <div class="admin-box-title">Contenido según tipo</div>
+
+                                <!-- TYPE: TEXT -->
+                                <div class="admin-type-fields active" data-type="text">
+                                    <div class="admin-form-group">
+                                        <label for="post-image">Imagen principal (URL opcional)</label>
+                                        <input
+                                            type="url"
+                                            id="post-image"
+                                            class="admin-input"
+                                            placeholder="https://... / images/..."
+                                            title="Imagen que se mostrará arriba del texto. Puede ser local (ruta relativa) o URL externa."
+                                        >
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="post-image-alt">Descripción de la imagen (alt)</label>
+                                        <input
+                                            type="text"
+                                            id="post-image-alt"
+                                            class="admin-input"
+                                            title="Texto alternativo de la imagen, útil para accesibilidad y SEO."
+                                        >
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="post-image-link">Link al hacer clic en la imagen (opcional)</label>
+                                        <input
+                                            type="url"
+                                            id="post-image-link"
+                                            class="admin-input"
+                                            placeholder="https://..."
+                                            title="Si se indica, al hacer clic en la imagen se abrirá este enlace (por ejemplo, un portafolio o red social)."
+                                        >
+                                    </div>
+                                </div>
+
+                                <!-- TYPE: INSTAGRAM -->
+                                <div class="admin-type-fields" data-type="instagram">
+                                    <div class="admin-form-group">
+                                        <label for="post-instagram-url">URL de la publicación de Instagram</label>
+                                        <input
+                                            type="url"
+                                            id="post-instagram-url"
+                                            class="admin-input"
+                                            placeholder="https://www.instagram.com/..."
+                                            title="URL completa de la publicación o reel que quieres embeber desde Instagram."
+                                        >
+                                    </div>
+                                </div>
+
+                                <!-- TYPE: TIKTOK -->
+                                <div class="admin-type-fields" data-type="tiktok">
+                                    <div class="admin-form-group">
+                                        <label for="post-tiktok-url">URL del video de TikTok</label>
+                                        <input
+                                            type="url"
+                                            id="post-tiktok-url"
+                                            class="admin-input"
+                                            placeholder="https://www.tiktok.com/@user/video/ID"
+                                            title="URL completa del video de TikTok que quieres embeber."
+                                        >
+                                    </div>
+                                    <div class="admin-form-group">
+                                        <label for="post-tiktok-id">ID del video (data-video-id)</label>
+                                        <input
+                                            type="text"
+                                            id="post-tiktok-id"
+                                            class="admin-input"
+                                            placeholder="Ej: 7566398461147417912"
+                                            title="ID numérico del video usado por el embed oficial de TikTok."
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-form-group" style="margin-top:1rem;">
+                            <label for="post-paragraphs">
+                                Texto del post (cada línea será un párrafo)
+                            </label>
+                            <textarea
+                                id="post-paragraphs"
+                                class="admin-textarea"
+                                placeholder="Línea 1&#10;Línea 2&#10;Línea 3"
+                                title="Escribe el contenido del mensaje. Cada salto de línea se convertirá en un párrafo separado."
+                            ></textarea>
+                        </div>
+
+                        <!-- Seguridad publicación -->
+                        <div class="admin-form-group">
+                            <label for="post-publish-password">Contraseña de publicación (segunda capa)</label>
+                            <input
+                                type="password"
+                                id="post-publish-password"
+                                class="admin-input"
+                                placeholder="Se verificará en el servidor"
+                                required
+                                title="Segunda contraseña que el servidor exige para aceptar el post. Evita publicaciones accidentales."
+                            >
+                        </div>
+
+                        <div class="admin-actions-row">
+                            <div style="display:flex; gap:0.5rem;">
+                                <button type="submit" class="admin-btn-primary" id="admin-submit-btn">
+                                    Publicar post
+                                </button>
+                                <button type="button" class="admin-btn-secondary" id="admin-cancel-edit-btn">
+                                    Cancelar edición
+                                </button>
+                            </div>
+                            <span class="admin-helper">
+                                Se pedirá confirmación antes de enviar y el servidor validará las credenciales.
+                            </span>
+                        </div>
+
+                        <div id="admin-post-status" class="admin-status"></div>
+                    </form>
+                </section>
+
+                <!-- COLUMNA DERECHA: PREVIEW + LISTA DE POSTS -->
+                <aside class="admin-card">
+                    <h2 class="admin-section-title">Resumen y publicaciones</h2>
+                    <p class="admin-section-subtitle">
+                        Revisa un resumen del nuevo post y gestiona las publicaciones ya creadas.
+                    </p>
+
+                    <div class="admin-box">
+                        <div class="admin-box-title">Preview de datos básicos</div>
+                        <div class="admin-post-preview" id="admin-preview">
+                            Completa los campos para ver un resumen aquí.
+                        </div>
+                    </div>
+
+                    <div class="admin-box" style="margin-top:1rem;">
+                        <div class="admin-posts-header">
+                            <div class="admin-box-title">Publicaciones actuales</div>
+                            <div>
+                                <label for="admin-posts-sort" style="font-size:0.78rem; opacity:.8; margin-right:0.2rem;">
+                                    Ordenar:
+                                </label>
+                                <select id="admin-posts-sort" class="admin-posts-sort-select">
+                                    <option value="default">Orden guardado</option>
+                                    <option value="date-desc">Fecha · recientes primero</option>
+                                    <option value="date-asc">Fecha · antiguos primero</option>
+                                    <option value="name-asc">Nombre A-Z</option>
+                                    <option value="type">Por tipo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="admin-posts-list" class="admin-posts-list">
+                            <div class="admin-posts-list-empty">
+                                Cargando publicaciones...
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

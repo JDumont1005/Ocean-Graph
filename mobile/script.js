@@ -2,6 +2,7 @@
    OCEAN GRAPH - MOBILE
    mobile/script.js
    Versión optimizada para móviles / tablets
+   Detección inteligente con memoria de dispositivo
    =================================== */
 
 'use strict';
@@ -15,6 +16,7 @@ const CONFIG = {
     statAnimationDuration: 1200,
     debounceDelay: 100,
     loaderMinTime: 700,
+    loaderMaxTime: 3000,
     isDebug: localStorage.getItem('debug') === 'true'
 };
 
@@ -52,40 +54,56 @@ let statsAnimated = false;
 let currentTheme = 'dark';
 
 /* ===================================
+   PREFERENCIA DE DISPOSITIVO
+   =================================== */
+
+const DEVICE_KEY = 'og-device-preference';
+
+function getDevicePreference() {
+    const saved = localStorage.getItem(DEVICE_KEY);
+    return (saved === 'mobile' || saved === 'desktop') ? saved : null;
+}
+
+function setDevicePreference(pref) {
+    if (pref === 'mobile' || pref === 'desktop') {
+        localStorage.setItem(DEVICE_KEY, pref);
+    }
+}
+
+/* ===================================
    SELECCIÓN AUTOMÁTICA (MÓVIL vs ESCRITORIO)
    =================================== */
 
-/**
- * ¿Deberíamos usar la versión de ESCRITORIO?
- * UA de escritorio + pantalla grande.
- */
 function shouldUseDesktopVersion() {
+    // Si ya eligió "mobile", nunca redirigir a escritorio
+    const preference = getDevicePreference();
+    if (preference === 'mobile') return false;
+
     const isDesktopUA = !DEVICE.isMobile && !DEVICE.isTablet;
     const isLargeScreen = window.innerWidth >= 1024;
     return isDesktopUA && isLargeScreen;
 }
 
-/**
- * Si estamos en /mobile/index.html y parece escritorio,
- * redirigimos a ../index.html.
- * Devuelve true si redirige.
- */
 function maybeRedirectToDesktop() {
     if (!IS_HOME) return false;
     if (!IS_MOBILE_SITE) return false;
 
     if (shouldUseDesktopVersion()) {
         if (CONFIG.isDebug) {
-            console.log('[MOBILE] Escritorio detectado. Redirigiendo a versión desktop...');
+            console.log('[MOBILE] Escritorio detectado. Redirigiendo...');
         }
 
         if (DOM.loader && DOM.loaderText) {
             DOM.loaderText.innerHTML = 'OCEAN <span>GRAPH</span><br><small style="font-size:0.75rem;font-weight:300;opacity:0.8;">Cargando versión escritorio...</small>';
         }
 
+        setDevicePreference('desktop');
         window.location.replace('../index.html');
         return true;
     }
+
+    // Si estamos en móvil, guardar la preferencia
+    setDevicePreference('mobile');
     return false;
 }
 
@@ -196,18 +214,30 @@ function initTheme() {
 }
 
 /* ===================================
-   LOADER
+   LOADER (CON SEGURIDAD ANTI-BUCLE)
    =================================== */
 
 function hideLoader() {
     if (!DOM.loader) return;
     DOM.loader.classList.add('hidden');
+    DOM.loader.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    setTimeout(() => DOM.loader && DOM.loader.remove(), 500);
+    
+    setTimeout(() => {
+        if (DOM.loader) DOM.loader.remove();
+    }, 500);
+
+    if (CONFIG.isDebug) {
+        console.log('[MOBILE] Loader ocultado');
+    }
 }
 
 function initLoader() {
-    if (!DOM.loader) return;
+    if (!DOM.loader) {
+        // Sin loader, no bloquear nada
+        document.body.style.overflow = '';
+        return;
+    }
 
     document.body.style.overflow = 'hidden';
 
@@ -216,18 +246,49 @@ function initLoader() {
     }
 
     const start = Date.now();
+    let finished = false;
 
     function done() {
+        if (finished) return;
+        finished = true;
+
         const elapsed = Date.now() - start;
         const delay = Math.max(CONFIG.loaderMinTime - elapsed, 0);
+        
         setTimeout(hideLoader, delay);
+
+        if (CONFIG.isDebug) {
+            console.log('[MOBILE] Loader completado en', elapsed, 'ms');
+        }
     }
 
+    // Estrategia 1: Si ya cargó todo
     if (document.readyState === 'complete') {
         done();
-    } else {
-        window.addEventListener('load', done, { once: true });
+        return;
     }
+
+    // Estrategia 2: Cuando DOM esté listo (rápido)
+    if (document.readyState === 'interactive') {
+        setTimeout(done, 400);
+    } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(done, 400);
+        }, { once: true });
+    }
+
+    // Estrategia 3: Cuando TODO cargue (incluyendo videos)
+    window.addEventListener('load', done, { once: true });
+
+    // Estrategia 4: FALLBACK DE SEGURIDAD - Máximo 3 segundos
+    setTimeout(() => {
+        if (!finished) {
+            if (CONFIG.isDebug) {
+                console.warn('[MOBILE] Loader forzado a cerrarse por timeout');
+            }
+            done();
+        }
+    }, CONFIG.loaderMaxTime);
 }
 
 /* ===================================
@@ -242,14 +303,8 @@ function initConsoleMessages() {
 
     if (CONFIG.isDebug) {
         console.log('[MOBILE] Debug activo');
-    }
-
-    if (DEVICE.isMobile && !DEVICE.isTablet) {
-        console.log('[MOBILE] Dispositivo móvil (UA)');
-    } else if (DEVICE.isTablet) {
-        console.log('[MOBILE] Tablet (UA)');
-    } else {
-        console.log('[MOBILE] UA de escritorio detectado');
+        console.log('[MOBILE] Preferencia:', getDevicePreference());
+        console.log('[MOBILE] UA:', DEVICE.isMobile ? 'Móvil' : DEVICE.isTablet ? 'Tablet' : 'Escritorio');
     }
 }
 
@@ -450,17 +505,19 @@ function initVideoControl() {
         video.addEventListener('loadeddata', playVideo, { once: true });
     }
 
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                video.play().catch(() => {});
-            } else {
-                video.pause();
-            }
-        });
-    }, { threshold: 0.5 });
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    video.play().catch(() => {});
+                } else {
+                    video.pause();
+                }
+            });
+        }, { threshold: 0.5 });
 
-    obs.observe(video);
+        obs.observe(video);
+    }
 
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
@@ -507,14 +564,16 @@ function animateStats() {
 }
 
 if (DOM.statNumbers.length > 0) {
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !statsAnimated) animateStats();
-        });
-    }, { threshold: 0.4 });
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsAnimated) animateStats();
+            });
+        }, { threshold: 0.4 });
 
-    const about = document.querySelector('.about-section');
-    if (about) obs.observe(about);
+        const about = document.querySelector('.about-section');
+        if (about) obs.observe(about);
+    }
 }
 
 /* ===================================
@@ -523,6 +582,14 @@ if (DOM.statNumbers.length > 0) {
 
 function initFadeAnimations() {
     if (DOM.fadeElements.length === 0) return;
+
+    if (!('IntersectionObserver' in window)) {
+        DOM.fadeElements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+        return;
+    }
 
     const obs = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -554,7 +621,7 @@ function setViewportHeight() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-if (DEVICE.isMobile || DEVICE.isTablet) {
+if (DEVICE.isMobile || DEVICE.isTablet || DEVICE.isTouchDevice) {
     setViewportHeight();
     window.addEventListener('resize', debounce(setViewportHeight, 200));
     window.addEventListener('orientationchange', () => {
@@ -578,7 +645,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 
 if (prefersReducedMotion.matches) {
     document.documentElement.style.setProperty('--animation-duration', '0.01ms');
-    console.log('[MOBILE] Modo de movimiento reducido activado');
+    if (CONFIG.isDebug) console.log('[MOBILE] Modo de movimiento reducido activado');
 }
 
 document.addEventListener('keydown', (e) => {
@@ -594,12 +661,39 @@ document.addEventListener('mousedown', () => {
    =================================== */
 
 function initMobile() {
-    initLoader();
     initConsoleMessages();
+    initLoader();
     initTheme();
     initVideoControl();
     initFadeAnimations();
     updateActiveNavLink();
+
+    if (CONFIG.isDebug) {
+        console.log('[MOBILE] Inicialización completa');
+    }
+}
+
+/* ===================================
+   EXPORT DEBUG
+   =================================== */
+
+if (CONFIG.isDebug) {
+    window.OceanGraphMobile = {
+        config: CONFIG,
+        device: DEVICE,
+        dom: DOM,
+        toggleMenu,
+        smoothScrollTo,
+        animateStats,
+        applyTheme,
+        getDevicePreference,
+        setDevicePreference,
+        resetPreference: () => {
+            localStorage.removeItem(DEVICE_KEY);
+            console.log('[MOBILE] Preferencia eliminada');
+        }
+    };
+    console.log('[MOBILE] window.OceanGraphMobile disponible');
 }
 
 /* ===================================
@@ -612,8 +706,9 @@ if (!maybeRedirectToDesktop()) {
     } else {
         initMobile();
     }
-
-    if (CONFIG.isDebug) {
-        console.log('[MOBILE] Ocean Graph listo (móvil/tablet)');
-    }
 }
+
+console.log(
+    '%c Ocean Graph listo (móvil) ',
+    'background: #141414; color: #009dff; padding: 5px 10px; border: 1px solid #009dff; border-radius: 5px;'
+);

@@ -2,7 +2,7 @@
    OCEAN GRAPH - ESCRITORIO
    script.js
    Tema oscuro/claro + Loader + Hero
-   Versión optimizada solo para escritorio
+   Detección inteligente móvil/escritorio con memoria
    =================================== */
 
 'use strict';
@@ -42,18 +42,39 @@ const IS_HOME = !!document.querySelector('.video-hero');
 let isMenuOpen = false;
 let statsAnimated = false;
 let currentTheme = 'dark';
-let heroVideoJumpTimeout = null; // <<< nuevo
+let heroVideoJumpTimeout = null;
 
 /* ===================================
-   DETECCIÓN: ¿DEBERÍA USARSE VERSIÓN MÓVIL?
-   (solo para redirigir a /mobile/index.html)
+   DETECCIÓN DE DISPOSITIVO Y PREFERENCIA
    =================================== */
 
+const DEVICE_KEY = 'og-device-preference'; // 'mobile' | 'desktop' | null
+
+/**
+ * Detecta si es un dispositivo móvil/tablet
+ */
 function isHandheldDevice() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isUAHandheld = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
     const isSmallScreen = window.innerWidth <= 900;
     return isUAHandheld || isSmallScreen;
+}
+
+/**
+ * Obtiene preferencia guardada del usuario
+ */
+function getDevicePreference() {
+    const saved = localStorage.getItem(DEVICE_KEY);
+    return (saved === 'mobile' || saved === 'desktop') ? saved : null;
+}
+
+/**
+ * Guarda preferencia del usuario
+ */
+function setDevicePreference(pref) {
+    if (pref === 'mobile' || pref === 'desktop') {
+        localStorage.setItem(DEVICE_KEY, pref);
+    }
 }
 
 /* ===================================
@@ -178,7 +199,7 @@ function hideLoader() {
         if (DOM.loader) DOM.loader.remove();
     }, 600);
 
-    if (CONFIG.isDebug) console.log('[DESKTOP] Loader ocultado (escritorio)');
+    if (CONFIG.isDebug) console.log('[DESKTOP] Loader ocultado');
 }
 
 function initLoader() {
@@ -199,20 +220,37 @@ function initLoader() {
         const remaining = Math.max(CONFIG.loaderMinTime - elapsed, 0);
 
         setTimeout(() => {
-            if (IS_HOME && isHandheldDevice()) {
+            const preference = getDevicePreference();
+            
+            // Solo redirigir si:
+            // - Estamos en Home
+            // - El usuario NO ha elegido "desktop" manualmente
+            // - Es un dispositivo móvil detectado
+            const shouldRedirect = IS_HOME 
+                && preference !== 'desktop' 
+                && (preference === 'mobile' || isHandheldDevice());
+            
+            if (shouldRedirect) {
+                // Guardar preferencia móvil para futuras visitas
+                setDevicePreference('mobile');
+                
                 if (CONFIG.isDebug) {
-                    console.log('[DESKTOP] Dispositivo de mano detectado. Redirigiendo a /mobile/index.html...');
+                    console.log('[DESKTOP] Redirigiendo a versión móvil...');
                 }
 
                 if (DOM.loaderText) {
                     DOM.loaderText.innerHTML =
-                        'OCEAN <span>GRAPH</span><br><small style="font-size:0.8rem;font-weight:300;opacity:0.8;">Detectando dispositivo móvil...</small>';
+                        'OCEAN <span>GRAPH</span><br><small style="font-size:0.8rem;font-weight:300;opacity:0.8;">Cargando versión móvil...</small>';
                 }
 
                 setTimeout(() => {
                     window.location.href = 'mobile/index.html';
                 }, 600);
             } else {
+                // Si es escritorio, guardar preferencia
+                if (!isHandheldDevice()) {
+                    setDevicePreference('desktop');
+                }
                 hideLoader();
             }
         }, remaining);
@@ -222,7 +260,6 @@ function initLoader() {
         proceed();
     } else {
         document.addEventListener('DOMContentLoaded', proceed, { once: true });
-        // Fallback: nunca dejar loader infinito
         setTimeout(proceed, 5000);
     }
 }
@@ -239,6 +276,7 @@ function initConsoleMessages() {
 
     if (CONFIG.isDebug) {
         console.log('[DESKTOP] DEBUG MODE ACTIVADO');
+        console.log('[DESKTOP] Preferencia guardada:', getDevicePreference());
     }
 }
 
@@ -295,7 +333,7 @@ function handleNavbarScroll() {
 window.addEventListener('scroll', throttle(handleNavbarScroll, 100));
 
 /* ===================================
-   MENÚ HAMBURGUESA (OCULTO EN ESCRITORIO, PERO FUNCIONAL)
+   MENÚ HAMBURGUESA
    =================================== */
 
 function toggleMenu(forceClose = false) {
@@ -431,8 +469,8 @@ if (DOM.scrollIndicator) {
 function startHeroVideoRandomJumps(video) {
     if (!video) return;
 
-    const MIN_DELAY = 4;  // segundos mínimo entre saltos
-    const MAX_DELAY = 8; // segundos máximo entre saltos
+    const MIN_DELAY = 4;
+    const MAX_DELAY = 8;
 
     function scheduleNextJump() {
         if (!video.duration || isNaN(video.duration)) {
@@ -453,7 +491,7 @@ function startHeroVideoRandomJumps(video) {
                     }
                 } catch (err) {
                     if (CONFIG.isDebug) {
-                        console.warn('[DESKTOP] Error al hacer seek en video hero:', err);
+                        console.warn('[DESKTOP] Error al hacer seek:', err);
                     }
                 }
             }
@@ -604,7 +642,7 @@ function initFadeAnimations() {
 }
 
 /* ===================================
-   NOTIFICACIONES (p.ej. para Konami)
+   NOTIFICACIONES
    =================================== */
 
 function showNotification(message, duration = CONFIG.notificationDuration) {
@@ -721,7 +759,13 @@ if (CONFIG.isDebug) {
         toggleMenu,
         smoothScrollTo,
         animateStats,
-        applyTheme
+        applyTheme,
+        getDevicePreference,
+        setDevicePreference,
+        resetDevicePreference: () => {
+            localStorage.removeItem(DEVICE_KEY);
+            console.log('[DESKTOP] Preferencia de dispositivo eliminada');
+        }
     };
     console.log('[DESKTOP] window.OceanGraph disponible para debugging');
 }

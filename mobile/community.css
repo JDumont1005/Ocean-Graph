@@ -479,6 +479,57 @@ body.theme-light .community-tag {
     color: #005d9c;
 }
 
+/* ===================================
+   PLACEHOLDER LAZY EMBEDS
+   =================================== */
+
+.community-embed-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 3rem 1rem;
+    margin-bottom: 0.85rem;
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(0, 157, 255, 0.25);
+    border-radius: 12px;
+    min-height: 180px;
+    animation: placeholderPulse 2s ease-in-out infinite;
+}
+
+.embed-placeholder-icon {
+    color: var(--color-primary);
+    opacity: 0.7;
+}
+
+.embed-placeholder-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.embed-placeholder-text {
+    font-size: 0.8rem;
+    color: var(--color-white);
+    opacity: 0.6;
+    letter-spacing: 0.5px;
+}
+
+@keyframes placeholderPulse {
+    0%, 100% { opacity: 0.85; }
+    50% { opacity: 0.55; }
+}
+
+body.theme-light .community-embed-placeholder {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 157, 255, 0.3);
+}
+
+body.theme-light .embed-placeholder-text {
+    color: #141414;
+    opacity: 0.7;
+}
+
 /* ACCESIBILIDAD */
 
 @media (prefers-reduced-motion: reduce) {
