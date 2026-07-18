@@ -7,7 +7,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="description" content="Servicios profesionales de Ocean Graph - Marketing Digital, Diseño, Fotografía, Videografía y Community Manager.">
+    <meta name="description" content="Servicios profesionales de Ocean Graph - Diseño de logos, videos, fotografía, redes sociales, drone y más.">
 
     <title>Servicios - Ocean Graph</title>
 
@@ -79,12 +79,9 @@
         </div>
     </nav>
 
-    <!-- HERO SERVICIOS -->
+    <!-- SECCIÓN 1: HERO SERVICIOS -->
     <section class="services-hero">
-        <!-- Imagen de fondo aleatoria -->
         <div class="services-hero-bg" id="services-hero-bg" aria-hidden="true"></div>
-        
-        <!-- Overlay -->
         <div class="services-hero-overlay" aria-hidden="true"></div>
         
         <div class="services-hero-content">
@@ -95,15 +92,11 @@
             </div>
             
             <h1 class="services-hero-title">
-                <span class="title-highlight-services">Servicios</span>
+                <span class="title-highlight-service">Servicios</span>
             </h1>
             
-            <p class="services-hero-description">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
-                sed diam nonummy nibh euismod tincidunt ut laoreet dolore 
-                magna aliquam erat volutpat. Ut wisi enim ad minim veniam, 
-                quis nostrud exerci tation ullamcorper suscipit lobortis nisl 
-                ut aliquip ex ea commodo consequat. Duis
+            <p class="services-hero-description" id="services-hero-description">
+                <!-- Rellenado por JS -->
             </p>
 
             <div class="services-scroll-indicator" aria-label="Desplazar hacia abajo">
@@ -112,6 +105,42 @@
             </div>
         </div>
     </section>
+
+    <!-- SECCIÓN 3: GRID DE CARDS INTERACTIVAS -->
+    <section class="services-cards-section" id="services-cards-section">
+        <div class="container">
+            <div class="services-cards-grid" id="services-cards-grid">
+                <!-- Rellenado por JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DE CONTACTO -->
+    <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" aria-hidden="true">
+        <div class="contact-modal-overlay" id="contact-modal-overlay"></div>
+
+        <div class="contact-modal-content">
+            <button class="contact-modal-close" id="contact-modal-close" type="button" aria-label="Cerrar modal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+
+            <div class="contact-modal-header">
+                <h3 class="contact-modal-title" id="contact-modal-title">
+                    <!-- Rellenado por JS -->
+                </h3>
+                <p class="contact-modal-subtitle" id="contact-modal-subtitle">
+                    <!-- Rellenado por JS -->
+                </p>
+            </div>
+
+            <div class="contact-modal-channels" id="contact-modal-channels">
+                <!-- Rellenado por JS -->
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="main-footer">

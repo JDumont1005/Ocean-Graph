@@ -1,0 +1,178 @@
+{
+  "hero": {
+    "title": "Servicios",
+    "description": "Ofrecemos soluciones creativas y profesionales para impulsar tu marca en el mundo digital. Desde diseño gráfico hasta producción audiovisual, cada servicio está pensado para generar impacto y resultados reales."
+  },
+
+  "overview":{
+    "software": [
+      { "id": "ai", "name": "Adobe Illustrator", "abbr": "Ai", "color": "#FF9A00" },
+      { "id": "ps", "name": "Adobe Photoshop", "abbr": "Ps", "color": "#31A8FF" },
+      { "id": "lr", "name": "Adobe Lightroom", "abbr": "Lr", "color": "#31A8FF" },
+      { "id": "ae", "name": "Adobe After Effects", "abbr": "Ae", "color": "#9999FF" },
+      { "id": "pr", "name": "Adobe Premiere Pro", "abbr": "Pr", "color": "#9999FF" },
+      { "id": "me", "name": "Adobe Media Encoder", "abbr": "Me", "color": "#9999FF" },
+      { "id": "pt", "name": "Substance Painter", "abbr": "Pt", "color": "#1B7A41" },
+      { "id": "ds", "name": "Substance Designer", "abbr": "Ds", "color": "#1B7A41" },
+      { "id": "blender", "name": "Blender", "abbr": "", "color": "#E87D0D", "icon": "blender" },
+      { "id": "davinci", "name": "Davinci", "abbr": "", "color": "#1A1A2E", "icon": "davinci" },
+      { "id": "zbrush", "name": "ZBrush", "abbr": "", "color": "#7B7B7B", "icon": "zbrush" },
+      { "id": "capcut", "name": "CapCut", "abbr": "", "color": "#000000", "icon": "capcut" }
+    ]
+  },
+
+  "cards": [
+    {
+      "id": "logos",
+      "title": "Diseño y",
+      "titleLine2": "Rediseño de",
+      "titleHighlight": "LOGOS",
+      "description": "Tu logo es lo primero que habla de tu marca... ¿Está diciendo lo correcto?",
+      "icon": "settings",
+      "cardBg": "#E8F4F8",
+      "cardTextColor": "#1a1a1a",
+      "highlightColor": "#2196F3",
+      "baseBg": "#1a6b7a",
+      "btnBg": "#1a6b7a",
+      "btnText": "#ffffff",
+      "software": ["ai", "ae", "blender"]
+    },
+    {
+      "id": "flyers",
+      "title": "Flyers e",
+      "titleLine2": "",
+      "titleHighlight": "Invitaciones",
+      "description": "Desde la idea hasta el diseño final: creamos el flyer y la invitación perfecta para tu evento.",
+      "icon": "design",
+      "cardBg": "#1B2838",
+      "cardTextColor": "#ffffff",
+      "highlightColor": "#00BCD4",
+      "baseBg": "#00ACC1",
+      "btnBg": "#00ACC1",
+      "btnText": "#ffffff",
+      "software": ["ai", "ps", "lr", "ae"]
+    },
+    {
+      "id": "redes",
+      "title": "Manejo de",
+      "titleLine2": "",
+      "titleHighlight": "Redes Sociales",
+      "description": "Gestionamos y administramos la presencia de tu marca o empresa en las redes sociales.",
+      "icon": "social",
+      "cardBg": "#2D1B4E",
+      "cardTextColor": "#ffffff",
+      "highlightColor": "#E040FB",
+      "baseBg": "#9C27B0",
+      "btnBg": "#9C27B0",
+      "btnText": "#ffffff",
+      "socialIcons": ["tiktok", "facebook", "instagram"]
+    },
+    {
+      "id": "3d",
+      "title": "Diseño",
+      "titleLine2": "",
+      "titleHighlight": "3D",
+      "description": "Creamos una representación de un objeto o una forma tridimensionales.",
+      "icon": "cube",
+      "cardBg": "#121212",
+      "cardTextColor": "#ffffff",
+      "highlightColor": "#2196F3",
+      "baseBg": "#E65100",
+      "btnBg": "#E65100",
+      "btnText": "#ffffff",
+      "software": ["blender", "pt", "ds"]
+    },
+    {
+      "id": "videos",
+      "title": "Creación y",
+      "titleLine2": "Edición de",
+      "titleHighlight": "Videos",
+      "description": "Contenido de videos mediante la modificación, duración, efectos visuales y textos atractivos.",
+      "icon": "video",
+      "cardBg": "linear-gradient(135deg, #1a237e, #4a148c)",
+      "cardTextColor": "#ffffff",
+      "highlightColor": "#7C4DFF",
+      "baseBg": "#7C4DFF",
+      "btnBg": "#7C4DFF",
+      "btnText": "#ffffff",
+      "software": ["ae", "pr", "me", "cinema4d", "davinci", "capcut"]
+    },
+    {
+      "id": "fotografia",
+      "title": "Creación y",
+      "titleLine2": "Edición",
+      "titleHighlight": "Fotográfica",
+      "description": "Perfeccionamos y mejoramos tus fotografías para lograr un resultado profesional.",
+      "icon": "camera",
+      "cardBg": "linear-gradient(135deg, #00796B, #00695c)",
+      "cardTextColor": "#ffffff",
+      "highlightColor": "#00E676",
+      "baseBg": "#00E676",
+      "btnBg": "#00E676",
+      "btnText": "#ffffff",
+      "software": ["ps", "lr"]
+    },
+    {
+      "id": "drone",
+      "title": "Creación de",
+      "titleLine2": "Videos con",
+      "titleHighlight": "Drone",
+      "description": "Tomas aéreas, cinematográficos, paisajes, eventos, ubicación y más.",
+      "icon": "drone",
+      "cardBg": "linear-gradient(135deg, #4a148c, #7b1fa2)",
+      "cardTextColor": "#ffffff",
+      "highlightColor": "#B388FF",
+      "baseBg": "#E040FB",
+      "btnBg": "#E040FB",
+      "btnText": "#ffffff",
+      "software": ["ae", "pr", "me", "cinema4d", "capcut"]
+    }
+  ],
+
+  "contactModal": {
+    "title": "¿Cómo prefieres contactarnos?",
+    "subtitle": "Elige tu canal favorito",
+    "channels": [
+      {
+        "id": "whatsapp",
+        "name": "WhatsApp",
+        "icon": "whatsapp",
+        "url": "https://wa.me/584127209418",
+        "detail": "+58 412-7209418",
+        "color": "#25D366"
+      },
+      {
+        "id": "instagram",
+        "name": "Instagram",
+        "icon": "instagram",
+        "url": "https://www.instagram.com/oceangraficos",
+        "detail": "@oceangraficos",
+        "color": "#E4405F"
+      },
+      {
+        "id": "facebook",
+        "name": "Facebook",
+        "icon": "facebook",
+        "url": "https://www.facebook.com/oceangraficos",
+        "detail": "Ocean Graficos",
+        "color": "#1877F2"
+      },
+      {
+        "id": "tiktok",
+        "name": "TikTok",
+        "icon": "tiktok",
+        "url": "https://www.tiktok.com/@oceangraficos",
+        "detail": "@oceangraficos",
+        "color": "#000000"
+      },
+      {
+        "id": "email",
+        "name": "Email",
+        "icon": "email",
+        "url": "mailto:oceangraphven@gmail.com",
+        "detail": "oceangraphven@gmail.com",
+        "color": "#009dff"
+      }
+    ]
+  }
+}
