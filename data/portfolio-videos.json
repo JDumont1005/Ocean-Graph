@@ -74,22 +74,6 @@
 
   "videos": [
     {
-      "id": "salud-002",
-      "type": "image",
-      "categoryId": "salud",
-      "title": "Campaña Odontológica",
-      "description": "Serie fotográfica realizada para la campaña de concientización sobre salud bucal. Cada imagen fue cuidadosamente compuesta para transmitir profesionalismo, confianza y limpieza.\n\nEl objetivo principal era mostrar la importancia de los chequeos regulares y el cuidado dental preventivo.\n\nTrabajamos con iluminación de estudio profesional y post-producción detallada para lograr un acabado premium acorde a la imagen de la marca.\n\nLa serie completa se publicó como carrusel en Instagram con excelente recepción del público objetivo.",
-      "thumbnail": "https://picsum.photos/seed/campana-dental-thumb/900/1200",
-      "images": [
-        "https://picsum.photos/seed/campana-dental-1/900/1200",
-        "https://picsum.photos/seed/campana-dental-2/900/1200",
-        "https://picsum.photos/seed/campana-dental-3/900/1200",
-        "https://picsum.photos/seed/campana-dental-4/900/1200"
-      ],
-      "avatar": "images/Marielsys-Logo.png",
-      "handle": "@od_marielsysvasquez"
-    },
-    {
       "id": "ATSV-001",
       "type": "video",
       "categoryId": "salud",
@@ -297,24 +281,6 @@
       "avatar": "images/Karat-Logo.jpg",
       "handle": "@karatbyjackma",
       "videoUrl": "video/Karat/3tiposdeprendaspararegalar.mp4"
-    },
-    {
-      "id": "joyeria-003",
-      "type": "image",
-      "categoryId": "joyeria",
-      "title": "Editorial Premium",
-      "description": "Editorial fotográfica completa para la colección premium de joyas. Un total de 6 tomas cuidadosamente diseñadas para mostrar cada pieza en su máximo esplendor.\n\nUtilizamos macro fotografía profesional con iluminación controlada para capturar el brillo y los detalles de cada joya.\n\nLa serie se distribuyó en catálogo digital, redes sociales y material impreso para tienda física.",
-      "thumbnail": "https://picsum.photos/seed/joya-editorial-thumb/900/1200",
-      "images": [
-        "https://picsum.photos/seed/joya-editorial-1/900/1200",
-        "https://picsum.photos/seed/joya-editorial-2/900/1200",
-        "https://picsum.photos/seed/joya-editorial-3/900/1200",
-        "https://picsum.photos/seed/joya-editorial-4/900/1200",
-        "https://picsum.photos/seed/joya-editorial-5/900/1200",
-        "https://picsum.photos/seed/joya-editorial-6/900/1200"
-      ],
-      "avatar": "https://picsum.photos/seed/joya-1/100/100",
-      "handle": "@joyeria_luxury"
     },
 
     {
