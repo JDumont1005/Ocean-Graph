@@ -11,16 +11,16 @@
    =================================== */
 
 (function checkMobileRedirect() {
-    const preference = localStorage.getItem('og-device-preference');
-    if (preference === 'desktop') return;
-    
     const ua = navigator.userAgent || '';
     const isUAHandheld = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
     const hasTouchSupport = ('ontouchstart' in window) && (navigator.maxTouchPoints > 0);
+    const isCurrentlyMobile = isUAHandheld && hasTouchSupport;
     
-    if ((isUAHandheld && hasTouchSupport) || preference === 'mobile') {
+    if (isCurrentlyMobile) {
         localStorage.setItem('og-device-preference', 'mobile');
         window.location.replace('mobile/ServicesMobile.html');
+    } else {
+        localStorage.setItem('og-device-preference', 'desktop');
     }
 })();
 

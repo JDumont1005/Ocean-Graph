@@ -232,9 +232,17 @@ function initLoader() {
             // - Estamos en Home
             // - El usuario NO ha elegido "desktop" manualmente
             // - Es un dispositivo móvil detectado
-            const shouldRedirect = IS_HOME 
-                && preference !== 'desktop' 
-                && (preference === 'mobile' || isHandheldDevice());
+            // SIEMPRE verificar el dispositivo actual, ignorar preferencia guardada si es incorrecta
+const isCurrentlyMobile = isHandheldDevice();
+
+// Si el dispositivo actual NO es móvil, forzar guardado como desktop
+if (!isCurrentlyMobile) {
+    setDevicePreference('desktop');
+}
+
+const shouldRedirect = IS_HOME 
+    && isCurrentlyMobile  // Solo si REALMENTE es móvil ahora
+    && preference !== 'desktop';
             
             if (shouldRedirect) {
                 // Guardar preferencia móvil para futuras visitas

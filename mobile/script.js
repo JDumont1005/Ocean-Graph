@@ -75,18 +75,11 @@ function setDevicePreference(pref) {
    =================================== */
 
 function shouldUseDesktopVersion() {
-    // Si ya eligió "mobile", nunca redirigir a escritorio
-    const preference = getDevicePreference();
-    if (preference === 'mobile') return false;
-    
-    // Si eligió "desktop" antes, respetar
-    if (preference === 'desktop') return true;
-
-    // Detección estricta: solo redirige a escritorio si NO es móvil/tablet real
+    // SIEMPRE verificar el dispositivo actual (ignorar caché de preferencia)
     const hasTouchSupport = ('ontouchstart' in window) && (navigator.maxTouchPoints > 0);
-    const isDesktopUA = !DEVICE.isMobile && !DEVICE.isTablet && !hasTouchSupport;
+    const isCurrentlyDesktop = !DEVICE.isMobile && !DEVICE.isTablet && !hasTouchSupport;
     
-    return isDesktopUA;
+    return isCurrentlyDesktop;
 }
 
 function maybeRedirectToDesktop() {
