@@ -64,10 +64,11 @@ Ocean Graph es una plataforma diseñada para mostrar el poder de la narrativa vi
     └── CommunityMobile.html
 ```
 
-
 📩 Contacto
 ¿Tienes un proyecto en mente? Hablemos:
 
 WhatsApp: +58 412-7209418
 Email: oceangraphven@gmail.com
 Ubicación: Venezuela, Edo. La Guaira.
+
+<div align="center"> <p>© 2024 Ocean Graph. Todos los derechos reservados.</p> </div>
