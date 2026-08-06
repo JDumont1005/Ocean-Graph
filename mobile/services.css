@@ -1,0 +1,684 @@
+/* ===================================
+   OCEAN GRAPH - SERVICIOS MOBILE
+   mobile/services.css
+   1 columna + botón visible + sin base 3D
+   =================================== */
+
+/* ===================================
+   CONTEXTO PÁGINA
+   =================================== */
+
+.page-services-mobile {
+    background-color: var(--color-dark);
+}
+
+/* Menú lateral igual que las otras páginas móviles */
+.page-services-mobile .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    background-color: var(--color-dark);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1.8rem;
+    list-style: none;
+    transition: right var(--transition-normal), background-color var(--transition-normal);
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: calc(var(--z-navbar) - 1);
+}
+
+.page-services-mobile .nav-menu.active {
+    right: 0;
+}
+
+.page-services-mobile .hamburger {
+    display: flex;
+}
+
+.page-services-mobile .nav-link {
+    font-size: 1rem;
+    padding: 0.7rem 1.3rem;
+    text-align: left;
+}
+
+/* ===================================
+   SECCIÓN 1: HERO SERVICIOS (MÓVIL)
+   =================================== */
+
+.services-hero {
+    position: relative;
+    padding: calc(60px + var(--spacing-lg)) var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-dark);
+    text-align: center;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.services-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.services-hero-bg.loaded {
+    opacity: 1;
+}
+
+.services-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    transition: background 0.6s ease;
+    background: rgba(20, 20, 20, 0.78);
+}
+
+.services-hero.hero-text-dark .services-hero-overlay {
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.services-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease;
+}
+
+/* Breadcrumb */
+.services-hero .breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #ffffff;
+    opacity: 0.9;
+    transition: color 0.6s ease;
+}
+
+.services-hero .breadcrumb a {
+    color: var(--color-primary-light);
+    text-decoration: none;
+}
+
+.services-hero .breadcrumb-separator {
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.services-hero .breadcrumb-current {
+    color: #ffffff;
+}
+
+/* Título */
+.services-hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 400;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+    transition: text-shadow 0.6s ease;
+}
+
+.services-hero .title-highlight {
+    color: var(--color-primary);
+}
+
+/* Descripción */
+.services-hero-description {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #ffffff;
+    opacity: 0.95;
+    margin: 0 auto var(--spacing-md);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    transition: color 0.6s ease, text-shadow 0.6s ease;
+}
+
+/* Scroll indicator */
+.services-scroll-indicator {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    opacity: 0.85;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.services-scroll-indicator .scroll-text {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.services-scroll-indicator .scroll-arrow {
+    font-size: 1.3rem;
+    color: #ffffff;
+    animation: bounce 2s infinite;
+}
+
+/* Texto adaptativo (imagen clara) */
+.services-hero.hero-text-dark .breadcrumb,
+.services-hero.hero-text-dark .breadcrumb-current,
+.services-hero.hero-text-dark .breadcrumb-separator {
+    color: #141414;
+    opacity: 1;
+}
+
+.services-hero.hero-text-dark .breadcrumb a {
+    color: var(--color-primary);
+}
+
+.services-hero.hero-text-dark .services-hero-title {
+    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.4);
+}
+
+.services-hero.hero-text-dark .services-hero-description {
+    color: #141414;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.4);
+}
+
+.services-hero.hero-text-dark .services-scroll-indicator .scroll-text,
+.services-hero.hero-text-dark .services-scroll-indicator .scroll-arrow {
+    color: #141414;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.5);
+}
+
+/* ===================================
+   SECCIÓN 2: GRID DE CARDS (1 COLUMNA)
+   =================================== */
+
+.services-cards-section {
+    background-color: var(--color-dark);
+    padding: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.services-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    max-width: 100%;
+    padding: 0 var(--spacing-md);
+}
+
+/* Wrapper (sin base 3D en móvil) */
+.service-card-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Base 3D oculta en móvil */
+.service-card-base {
+    display: none;
+}
+
+/* Card principal */
+.service-card {
+    position: relative;
+    z-index: 2;
+    padding: 1.8rem 1.3rem 1.3rem;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Icono superior */
+.service-card-icon-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.service-card-line {
+    flex: 1;
+    height: 1.5px;
+    background-color: currentColor;
+    opacity: 0.5;
+    max-width: 80px;
+}
+
+.service-card-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    flex-shrink: 0;
+}
+
+.service-card-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* Título */
+.service-card-title {
+    text-align: center;
+    margin: 0 0 0.8rem;
+    font-family: 'Montserrat', -apple-system, sans-serif;
+}
+
+.service-card-title-line {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.service-card-title-highlight {
+    display: block;
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.9rem;
+    line-height: 1;
+    margin-top: 0.2rem;
+    letter-spacing: -1px;
+}
+
+/* Descripción */
+.service-card-description {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0 0 1rem;
+    padding: 0 0.3rem;
+    opacity: 0.95;
+}
+
+/* Línea separadora */
+.service-card-divider {
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    opacity: 0.3;
+    margin: 0.4rem 0 0.8rem;
+}
+
+/* Iconos de software */
+.service-card-tools {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    min-height: 28px;
+}
+
+.service-card-tool {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #000;
+    flex-shrink: 0;
+}
+
+.service-card-tool img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botón contáctanos (SIEMPRE VISIBLE en móvil) */
+.service-card-btn {
+    width: 100%;
+    padding: 0.85rem;
+    border-radius: 12px;
+    font-family: 'Montserrat', -apple-system, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    border: none;
+    opacity: 1;
+    transform: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform var(--transition-fast);
+}
+
+.service-card-btn:active {
+    transform: scale(0.97);
+}
+
+/* ===================================
+   MODAL DE CONTACTO (MÓVIL)
+   =================================== */
+
+.contact-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.contact-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.contact-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+}
+
+.contact-modal-content {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #202030 100%);
+    border-top: 1px solid rgba(0, 157, 255, 0.25);
+    border-radius: 24px 24px 0 0;
+    padding: 2rem 1.3rem calc(1.5rem + env(safe-area-inset-bottom));
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+    transform: translateY(100%);
+    transition: transform var(--transition-normal);
+    z-index: 10001;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.contact-modal.active .contact-modal-content {
+    transform: translateY(0);
+}
+
+.contact-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.contact-modal-close:active {
+    transform: scale(0.92);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.contact-modal-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Handle visual arriba (línea gris tipo bottom sheet) */
+.contact-modal-content::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.contact-modal-header {
+    text-align: center;
+    margin-bottom: 1.3rem;
+    padding-top: 0.5rem;
+}
+
+.contact-modal-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    margin: 0 0 0.3rem;
+}
+
+.contact-modal-subtitle {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: 0.75;
+    margin: 0;
+}
+
+.contact-modal-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.contact-channel {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--color-white);
+    transition: all var(--transition-normal);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.contact-channel:active {
+    transform: scale(0.98);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact-channel-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+
+.contact-channel-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.contact-channel-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+.contact-channel-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.contact-channel-detail {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--color-white);
+    opacity: 0.7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contact-channel-arrow {
+    color: var(--color-white);
+    opacity: 0.4;
+    flex-shrink: 0;
+}
+
+/* ===================================
+   ANIMACIONES
+   =================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(6px);
+    }
+}
+
+/* ===================================
+   RESPONSIVE (tablets pequeñas)
+   =================================== */
+
+@media (min-width: 600px) {
+    .services-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .contact-modal {
+        align-items: center;
+    }
+    
+    .contact-modal-content {
+        max-width: 480px;
+        border-radius: 24px;
+        border-top: none;
+        border: 1px solid rgba(0, 157, 255, 0.25);
+        transform: scale(0.9) translateY(20px);
+    }
+    
+    .contact-modal.active .contact-modal-content {
+        transform: scale(1) translateY(0);
+    }
+    
+    .contact-modal-content::before {
+        display: none;
+    }
+}
+
+/* ===================================
+   TEMA CLARO
+   =================================== */
+
+body.theme-light .services-cards-section {
+    background-color: var(--color-dark);
+}
+
+body.theme-light .contact-modal-content {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+    border-color: rgba(0, 157, 255, 0.3);
+}
+
+body.theme-light .contact-modal-title,
+body.theme-light .contact-modal-subtitle {
+    color: #141414;
+}
+
+body.theme-light .contact-modal-close {
+    color: #141414;
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+body.theme-light .contact-modal-content::before {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+body.theme-light .contact-channel {
+    background-color: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: #141414;
+}
+
+body.theme-light .contact-channel:active {
+    background-color: rgba(0, 157, 255, 0.08);
+}
+
+body.theme-light .contact-channel-name,
+body.theme-light .contact-channel-detail {
+    color: #141414;
+}
+
+body.theme-light .contact-channel-arrow {
+    color: #141414;
+}
+
+/* ===================================
+   ACCESIBILIDAD
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .services-hero-bg,
+    .services-hero-content,
+    .services-scroll-indicator,
+    .scroll-arrow,
+    .service-card,
+    .service-card-btn,
+    .contact-modal,
+    .contact-modal-content,
+    .contact-channel {
+        transition: none;
+        animation: none;
+    }
+}
