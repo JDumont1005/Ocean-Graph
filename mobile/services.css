@@ -224,7 +224,7 @@
 .services-cards-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 1.5rem;
     max-width: 100%;
     padding: 0 var(--spacing-md);
 }
@@ -345,25 +345,28 @@
 }
 
 .service-card-tool {
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    border-radius: 7px;
     overflow: hidden;
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.4);
     flex-shrink: 0;
+    padding: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .service-card-tool img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 /* Botón contáctanos (SIEMPRE VISIBLE en móvil) */
 .service-card-btn {
     width: 100%;
-    padding: 0.85rem;
-    border-radius: 12px;
+    padding: 0.9rem;
+    border-radius: 14px;
     font-family: 'Montserrat', -apple-system, sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
@@ -374,7 +377,8 @@
     opacity: 1;
     transform: none;
     -webkit-tap-highlight-color: transparent;
-    transition: transform var(--transition-fast);
+    transition: transform var(--transition-fast), box-shadow var(--transition-normal);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
 .service-card-btn:active {

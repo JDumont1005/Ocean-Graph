@@ -95,7 +95,7 @@
       "baseBg": "#7C4DFF",
       "btnBg": "#7C4DFF",
       "btnText": "#ffffff",
-      "software": ["ae", "pr", "me", "cinema4d", "davinci", "capcut"]
+      "software": ["ae", "pr", "me", "davinci", "capcut"]
     },
     {
       "id": "fotografia",
@@ -125,7 +125,7 @@
       "baseBg": "#E040FB",
       "btnBg": "#E040FB",
       "btnText": "#ffffff",
-      "software": ["ae", "pr", "me", "cinema4d", "capcut"]
+      "software": ["ae", "pr", "me", "capcut"]
     }
   ],
 
