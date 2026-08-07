@@ -661,7 +661,7 @@ section {
     display: flex;
     gap: var(--spacing-sm);
     align-items: flex-start;
-    padding: var(--spacing-sm);
+    padding: 0.6rem 0.8rem;
     border-radius: 12px;
     transition: all var(--transition-normal);
 }
