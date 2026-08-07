@@ -27,7 +27,7 @@
 <br />
 
 ## 🌊 Sobre el Proyecto
-Ocean Graph es una plataforma diseñada para mostrar el poder de la narrativa visual. Enfocada en la creación de contenido profesional para redes sociales (especialmente Instagram), esta web sirve como portafolio interactivo y centro de comunidad para clientes que buscan elevar su marca al siguiente nivel.
+Ocean Graph es una plataforma diseñada para mostrar el poder de la narrativa visual. Enfocada en la creación de contenido profesional para redes sociales (especialmente Instagram), esta web sirve como portafolio interactivo y centro de comunidad para clientes que buscan elevar su marca al siguiente nivel. Profesional.
 
 ## ✨ Características Principales
 
